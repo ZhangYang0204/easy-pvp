@@ -1,0 +1,108 @@
+gui:
+  title:
+    allPartyPage: "&b&l全部队伍"
+    allMemberPage: "&b&l全部成员"
+    allMapPage: "&b&l全部可选地图"
+    allKitPage: "&b&l全部可选装备包"
+  button:
+    allPartyPagePreviousPage:
+      material: "BOOK"
+      displayName: "&f&l上一页"
+      lore:
+        - "&f点我前往上一页"
+    allPartyPageNextPage:
+      material: "BOOK"
+      displayName: "&f&l下一页"
+      lore:
+        - "&f点我前往下一页"
+    allPartyPageCreateParty:
+      material: "DIAMOND_HELMET"
+      displayName: "&b&l创建队伍"
+      lore:
+        - "&b点我创建一个队伍"
+    allPartyPageParty:
+      material: "CHEST"
+      displayName: "&b&l{captain} 的队伍 {party}"
+      lore:
+        - "&b队名 {party}"
+        - "&b队长 {captain}"
+        - "&b点我加入该队伍"
+    allPartyPageMyParty:
+      material: "ENDER_CHEST"
+      displayName: "&b&l我的队伍"
+      lore:
+        - "&b查看我的队伍"
+
+    allMemberPagePreviousPage:
+      material: "BOOK"
+      displayName: "&F&l上一页"
+      lore:
+        - "&F点我前往上一页"
+    allMemberPageNextPage:
+      material: "BOOK"
+      displayName: "&f&l下一页"
+      lore:
+        - "&F点我前往下一页"
+    allMemberPageMember:
+      material: "GOLD_HELMET"
+      displayName: "&B&l成员 {member}"
+      lore:
+        - "&b点我从队伍里请出 {member}"
+    allMemberPageChooseMap:
+      material: "PAPER"
+      displayName: "&B&l地图选择"
+      lore:
+        - "&b点我选择地图"
+    allMemberPageBackAllPartyPage:
+      material: "BARRIER"
+      displayName: "&b&l返回"
+      lore:
+        - "&b返回上一个页面"
+    allMemberPageLeaveParty:
+      material: "REDSTONE"
+      displayName: "&b&l离开队伍"
+      lore:
+        - "&b离开当前队伍"
+
+    allMapPageMap:
+      material: "PAPER"
+      displayName: "&b&l地图 {map}"
+      lore:
+        - "&b点我开始匹配该地图 {map}"
+        - "&b以下是描述"
+        - "{[description]}"
+
+    allMapPageBackAllMemberPage:
+      material: "BARRIER"
+      displayName: "&f&l返回"
+      lore:
+        - "&f返回"
+
+    allMapPageCancelMatch:
+      material: "REDSTONE"
+      displayName: "&b&l取消匹配"
+      lore:
+        - "&b点我取消匹配"
+    allMapPageRandomMatch:
+      material: "DIAMOND_SWORD"
+      displayName: "&b&l随机匹配"
+      lore:
+        - "&b点我随机匹配"
+
+    allKitPagePreviousPage:
+      material: "BOOK"
+      displayName: "&F&l上一页"
+      lore:
+        - "&F点我前往上一页"
+    allKitPageNextPage:
+      material: "BOOK"
+      displayName: "&B&l下一页"
+      lore:
+        - "&b点我前往下一页"
+    allKitPageKit:
+      material: "CHEST"
+      displayName: "&B&l {kit}"
+      lore:
+        - "&b点我领取装备包"
+        - "&b以下是该装备包的描述"
+        - "{[description]}"

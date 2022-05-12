@@ -1,0 +1,302 @@
+message:
+
+  input:
+    cancel: "取消"  #必填项,不可以是“” 不可以包含空格  默认值cancel
+
+  chat:
+    notPlayer:
+      - "&c只有玩家才能执行这条命令"
+    noPermission:
+      - "&c缺少权限 {permission}"
+    invalidArgument:
+      - "&c无效参数 {argument}"
+    versionNotify:
+      - "&a当前版本是 {current},最新版本是 {latest}"
+
+
+    successCorrectYaml:
+      - "&a修正所有Yaml文件缺少和多余键值成功"
+
+    successGui:
+      - "&a成功为您打开主页面"
+
+    successHelp:
+      - "&a====帮助列表===="
+      - "&aEasyPvp gui"
+      - "&a打开Gui界面"
+      - ""
+      - "&aEasyPvp sectionSet {first|second|red|blue}"
+      - "&a设置区域"
+      - ""
+      - "&aEasyPvp mapCreate <地图名字>"
+      - "&a设置地图,各项采用默认值"
+      - ""
+      - "&aEasyPvp mapBuildSet <地图名字>  {true|false}"
+      - "&a设置是否可破坏地形"
+      - ""
+      - "&aEasyPvp mapDropSet <地图名字>  {true|false}"
+      - "&a设置是否死亡掉落"
+      - ""
+      - "&aEasyPvp mapScaleSet <地图名字>  <数量>"
+      - "&a设置每队人数"
+      - ""
+      - "&aEasyPvp mapFairSet <地图名字>  {true|false}"
+      - "&a设置是否可破坏地形"
+      - ""
+      - "&aEasyPvp mapDelete <地图名字>"
+      - "&a删除地图"
+      - ""
+      - "&aEasyPvp mapAddKit <地图名字> <装备包名字>"
+      - "&a给地图添加装备包"
+      - ""
+      - "&aEasyPvp mapRemoveKit <地图名字> <装备包名字>"
+      - "&a给地图删除装备包"
+      - ""
+      - "&aEasyPvp mapChooseTickSet <地图名字> <tick>"
+      - "&a设置地图选择装备的时间"
+      - ""
+      - "&aEasyPvp kitCreate <装备包名字>"
+      - "&a以自身背包状态创建一个装备包"
+      - ""
+      - "&aEasyPvp kitSet <装备包名字>"
+      - "&a以自身背包状态编辑一个装备包"
+      - ""
+      - "&aEasyPvp kitDelete <装备包名字>"
+      - "&a删除装备包"
+      - ""
+      - "&aEasyPvp help"
+      - "&a查看帮助"
+      - ""
+      - "&aEasyPvp reload"
+      - "&a重载配置文件"
+      - ""
+      - "&aEasyPvp correctYaml"
+      - "&a补全yml文件中缺失的可选项和必选项"
+
+    successKitCreate:
+      - "&a创建装备包 {kit} 成功"
+    failureKitCreateBecauseDuplicateKitName:
+      - "&c创建装备包 {kit} 失败,已经有叫这个名字的装备包了"
+
+    successKitDelete:
+      - "&a删除装备包 {kit} 成功"
+    failureKitDeleteBecauseNotExistKitName:
+      - "&c删除装备包 {kit} 失败,没有找到叫这个名字的装备包"
+
+
+    successMapDescriptionAdd:
+      - "&a成功添加地图 {map} 的描述 {description}"
+    failureMapDescriptionAddBecauseNotExistMapName:
+      - "&c添加地图 {map} 的描述 {description} 失败,没有找到叫这个名字的地图"
+
+    successMapDescriptionRemove:
+      - "&a成功删除地图 {map} 的第{ row} 行描述"
+    failureMapDescriptionRemoveBecauseNotExistMapName:
+      - "&c删除地图 {map} 的第 {row} 行描述失败,没有找到叫这个名字的地图"
+    failureMapDescriptionRemoveBecauseNotExistDescriptionRow:
+      - "&c删除地图 {map} 的第 {row} 行描述失败,你还没有添加这一行呢"
+
+    successMapDescriptionSet:
+      - "&a成功设置地图 {map} 的第 {row} 行描述为 {description}"
+    failureMapDescriptionSetBecauseNotExistMapName:
+      - "&c设置地图 {map} 的第 {row} 行描述为 {description} 失败,没有找到叫这个名字的地图"
+    failureMapDescriptionSetBecauseNotExistDescriptionRow:
+      - "&c设置地图 {map} 的第 {row} 行描述为{description}失败,你还没有添加这一行呢"
+
+    successKitSet:
+      - "&a设置装备包 {kit} 成功"
+    failureKitSetBecauseNotExistKitName:
+      - "&c设置装备包 {kit} 失败,没有找到叫这个名字的装备包"
+
+    successMapBuildSet:
+      - "&a成功设置地图 {map} 的建筑为 {build}"
+    failureMapBuildSetBecauseNotExistMapName:
+      - "&c设置地图 {map} 的建筑为 {build} 失败,没有找到叫这个名字的地图"
+
+    successMapChooseTickSet:
+      - "&a成功设置 {map} 的选择装备时间为 {tick} 刻"
+    failureMapChooseTickSetBecauseNotExistMapName:
+      - "&c无法设置 {map} 的选择装备时间为{tick}刻,没有找到叫这个名字的地图"
+
+    successMapCreate:
+      - "&a成功创建地图 {map}"
+    failureMapCreateBecauseNotFourPoint:
+      - "&c创建地图 {map} 失败,请先选择四个点"
+    failureMapCreateBecauseInvalidFourPoint:
+      - "&c创建地图 {map} 失败,请选择合理的四个点"
+    failureMapCreateBecauseDuplicateMapName:
+      - "&c创建地图 {map} 失败,已经有地图叫这个名字了"
+
+    successMapDelete:
+      - "&a成功创建地图 {map}"
+    failureMapDeleteBecauseNotExistMapName:
+      - "&c删除地图 {map} 失败,没有找到叫这个名字的地图"
+
+
+    successKitDescriptionAdd:
+      - "&a成功添加装备包 {kit} 的描述 {description}"
+    failureKitDescriptionAddBecauseNotExistMapName:
+      - "&c添加装备包 {kit} 的描述 {description} 失败,没有找到叫这个名字的装备包"
+
+    successKitDescriptionRemove:
+      - "&a成功删除装备包 {kit} 的第 {row} 行描述"
+    failureKitDescriptionRemoveBecauseNotExistKitName:
+      - "&c删除装备包 {kit} 的第 {row} 行描述失败,没有找到叫这个名字的装备包"
+    failureKitDescriptionRemoveBecauseNotExistDescriptionRow:
+      - "&c删除装备包 {kit} 的第 {row} 行描述失败,没有过添加过这一行描述"
+
+    successKitDescriptionSet:
+      - "&a成功删除装备包 {kit} 的第 {row} 行描述 {description}"
+    failureKitDescriptionSetBecauseNotExistKitName:
+      - "&c删除装备包 {kit} 的第 {row} 行描述 {description} 失败,没有找到叫这个名字的装备包"
+    failureKitDescriptionSetBecauseNotExistDescriptionRow:
+      - "&c删除装备包 {kit} 的第 {row} 行描述 {description} 失败,没有过添加过这一行描述"
+
+    successMapDropSet:
+      - "&a成功设置地图 {map} 的掉落为 {drop}"
+    failureMapDropSetBecauseNotExistMapName:
+      - "&a设置地图 {map} 的掉落为 {drop} 失败,没有找到叫这个名字的地图"
+
+    successMapFairSet:
+      - "&a成功设置地图 {map} 的公平为 {fair}"
+    failureMapFairSetBecauseNotExistMapName:
+      - "&c设置地图 {map} 的公平为 {fair} 失败,没有找到叫这个名字的地图"
+
+    successMapKitAdd:
+      - "&a给 {map} 添加装备包 {kit}  成功"
+    failureMapKitAddBecauseNotExistKitName:
+      - "&c给 {map} 添加装备包 {kit} 失败,没有找到叫这个名字的装备包"
+    failureMapKitAddBecauseNotExistMapName:
+      - "&c给 {map} 添加装备包 {kit} 失败,没有找到叫这个名字的地图"
+    failureMapKitAddBecauseMapAlreadyAddKitException:
+      - "&c给 {map} 添加装备包 {kit} 失败,已经在 {map} 添加过 {kit}了"
+
+    successMapKitRemove:
+      - "&a给 {map} 删除装备包 {kit} 成功"
+    failureMapKitRemoveBecauseNotExistKitName:
+      - "&c给 {map} 删除装备包 {kit} 失败,没有找到叫这个名字的装备包"
+    failureMapKitRemoveBecauseNotExistMapName:
+      - "&c给 {map} 删除装备包 {kit} 失败,没有找到叫这个名字的地图"
+    failureMapKitRemoveBecauseMapNotAddKit:
+      - "&c给 {map} 删除装备包 {kit} 失败,没有在 {map} 添加过 {kit}"
+
+    successMapScaleSet:
+      - "&a成功设置地图 {map} 的规模为 {scale}"
+    failureMapScaleSetBecauseNotExistMapName:
+      - "&c设置地图 {map} 的规模为 {scale} 失败,没有找到叫这个名字的地图"
+
+    successRecordReset:
+      - "&a比赛记录重置成功"
+
+    successReload:
+      - "&a插件重载成功"
+
+    successSectionSet:
+      - "&a成功设置区域的 {point} 点"
+
+
+
+    successCreateParty:
+      - "&a成功创建队伍 {party}"
+    failureCreatePartyBecauseAlreadyJoinParty:
+      - "&c无法创建队伍,你已经加入了一个队伍 {party}"
+    failureCreatePartyBecauseDuplicatePartyName:
+      - "&c无法创建队伍,队伍名字 {party} 重复"
+    howToCreateParty:
+      - "&a输入队伍名字创建队伍(不能包含空格),输入 取消 来关闭本次创建"
+      - "&a以下输入示例创建战队 暴龙战士"
+      - "暴龙战士"
+
+
+    successCancelCreateParty:
+      - "&a成功取消创建队伍"
+
+
+    successJoinParty:
+      - "&a成功加入 {captain} 的队伍 {party}"
+    someoneSuccessJoinParty:
+      - "&a{player} 加入了你所在的队伍 {party} ,当前队伍的队长是 {captain}"
+    failureJoinPartyBecauseAlreadyJoinParty:
+      - "&c无法加入 {captain} 的队伍 {target_party},你已经加入了队伍 {self_party}"
+    failureJoinPartyBecausePartyIsMatching:
+      - "&c无法加入 {captain} 的队伍 {party} ,该队伍正在匹配中"
+
+    successMyParty:
+      - "&a成功打开个人队伍信息页面"
+    failureMyPartyBecauseNotJoinParty:
+      - "&c你还没有队伍呢哦"
+      -
+    successBackAllPartyPage:
+      - "&a成功返回全部队伍页面"
+
+
+    successKickMember:
+      - "&a你成功从队伍 {party} 踢出了 {member}"
+    someoneSuccessWasKickedParty:
+      - "&a{member} 被踢出了你所在的队伍 {party} ，踢人者是 {kicker}"
+    successWasKickedParty:
+      - "&a你被踢出了你所在的队伍 {party} ，踢人者是 {kicker}"
+    failureKickMemberBecauseNotCaptain:
+      - "&c你不是队伍 {party} 队长,无法请出 {member} ,队伍的队长是 {captain}"
+    failureKickMemberBecausePartyIsMatching:
+      - "&c无法从 {captain} 的队伍 {party} 踢出 {member} ,队伍正在匹配中，请先取消匹配"
+
+    successLeaveParty:
+      - "&a你离开了你所在的队伍 {party}"
+    someoneSuccessLeaveParty:
+      - "&a{player} 离开了你所在的队伍 {party}"
+    failureLeavePartyBecausePartyIsMatching:
+      - "&c无法离开队伍 {party} ,队伍正在匹配中，请先取消匹配"
+
+    successChooseMap:
+      - "&a你打开了选择地图页面"
+
+    successBackAllMemberPage:
+      - "&a成功返回个人队伍信息页面"
+
+    successCancelMatch:
+      - "&a你成功取消了当前队伍 {party} 的匹配"
+    someoneSuccessCancelMatch:
+      - "&a{member} 取消了当前队伍 {party} 的匹配"
+    failureCancelMatchBecausePartyIsNotMatching:
+      - "&c无法取消匹配,队伍 {party} 不在匹配中"
+
+    successStartSpecificMatch:
+      - "&a你成功开启了在地图 {map} 的匹配,你的队伍 {party} 的队长是 {captain}"
+    someoneSuccessStartSpecificMatch:
+      - "&a你的队伍 {party} 开启了在地图 {map} 的匹配,队伍的队长是 {captain}"
+    failureStartSpecificMatchBecauseNotCaptain:
+      - "&c无法匹配地图 {map} ,不是队伍 {party} 的队长,队伍的队长是 {captain}"
+    failureStartSpecificMatchBecausePartyIsMatching:
+      - "&c无法匹配地图 {map} ,队伍 {party} 正在匹配中,队伍的队长是 {captain}"
+
+    successStartRandomMatch:
+      - "&a你成功开启了随机匹配,队伍 {party} 的队长是 {captain}"
+    someoneSuccessStartRandomMatch:
+      - "&a{captain} 成功开启了随机匹配,队伍 {party} 的队长是 {captain}"
+    failureStartRandomMatchBecauseNotCaptain:
+      - "&c不是队长无法随机匹配,队伍 {party} 的队长是 {captain}"
+    failureStartRandomMatchBecauseNotAvailableMap:
+      - "&c没有符合人数的地图,队伍 {party} 的队长是 {captain}"
+    failureStartRandomMatchBecausePartyIsMatching:
+      - "&c无法随机匹配,队伍 {party} 正在匹配中,队伍的队长是 {captain}"
+
+
+
+    successRaceStart:
+      - "&a游戏开始,你的对手是 {captain} 领导的队伍 {party}"
+      - "&a请在 {tick} tick内选择装备包"
+
+    successChooseKit:
+      - "&a你选择了装备包 {kit}"
+
+    successStopChooseKit:
+      - "&a选择装备包时间已过,开始战斗吧！"
+
+    someoneSuccessRaceStopDraw:
+      - "&a战斗播报 >>> 一场比赛结束 队伍 {red_party} 与队伍 {blue_party} 平局"
+    someoneSuccessRaceStopNotDraw:
+      - "&a战斗播报 >>> 一场比赛结束 队伍 {win_party} 战胜了队伍 {lose_party}"
+
+
+
