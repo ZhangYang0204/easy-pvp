@@ -21,10 +21,6 @@ public class SettingYamlManager extends YamlManagerBase {
     private String DATABASE_PASSWORD;
     private String DATABASE_USERNAME;
     private  String LANGUAGE;
-    private Double LOBBY_LOCATION_X;
-    private Double LOBBY_LOCATION_Y;
-    private Double LOBBY_LOCATION_Z;
-    private String LOBBY_LOCATION_WORLD;
 
     public String getDATABASE_URL() {
         return DATABASE_URL;
@@ -57,30 +53,10 @@ public class SettingYamlManager extends YamlManagerBase {
             DATABASE_PASSWORD =null;
         }
 
-        LOBBY_LOCATION_WORLD=getString("setting.lobbyLocation.world",true);
-        LOBBY_LOCATION_X=getDouble("setting.lobbyLocation.x",true);
-        LOBBY_LOCATION_Y=getDouble("setting.lobbyLocation.y",true);
-        LOBBY_LOCATION_Z=getDouble("setting.lobbyLocation.z",true);
-        if (Bukkit.getWorld(LOBBY_LOCATION_WORLD)==null){
-            LOBBY_LOCATION_WORLD="world";
-        }
+
 
 
     }
 
-    public Double getLOBBY_LOCATION_X() {
-        return LOBBY_LOCATION_X;
-    }
 
-    public Double getLOBBY_LOCATION_Y() {
-        return LOBBY_LOCATION_Y;
-    }
-
-    public Double getLOBBY_LOCATION_Z() {
-        return LOBBY_LOCATION_Z;
-    }
-
-    public String getLOBBY_LOCATION_WORLD() {
-        return LOBBY_LOCATION_WORLD;
-    }
 }
