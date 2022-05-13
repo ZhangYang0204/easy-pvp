@@ -18,6 +18,30 @@ public class GuiYamlManager extends YamlManagerBase {
     private String TITLE_ALL_MAP_PAGE;
 
 
+
+    private String TITLE_RANK_PAGE;
+
+
+    private String BUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL;
+    private String BUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE;
+
+    private String BUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL;
+    private String BUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_RANK_PAGE_NEXT_PAGE_LORE;
+
+
+    private String BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL;
+    private String BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE;
+
+    private String BUTTON_RANK_PAGE_RECORD_MATERIAL;
+    private String BUTTON_RANK_PAGE_RECORD_DISPLAY_NAME;
+    private List<String> BUTTON_RANK_PAGE_RECORD_LORE;
+
+
+
+
     private String TITLE_ALL_KIT_PAGE;
     private String BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_MATERIAL;
     private String BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
@@ -31,7 +55,7 @@ public class GuiYamlManager extends YamlManagerBase {
     private String BUTTON_ALL_KIT_PAGE_KIT_MATERIAL;
     private String BUTTON_ALL_KIT_PAGE_KIT_DISPLAY_NAME;
     private List<String> BUTTON_ALL_KIT_PAGE_KIT_LORE;
-    
+
     private String BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_MATERIAL;
     private String BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
     private List<String> BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_LORE;
@@ -39,7 +63,12 @@ public class GuiYamlManager extends YamlManagerBase {
     private String BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_MATERIAL;
     private String BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_DISPLAY_NAME;
     private List<String> BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_LORE;
-    
+
+
+    private String BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL;
+    private String BUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE;
+
     private String BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_MATERIAL;
     private String BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_DISPLAY_NAME;
     private List<String> BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE;
@@ -91,8 +120,8 @@ public class GuiYamlManager extends YamlManagerBase {
     private String BUTTON_ALL_MAP_PAGE_RANDOM_MATCH_MATERIAL;
     private String BUTTON_ALL_MAP_PAGE_RANDOM_MATCH_DISPLAY_NAME;
     private List<String> BUTTON_ALL_MAP_PAGE_RANDOM_MATCH_LORE;
-    
-    
+
+
 
     @Override
     protected void check()   {
@@ -103,6 +132,7 @@ public class GuiYamlManager extends YamlManagerBase {
         TITLE_ALL_KIT_PAGE=getString("gui.title.allKitPage",false);
 
 
+        TITLE_RANK_PAGE=getString("gui.title.rankPage",false);
         BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_DISPLAY_NAME =getString("gui.button.allKitPagePreviousPage.displayName",false);
         BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_MATERIAL =getString("gui.button.allKitPagePreviousPage.material",true);
         Material material=Material.matchMaterial(BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_MATERIAL);
@@ -126,8 +156,8 @@ public class GuiYamlManager extends YamlManagerBase {
             BUTTON_ALL_KIT_PAGE_KIT_MATERIAL ="STONE";
         }
         BUTTON_ALL_KIT_PAGE_KIT_LORE =getStringList("gui.button.allKitPageKit.lore",false);
-        
-        
+
+
         BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_DISPLAY_NAME =getString("gui.button.allPartyPagePreviousPage.displayName",false);
         BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_MATERIAL =getString("gui.button.allPartyPagePreviousPage.material",true);
         material=Material.matchMaterial(BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_MATERIAL);
@@ -135,6 +165,17 @@ public class GuiYamlManager extends YamlManagerBase {
             BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_MATERIAL ="STONE";
         }
         BUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_LORE =getStringList("gui.button.allPartyPagePreviousPage.lore",false);
+
+
+        BUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME =getString("gui.button.allPartyPageRankPage.displayName",false);
+        BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL =getString("gui.button.allPartyPageRankPage.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE =getStringList("gui.button.allPartyPageRankPage.lore",false);
+
+
 
         BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_DISPLAY_NAME =getString("gui.button.allPartyPageNextPage.displayName",false);
         BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_MATERIAL =getString("gui.button.allPartyPageNextPage.material",true);
@@ -252,6 +293,116 @@ public class GuiYamlManager extends YamlManagerBase {
         }
         BUTTON_ALL_MAP_PAGE_RANDOM_MATCH_LORE =getStringList("gui.button.allMapPageRandomMatch.lore",false);
 
+
+        BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME =getString("gui.button.rankPageBackAllPartyPage.displayName",false);
+        BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL =getString("gui.button.rankPageBackAllPartyPage.material",true);
+        material=Material.matchMaterial(BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE =getStringList("gui.button.rankPageBackAllPartyPage.lore",false);
+
+        BUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME =getString("gui.button.rankPagePreviousPage.displayName",false);
+        BUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL =getString("gui.button.rankPagePreviousPage.material",true);
+        material=Material.matchMaterial(BUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE =getStringList("gui.button.rankPagePreviousPage.lore",false);
+
+
+        BUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME =getString("gui.button.rankPageNextPage.displayName",false);
+        BUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL =getString("gui.button.rankPageNextPage.material",true);
+        material=Material.matchMaterial(BUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_RANK_PAGE_NEXT_PAGE_LORE =getStringList("gui.button.rankPageNextPage.lore",false);
+
+        BUTTON_RANK_PAGE_RECORD_DISPLAY_NAME =getString("gui.button.rankPageRecord.displayName",false);
+        BUTTON_RANK_PAGE_RECORD_MATERIAL =getString("gui.button.rankPageRecord.material",true);
+        material=Material.matchMaterial(BUTTON_RANK_PAGE_RECORD_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_RANK_PAGE_RECORD_MATERIAL ="STONE";
+        }
+        BUTTON_RANK_PAGE_RECORD_LORE =getStringList("gui.button.rankPageRecord.lore",false);
+
+
+    }
+
+
+    public String getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL() {
+        return BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME() {
+        return BUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE() {
+        if (BUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE);
+    }
+
+    public String getTITLE_RANK_PAGE() {
+        return TITLE_RANK_PAGE;
+    }
+
+    public String getBUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL() {
+        return BUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME() {
+        return BUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE() {
+        if (BUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE);
+    }
+
+    public String getBUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL() {
+        return BUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME() {
+        return BUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_RANK_PAGE_NEXT_PAGE_LORE() {
+        if (BUTTON_RANK_PAGE_NEXT_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_RANK_PAGE_NEXT_PAGE_LORE);
+    }
+
+    public String getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
+        return BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME() {
+        return BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
+        if (BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+    }
+
+    public String getBUTTON_RANK_PAGE_RECORD_MATERIAL() {
+        return BUTTON_RANK_PAGE_RECORD_MATERIAL;
+    }
+
+    public String getBUTTON_RANK_PAGE_RECORD_DISPLAY_NAME() {
+        return BUTTON_RANK_PAGE_RECORD_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_RANK_PAGE_RECORD_LORE() {
+        if (BUTTON_RANK_PAGE_RECORD_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_RANK_PAGE_RECORD_LORE);
     }
 
     public String getTITLE_ALL_KIT_PAGE() {

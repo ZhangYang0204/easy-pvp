@@ -10,12 +10,12 @@ import java.util.List;
 
 public class CommandServiceImpl implements CommandService {
     private final MapDao mapDao=new MapDao();
-    private final BlockDao blockDao=new BlockDao();
+    private final MapBlockDao mapBlockDao =new MapBlockDao();
     private final KitDao kitDao=new KitDao();
-    private final ItemDao itemDao=new ItemDao();
+    private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
-
+    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
     public CommandServiceImpl() throws SQLException {
     }
 
@@ -25,7 +25,8 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void mapCreate(MapMeta meta, List<BlockMeta> blockMetaList) throws SQLException, DuplicateMapNameException {
+    public void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapContainerInventoryItemStackMeta>
+            mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException {
         //检查名字
         if (mapDao.selectByName(meta.getName())!=null){
             throw new DuplicateMapNameException();
@@ -33,9 +34,16 @@ public class CommandServiceImpl implements CommandService {
 
 
         mapDao.insert(meta);
-        for (BlockMeta blockMeta:blockMetaList){
-            blockDao.insert(blockMeta);
+        for (MapBlockMeta mapBlockMeta : mapBlockMetaList){
+            mapBlockDao.insert(mapBlockMeta);
         }
+
+        //插入Container
+        for (MapContainerInventoryItemStackMeta m:mapContainerInventoryItemStackMetaList){
+            mapContainerInventoryItemStackDao.insert(m);
+        }
+
+
     }
 
     @Override
@@ -46,7 +54,7 @@ public class CommandServiceImpl implements CommandService {
             throw new NotExistMapNameException();
         }
         mapDao.deleteByUuid(mapMeta.getUuid());
-        blockDao.deleteByMapUuid(mapMeta.getUuid());
+        mapBlockDao.deleteByMapUuid(mapMeta.getUuid());
         mapKitDao.deleteByMapUuid(mapMeta.getUuid());
     }
 
@@ -148,14 +156,14 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void kitCreate(KitMeta kitMeta, List<ItemMeta> itemMetaList) throws DuplicateKitNameException, SQLException {
+    public void kitCreate(KitMeta kitMeta, List<KitItemStackMeta> kitItemStackMetaList) throws DuplicateKitNameException, SQLException {
         if (kitDao.selectByName(kitMeta.getName())!=null){
             throw new DuplicateKitNameException();
         }
 
         kitDao.insert(kitMeta);
-        for (ItemMeta itemMeta : itemMetaList) {
-            itemDao.insert(itemMeta);
+        for (KitItemStackMeta kitItemStackMeta : kitItemStackMetaList) {
+            kitItemStackDao.insert(kitItemStackMeta);
         }
     }
 
@@ -166,19 +174,19 @@ public class CommandServiceImpl implements CommandService {
             throw new NotExistKitNameException();
         }
         kitDao.deleteByUuid(kitMeta.getUuid());
-        itemDao.deleteByKitUuid(kitMeta.getUuid());
+        kitItemStackDao.deleteByKitUuid(kitMeta.getUuid());
         mapKitDao.deleteByKitUuid(kitMeta.getUuid());
     }
 
     @Override
-    public void kitSet(String kitName, List<ItemMeta> itemMetaList) throws SQLException, NotExistKitNameException {
+    public void kitSet(String kitName, List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException {
         KitMeta kitMeta=kitDao.selectByName(kitName);
         if (kitMeta==null){
             throw new NotExistKitNameException();
         }
-        itemDao.deleteByKitUuid(kitMeta.getUuid());
-        for (ItemMeta itemMeta : itemMetaList) {
-            itemDao.insert(itemMeta);
+        kitItemStackDao.deleteByKitUuid(kitMeta.getUuid());
+        for (KitItemStackMeta kitItemStackMeta : kitItemStackMetaList) {
+            kitItemStackDao.insert(kitItemStackMeta);
         }
     }
 

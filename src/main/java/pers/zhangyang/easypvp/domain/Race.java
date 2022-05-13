@@ -2,9 +2,11 @@ package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.BlockInventoryHolder;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
@@ -13,10 +15,7 @@ import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GuiYamlManager;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
-import pers.zhangyang.easypvp.meta.BlockMeta;
-import pers.zhangyang.easypvp.meta.ItemMeta;
-import pers.zhangyang.easypvp.meta.KitMeta;
-import pers.zhangyang.easypvp.meta.MapMeta;
+import pers.zhangyang.easypvp.meta.*;
 import pers.zhangyang.easypvp.runnable.StopChooseKitRunnable;
 import pers.zhangyang.easypvp.util.*;
 
@@ -37,9 +36,10 @@ public class Race {
     protected final HashMap<Gamer, Integer> foodLevelBefore;
     protected final HashMap<Gamer, Double> healthBefore;
     protected final HashMap<Gamer, Float> expBefore;
-    protected final List<BlockMeta> blockMetaList;
+    protected final List<MapBlockMeta> mapBlockMetaList;
+    protected final List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList;
     protected final MapMeta mapMeta;
-    protected final HashMap<KitMeta,List<ItemMeta>> kitItemMap;
+    protected final HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap;
     protected Party winner;
     protected Party loser;
     protected Party redParty;
@@ -85,15 +85,18 @@ public class Race {
         worldCreator.type(WorldType.FLAT);
         worldCreator.generateStructures(false);
         this.world = worldCreator.createWorld();
-        for (BlockMeta b : blockMetaList) {
+        for (MapBlockMeta b : mapBlockMetaList) {
             Block block = world.getBlockAt(b.getX(), b.getY(), b.getZ());
-            if (MinecraftVersionUtil.getBigVersion() == 1 && MinecraftVersionUtil.getMiddleVersion() < 14) {
-                MaterialData materialData = BlockUtil.deserializeBlockMaterialData(b.getData());
-                block.setType(materialData.getItemType());
-            } else {
                 block.setBlockData(Bukkit.createBlockData(b.getData()));
-            }
         }
+        for (MapContainerInventoryItemStackMeta m:mapContainerInventoryItemStackMetaList){
+            Block block = world.getBlockAt(m.getX(), m.getY(), m.getZ());
+
+            Inventory inv=((BlockInventoryHolder)block.getState()).getInventory();
+            ItemStack i=ItemStackUtil.itemStackDeserialize(m.getData());
+            inv.setItem(m.getSlot(),i);
+        }
+
     }
 
     //保存装备并清理
@@ -129,10 +132,12 @@ public class Race {
         for (Gamer g : redParty.memberList) {
             Player p = g.player;
             foodLevelBefore.put(g, p.getFoodLevel());
+            p.setFoodLevel(20);
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.player;
             foodLevelBefore.put(g, p.getFoodLevel());
+            p.setFoodLevel(20);
         }
     }
 
@@ -153,10 +158,16 @@ public class Race {
         for (Gamer g : redParty.memberList) {
             Player p = g.player;
             potionEffectBefore.put(g, p.getActivePotionEffects());
+            for (PotionEffect potionEffect:p.getActivePotionEffects()){
+                p.removePotionEffect(potionEffect.getType());
+            }
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.player;
             potionEffectBefore.put(g, p.getActivePotionEffects());
+            for (PotionEffect potionEffect:p.getActivePotionEffects()){
+                p.removePotionEffect(potionEffect.getType());
+            }
         }
     }
 
@@ -165,10 +176,12 @@ public class Race {
         for (Gamer g : redParty.memberList) {
             Player p = g.player;
             healthBefore.put(g, p.getHealth());
+            p.setHealth(20);
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.player;
             healthBefore.put(g, p.getHealth());
+            p.setHealth(20);
         }
     }
 
@@ -179,7 +192,6 @@ public class Race {
             if (p.isDead()) {
                 p.spigot().respawn();
             }
-            p.setHealth(20);
             locationBefore.put(g, p.getLocation());
             p.teleport(redLoc);
 
@@ -189,8 +201,6 @@ public class Race {
             if (p.isDead()) {
                 p.spigot().respawn();
             }
-            p.setHealth(20);
-
             locationBefore.put(g, p.getLocation());
             p.teleport(blueLoc);
         }
@@ -203,14 +213,14 @@ public class Race {
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
             AllKitPage allKitPage = new AllKitPage(GuiYamlManager.getGuiManager().getTITLE_ALL_KIT_PAGE());
-            allKitPage.init(0, new ArrayList<>(kitItemMap.keySet()));
+            allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
 
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
             AllKitPage allKitPage = new AllKitPage(GuiYamlManager.getGuiManager().getTITLE_ALL_KIT_PAGE());
-            allKitPage.init(0, new ArrayList<>(kitItemMap.keySet()));
+            allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
         }
     }
@@ -316,7 +326,7 @@ public class Race {
     }
 
     public void sendKit(KitMeta kitMeta,Gamer gamer){
-        for (ItemMeta i:kitItemMap.get(kitMeta)){
+        for (KitItemStackMeta i:kitItemMap.get(kitMeta)){
             ItemStack it= ItemStackUtil.itemStackDeserialize(i.getData());
             gamer.getPlayer().getInventory().setItem(i.getSlot(),it);
         }
@@ -325,10 +335,11 @@ public class Race {
     /**
      * 初始化一个比赛的基本信息
      * @param mapMeta 比赛的地图数据
-     * @param blockMetaList 比赛地图的方块数据
+     * @param mapBlockMetaList 比赛地图的方块数据
      * @param kitItemMap 比赛可选的礼包和礼包里的物品
      */
-    public Race(MapMeta mapMeta, List<BlockMeta> blockMetaList, HashMap<KitMeta,List<ItemMeta>> kitItemMap) {
+    public Race(MapMeta mapMeta, List<MapBlockMeta> mapBlockMetaList, HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap,
+                List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList) {
         stats=RaceStatsEnum.FREEING;
         inventorySave = new HashMap<>();
         locationBefore = new HashMap<>();
@@ -339,8 +350,8 @@ public class Race {
         expBefore = new HashMap<>();
         this.kitItemMap = new HashMap<>();
         for (KitMeta b:kitItemMap.keySet()){
-            List<ItemMeta> il=new ArrayList<>();
-            for (ItemMeta i:kitItemMap.get(b)){
+            List<KitItemStackMeta> il=new ArrayList<>();
+            for (KitItemStackMeta i:kitItemMap.get(b)){
                 il.add(i.clone());
             }
             this.kitItemMap.put(b.clone(),il);
@@ -352,8 +363,13 @@ public class Race {
         this.build = mapMeta.isBuild();
         this.chooseTick = mapMeta.getChooseTick();
         this.startTime = System.currentTimeMillis();
-        this.blockMetaList = new ArrayList<>();
-        for (BlockMeta b:blockMetaList){this.blockMetaList.add(b.clone());}
+        this.mapBlockMetaList = new ArrayList<>();
+        for (MapBlockMeta b: mapBlockMetaList){this.mapBlockMetaList.add(b.clone());}
+        this.mapContainerInventoryItemStackMetaList = new ArrayList<>();
+        for (MapContainerInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
+            this.mapContainerInventoryItemStackMetaList.add(m.clone());
+        }
+
         this.mapMeta = mapMeta;
     }
 
@@ -413,20 +429,21 @@ public class Race {
         MatcherManager.MATCHER_MANAGER.remove(blueParty);
 
         locationHandleBefore();
+
         gameModeHandleBefore();
-        foodLevelHandleBefore();
-        expHandleBefore();
-        potionEffectHandleBefore();
-        heathHandleBefore();
         if (fair) {
+            foodLevelHandleBefore();
+            expHandleBefore();
+            potionEffectHandleBefore();
+            heathHandleBefore();
             inventoryHandleBefore();
         }
         startChooseKit();
         //几秒后关闭gui
-        new StopChooseKitRunnable(this).runTaskLater(EasyPvp.getInstance(), getChooseTick());
+        new StopChooseKitRunnable(this).runTaskLater(EasyPvp.getInstance(),chooseTick);
     }
 
-    @Nullable
+    @javax.annotation.Nullable
     public Party getWinner() {
         return winner;
     }
@@ -454,11 +471,11 @@ public class Race {
         locationHandleAfter();
         if (fair) {
             inventoryHandleAfter();
+            heathHandlerAfter();
+            potionEffectHandleAfter();
+            expHandleAfter();
+            foodLevelHandleAfter();
         }
-        heathHandlerAfter();
-        potionEffectHandleAfter();
-        expHandleAfter();
-        foodLevelHandleAfter();
         gameModeHandleAfter();
 
 
@@ -538,5 +555,9 @@ public class Race {
 
     public List<Gamer> getBlueAlive() {
         return new ArrayList<>(blueAlive);
+    }
+
+    public HashMap<KitMeta, List<KitItemStackMeta>> getKitItemMap() {
+        return new HashMap<>(kitItemMap);
     }
 }

@@ -10,11 +10,12 @@ public class PluginServiceImpl implements PluginService {
 
     private final UpdateDao updateDao=new UpdateDao();
     private final MapDao mapDao=new MapDao();
-    private final BlockDao blockDao=new BlockDao();
+    private final MapBlockDao mapBlockDao =new MapBlockDao();
     private final KitDao kitDao=new KitDao();
-    private final ItemDao itemDao=new ItemDao();
+    private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
+    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
     public PluginServiceImpl() throws SQLException {
 
     }
@@ -30,11 +31,12 @@ public class PluginServiceImpl implements PluginService {
     public void initDatabase() throws SQLException {
         updateDao.init();
         mapDao.init();
-        blockDao.init();
+        mapBlockDao.init();
         kitDao.init();
-        itemDao.init();
+        kitItemStackDao.init();
         mapKitDao.init();
         recordDao.init();
+        mapContainerInventoryItemStackDao.init();
         if (updateDao.select()==null){
             updateDao.insert(EasyPvp.getInstance().getDescription().getVersion());
         }

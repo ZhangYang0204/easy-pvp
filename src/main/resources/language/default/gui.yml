@@ -4,7 +4,38 @@ gui:
     allMemberPage: "&b&l全部成员"
     allMapPage: "&b&l全部可选地图"
     allKitPage: "&b&l全部可选装备包"
+    rankPage: "&b&l战绩榜"
   button:
+    rankPageBackAllPartyPage:
+      material: "BARRIER"
+      displayName: "&b&l返回"
+      lore:
+        - "&b返回上一个页面"
+    rankPagePreviousPage:
+      material: "BOOK"
+      displayName: "&f&l上一页"
+      lore:
+        - "&f点我前往上一页"
+    rankPageNextPage:
+      material: "BOOK"
+      displayName: "&f&l下一页"
+      lore:
+        - "&f点我前往下一页"
+    rankPageRecord:
+      material: "PAPER"
+      displayName: "&b&l {player} 的战绩"
+      lore:
+        - "&b总 {all}"
+        - "&b胜 {win}"
+        - "&b败 {lose}"
+        - "&b平 {draw}"
+
+    allPartyPageRankPage:
+      material: "GOLD_INGOT"
+      displayName: "&f&l战绩榜"
+      lore:
+        - "&f点我查看战绩榜"
+
     allPartyPagePreviousPage:
       material: "BOOK"
       displayName: "&f&l上一页"

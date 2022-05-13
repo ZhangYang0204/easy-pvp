@@ -17,3 +17,6 @@
 
   #作者
   author: ZhangYang
+
+  softdepend:
+    - PlaceholderAPI

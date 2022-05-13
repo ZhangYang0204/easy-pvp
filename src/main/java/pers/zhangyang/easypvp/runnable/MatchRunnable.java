@@ -1,7 +1,6 @@
 package pers.zhangyang.easypvp.runnable;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
@@ -10,16 +9,12 @@ import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.MessageYamlManager;
 import pers.zhangyang.easypvp.manager.MatcherManager;
-import pers.zhangyang.easypvp.meta.BlockMeta;
-import pers.zhangyang.easypvp.meta.ItemMeta;
-import pers.zhangyang.easypvp.meta.KitMeta;
-import pers.zhangyang.easypvp.meta.MapMeta;
+import pers.zhangyang.easypvp.meta.*;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
-import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
@@ -87,15 +82,16 @@ public class MatchRunnable extends BukkitRunnable {
 
         try {
             RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-            List<BlockMeta> blockMetaList=raceService.getBlockMeta(mapMeta.getUuid());
-            HashMap<KitMeta,List<ItemMeta>> kitItemMap=new HashMap<>();
+            List<MapBlockMeta> mapBlockMetaList =raceService.getBlockMeta(mapMeta.getUuid());
+            HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap=new HashMap<>();
             for (KitMeta k:raceService.getKitMetaByMapUuid(mapMeta.getUuid())){
-                List<ItemMeta> itemMetaList=raceService.getItemMeta(k.getUuid());
-                kitItemMap.put(k,itemMetaList);
+                List<KitItemStackMeta> kitItemStackMetaList =raceService.getItemMeta(k.getUuid());
+                kitItemMap.put(k, kitItemStackMetaList);
             }
+            List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList=raceService.getContainerInventoryItemStackMeta(mapMeta.getUuid());
 
             //比赛开始
-            Race race=new Race(mapMeta,blockMetaList,kitItemMap);
+            Race race=new Race(mapMeta, mapBlockMetaList,kitItemMap,mapContainerInventoryItemStackMetaList);
 
             race.start(red,blue);
         } catch (SQLException e) {

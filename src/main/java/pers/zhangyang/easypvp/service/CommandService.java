@@ -10,7 +10,9 @@ public interface CommandService {
 
 
     void recordReset() throws SQLException;
-    void mapCreate(MapMeta meta, List<BlockMeta> blockMetaList) throws SQLException, DuplicateMapNameException;
+
+    void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapContainerInventoryItemStackMeta>
+            mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException ;
     void mapDelete(String mapName) throws SQLException, NotExistMapNameException;
 
     void mapChooseTickSet(String mapName,long chooseTick) throws NotExistMapNameException, SQLException;
@@ -21,9 +23,9 @@ public interface CommandService {
     void mapDescriptionSet(String maoName,List<String> description) throws NotExistMapNameException, SQLException;
     MapMeta getMapMeta(String mapName) throws SQLException, NotExistMapNameException;
 
-    void kitCreate(KitMeta kitMeta, List<ItemMeta> itemMetaList) throws DuplicateKitNameException, SQLException;
+    void kitCreate(KitMeta kitMeta, List<KitItemStackMeta> kitItemStackMetaList) throws DuplicateKitNameException, SQLException;
     void kitDelete(String kitName) throws SQLException, NotExistKitNameException;
-    void kitSet(String kitName,List<ItemMeta> itemMetaList) throws SQLException, NotExistKitNameException;
+    void kitSet(String kitName,List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException;
 
     void kitDescriptionSet(String kitName,List<String> description) throws NotExistKitNameException, SQLException;
     void mapKitAdd(MapKitMeta mapKitMeta) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapAlreadyAddKitException;

@@ -28,7 +28,7 @@ public class AllMemberPage implements InventoryHolder {
         return party;
     }
 
-    public void init(Party party, int pageIndex){
+    public void init(Party party, int pageIndex,List<Gamer> gamerList){
         this.pageIndex=pageIndex;
         this.party=party;
 
@@ -37,7 +37,7 @@ public class AllMemberPage implements InventoryHolder {
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
-            if (i>=party.getMemberList().size()){break;}
+            if (i>=gamerList.size()){break;}
             String displayName=guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_MEMBER_DISPLAY_NAME();
             List<String> lore=guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_MEMBER_LORE();
 

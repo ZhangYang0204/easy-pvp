@@ -221,9 +221,53 @@ message:
     failureJoinPartyBecausePartyIsMatching:
       - "&c无法加入 {captain} 的队伍 {party} ,该队伍正在匹配中"
 
-    successMyParty:
+    successNextAllPartyPage:
+      - "&a成功打开下一页全体队伍页面"
+    successPreviousAllPartyPage:
+      - "&a成功打开上一页全体队伍页面"
+    successPreviousAllMemberPage:
+      - "&a成功打开上一页全体成员页面"
+    successNextAllMemberPage:
+      - "&a成功打开下一页全体成员页面"
+    successPreviousAllMapPage:
+      - "&a成功打开上一页全部可选地图页面"
+    successNextAllMapPage:
+      - "&a成功打开下一页全体可选地图页面"
+    successPreviousAllKitPage:
+      - "&a成功打开上一页全部可选装备包页面"
+    successNextAllKitPage:
+      - "&a成功打开下一页全体可选装备包页面"
+    successPreviousRankPage:
+      - "&a成功打开上一页战绩榜页面"
+    successNextRankPage:
+      - "&a成功打开下一页战绩榜页面"
+      -
+    failureNextRankPageBecauseNotNext:
+      - "&a没有下一页了"
+    failurePreviousRankPageBecauseNotPrevious:
+      - "&a没有上一页了"
+    failureNextAllPartyPageBecauseNotNext:
+      - "&a没有下一页了"
+    failurePreviousAllPartyPageBecauseNotPrevious:
+      - "&a没有上一页了"
+    failurePreviousAllMemberPageBecauseNotPrevious:
+      - "&a没有上一页了"
+    failureNextAllMemberPageBecauseNotNext:
+      - "&a没有下一页了"
+    failurePreviousAllMapPageBecauseNotPrevious:
+      - "&a没有上一页了"
+    failureNextAllMapPageBecauseNotNext:
+      - "&a没有下一页了"
+    failurePreviousAllKitPageBecauseNotPrevious:
+      - "&a没有上一页了"
+    failureNextAllKitPageBecauseNotNext:
+      - "&a没有下一页了"
+
+
+
+    successShowAllMemberPage:
       - "&a成功打开个人队伍信息页面"
-    failureMyPartyBecauseNotJoinParty:
+    failureShowAllMemberPageBecauseNotJoinParty:
       - "&c你还没有队伍呢哦"
       -
     successBackAllPartyPage:
@@ -248,7 +292,7 @@ message:
     failureLeavePartyBecausePartyIsMatching:
       - "&c无法离开队伍 {party} ,队伍正在匹配中，请先取消匹配"
 
-    successChooseMap:
+    successShowAllMapPage:
       - "&a你打开了选择地图页面"
 
     successBackAllMemberPage:
@@ -281,7 +325,8 @@ message:
     failureStartRandomMatchBecausePartyIsMatching:
       - "&c无法随机匹配,队伍 {party} 正在匹配中,队伍的队长是 {captain}"
 
-
+    successRankPage:
+      - "&a成功打开战绩榜"
 
     successRaceStart:
       - "&a游戏开始,你的对手是 {captain} 领导的队伍 {party}"
@@ -298,5 +343,85 @@ message:
     someoneSuccessRaceStopNotDraw:
       - "&a战斗播报 >>> 一场比赛结束 队伍 {win_party} 战胜了队伍 {lose_party}"
 
+  completer:
+    easyPvp:
+      - "correctYaml"
+      - "gui"
+      - "help"
+      - "kitCreate"
+      - "kitDelete"
+      - "KitDescriptionAdd"
+      - "KitDescriptionRemove"
+      - "KitDescriptionSet"
+      - "KitSet"
+      - "MapBuildSet"
+      - "MapChooseTickSet"
+      - "MapCreate"
+      - "MapDelete"
+      - "MapDescriptionAdd"
+      - "MapDescriptionRemove"
+      - "MapDescriptionSet"
+      - "MapDropSet"
+      - "MapFairSet"
+      - "MapKitAdd"
+      - "MapKitRemove"
+      - "MapScaleSet"
+      - "MapRecordReset"
+      - "Reload"
+      - "SectionSet"
 
+    easyPvpKitCreate:
+      - "装备包名字"
+    easyPvpKitDelete:
+      - "装备包名字"
+    easyPvpKitDescriptionAdd:
+      - "装备包名字"
+    easyPvpKitDescriptionAdd$:
+      - "一行描述"
+    easyPvpKitDescriptionSet:
+      - "装备包名字"
+    easyPvpKitDescriptionSet$:
+      - "一行描述"
+    easyPvpKitSet$:
+      - "装备包名字"
 
+    easyPvpMapCreate:
+      - "地图名字"
+    easyPvpMapDelete:
+      - "地图名字"
+    easyPvpMapDescriptionAdd:
+      - "地图名字"
+    easyPvpMapDescriptionAdd$:
+      - "一行描述"
+    easyPvpMapDescriptionSet:
+      - "地图名字"
+    easyPvpMapBuildSet:
+      - "地图名字"
+    easyPvpMapBuildSet$:
+      - "true|false"
+    easyPvpMapChooseTickSet:
+      - "地图名字"
+    easyPvpMapChooseTickSet$:
+      - "大于1的数字"
+    easyPvpMapDropSet:
+      - "地图名字"
+    easyPvpMapDropSet$:
+      - "true|false"
+    easyPvpMapFairSet:
+      - "地图名字"
+    easyPvpMapFairSet$:
+      - "true|false"
+    easyPvpMapScaleSet:
+      - "地图名字"
+    easyPvpMapScaleSet$:
+      - "大于0的数字"
+    easyPvpSectionSet:
+      - "first|second|red|blue"
+    easyPvpMapKitAdd:
+      - "地图名字"
+    easyPvpMapKitAdd$:
+      - "装备包名字"
+    easyPvpMapKitRemove:
+      - "地图名字"
+    easyPvpMapKitRemove$:
+      - "装备包名字"

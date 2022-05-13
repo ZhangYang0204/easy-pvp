@@ -23,7 +23,7 @@ public class CommandGui extends CommandBase {
         //给玩家打开第0页
         String title= GuiYamlManager.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
         AllPartyPage allPartyPage=new AllPartyPage(title);
-        allPartyPage.init(PageUtil.page(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
+        allPartyPage.init(PageUtil.pageParty(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
         allPartyPage.send(player);
 
 

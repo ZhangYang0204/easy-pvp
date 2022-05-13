@@ -1,14 +1,17 @@
 package pers.zhangyang.easypvp;
 
 import org.bukkit.Bukkit;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
+import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
 import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
 import pers.zhangyang.easypvp.manager.GuiYamlManager;
@@ -22,6 +25,8 @@ import pers.zhangyang.easypvp.util.UpdateUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EasyPvp extends JavaPlugin {
     private static EasyPvp instance;
@@ -33,6 +38,9 @@ public class EasyPvp extends JavaPlugin {
     @Override
     public void onEnable() {
         instance=this;
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            RecordExpansion.recordExpansion.register();
+        }
 
         //初始化setting.yml
         try {
@@ -66,30 +74,40 @@ public class EasyPvp extends JavaPlugin {
 
 
         //注册事件的处理者
-
-        getServer().getPluginManager().registerEvents(new GamerClickCreateParty(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickParty(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickMyParty(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickMember(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickLeaveParty(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickBackAllPartyPage(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickChooseMap(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickBackAllMember(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickMap(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickCancelMatch(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickRandomMatch(),this);
-        getServer().getPluginManager().registerEvents(new GamerClickKit(),this);
-        getServer().getPluginManager().registerEvents(new GamerQuitGame(),this);
-        getServer().getPluginManager().registerEvents(new GamerMoveWhenChooseKit(),this);
-        getServer().getPluginManager().registerEvents(new GamerDeadInRace(),this);
-        getServer().getPluginManager().registerEvents(new GamerDestroyBlockInRace(),this);
-        getServer().getPluginManager().registerEvents(new GamerMoveOutRaceMap(),this);
-        getServer().getPluginManager().registerEvents(new GamerOpenEnderChestInRace(),this);
-        getServer().getPluginManager().registerEvents(new GamerProcessCommandInRace(),this);
-        getServer().getPluginManager().registerEvents(new GamerReceiveUpdateNotifyWhenJoin(),this);
-
-
-
+        getServer().getPluginManager().registerEvents(new PlayerClickCreateParty(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickParty(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMyParty(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMember(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickLeaveParty(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllMemberPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickChooseMap(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllMember(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMap(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickCancelMatch(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickRandomMatch(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickKit(),this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitGame(),this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveWhenChooseKit(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDeadInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDestroyBlockInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveOutRaceMap(),this);
+        getServer().getPluginManager().registerEvents(new PlayerOpenEnderChestInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerProcessCommandInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinGame(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllPartyPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMemberPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMapPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllKitPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllPartyPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMemberPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMapPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllKitPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDamageWhenChooseKit(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickRankPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextRankPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickRecord(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRankPage(),this);
         Bukkit.getConsoleSender().sendMessage("§a╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
        Bukkit.getConsoleSender().sendMessage("§a┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃");
        Bukkit.getConsoleSender().sendMessage("§a┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃");
@@ -220,11 +238,92 @@ public class EasyPvp extends JavaPlugin {
             r.stop();
         }
 
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            RecordExpansion.recordExpansion.unregister();
+        }
+
         Bukkit.getConsoleSender().sendMessage("§c╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
         Bukkit.getConsoleSender().sendMessage("§c┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃");
         Bukkit.getConsoleSender().sendMessage("§c┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃");
         Bukkit.getConsoleSender().sendMessage("§c┃╭━━┫╰━╯┣━━╮┃╰╮╭╯┃╭━━╯┃╰╯┃┃╭━━╯");
         Bukkit.getConsoleSender().sendMessage("§c┃╰━━┫╭━╮┃╰━╯┃╱┃┃╱┃┃╱╱╱╰╮╭╯┃┃");
         Bukkit.getConsoleSender().sendMessage("§c╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯");
+    }
+
+
+    @Nullable
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        List<String> list=new ArrayList<>();
+        if (args.length==1){
+            list=MessageYamlManager.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
+            if (args[0]==null||list==null){
+                return  new ArrayList<>();
+         }
+            String ll = args[0].toLowerCase();
+            list.removeIf(k -> !k.toLowerCase().startsWith(ll));
+            return list;
+        }
+        if (args[0].equalsIgnoreCase("kitCreate")){
+            return new CompleterKitCreate().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("kitDelete")){
+            return new CompleterKitDelete().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("kitDescriptionAdd")){
+            return new CompleterKitDescriptionAdd().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("kitDescriptionRemove")){
+            return new CompleterKitDescriptionRemove().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("kitDescriptionSet")){
+            return new CompleterKitDescriptionSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("kitSet")){
+            return new CompleterKitSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapBuildSet")){
+            return new CompleterMapBuildSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapChooseTickSet")){
+            return new CompleterMapChooseTickSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapCreate")){
+            return new CompleterMapCreate().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapDelete")){
+            return new CompleterMapDelete().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapDescriptionAdd")){
+            return new CompleterMapDescriptionAdd().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapDescriptionRemove")){
+            return new CompleterMapDescriptionRemove().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapDescriptionSet")){
+            return new CompleterMapDescriptionSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapDropSet")){
+            return new CompleterMapDropSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapFairSet")){
+            return new CompleterMapFairSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapKitAdd")){
+            return new CompleterMapKitAdd().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapKitRemove")){
+            return new CompleterMapKitRemove().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("MapScaleSet")){
+            return new CompleterMapScaleSet().complete(sender,command,alias,args);
+        }
+        if (args[0].equalsIgnoreCase("SectionSet")){
+            return new CompleterSectionSet().complete(sender,command,alias,args);
+        }
+
+
+
+        return list;
     }
 }

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.DuplicateKitNameException;
 import pers.zhangyang.easypvp.manager.MessageYamlManager;
-import pers.zhangyang.easypvp.meta.ItemMeta;
+import pers.zhangyang.easypvp.meta.KitItemStackMeta;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -30,17 +30,17 @@ public class CommandKitCreate extends CommandBase {
             String kitUuid= UuidUtil.getUUID();
             kitMeta.setUuid(kitUuid);
             kitMeta.setName(args[1]);
-            List<ItemMeta> itemMetaList=new ArrayList<>();
+            List<KitItemStackMeta> kitItemStackMetaList =new ArrayList<>();
             for (int i=0;i<player.getInventory().getContents().length;i++){
                 if (player.getInventory().getContents()[i]==null){continue;}
-                ItemMeta itemMeta=new ItemMeta();
-                itemMeta.setKitUuid(kitUuid);
-                itemMeta.setData(ItemStackUtil.itemStackSerialize(player.getInventory().getContents()[i]));
-                itemMeta.setSlot(i);
-                itemMetaList.add(itemMeta);
+                KitItemStackMeta kitItemStackMeta =new KitItemStackMeta();
+                kitItemStackMeta.setKitUuid(kitUuid);
+                kitItemStackMeta.setData(ItemStackUtil.itemStackSerialize(player.getInventory().getContents()[i]));
+                kitItemStackMeta.setSlot(i);
+                kitItemStackMetaList.add(kitItemStackMeta);
             }
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.kitCreate(kitMeta,itemMetaList);
+            commandService.kitCreate(kitMeta, kitItemStackMetaList);
 
         } catch (DuplicateKitNameException e) {
            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER

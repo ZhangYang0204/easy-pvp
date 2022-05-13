@@ -8,5 +8,7 @@ public interface PluginService {
     public void setVersion(String updateInfo) throws SQLException;
 
     public void initDatabase() throws SQLException;
+
+
 }
 

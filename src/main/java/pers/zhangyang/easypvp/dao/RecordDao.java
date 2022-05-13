@@ -6,6 +6,9 @@ package pers.zhangyang.easypvp.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import pers.zhangyang.easypvp.base.DaoBase;
 import pers.zhangyang.easypvp.meta.*;
 public class RecordDao   extends DaoBase{
@@ -60,6 +63,18 @@ public class RecordDao   extends DaoBase{
             return null;
         }
     }
+    public List<RecordMeta> select() throws SQLException {
+
+        PreparedStatement ps=getConnection().prepareStatement("select * from record_table  ");
+        ResultSet rs=ps.executeQuery();
+        List<RecordMeta> recordMetaList=new ArrayList<>();
+        while (rs.next()){
+            recordMetaList.add(changeFromResultSet(rs));
+        }
+        return recordMetaList;
+    }
+
+
     private RecordMeta changeFromResultSet(ResultSet rs) throws SQLException {
         RecordMeta recordMeta =new RecordMeta();
         recordMeta.setDraw(rs.getInt("draw"));

@@ -10,18 +10,18 @@ import java.util.List;
 
 public class RaceServiceImpl implements RaceService {
     private final MapDao mapDao=new MapDao();
-    private final BlockDao blockDao=new BlockDao();
+    private final MapBlockDao mapBlockDao =new MapBlockDao();
     private final KitDao kitDao=new KitDao();
-    private final ItemDao itemDao=new ItemDao();
+    private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
-
+    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
     public RaceServiceImpl() throws SQLException {
     }
 
     @Override
-    public List<BlockMeta> getBlockMeta(String mapUuid) throws SQLException {
-        return blockDao.selectByMapUuid(mapUuid);
+    public List<MapBlockMeta> getBlockMeta(String mapUuid) throws SQLException {
+        return mapBlockDao.selectByMapUuid(mapUuid);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<ItemMeta> getItemMeta(String kitUuid) throws SQLException {
+    public List<KitItemStackMeta> getItemMeta(String kitUuid) throws SQLException {
 
-        return itemDao.selectByKitUuid(kitUuid);
+        return kitItemStackDao.selectByKitUuid(kitUuid);
     }
 
     @Override
@@ -90,5 +90,20 @@ public class RaceServiceImpl implements RaceService {
         }
 
        return kitMetaList;
+    }
+
+    @Override
+    public List<MapContainerInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException {
+        return mapContainerInventoryItemStackDao.selectByMapUuid(mapUuid);
+    }
+
+    @Override
+    public RecordMeta getRecord(String playerUuid) throws SQLException {
+        return recordDao.selectByPlayerUuid(playerUuid);
+    }
+
+    @Override
+    public List<RecordMeta> getRecord() throws SQLException {
+        return recordDao.select();
     }
 }
