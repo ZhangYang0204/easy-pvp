@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.util;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.EasyPvp;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +30,7 @@ public class UpdateUtil {
                         HashMap<String,String> hashMap=new HashMap<>();
                         hashMap.put("{latest}",finalLatestVersion);
                         hashMap.put("{current}",EasyPvp.getInstance().getDescription().getVersion());
-                        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER.getCHAT_VERSION_NOTIFY();
+                        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_VERSION_NOTIFY();
                         ReplaceUtil.replace(list,hashMap);
                         MessageUtil.sendMessageTo(sender,list);
                     }

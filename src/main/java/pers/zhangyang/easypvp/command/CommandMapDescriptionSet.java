@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -28,7 +28,7 @@ public class CommandMapDescriptionSet extends CommandBase {
         try {
             index=Integer.parseInt(args[2])-1;
         }catch (NumberFormatException e){
-            List<String> list=MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_INVALID_ARGUMENT();
             ReplaceUtil.replace(list, Collections.singletonMap("{argument}",args[2]));
             MessageUtil.sendMessageTo(sender, list);
@@ -37,7 +37,7 @@ public class CommandMapDescriptionSet extends CommandBase {
             return true;
         }
         if (index<0){
-            List<String> list=MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_INVALID_ARGUMENT();
             ReplaceUtil.replace(list, Collections.singletonMap("{argument}",args[2]));
             MessageUtil.sendMessageTo(sender, list);
@@ -72,7 +72,7 @@ public class CommandMapDescriptionSet extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{row}",args[2]);
             rep.put("{description}",args[3]);
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME();
             ReplaceUtil.replace(list, rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -84,7 +84,7 @@ public class CommandMapDescriptionSet extends CommandBase {
             rep.put("{row}",args[2]);
             rep.put("{description}",args[3]);
 
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
             ReplaceUtil.replace(list, rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -96,7 +96,7 @@ public class CommandMapDescriptionSet extends CommandBase {
         rep.put("{description}",args[3]);
 
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_MAP_DESCRIPTION_SET();
         ReplaceUtil.replace(list, rep);
         MessageUtil.sendMessageTo(sender, list);

@@ -1,31 +1,36 @@
 package pers.zhangyang.easypvp.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.manager.GamerManager;
 
-public class PlayerMoveWhenChooseKit implements Listener {
-    @EventHandler
-    public void onM(PlayerMoveEvent event){
+public class PlayerTeleportOtherWorldInRace implements Listener {
 
+    @EventHandler
+    public void tp(PlayerTeleportEvent event){
+        Player player=event.getPlayer();
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer((Player) event.getPlayer());
         Race race=gamer.getRace();
         if (race==null){
             return;
         }
 
-        if (event.getTo().getX()==event.getFrom().getX()&&event.getTo().getY()==event.getFrom().getY()
-            &&event.getTo().getZ()==event.getFrom().getZ()){
-            return;
-        }
 
-        if ((race.getStartTime()+race.getChooseTick()*50)>System.currentTimeMillis()){
+
+
+        if (!event.getTo().getWorld().equals(race.getWorld())){
             event.setCancelled(true);
         }
 
+
+
+
     }
+
+
 }

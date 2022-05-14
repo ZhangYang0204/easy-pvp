@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.DuplicateKitNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.KitItemStackMeta;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
@@ -43,7 +43,7 @@ public class CommandKitCreate extends CommandBase {
             commandService.kitCreate(kitMeta, kitItemStackMetaList);
 
         } catch (DuplicateKitNameException e) {
-           List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+           List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                    .getCHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME();
             ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
@@ -52,7 +52,7 @@ public class CommandKitCreate extends CommandBase {
             e.printStackTrace();
             return true;
         }
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_KIT_CREATE();
         ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
         MessageUtil.sendMessageTo(sender, list);

@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pers.zhangyang.easypvp.EasyPvp;
-import pers.zhangyang.easypvp.manager.SettingYamlManager;
+import pers.zhangyang.easypvp.yaml.SettingYaml;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -40,7 +40,7 @@ public abstract class YamlManagerBase {
             //先创建目录文件夹
             if (!dir.exists()){dir.mkdirs();}
             //输出数据
-            InputStream in= SettingYamlManager.class.getClassLoader().getResourceAsStream(filePath);
+            InputStream in= SettingYaml.class.getClassLoader().getResourceAsStream(filePath);
             OutputStream out = Files.newOutputStream(file.toPath());
             byte[] buf = new byte[1024];
             int len;
@@ -76,7 +76,6 @@ public abstract class YamlManagerBase {
         //补充缺失的
         for (String pathBase:backUpConfiguration.getKeys(true)){
             if (!yamlConfiguration.getKeys(true).contains(pathBase)){
-
                 Object ob=yamlConfiguration.get(pathBase);
                 yamlConfiguration.set(pathBase,backUpConfiguration.get(pathBase));
                 try {

@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -28,14 +28,14 @@ public class CommandKitDescriptionRemove extends CommandBase {
             index=Integer.parseInt(args[2])-1;
         }catch (NumberFormatException e){
 
-            List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_INVALID_ARGUMENT();
             ReplaceUtil.replace(list,Collections.singletonMap("{argument}",args[2]));
             MessageUtil.sendMessageTo(sender, list );
             return true;
         }
         if (index<0){
-            List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_INVALID_ARGUMENT();
             ReplaceUtil.replace(list,Collections.singletonMap("{argument}",args[2]));
             MessageUtil.sendMessageTo(sender, list );
@@ -74,7 +74,7 @@ public class CommandKitDescriptionRemove extends CommandBase {
             Map rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
             ReplaceUtil.replace(list,rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -83,7 +83,7 @@ public class CommandKitDescriptionRemove extends CommandBase {
             Map rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME();
             ReplaceUtil.replace(list,rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -92,7 +92,7 @@ public class CommandKitDescriptionRemove extends CommandBase {
         Map rep=new HashMap<>();
         rep.put("{kit}",args[1]);
         rep.put("{row}",args[2]);
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_KIT_DESCRIPTION_REMOVE();
         ReplaceUtil.replace(list,rep);
         MessageUtil.sendMessageTo(sender, list);

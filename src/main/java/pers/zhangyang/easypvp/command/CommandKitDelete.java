@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.command;
 import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -30,13 +30,13 @@ public class CommandKitDelete extends CommandBase {
             e.printStackTrace();
             return true;
         } catch (NotExistKitNameException e) {
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME();
             ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_KIT_DELETE();
         ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
         MessageUtil.sendMessageTo(sender, list);

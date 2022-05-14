@@ -9,15 +9,20 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pers.zhangyang.easypvp.bstats.Metrics;
 import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
 import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.service.RaceService;
+import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
+import pers.zhangyang.easypvp.util.MessageUtil;
+import pers.zhangyang.easypvp.util.ReplaceUtil;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.RaceManager;
-import pers.zhangyang.easypvp.manager.SettingYamlManager;
+import pers.zhangyang.easypvp.yaml.SettingYaml;
 import pers.zhangyang.easypvp.service.PluginService;
 import pers.zhangyang.easypvp.service.impl.PluginServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -26,6 +31,7 @@ import pers.zhangyang.easypvp.util.UpdateUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EasyPvp extends JavaPlugin {
@@ -44,9 +50,9 @@ public class EasyPvp extends JavaPlugin {
 
         //初始化setting.yml
         try {
-            SettingYamlManager.SETTING_YAML_MANAGER.init();
-            MessageYamlManager.MESSAGE_YAML_MANAGER.init();
-            GuiYamlManager.GUI_MANAGER.init();
+            SettingYaml.SETTING_YAML_MANAGER.init();
+            MessageYaml.MESSAGE_YAML_MANAGER.init();
+            GuiYaml.GUI_MANAGER.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
             return;
@@ -108,6 +114,10 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickRecord(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousRankPage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportOtherWorldInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportRaceWorldNotInRace(),this);
+
+
         Bukkit.getConsoleSender().sendMessage("§a╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
        Bukkit.getConsoleSender().sendMessage("§a┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃");
        Bukkit.getConsoleSender().sendMessage("§a┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃");
@@ -116,6 +126,8 @@ public class EasyPvp extends JavaPlugin {
        Bukkit.getConsoleSender().sendMessage("§a╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯");
 
         UpdateUtil.updateNotify(Bukkit.getConsoleSender());
+
+        new Metrics(this,15185);
 
     }
 
@@ -228,15 +240,68 @@ public class EasyPvp extends JavaPlugin {
             Inventory top=player.getOpenInventory().getTopInventory();
             if (!(top.getHolder() instanceof AllPartyPage)&&!(top.getHolder() instanceof AllMemberPage)
                 &&!(top.getHolder() instanceof AllMapPage)&&!(top.getHolder() instanceof AllKitPage)){
-                return;
+                continue;
             }
             player.closeInventory();
 
         }
 
-        for (Race r: RaceManager.RACE_MANAGER.getPartyGamerMap().values()){
-            r.stop();
+        for (Race race: RaceManager.RACE_MANAGER.getPartyGamerMap().values()){
+            race.stop();
+
+            try {
+
+                RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+                if (race.getWinner()==null) {
+                    for (Gamer g : race.getRedParty().getMemberList()) {
+                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                    }
+                    for (Gamer g : race.getBlueParty().getMemberList()) {
+                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                    }
+                }else {
+                    for (Gamer g : race.getWinner().getMemberList()) {
+                        raceService.recordWin(g.getPlayer().getUniqueId().toString());
+                    }
+                    for (Gamer g : race.getLoser().getMemberList()) {
+                        raceService.recordLose(g.getPlayer().getUniqueId().toString());
+                    }
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return;
+            }
+
+
+            for (Player p: Bukkit.getOnlinePlayers()){
+                if (race.getWinner()!=null) {
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
+                    HashMap rep = new HashMap<>();
+                    rep.put("{win_party}", race.getWinner().getPartyName());
+                    rep.put("{lose_party}", race.getLoser().getPartyName());
+
+                    ReplaceUtil.replace(list, rep);
+                    MessageUtil.sendMessageTo(p, list);
+                }else {
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
+                    HashMap rep = new HashMap<>();
+                    rep.put("{red_party}", race.getRedParty().getPartyName());
+                    rep.put("{blue_party}", race.getBlueParty().getPartyName());
+                    ReplaceUtil.replace(list, rep);
+                    MessageUtil.sendMessageTo(p, list);
+                }
+
+            }
         }
+
+
+
+
+
+
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             RecordExpansion.recordExpansion.unregister();
@@ -256,7 +321,7 @@ public class EasyPvp extends JavaPlugin {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         List<String> list=new ArrayList<>();
         if (args.length==1){
-            list=MessageYamlManager.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
+            list= MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
             if (args[0]==null||list==null){
                 return  new ArrayList<>();
          }

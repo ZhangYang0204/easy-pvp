@@ -1,6 +1,6 @@
 package pers.zhangyang.easypvp.util;
 
-import pers.zhangyang.easypvp.manager.SettingYamlManager;
+import pers.zhangyang.easypvp.yaml.SettingYaml;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ public class DatabaseUtil {
         Connection connection = t.get();
         if(connection==null||connection.isClosed()){
 
-            SettingYamlManager settingYamlManager=SettingYamlManager.SETTING_YAML_MANAGER;
+            SettingYaml settingYamlManager= SettingYaml.SETTING_YAML_MANAGER;
             connection = DriverManager.getConnection(settingYamlManager.getDATABASE_URL()
                     ,settingYamlManager.getDATABASE_USERNAME(), settingYamlManager.getDATABASE_PASSWORD());
             connection.setAutoCommit(false);

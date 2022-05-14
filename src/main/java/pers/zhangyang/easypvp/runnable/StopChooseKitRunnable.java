@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class StopChooseKitRunnable extends BukkitRunnable {
     @Override
     public void run() {
                 race.stopChooseKit();
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_STOP_CHOOSE_KIT();
 
 

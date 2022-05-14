@@ -7,7 +7,7 @@ import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.meta.*;
 import pers.zhangyang.easypvp.service.CommandService;
@@ -40,29 +40,13 @@ public class MatchRunnable extends BukkitRunnable {
 
 
         Matcher tar =null;
-        for (Matcher m:MatcherManager.MATCHER_MANAGER.getSpecificMatcherList()){
-
-            MapMeta ma=matcher.getMapMeta();
-            MapMeta ta=m.getMapMeta();
-            if (ma==null||ta==null){
-                tar=m;
-                break;
-            }else {
-                if (ma.getUuid().equals(ta.getUuid())){
-                    tar=m;
-                    break;
-                }
-            }
-
-
-        }
+        tar=MatcherManager.MATCHER_MANAGER.matchMatcher(matcher);
         if (tar == null) {
             return;
         }
         if (tar.equals(matcher)) {
             return;
         }
-
         MapMeta mapMeta= tar.getMapMeta();
 
         if (mapMeta==null){
@@ -71,7 +55,9 @@ public class MatchRunnable extends BukkitRunnable {
                 CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
                 mapMetaList = commandService.getMapByScale(matcher.getParty().getMemberList().size());
             } catch (SQLException e) {
-                throw new RuntimeException();
+                
+                e.printStackTrace();
+                return;
             }
             mapMeta= mapMetaList.get(new Random().nextInt(mapMetaList.size()));
         }
@@ -104,7 +90,7 @@ public class MatchRunnable extends BukkitRunnable {
         for (Gamer g : red.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        List<String> list = MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_RACE_START();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
@@ -117,7 +103,7 @@ public class MatchRunnable extends BukkitRunnable {
         for (Gamer g : blue.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        list = MessageYamlManager.MESSAGE_YAML_MANAGER
+        list = MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_RACE_START();
         rep = new HashMap<>();
         rep.put("{captain}", red.getCaptain().getPlayer().getName());

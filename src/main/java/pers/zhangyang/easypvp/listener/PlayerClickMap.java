@@ -12,7 +12,7 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -49,7 +49,7 @@ public class PlayerClickMap implements Listener {
 
 
             if (!party.getCaptain().equals(gamer)) {
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_SPECIFIC_MATCH_BECAUSE_NOT_CAPTAIN();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{map}",mapMeta.getName());
@@ -59,7 +59,7 @@ public class PlayerClickMap implements Listener {
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)) {
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_SPECIFIC_MATCH_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{map}",mapMeta.getName());
@@ -73,7 +73,7 @@ public class PlayerClickMap implements Listener {
             party.startMatch(mapMeta);
 
         //本人通知
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_START_SPECIFIC_MATCH();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -87,7 +87,7 @@ public class PlayerClickMap implements Listener {
         for (Gamer g:party.getMemberList()) {
             if (g.equals(gamer)){continue;}
 
-            list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_START_SPECIFIC_MATCH();
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());

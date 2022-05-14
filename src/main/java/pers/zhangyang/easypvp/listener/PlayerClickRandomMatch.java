@@ -12,7 +12,7 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -52,7 +52,7 @@ public class PlayerClickRandomMatch implements Listener {
         Party party=allMapPage.getParty();
         try {
             if (!party.getCaptain().equals(gamer)){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_NOT_CAPTAIN();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -61,7 +61,7 @@ public class PlayerClickRandomMatch implements Listener {
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -73,7 +73,7 @@ public class PlayerClickRandomMatch implements Listener {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
             mapMetaList = commandService.getMapByScale(party.getMemberList().size());
             if (mapMetaList.isEmpty()){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_NOT_AVAILABLE_MAP();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -93,7 +93,7 @@ public class PlayerClickRandomMatch implements Listener {
         }
 
         //本人通知
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_START_RANDOM_MATCH();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -105,7 +105,7 @@ public class PlayerClickRandomMatch implements Listener {
         for (Gamer g:party.getMemberList()) {
             if (g.equals(gamer)){continue;}
 
-            list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_START_RANDOM_MATCH();
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());

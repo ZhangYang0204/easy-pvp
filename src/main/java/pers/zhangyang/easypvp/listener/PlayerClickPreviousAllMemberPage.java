@@ -8,12 +8,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllMemberPage;
-import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
-import pers.zhangyang.easypvp.manager.PartyManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 
@@ -49,7 +47,7 @@ public class PlayerClickPreviousAllMemberPage implements Listener {
 
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex<=0){
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_PREVIOUS_ALL_MEMBER_PAGE_BECAUSE_NOT_PREVIOUS();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -58,7 +56,7 @@ public class PlayerClickPreviousAllMemberPage implements Listener {
                 party.getMemberList()));
         allPartyPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_PREVIOUS_ALL_MEMBER_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

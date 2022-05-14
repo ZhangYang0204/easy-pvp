@@ -2,7 +2,6 @@ package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.BlockInventoryHolder;
 import org.bukkit.inventory.Inventory;
@@ -12,7 +11,7 @@ import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.meta.*;
@@ -25,6 +24,11 @@ import java.util.*;
 public class Race {
     protected final List<Gamer> redAlive;
     protected final List<Gamer> blueAlive;
+@Nullable
+    public World getWorld() {
+        return world;
+    }
+
     protected final boolean fair;
     protected final boolean build;
     protected final boolean drop;
@@ -69,7 +73,14 @@ public class Race {
             return;
         }
 
+
+
         Player p = gamer.getPlayer();
+        if (p.isDead()){
+            Location l=p.getLocation();
+            p.spigot().respawn();
+            p.teleport(l);
+        }
         p.setGameMode(GameMode.SPECTATOR);
         redAlive.remove(gamer);
         blueAlive.remove(gamer);
@@ -85,6 +96,9 @@ public class Race {
         worldCreator.type(WorldType.FLAT);
         worldCreator.generateStructures(false);
         this.world = worldCreator.createWorld();
+        this.world.setAutoSave(false);
+
+
         for (MapBlockMeta b : mapBlockMetaList) {
             Block block = world.getBlockAt(b.getX(), b.getY(), b.getZ());
                 block.setBlockData(Bukkit.createBlockData(b.getData()));
@@ -189,18 +203,12 @@ public class Race {
     private void locationHandleBefore() {
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
-            if (p.isDead()) {
-                p.spigot().respawn();
-            }
             locationBefore.put(g, p.getLocation());
             p.teleport(redLoc);
 
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
-            if (p.isDead()) {
-                p.spigot().respawn();
-            }
             locationBefore.put(g, p.getLocation());
             p.teleport(blueLoc);
         }
@@ -212,14 +220,14 @@ public class Race {
     public void startChooseKit() {
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
-            AllKitPage allKitPage = new AllKitPage(GuiYamlManager.getGuiManager().getTITLE_ALL_KIT_PAGE());
+            AllKitPage allKitPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
             allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
 
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
-            AllKitPage allKitPage = new AllKitPage(GuiYamlManager.getGuiManager().getTITLE_ALL_KIT_PAGE());
+            AllKitPage allKitPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
             allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
         }
@@ -245,9 +253,6 @@ public class Race {
     private void locationHandleAfter() {
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
-            if (p.isDead()) {
-                p.spigot().respawn();
-            }
             if (locationBefore.get(g).getWorld() == null) {
                 p.teleport(Bukkit.getWorld("world").getSpawnLocation());
             } else {
@@ -257,9 +262,6 @@ public class Race {
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
-            if (p.isDead()) {
-                p.spigot().respawn();
-            }
             if (locationBefore.get(g).getWorld() == null) {
                 p.teleport(Bukkit.getWorld("world").getSpawnLocation());
             } else {
@@ -391,13 +393,13 @@ public class Race {
     public void start(Party redParty, Party blueParty) {
         if (stats.equals(RaceStatsEnum.GAMING)){return;}
         stats=RaceStatsEnum.GAMING;
+        this.redParty = redParty;
+        this.blueParty = blueParty;
         initWorld();
         this.redLoc = new Location(world, mapMeta.getRedPointX(), mapMeta.getRedPointY(), mapMeta.getRedPointZ());
         this.blueLoc = new Location(world, mapMeta.getBluePointX(), mapMeta.getBluePointY(), mapMeta.getBluePointZ());
         this.firstLoc = new Location(world, mapMeta.getFirstPointX(), mapMeta.getFirstPointY(), mapMeta.getFirstPointZ());
         this.secondLoc = new Location(world, mapMeta.getSecondPointX(), mapMeta.getSecondPointY(), mapMeta.getSecondPointZ());
-        this.redParty = redParty;
-        this.blueParty = blueParty;
         this.redAlive.addAll(redParty.memberList);
         this.blueAlive.addAll(blueParty.memberList);
         startTime = System.currentTimeMillis();
@@ -427,6 +429,20 @@ public class Race {
 
         MatcherManager.MATCHER_MANAGER.remove(redParty);
         MatcherManager.MATCHER_MANAGER.remove(blueParty);
+
+
+        for (Gamer g : redParty.memberList) {
+            Player p = g.getPlayer();
+            if (p.isDead()) {
+                p.spigot().respawn();
+            }
+        }
+        for (Gamer g : blueParty.memberList) {
+            Player p = g.getPlayer();
+            if (p.isDead()) {
+                p.spigot().respawn();
+            }
+        }
 
         locationHandleBefore();
 
@@ -467,6 +483,20 @@ public class Race {
         }
         for (Gamer g : blueParty.memberList) {
             g.race = null;
+        }
+
+
+        for (Gamer g : redParty.memberList) {
+            Player p = g.getPlayer();
+            if (p.isDead()) {
+                p.spigot().respawn();
+            }
+        }
+        for (Gamer g : blueParty.memberList) {
+            Player p = g.getPlayer();
+            if (p.isDead()) {
+                p.spigot().respawn();
+            }
         }
         locationHandleAfter();
         if (fair) {
@@ -511,11 +541,11 @@ public class Race {
 
         //删除地图
         if (!Bukkit.unloadWorld(this.world, false)) {
-            Bukkit.getConsoleSender().sendMessage("&4有一个地图卸载失败,无法删除");
+            Bukkit.getConsoleSender().sendMessage("§cCouldn't unload an race world");
         } else {
 
             if (!ResourceUtil.deleteFile(world.getWorldFolder())) {
-                Bukkit.getConsoleSender().sendMessage("&4有一个地图卸载成功,但无法删除");
+                Bukkit.getConsoleSender().sendMessage("§cCouldn't delete an race world");
             }
         }
     }

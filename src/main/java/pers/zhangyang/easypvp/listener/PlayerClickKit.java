@@ -11,7 +11,7 @@ import pers.zhangyang.easypvp.domain.AllKitPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -50,7 +50,7 @@ public class PlayerClickKit implements Listener {
         race.sendKit(kitMeta, gamer);
         gamer.getPlayer().closeInventory();
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_CHOOSE_KIT();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{kit}",kitMeta.getName());

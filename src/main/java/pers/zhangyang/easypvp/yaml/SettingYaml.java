@@ -1,19 +1,18 @@
-package pers.zhangyang.easypvp.manager;
+package pers.zhangyang.easypvp.yaml;
 
-import org.bukkit.Bukkit;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SettingYamlManager extends YamlManagerBase {
-    public static final SettingYamlManager SETTING_YAML_MANAGER =new SettingYamlManager();
+public class SettingYaml extends YamlManagerBase {
+    public static final SettingYaml SETTING_YAML_MANAGER =new SettingYaml();
 
     public String getLANGUAGE() {
         return LANGUAGE;
     }
 
-    private SettingYamlManager(){
+    private SettingYaml(){
         super("setting.yml");
     }
 

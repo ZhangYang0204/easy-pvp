@@ -14,8 +14,8 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -58,7 +58,7 @@ public class PlayerClickMember implements Listener {
 
             //判断踢人的人是不是队长
             if (!party.getCaptain().equals(clicker)){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_KICK_MEMBER_BECAUSE_NOT_CAPTAIN();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{member}",m.getName());
@@ -70,7 +70,7 @@ public class PlayerClickMember implements Listener {
             }
 
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_KICK_MEMBER_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{member}",m.getName());
@@ -100,7 +100,7 @@ public class PlayerClickMember implements Listener {
 
             //mem打开上一个页面
             Player memPlayer=member.getPlayer();
-            String title= GuiYamlManager.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+            String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
             AllPartyPage allPartyPage=new AllPartyPage(title);
             allPartyPage.init(PageUtil.pageParty(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
             allPartyPage.send(memPlayer);
@@ -112,7 +112,7 @@ public class PlayerClickMember implements Listener {
      
 
         //通知被t者
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_WAS_KICKED_PARTY();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{kicker}",player.getName());
@@ -127,7 +127,7 @@ public class PlayerClickMember implements Listener {
             if (g.equals(clicker)){continue;}
             playerList.add(g.getPlayer());
         }
-        list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SOMEONE_SUCCESS_WAS_KICKED_PARTY();
         rep=new HashMap<>();
         rep.put("{kicker}",player.getName());
@@ -137,7 +137,7 @@ public class PlayerClickMember implements Listener {
         MessageUtil.sendMessageTo(playerList, list);
 
         //通知踢人者
-        list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_KICK_MEMBER();
         rep=new HashMap<>();
         rep.put("{member}",m.getName());

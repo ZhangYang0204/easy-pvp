@@ -12,8 +12,8 @@ import pers.zhangyang.easypvp.domain.AllMemberPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 
@@ -50,11 +50,11 @@ public class PlayerClickBackAllMember implements Listener {
 
         Party party= gamer.getParty();
 
-        AllMemberPage allMemberPage=new AllMemberPage(GuiYamlManager.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
+        AllMemberPage allMemberPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
         allMemberPage.init(party,0, PageUtil.pageGamer(0,45,party.getMemberList()));
         allMemberPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_BACK_ALL_MEMBER_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

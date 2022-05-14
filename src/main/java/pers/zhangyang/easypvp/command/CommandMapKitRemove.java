@@ -5,7 +5,7 @@ import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.MapNotAddKitException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -33,7 +33,7 @@ public class CommandMapKitRemove extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
-            List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME();
             ReplaceUtil.replace(list, rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -45,7 +45,7 @@ public class CommandMapKitRemove extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
-            List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME();
             ReplaceUtil.replace(list, rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -54,7 +54,7 @@ public class CommandMapKitRemove extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
-            List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT();
             ReplaceUtil.replace(list, rep);
             MessageUtil.sendMessageTo(sender, list);
@@ -63,7 +63,7 @@ public class CommandMapKitRemove extends CommandBase {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{map}",args[1]);
         rep.put("{kit}",args[2]);
-        List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_MAP_KIT_REMOVE();
         ReplaceUtil.replace(list, rep);
         MessageUtil.sendMessageTo(sender, list);

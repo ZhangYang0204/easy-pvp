@@ -1,15 +1,15 @@
-package pers.zhangyang.easypvp.manager;
+package pers.zhangyang.easypvp.yaml;
 
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageYamlManager extends YamlManagerBase {
-    public static final MessageYamlManager MESSAGE_YAML_MANAGER =new MessageYamlManager();
+public class MessageYaml extends YamlManagerBase {
+    public static final MessageYaml MESSAGE_YAML_MANAGER =new MessageYaml();
 
-    private MessageYamlManager( ) {
-        super("language/"+SettingYamlManager.SETTING_YAML_MANAGER.getLANGUAGE()+"/message.yml");
+    private MessageYaml( ) {
+        super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/message.yml");
     }
 
     private String INPUT_CANCEL;
@@ -206,6 +206,8 @@ public class MessageYamlManager extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$;
     private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$;
     private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE;
+
+    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$;
     private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$;
     private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET;
     private List<String> COMPLETER_EASY_PVP_KIT_SET;
@@ -224,6 +226,7 @@ public class MessageYamlManager extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET;
     private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$;
 
+    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$;
     private List<String> COMPLETER_EASY_PVP_MAP_DROP_SET;
     private List<String> COMPLETER_EASY_PVP_MAP_DROP_SET_$;
 
@@ -290,6 +293,11 @@ public class MessageYamlManager extends YamlManagerBase {
         if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$==null){
             return null;
         } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$);
+    }
+    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$() {
+        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$);
     }
 
     public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_SET() {
@@ -375,6 +383,11 @@ public class MessageYamlManager extends YamlManagerBase {
             return null;
         } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$);
     }
+    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$() {
+        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$);
+    }
 
     public List<String> getCOMPLETER_EASY_PVP_MAP_DROP_SET() {
         if (COMPLETER_EASY_PVP_MAP_DROP_SET==null){
@@ -454,6 +467,8 @@ public class MessageYamlManager extends YamlManagerBase {
         COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$=getStringList("message.completer.easyPvpKitDescriptionRemove$",false);
         COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE=getStringList("message.completer.easyPvpKitDescriptionRemove",false);
         COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$=getStringList("message.completer.easyPvpKitDescriptionSet$",false);
+
+        COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$=getStringList("message.completer.easyPvpKitDescriptionSet$$",false);
         COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET=getStringList("message.completer.easyPvpKitDescriptionSet",false);
         COMPLETER_EASY_PVP_KIT_SET=getStringList("message.completer.easyPvpKitSet",false);
         COMPLETER_EASY_PVP_MAP_BUILD_SET=getStringList("message.completer.easyPvpMapBuildSet",false);
@@ -468,6 +483,7 @@ public class MessageYamlManager extends YamlManagerBase {
         COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$=getStringList("message.completer.easyPvpMapDescriptionRemove$",false);
         COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET=getStringList("message.completer.easyPvpMapDescriptionSet",false);
         COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$=getStringList("message.completer.easyPvpMapDescriptionSet$",false);
+        COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$=getStringList("message.completer.easyPvpMapDescriptionSet$$",false);
         COMPLETER_EASY_PVP_MAP_DROP_SET=getStringList("message.completer.easyPvpMapDropSet",false);
         COMPLETER_EASY_PVP_MAP_DROP_SET_$=getStringList("message.completer.easyPvpMapDropSet$",false);
         COMPLETER_EASY_PVP_MAP_FAIR_SET=getStringList("message.completer.easyPvpMapFairSet",false);

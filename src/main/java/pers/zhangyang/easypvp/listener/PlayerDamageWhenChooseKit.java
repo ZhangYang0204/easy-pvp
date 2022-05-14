@@ -25,7 +25,7 @@ public class PlayerDamageWhenChooseKit implements Listener {
             return;
         }
 
-        if ((race.getStartTime()+race.getChooseTick()*20)>System.currentTimeMillis()){
+        if ((race.getStartTime()+race.getChooseTick()*50)>System.currentTimeMillis()){
             event.setCancelled(true);
         }
 

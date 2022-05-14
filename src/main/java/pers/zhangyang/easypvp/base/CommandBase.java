@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.base;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
@@ -23,13 +23,13 @@ public abstract class CommandBase {
     }
     public void process(){
         if (!(sender instanceof Player)&&forcePlayer){
-            MessageUtil.sendMessageTo(sender,MessageYamlManager.MESSAGE_YAML_MANAGER.getCHAT_NOT_PLAYER());
+            MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_NOT_PLAYER());
             return;
         }
         String permission="EasyPvp."+args[0];
         if (!sender.hasPermission(permission)){
 
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_NO_PERMISSION();
             ReplaceUtil.replace(list, Collections.singletonMap("{permission}",permission));
             MessageUtil.sendMessageTo(sender, list);

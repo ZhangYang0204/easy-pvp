@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.command;
 import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -32,14 +32,14 @@ public class CommandMapDelete extends CommandBase {
             e.printStackTrace();
             return true;
         } catch (NotExistMapNameException e) {
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME();
             ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
 
             return true;
         }
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_MAP_DELETE();
         ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
         MessageUtil.sendMessageTo(sender, list);

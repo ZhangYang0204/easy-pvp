@@ -19,7 +19,7 @@ public class MatcherManager {
 
 
     public List<Matcher> getSpecificMatcherList() {
-        return matcherList;
+        return new ArrayList<>(matcherList);
     }
 
 

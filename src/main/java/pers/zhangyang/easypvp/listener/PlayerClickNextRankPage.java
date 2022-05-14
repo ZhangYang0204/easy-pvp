@@ -7,13 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.RankPage;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
@@ -68,7 +66,7 @@ public class PlayerClickNextRankPage implements Listener {
 
         int currentPageIndex=rankPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_NEXT_RANK_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -95,7 +93,7 @@ public class PlayerClickNextRankPage implements Listener {
 
         rankPage.init(currentPageIndex+1, PageUtil.pageRecordMeta(currentPageIndex+1,45,recordMetaList));
         rankPage.send(player);
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_NEXT_RANK_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

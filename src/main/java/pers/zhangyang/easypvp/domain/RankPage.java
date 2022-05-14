@@ -5,8 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.meta.MapMeta;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -31,14 +30,14 @@ public class RankPage  implements InventoryHolder {
         this.pageIndex=pageIndex;
         for (RecordMeta m:recordMetaList){this.recordMetaList.add(m.clone());}
 
-        GuiYamlManager guiYamlManager=GuiYamlManager.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getGuiManager();
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=recordMetaList.size()){break;}
 
-            String displayName=guiYamlManager.getBUTTON_RANK_PAGE_RECORD_DISPLAY_NAME();
-            List<String> lore=guiYamlManager.getBUTTON_RANK_PAGE_RECORD_LORE();
+            String displayName= guiYaml.getBUTTON_RANK_PAGE_RECORD_DISPLAY_NAME();
+            List<String> lore= guiYaml.getBUTTON_RANK_PAGE_RECORD_LORE();
 
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{player}",Bukkit.getOfflinePlayer(UUID.fromString(recordMetaList.get(i).getPlayerUuid())).getName());
@@ -50,7 +49,7 @@ public class RankPage  implements InventoryHolder {
             displayName=ReplaceUtil.replace(displayName,rep);
             ReplaceUtil.replace(lore,rep);
 
-            ItemStack itemStack= ItemStackUtil.getItemStack(guiYamlManager.GUI_MANAGER.getBUTTON_RANK_PAGE_RECORD_MATERIAL(),
+            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_RANK_PAGE_RECORD_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -58,18 +57,18 @@ public class RankPage  implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(),guiYamlManager.GUI_MANAGER.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_RANK_PAGE_PREVIOUS_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_RANK_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_RANK_PAGE_NEXT_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_RANK_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_RANK_PAGE_NEXT_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
 
-        ItemStack back=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE());
+        ItemStack back=ItemStackUtil.getItemStack(guiYaml.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE());
         inventory.setItem(49,back);
 
 

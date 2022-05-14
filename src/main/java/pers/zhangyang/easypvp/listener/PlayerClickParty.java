@@ -13,7 +13,7 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.RefreshUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -49,7 +49,7 @@ public class PlayerClickParty implements Listener {
 
         try {
             if (gamer.hasParty()){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_ALREADY_JOIN_PARTY();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -60,7 +60,7 @@ public class PlayerClickParty implements Listener {
                 return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_MATCHING();
 
                 HashMap<String,String> rep=new HashMap<>();
@@ -83,7 +83,7 @@ public class PlayerClickParty implements Listener {
             return;
         }
         //通知加入者本人
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_JOIN_PARTY();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -96,7 +96,7 @@ public class PlayerClickParty implements Listener {
             if (g.equals(gamer)){continue;}
             playerList.add(g.getPlayer());
         }
-        list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SOMEONE_SUCCESS_JOIN_PARTY();
         rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());

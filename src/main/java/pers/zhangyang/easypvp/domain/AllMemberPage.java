@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
@@ -32,14 +32,14 @@ public class AllMemberPage implements InventoryHolder {
         this.pageIndex=pageIndex;
         this.party=party;
 
-        GuiYamlManager guiYamlManager=GuiYamlManager.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getGuiManager();
 
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=gamerList.size()){break;}
-            String displayName=guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_MEMBER_DISPLAY_NAME();
-            List<String> lore=guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_MEMBER_LORE();
+            String displayName= guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_DISPLAY_NAME();
+            List<String> lore= guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_LORE();
 
             displayName=ReplaceUtil.replace(displayName,Collections.singletonMap("{member}",
                     party.getMemberList().get(i).getPlayer().getName()));
@@ -47,7 +47,7 @@ public class AllMemberPage implements InventoryHolder {
             ReplaceUtil.replace(lore,Collections.singletonMap("{member}",
                     party.getMemberList().get(i).getPlayer().getName()));
 
-            ItemStack itemStack= ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_MEMBER_MATERIAL(),
+            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -55,26 +55,26 @@ public class AllMemberPage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
         //设置49xuan地图
-        ItemStack chooseMap=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_LORE());
+        ItemStack chooseMap=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_LORE());
         inventory.setItem(47,chooseMap);
 
-        ItemStack back=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE());
+        ItemStack back=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE());
         inventory.setItem(49,back);
 
-        ItemStack leaveParty=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE());
+        ItemStack leaveParty=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE());
         inventory.setItem(51,leaveParty);
 
     }

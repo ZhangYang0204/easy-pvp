@@ -7,13 +7,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.domain.AllMemberPage;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.RankPage;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -46,12 +45,12 @@ public class PlayerClickBackAllPartyPageInRankPage implements Listener {
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
 
 
-        String title= GuiYamlManager.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+        String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
         AllPartyPage allPartyPage=new AllPartyPage(title);
         allPartyPage.init(PageUtil.pageParty(0,45,
                 PartyManager.PARTY_MANAGER.getPartyList()),0);
         allPartyPage.send(player);
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

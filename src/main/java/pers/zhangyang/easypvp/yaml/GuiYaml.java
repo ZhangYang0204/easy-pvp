@@ -1,4 +1,4 @@
-package pers.zhangyang.easypvp.manager;
+package pers.zhangyang.easypvp.yaml;
 
 import org.bukkit.Material;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
@@ -6,10 +6,10 @@ import pers.zhangyang.easypvp.base.YamlManagerBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiYamlManager extends YamlManagerBase {
-    public static GuiYamlManager GUI_MANAGER =new GuiYamlManager();
-    private GuiYamlManager( ) {
-        super("language/"+SettingYamlManager.SETTING_YAML_MANAGER.getLANGUAGE()+"/gui.yml");
+public class GuiYaml extends YamlManagerBase {
+    public static GuiYaml GUI_MANAGER =new GuiYaml();
+    private GuiYaml( ) {
+        super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/gui.yml");
     }
 
 
@@ -672,7 +672,7 @@ public class GuiYamlManager extends YamlManagerBase {
         return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE);
     }
 
-    public static GuiYamlManager getGuiManager() {
+    public static GuiYaml getGuiManager() {
         return GUI_MANAGER;
     }
 

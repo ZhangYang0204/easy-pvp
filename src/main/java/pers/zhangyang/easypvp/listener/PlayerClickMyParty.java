@@ -12,8 +12,8 @@ import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 
@@ -30,7 +30,7 @@ public class PlayerClickMyParty implements Listener {
         }
 
         int slot=event.getSlot();
-        if (slot!=50){
+        if (slot!=51){
             return;
         }
         ItemStack itemStack=event.getCurrentItem();
@@ -47,16 +47,16 @@ public class PlayerClickMyParty implements Listener {
 
             Party party= gamer.getParty();
             if (party==null){
-                List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_SHOW_ALL_MEMBER_PAGE_BECAUSE_NOT_JOIN_PARTY();
                 MessageUtil.sendMessageTo(player, list);
                 return;
             }
-            AllMemberPage allMemberPage=new AllMemberPage(GuiYamlManager.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
+            AllMemberPage allMemberPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
         allMemberPage.init(party,0, PageUtil.pageGamer(0,45,party.getMemberList()));
             allMemberPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_SHOW_ALL_MEMBER_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

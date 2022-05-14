@@ -5,8 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.meta.KitMeta;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -44,14 +43,14 @@ public class AllMapPage implements InventoryHolder {
         this.pageIndex=pageIndex;
         this.party=party;
         for (MapMeta k:mapMetaList){this.mapMetaList.add(k.clone());}
-        GuiYamlManager guiYamlManager=GuiYamlManager.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getGuiManager();
 
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=mapMetaList.size()){break;}
-            String displayName=guiYamlManager.getBUTTON_ALL_MAP_PAGE_MAP_DISPLAY_NAME();
-            List<String> lore=guiYamlManager.getBUTTON_ALL_MAP_PAGE_MAP_LORE();
+            String displayName= guiYaml.getBUTTON_ALL_MAP_PAGE_MAP_DISPLAY_NAME();
+            List<String> lore= guiYaml.getBUTTON_ALL_MAP_PAGE_MAP_LORE();
 
             displayName=ReplaceUtil.replace(displayName,Collections.singletonMap("{map}",
                     mapMetaList.get(i).getName()));
@@ -63,7 +62,7 @@ public class AllMapPage implements InventoryHolder {
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
             ReplaceUtil.format(lore,"{[description]}",descriptionList);
 
-            ItemStack itemStack= ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MAP_PAGE_MAP_MATERIAL(),
+            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MAP_PAGE_MAP_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -71,26 +70,26 @@ public class AllMapPage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
 
-        ItemStack back=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE());
+        ItemStack back=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE());
         inventory.setItem(49,back);
 
-        ItemStack cancelMatch=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE());
+        ItemStack cancelMatch=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE());
         inventory.setItem(51,cancelMatch);
 
-        ItemStack randomMatch=ItemStackUtil.getItemStack(guiYamlManager.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_MATERIAL(),
-                guiYamlManager.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_DISPLAY_NAME(),guiYamlManager.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_LORE());
+        ItemStack randomMatch=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MAP_PAGE_RANDOM_MATCH_LORE());
         inventory.setItem(47,randomMatch);
 
 

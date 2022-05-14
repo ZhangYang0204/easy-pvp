@@ -11,7 +11,7 @@ import pers.zhangyang.easypvp.domain.AllMapPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -60,7 +60,7 @@ public class PlayerClickNextAllMapPage implements Listener {
         int maxPageIndex= PageUtil.computeMaxPageIndex(mapMetaList.size(),45);
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_NEXT_ALL_MAP_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -70,7 +70,7 @@ public class PlayerClickNextAllMapPage implements Listener {
                 mapMetaList));
         allPartyPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_NEXT_ALL_MAP_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

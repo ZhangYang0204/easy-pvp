@@ -1,21 +1,18 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.Container;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.BlockInventoryHolder;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.domain.Section;
 import pers.zhangyang.easypvp.exception.DuplicateMapNameException;
 import pers.zhangyang.easypvp.exception.InvalidFourPointException;
 import pers.zhangyang.easypvp.exception.NotFourPointException;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.SectionManager;
 import pers.zhangyang.easypvp.meta.MapBlockMeta;
 import pers.zhangyang.easypvp.meta.MapContainerInventoryItemStackMeta;
@@ -119,7 +116,6 @@ public class CommandMapCreate extends CommandBase {
                         blockInfo.setZ(z);
                         blockInfo.setMapUuid(mapInfo.getUuid());
 
-
                         blockInfo.setData(block.getBlockData().getAsString());
 
                         mapBlockMetaList.add(blockInfo);
@@ -138,28 +134,28 @@ public class CommandMapCreate extends CommandBase {
             e.printStackTrace();
             return true;
         } catch (NotFourPointException e) {
-            List<String> list=MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT();
             ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
 
             return true;
         } catch (InvalidFourPointException e) {
-            List<String> list=MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_CREATE_BECAUSE_INVALID_FOUR_POINT();
             ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
 
             return true;
         } catch (DuplicateMapNameException e) {
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME();
             ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
 
-        List<String> list=  MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_MAP_CREATE();
         ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
         MessageUtil.sendMessageTo(sender, list);

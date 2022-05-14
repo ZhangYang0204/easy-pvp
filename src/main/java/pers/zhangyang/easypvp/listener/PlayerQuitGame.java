@@ -11,7 +11,7 @@ import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -84,7 +84,7 @@ public class PlayerQuitGame implements Listener {
 
             for (Player p: Bukkit.getOnlinePlayers()){
                 if (race.getWinner()!=null) {
-                    List<String> list = MessageYamlManager.MESSAGE_YAML_MANAGER
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                             .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
                     HashMap rep = new HashMap<>();
                     rep.put("{win_party}", race.getWinner().getPartyName());
@@ -93,7 +93,7 @@ public class PlayerQuitGame implements Listener {
                     ReplaceUtil.replace(list, rep);
                     MessageUtil.sendMessageTo(p, list);
                 }else {
-                    List<String> list = MessageYamlManager.MESSAGE_YAML_MANAGER
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                             .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
                     HashMap rep = new HashMap<>();
                     rep.put("{red_party}", race.getRedParty().getPartyName());

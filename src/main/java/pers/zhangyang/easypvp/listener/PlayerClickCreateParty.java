@@ -12,7 +12,7 @@ import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 
 public class PlayerClickCreateParty implements Listener {
@@ -26,7 +26,7 @@ public class PlayerClickCreateParty implements Listener {
         }
 
         int slot=event.getSlot();
-        if (slot!=48){
+        if (slot!=47){
             return;
         }
         ItemStack itemStack=event.getCurrentItem();
@@ -46,7 +46,7 @@ public class PlayerClickCreateParty implements Listener {
 
             //创建队伍并注册
         Bukkit.getPluginManager().registerEvents(new PlayerChatAfterClickCreateParty(gamer), EasyPvp.getInstance());
-        MessageUtil.sendMessageTo(player,MessageYamlManager.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_CREATE_PARTY());
+        MessageUtil.sendMessageTo(player, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_CREATE_PARTY());
         player.closeInventory();
 
 

@@ -9,12 +9,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.RecordMeta;
-import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
@@ -80,10 +78,10 @@ public class PlayerClickRankPage implements Listener {
             }
         });
 
-        RankPage rankPage=new RankPage(GuiYamlManager.GUI_MANAGER.getTITLE_RANK_PAGE());
+        RankPage rankPage=new RankPage(GuiYaml.GUI_MANAGER.getTITLE_RANK_PAGE());
         rankPage.init(0,PageUtil.pageRecordMeta(0,45,recordMetaList));
         rankPage.send(player);
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_RANK_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

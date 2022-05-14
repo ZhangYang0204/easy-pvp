@@ -1,139 +1,139 @@
 gui:
   title:
-    allPartyPage: "&b&l全部队伍"
-    allMemberPage: "&b&l全部成员"
-    allMapPage: "&b&l全部可选地图"
-    allKitPage: "&b&l全部可选装备包"
-    rankPage: "&b&l战绩榜"
+    allPartyPage: "&b&l&n全部队伍&e&l(陈列了所有的队伍)"
+    allMemberPage: "&b&l&n队伍成员&e&l(您的队伍信息)"
+    allMapPage: "&b&l&n可选地图&e&l(符合当前队伍人数的地图)"
+    allKitPage: "&b&l&n可选装备包&e&l(当前地图添加的装备包)"
+    rankPage: "&b&l&n战绩榜&e&l(排名顺序为胜负差>平局>总场数)"
   button:
     rankPageBackAllPartyPage:
       material: "BARRIER"
-      displayName: "&b&l返回"
+      displayName: "&b&l&n返回"
       lore:
-        - "&b返回上一个页面"
+        - "&e&l返回上一个页面"
     rankPagePreviousPage:
       material: "BOOK"
-      displayName: "&f&l上一页"
+      displayName: "&b&l&n上一页"
       lore:
-        - "&f点我前往上一页"
+        - "&e&l点我前往上一页"
     rankPageNextPage:
       material: "BOOK"
-      displayName: "&f&l下一页"
+      displayName: "&b&l&n下一页"
       lore:
-        - "&f点我前往下一页"
+        - "&e&l点我前往下一页"
     rankPageRecord:
       material: "PAPER"
-      displayName: "&b&l {player} 的战绩"
+      displayName: "&b&l&n玩家 &f{player} &b&l&n的战绩"
       lore:
-        - "&b总 {all}"
-        - "&b胜 {win}"
-        - "&b败 {lose}"
-        - "&b平 {draw}"
+        - "&a&l胜 &f{win}"
+        - "&c&l败 &f{lose}"
+        - "&b&l平 &f{draw}"
+        - "&6&l总 &f{all}"
 
     allPartyPageRankPage:
       material: "GOLD_INGOT"
-      displayName: "&f&l战绩榜"
+      displayName: "&b&l&n战绩榜"
       lore:
-        - "&f点我查看战绩榜"
+        - "&e&l点我查看战绩榜"
 
     allPartyPagePreviousPage:
       material: "BOOK"
-      displayName: "&f&l上一页"
+      displayName: "&b&l&n上一页"
       lore:
-        - "&f点我前往上一页"
+        - "&e&l点我前往上一页"
     allPartyPageNextPage:
       material: "BOOK"
-      displayName: "&f&l下一页"
+      displayName: "&b&l&n下一页"
       lore:
-        - "&f点我前往下一页"
+        - "&e&l点我前往下一页"
     allPartyPageCreateParty:
       material: "DIAMOND_HELMET"
-      displayName: "&b&l创建队伍"
+      displayName: "&b&l&n创建队伍"
       lore:
-        - "&b点我创建一个队伍"
+        - "&e&l点我创建一个队伍"
     allPartyPageParty:
       material: "CHEST"
-      displayName: "&b&l{captain} 的队伍 {party}"
+      displayName: "&b&l&n玩家 &f{captain} &b&l&n的队伍 &f{party}"
       lore:
-        - "&b队名 {party}"
-        - "&b队长 {captain}"
-        - "&b点我加入该队伍"
+        - "&a&l队名 &f{party}"
+        - "&6&l队长 &f{captain}"
+        - "&e&l点我加入该队伍"
     allPartyPageMyParty:
       material: "ENDER_CHEST"
-      displayName: "&b&l我的队伍"
+      displayName: "&b&l&n我的队伍"
       lore:
-        - "&b查看我的队伍"
+        - "&e&l查看我的队伍"
 
     allMemberPagePreviousPage:
       material: "BOOK"
-      displayName: "&F&l上一页"
+      displayName: "&b&l&n上一页"
       lore:
-        - "&F点我前往上一页"
+        - "&e&l点我前往上一页"
     allMemberPageNextPage:
       material: "BOOK"
-      displayName: "&f&l下一页"
+      displayName: "&b&l&n下一页"
       lore:
-        - "&F点我前往下一页"
+        - "&e&l点我前往下一页"
     allMemberPageMember:
       material: "GOLD_HELMET"
-      displayName: "&B&l成员 {member}"
+      displayName: "&B&l&n成员 &f{member}"
       lore:
-        - "&b点我从队伍里请出 {member}"
+        - "&e&l点我从队伍里请出 &f{member}"
     allMemberPageChooseMap:
       material: "PAPER"
-      displayName: "&B&l地图选择"
+      displayName: "&B&l&n地图选择"
       lore:
-        - "&b点我选择地图"
+        - "&e&l点我选择地图"
     allMemberPageBackAllPartyPage:
       material: "BARRIER"
-      displayName: "&b&l返回"
+      displayName: "&b&l&n返回"
       lore:
-        - "&b返回上一个页面"
+        - "&e&l返回上一个页面"
     allMemberPageLeaveParty:
       material: "REDSTONE"
-      displayName: "&b&l离开队伍"
+      displayName: "&b&l&n离开队伍"
       lore:
-        - "&b离开当前队伍"
+        - "&e&l离开当前队伍"
 
     allMapPageMap:
       material: "PAPER"
-      displayName: "&b&l地图 {map}"
+      displayName: "&b&l&n地图 &f{map}"
       lore:
-        - "&b点我开始匹配该地图 {map}"
-        - "&b以下是描述"
+        - "&e&l点我开始匹配该地图 &f{map}"
+        - "&b&l以下是描述"
         - "{[description]}"
 
     allMapPageBackAllMemberPage:
       material: "BARRIER"
-      displayName: "&f&l返回"
+      displayName: "&b&l&n返回"
       lore:
-        - "&f返回"
+        - "&e&l返回"
 
     allMapPageCancelMatch:
       material: "REDSTONE"
-      displayName: "&b&l取消匹配"
+      displayName: "&b&l&n取消匹配"
       lore:
-        - "&b点我取消匹配"
+        - "&e&l点我取消匹配"
     allMapPageRandomMatch:
       material: "DIAMOND_SWORD"
-      displayName: "&b&l随机匹配"
+      displayName: "&b&l&n随机匹配"
       lore:
-        - "&b点我随机匹配"
+        - "&e&l点我随机匹配"
 
     allKitPagePreviousPage:
       material: "BOOK"
-      displayName: "&F&l上一页"
+      displayName: "&b&l&n上一页"
       lore:
-        - "&F点我前往上一页"
+        - "&e&l点我前往上一页"
     allKitPageNextPage:
       material: "BOOK"
       displayName: "&B&l下一页"
       lore:
-        - "&b点我前往下一页"
+        - "&e&l点我前往下一页"
     allKitPageKit:
       material: "CHEST"
-      displayName: "&B&l {kit}"
+      displayName: "&B&l&n装备包 &f{kit}"
       lore:
-        - "&b点我领取装备包"
-        - "&b以下是该装备包的描述"
+        - "&b&l点我领取装备包 &f{kit}"
+        - "&e&l以下是该装备包的描述"
         - "{[description]}"

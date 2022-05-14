@@ -9,16 +9,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
-import pers.zhangyang.easypvp.meta.KitMeta;
-import pers.zhangyang.easypvp.meta.MapMeta;
-import pers.zhangyang.easypvp.service.CommandService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +48,7 @@ public class PlayerClickNextAllKitPage implements Listener {
         int maxPageIndex= PageUtil.computeMaxPageIndex(race.getKitItemMap().keySet().size(),45);
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_NEXT_ALL_KIT_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -64,7 +58,7 @@ public class PlayerClickNextAllKitPage implements Listener {
                 new ArrayList<>(race.getKitItemMap().keySet())));
         allPartyPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_NEXT_ALL_KIT_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

@@ -9,8 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -47,7 +46,7 @@ public class PlayerClickNextAllPartyPage implements Listener {
         int maxPageIndex=PageUtil.computeMaxPageIndex(PartyManager.PARTY_MANAGER.getPartyList().size(),45);
         int currentPageIndex=allPartyPage.getPageIndex();
         if (maxPageIndex<=currentPageIndex){
-            List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_NEXT_ALL_PARTY_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -56,7 +55,7 @@ public class PlayerClickNextAllPartyPage implements Listener {
                 currentPageIndex+1);
         allPartyPage.send(player);
 
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_NEXT_ALL_PARTY_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

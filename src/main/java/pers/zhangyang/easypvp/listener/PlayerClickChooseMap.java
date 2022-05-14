@@ -12,8 +12,8 @@ import pers.zhangyang.easypvp.domain.AllMemberPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.GuiYamlManager;
-import pers.zhangyang.easypvp.manager.MessageYamlManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -53,7 +53,7 @@ public class PlayerClickChooseMap implements Listener {
 
 
 
-            String title = GuiYamlManager.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
+            String title = GuiYaml.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
             AllMapPage allMapPage = new AllMapPage(title);
             List<MapMeta> mapMetaList;
         try {
@@ -65,7 +65,7 @@ public class PlayerClickChooseMap implements Listener {
         }
             allMapPage.init(party, 0, PageUtil.pageMapMeta(0,45,mapMetaList));
             allMapPage.send(player);
-        List<String> list= MessageYamlManager.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_SHOW_ALL_MAP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 
