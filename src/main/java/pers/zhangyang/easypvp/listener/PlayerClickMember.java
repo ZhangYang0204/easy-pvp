@@ -51,8 +51,9 @@ public class PlayerClickMember implements Listener {
         event.setCancelled(true);
         Player player= (Player) event.getWhoClicked();
         Gamer clicker= GamerManager.GAMER_MANAGER.getGamer(player);
+        AllMemberPage allMemberPage= (AllMemberPage) inventory.getHolder();
         Party party=((AllMemberPage)event.getInventory().getHolder()).getParty();
-        Gamer member=party.getMemberList().get(slot);
+        Gamer member=allMemberPage.getGamerList().get(slot);
         Player m=member.getPlayer();
        
 

@@ -9,6 +9,7 @@ import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,12 +17,18 @@ public class AllMemberPage implements InventoryHolder {
     private final Inventory inventory;
     private Party party;
     private int pageIndex;
+    private List<Gamer> gamerList;
     public AllMemberPage(String title){
         if (title==null){
             inventory= Bukkit.createInventory(this,54);
         }else {
             inventory = Bukkit.createInventory(this, 54, ReplaceUtil.replace(title, Collections.singletonMap("&","§")));
         }
+        gamerList=new ArrayList<>();
+    }
+
+    public List<Gamer> getGamerList() {
+        return new ArrayList<>(gamerList);
     }
 
     public Party getParty() {
@@ -31,7 +38,8 @@ public class AllMemberPage implements InventoryHolder {
     public void init(Party party, int pageIndex,List<Gamer> gamerList){
         this.pageIndex=pageIndex;
         this.party=party;
-
+        this.gamerList.clear();
+        this.gamerList.addAll(gamerList);
         GuiYaml guiYaml = GuiYaml.getGuiManager();
 
         inventory.clear();

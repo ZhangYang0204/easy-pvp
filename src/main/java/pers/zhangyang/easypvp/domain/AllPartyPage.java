@@ -33,6 +33,7 @@ public class AllPartyPage implements InventoryHolder {
 
     public void init(List<Party> partyList, int pageIndex){
         this.pageIndex=pageIndex;
+        this.partyList.clear();
         this.partyList.addAll(partyList);
         inventory.clear();
 
