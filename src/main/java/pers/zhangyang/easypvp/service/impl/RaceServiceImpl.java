@@ -15,7 +15,7 @@ public class RaceServiceImpl implements RaceService {
     private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
-    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
+    private final MapBlockInventoryItemStackDao mapBlockInventoryItemStackDao =new MapBlockInventoryItemStackDao();
     public RaceServiceImpl() throws SQLException {
     }
 
@@ -93,8 +93,8 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<MapContainerInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException {
-        return mapContainerInventoryItemStackDao.selectByMapUuid(mapUuid);
+    public List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException {
+        return mapBlockInventoryItemStackDao.selectByMapUuid(mapUuid);
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface RaceService {
     void recordDraw(String playerUuid) throws SQLException;
     List<KitItemStackMeta> getItemMeta(String kitUuid) throws SQLException;
     List<KitMeta> getKitMetaByMapUuid(String mapUuid) throws SQLException;
-    List<MapContainerInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException;
+    List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException;
     RecordMeta getRecord(String playerUuid) throws SQLException;
     List<RecordMeta> getRecord() throws SQLException;
 }

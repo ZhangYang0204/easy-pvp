@@ -86,7 +86,7 @@ public class PlayerClickMap implements Listener {
         //其他人通知
         for (Gamer g:party.getMemberList()) {
             if (g.equals(gamer)){continue;}
-
+            Player p=g.getPlayer();
             list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_START_SPECIFIC_MATCH();
             rep=new HashMap<>();
@@ -95,7 +95,7 @@ public class PlayerClickMap implements Listener {
             rep.put("{party}",party.getPartyName());
             rep.put("{map}",mapMeta.getName());
             ReplaceUtil.replace(list, rep);
-            MessageUtil.sendMessageTo(player, list);
+            MessageUtil.sendMessageTo(p, list);
         }
 
 

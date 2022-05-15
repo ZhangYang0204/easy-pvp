@@ -105,13 +105,14 @@ public class PlayerClickRandomMatch implements Listener {
         for (Gamer g:party.getMemberList()) {
             if (g.equals(gamer)){continue;}
 
+            Player p=g.getPlayer();
             list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_START_RANDOM_MATCH();
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());
             rep.put("{party}",party.getPartyName());
             ReplaceUtil.replace(list, rep);
-            MessageUtil.sendMessageTo(player, list);
+            MessageUtil.sendMessageTo(p, list);
         }
 
 

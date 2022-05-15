@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -44,6 +45,8 @@ public class EasyPvp extends JavaPlugin {
     @Override
     public void onEnable() {
         instance=this;
+
+
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             RecordExpansion.recordExpansion.register();
         }
@@ -55,6 +58,7 @@ public class EasyPvp extends JavaPlugin {
             GuiYaml.GUI_MANAGER.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+            setEnabled(false);
             return;
         }
 
@@ -64,6 +68,7 @@ public class EasyPvp extends JavaPlugin {
             pluginService.initDatabase();
         } catch (SQLException e) {
             e.printStackTrace();
+            setEnabled(false);
             return;
         }
 
@@ -75,6 +80,7 @@ public class EasyPvp extends JavaPlugin {
             pluginService.setVersion(getDescription().getVersion());
         } catch (SQLException e) {
             e.printStackTrace();
+            setEnabled(false);
             return;
         }
 

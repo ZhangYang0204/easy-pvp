@@ -74,10 +74,10 @@ public class MatchRunnable extends BukkitRunnable {
                 List<KitItemStackMeta> kitItemStackMetaList =raceService.getItemMeta(k.getUuid());
                 kitItemMap.put(k, kitItemStackMetaList);
             }
-            List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList=raceService.getContainerInventoryItemStackMeta(mapMeta.getUuid());
+            List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList =raceService.getContainerInventoryItemStackMeta(mapMeta.getUuid());
 
             //比赛开始
-            Race race=new Race(mapMeta, mapBlockMetaList,kitItemMap,mapContainerInventoryItemStackMetaList);
+            Race race=new Race(mapMeta, mapBlockMetaList,kitItemMap, mapContainerInventoryItemStackMetaList);
 
             race.start(red,blue);
         } catch (SQLException e) {

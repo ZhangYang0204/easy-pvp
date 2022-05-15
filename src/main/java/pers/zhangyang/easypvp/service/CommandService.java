@@ -11,7 +11,7 @@ public interface CommandService {
 
     void recordReset() throws SQLException;
 
-    void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapContainerInventoryItemStackMeta>
+    void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapBlockInventoryItemStackMeta>
             mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException ;
     void mapDelete(String mapName) throws SQLException, NotExistMapNameException;
 

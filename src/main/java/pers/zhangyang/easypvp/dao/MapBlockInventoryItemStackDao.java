@@ -1,7 +1,7 @@
 package pers.zhangyang.easypvp.dao;
 
 import pers.zhangyang.easypvp.base.DaoBase;
-import pers.zhangyang.easypvp.meta.MapContainerInventoryItemStackMeta;
+import pers.zhangyang.easypvp.meta.MapBlockInventoryItemStackMeta;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapContainerInventoryItemStackDao extends DaoBase {
-    public MapContainerInventoryItemStackDao() throws SQLException {
+public class MapBlockInventoryItemStackDao extends DaoBase {
+    public MapBlockInventoryItemStackDao() throws SQLException {
     }
     @Override
     public void init() throws SQLException {
         PreparedStatement ps;
         ps =  getConnection().prepareStatement("" +
-                "CREATE TABLE if not exists map_container_inventory_item_stack_table (" +
+                "CREATE TABLE if not exists map_block_inventory_item_stack_table (" +
                 "  'data' STRING NOT NULL  ," +
                 "  'mapUuid' STRING NOT NULL  ," +
                 "  'slot'INT NOT NULL ," +
@@ -27,9 +27,9 @@ public class MapContainerInventoryItemStackDao extends DaoBase {
                 ")");
         ps.executeUpdate();
     }
-    public int insert(MapContainerInventoryItemStackMeta meta) throws SQLException {
+    public int insert(MapBlockInventoryItemStackMeta meta) throws SQLException {
         PreparedStatement ps=getConnection().prepareStatement("" +
-                "insert into map_container_inventory_item_stack_table (data,mapUuid,x,y,z,slot) values (?,?,?,?,?,?)");
+                "insert into map_block_inventory_item_stack_table (data,mapUuid,x,y,z,slot) values (?,?,?,?,?,?)");
         ps.setString(1, meta.getData());
         ps.setString(2, meta.getMapUuid());
         ps.setInt(3, meta.getX());
@@ -39,19 +39,19 @@ public class MapContainerInventoryItemStackDao extends DaoBase {
         return ps.executeUpdate();
     }
 
-    public List<MapContainerInventoryItemStackMeta> selectByMapUuid(String mapUuid) throws SQLException {
+    public List<MapBlockInventoryItemStackMeta> selectByMapUuid(String mapUuid) throws SQLException {
         PreparedStatement ps=getConnection().prepareStatement("" +
-                "select * from map_container_inventory_item_stack_table where mapUuid=?");
+                "select * from map_block_inventory_item_stack_table where mapUuid=?");
         ps.setString(1,mapUuid);
-        List<MapContainerInventoryItemStackMeta> metaList=new ArrayList<>();
+        List<MapBlockInventoryItemStackMeta> metaList=new ArrayList<>();
         ResultSet rs=ps.executeQuery();
         while (rs.next()){
             metaList.add(changeFromResultSet(rs));
         }
         return metaList;
     }
-    private MapContainerInventoryItemStackMeta changeFromResultSet(ResultSet rs) throws SQLException {
-        MapContainerInventoryItemStackMeta meta=new MapContainerInventoryItemStackMeta();
+    private MapBlockInventoryItemStackMeta changeFromResultSet(ResultSet rs) throws SQLException {
+        MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
         meta.setMapUuid(rs.getString("mapUuid"));
         meta.setData(rs.getString("data"));
         meta.setX(rs.getInt("x"));

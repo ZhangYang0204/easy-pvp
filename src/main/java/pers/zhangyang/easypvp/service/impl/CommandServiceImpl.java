@@ -15,7 +15,7 @@ public class CommandServiceImpl implements CommandService {
     private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
-    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
+    private final MapBlockInventoryItemStackDao mapBlockInventoryItemStackDao =new MapBlockInventoryItemStackDao();
     public CommandServiceImpl() throws SQLException {
     }
 
@@ -25,7 +25,7 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapContainerInventoryItemStackMeta>
+    public void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapBlockInventoryItemStackMeta>
             mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException {
         //检查名字
         if (mapDao.selectByName(meta.getName())!=null){
@@ -39,8 +39,8 @@ public class CommandServiceImpl implements CommandService {
         }
 
         //插入Container
-        for (MapContainerInventoryItemStackMeta m:mapContainerInventoryItemStackMetaList){
-            mapContainerInventoryItemStackDao.insert(m);
+        for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
+            mapBlockInventoryItemStackDao.insert(m);
         }
 
 

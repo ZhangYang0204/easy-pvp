@@ -16,7 +16,7 @@ public class PlayerProcessCommandInRacing implements Listener {
         Race race=gamer.getRace();
 
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
-        if (race==null){
+        if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
 

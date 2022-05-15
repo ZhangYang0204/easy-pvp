@@ -68,7 +68,11 @@ public class Gamer  {
         if (player.isDead()){
             player.spigot().respawn();
         }
-
+        if (race.locationBefore.get(this).getWorld()==null){
+            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+        }else {
+            player.teleport(race.locationBefore.get(this));
+        }
         race.locationBefore.remove(this);
 
         player.setHealth(race.healthBefore.get(this));
@@ -92,12 +96,8 @@ public class Gamer  {
         race.inventorySave.remove(this);
 
         this.stats=GamerStatsEnum.READING;
+
         this.race=null;
-        if (race.locationBefore.get(this).getWorld()==null){
-            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
-        }else {
-            player.teleport(race.locationBefore.get(this));
-        }
     }
 
     /**

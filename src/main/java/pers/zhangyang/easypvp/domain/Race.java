@@ -2,10 +2,13 @@ package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.BlockInventoryHolder;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
@@ -41,7 +44,7 @@ public class Race {
     protected final HashMap<Gamer, Double> healthBefore;
     protected final HashMap<Gamer, Float> expBefore;
     protected final List<MapBlockMeta> mapBlockMetaList;
-    protected final List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList;
+    protected final List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList;
     protected final MapMeta mapMeta;
     protected final HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap;
     protected final List<Gamer> watcher;
@@ -99,21 +102,35 @@ public class Race {
 
     private void initWorld() {
 
-        WorldCreator worldCreator = new WorldCreator("/plugins/EasyPvp/world/" + System.currentTimeMillis());
-        worldCreator.type(WorldType.FLAT);
-        worldCreator.generateStructures(false);
-        this.world = worldCreator.createWorld();
+        this.world = WorldUtil.getVoidWorld("/plugins/EasyPvp/world/" + System.currentTimeMillis());
         this.world.setAutoSave(false);
 
 
         for (MapBlockMeta b : mapBlockMetaList) {
             Block block = world.getBlockAt(b.getX(), b.getY(), b.getZ());
-                block.setBlockData(Bukkit.createBlockData(b.getData()));
-        }
-        for (MapContainerInventoryItemStackMeta m:mapContainerInventoryItemStackMetaList){
-            Block block = world.getBlockAt(m.getX(), m.getY(), m.getZ());
 
-            Inventory inv=((BlockInventoryHolder)block.getState()).getInventory();
+            if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+                MaterialData materialData=MaterialDataUtil.deserializeMaterialData(b.getData());
+
+
+                BlockState blockState=block.getState();
+               blockState.setType(materialData.getItemType());
+               blockState.setRawData(materialData.getData());
+                blockState.update(true);
+
+
+            }else {
+                block.setBlockData(Bukkit.createBlockData(b.getData()));
+            }
+        }
+        for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
+            Block block = world.getBlockAt(m.getX(), m.getY(), m.getZ());
+            Inventory inv;
+            if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13) {
+                inv = ((Container) block.getState()).getInventory();
+            }else {
+                inv = ((BlockInventoryHolder) block.getState()).getInventory();
+            }
             ItemStack i=ItemStackUtil.itemStackDeserialize(m.getData());
             inv.setItem(m.getSlot(),i);
         }
@@ -348,7 +365,7 @@ public class Race {
      * @param kitItemMap 比赛可选的礼包和礼包里的物品
      */
     public Race(MapMeta mapMeta, List<MapBlockMeta> mapBlockMetaList, HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap,
-                List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList) {
+                List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList) {
         stats=RaceStatsEnum.FREEING;
         inventorySave = new HashMap<>();
         locationBefore = new HashMap<>();
@@ -375,7 +392,7 @@ public class Race {
         this.mapBlockMetaList = new ArrayList<>();
         for (MapBlockMeta b: mapBlockMetaList){this.mapBlockMetaList.add(b.clone());}
         this.mapContainerInventoryItemStackMetaList = new ArrayList<>();
-        for (MapContainerInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
+        for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
             this.mapContainerInventoryItemStackMetaList.add(m.clone());
         }
 

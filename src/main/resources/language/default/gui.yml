@@ -76,7 +76,7 @@ gui:
       lore:
         - "&e&l点我前往下一页"
     allMemberPageMember:
-      material: "GOLD_HELMET"
+      material: "DIAMOND_HELMET"
       displayName: "&B&l&n成员 &f{member}"
       lore:
         - "&e&l点我从队伍里请出 &f{member}"
@@ -169,7 +169,7 @@ gui:
       lore:
         - "&e&l离开观战"
     allPartyPageShowAllRacePage:
-      material: "DIAMOND_BLOCK"
+      material: "ENDER_EYE"
       displayName: "&b&l&n查看比赛"
       lore:
         - "&e&l点我查看所有进行中的比赛"

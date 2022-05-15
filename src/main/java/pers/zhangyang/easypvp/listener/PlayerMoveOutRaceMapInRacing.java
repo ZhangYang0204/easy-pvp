@@ -29,9 +29,9 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getPlayer());
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
         Race race= gamer.getRace();
-        if (race==null){return;}
-
-
+        if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
+            return;
+        }
         if (race.isInMap(gamer)){
             return;
         }

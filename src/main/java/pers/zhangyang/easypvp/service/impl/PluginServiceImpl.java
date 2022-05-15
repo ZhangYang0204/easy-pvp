@@ -15,7 +15,7 @@ public class PluginServiceImpl implements PluginService {
     private final KitItemStackDao kitItemStackDao =new KitItemStackDao();
     private final MapKitDao mapKitDao=new MapKitDao();
     private final RecordDao recordDao=new RecordDao();
-    private final MapContainerInventoryItemStackDao mapContainerInventoryItemStackDao=new MapContainerInventoryItemStackDao();
+    private final MapBlockInventoryItemStackDao mapBlockInventoryItemStackDao =new MapBlockInventoryItemStackDao();
     public PluginServiceImpl() throws SQLException {
 
     }
@@ -36,7 +36,7 @@ public class PluginServiceImpl implements PluginService {
         kitItemStackDao.init();
         mapKitDao.init();
         recordDao.init();
-        mapContainerInventoryItemStackDao.init();
+        mapBlockInventoryItemStackDao.init();
         if (updateDao.select()==null){
             updateDao.insert(EasyPvp.getInstance().getDescription().getVersion());
         }

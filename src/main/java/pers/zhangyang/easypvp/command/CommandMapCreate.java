@@ -3,6 +3,7 @@ package pers.zhangyang.easypvp.command;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.Container;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.BlockInventoryHolder;
@@ -15,7 +16,7 @@ import pers.zhangyang.easypvp.exception.NotFourPointException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.SectionManager;
 import pers.zhangyang.easypvp.meta.MapBlockMeta;
-import pers.zhangyang.easypvp.meta.MapContainerInventoryItemStackMeta;
+import pers.zhangyang.easypvp.meta.MapBlockInventoryItemStackMeta;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -67,7 +68,7 @@ public class CommandMapCreate extends CommandBase {
             mapInfo.setBluePointZ(section.getBlue().getBlockZ());
             mapInfo.setChooseTick(100);
 
-            List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList=new ArrayList<>();
+            List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList =new ArrayList<>();
 
             List<MapBlockMeta> mapBlockMetaList =new ArrayList<>();
             //保存方块数据
@@ -88,43 +89,74 @@ public class CommandMapCreate extends CommandBase {
                 for (int y=yFrom;y<=yTo;y++){
                     for (int z=zFrom;z<=zTo;z++){
 
+
                         Block block=new Location(section.getFirst().getWorld(),x,y,z).getBlock();
+
+
                         if (block.getType().equals(Material.AIR)){
                             continue;
                         }
 
-                        if (block.getState() instanceof BlockInventoryHolder){
 
-                            ItemStack[] invContents=((BlockInventoryHolder) block.getState()).getInventory().getContents();
-                            for (int i=0;i<invContents.length;i++){
-                                if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
-                                    continue;
+                        if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+
+
+                            if (block.getState() instanceof Container){
+                                ItemStack[] invContents=((Container) block.getState()).getInventory().getContents();
+                                for (int i=0;i<invContents.length;i++){
+                                    if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
+                                        continue;
+                                    }
+                                    MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
+                                    meta.setMapUuid(mapInfo.getUuid());
+                                    meta.setX(x);
+                                    meta.setY(y);
+                                    meta.setZ(z);
+                                    meta.setSlot(i);
+                                    meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
+                                    mapContainerInventoryItemStackMetaList.add(meta);
                                 }
-                                MapContainerInventoryItemStackMeta meta=new MapContainerInventoryItemStackMeta();
-                                meta.setMapUuid(mapInfo.getUuid());
-                                meta.setX(x);
-                                meta.setY(y);
-                                meta.setZ(z);
-                                meta.setSlot(i);
-                                meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
-                                mapContainerInventoryItemStackMetaList.add(meta);
+                            }
+                        }else {
+
+                            if (block.getState() instanceof BlockInventoryHolder){
+                                ItemStack[] invContents=((BlockInventoryHolder) block.getState()).getInventory().getContents();
+                                for (int i=0;i<invContents.length;i++){
+                                    if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
+                                        continue;
+                                    }
+                                    MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
+                                    meta.setMapUuid(mapInfo.getUuid());
+                                    meta.setX(x);
+                                    meta.setY(y);
+                                    meta.setZ(z);
+                                    meta.setSlot(i);
+                                    meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
+                                    mapContainerInventoryItemStackMetaList.add(meta);
+                                }
                             }
                         }
+
+
+
                         MapBlockMeta blockInfo=new MapBlockMeta();
                         blockInfo.setX(x);
                         blockInfo.setY(y);
                         blockInfo.setZ(z);
                         blockInfo.setMapUuid(mapInfo.getUuid());
 
-                        blockInfo.setData(block.getBlockData().getAsString());
-
+                        if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+                            blockInfo.setData(MaterialDataUtil.serializeMaterialData(block.getState().getData()));
+                        }else {
+                            blockInfo.setData(block.getBlockData().getAsString());
+                        }
                         mapBlockMetaList.add(blockInfo);
                     }
                 }
             }
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapCreate(mapInfo, mapBlockMetaList,mapContainerInventoryItemStackMetaList);
+            commandService.mapCreate(mapInfo, mapBlockMetaList, mapContainerInventoryItemStackMetaList);
 
             RefreshUtil.refreshAllMapPage();
 

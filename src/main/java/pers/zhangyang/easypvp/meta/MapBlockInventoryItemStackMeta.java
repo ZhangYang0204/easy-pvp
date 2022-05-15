@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.meta;
 
 import java.util.Objects;
 
-public class MapContainerInventoryItemStackMeta {
+public class MapBlockInventoryItemStackMeta {
     private String data;
     private String mapUuid;
     private int x;
@@ -12,8 +12,8 @@ public class MapContainerInventoryItemStackMeta {
     private int slot;
 
 
-    public MapContainerInventoryItemStackMeta clone(){
-        MapContainerInventoryItemStackMeta meta=new MapContainerInventoryItemStackMeta();
+    public MapBlockInventoryItemStackMeta clone(){
+        MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
         meta.setData(this.data);
         meta.setMapUuid(this.mapUuid);
         meta.setX(this.x);
@@ -30,7 +30,7 @@ public class MapContainerInventoryItemStackMeta {
 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MapContainerInventoryItemStackMeta that = (MapContainerInventoryItemStackMeta) o;
+        MapBlockInventoryItemStackMeta that = (MapBlockInventoryItemStackMeta) o;
         return x == that.x && y == that.y && z == that.z && slot == that.slot && Objects.equals(data, that.data) && Objects.equals(mapUuid, that.mapUuid);
     }
 

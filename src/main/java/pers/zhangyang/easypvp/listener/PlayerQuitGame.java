@@ -35,7 +35,7 @@ public class PlayerQuitGame implements Listener {
             Race race=gamer.getRace();
             GamerManager.GAMER_MANAGER.remove(player);
 
-            if (party.getStats().equals(PartyStatsEnum.MATCHING)){
+            if (party!=null&&party.getStats().equals(PartyStatsEnum.MATCHING)){
                 //队伍取消匹配
                 party.cancelMatch();
                 //其他人通知
