@@ -44,6 +44,10 @@ public class Race {
     protected final List<MapContainerInventoryItemStackMeta> mapContainerInventoryItemStackMetaList;
     protected final MapMeta mapMeta;
     protected final HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap;
+    protected final List<Gamer> watcher;
+
+    protected final HashMap<Gamer, Location> watcherLocationBefore;
+    protected final HashMap<Gamer, GameMode> watcherGameModeBefore;
     protected Party winner;
     protected Party loser;
     protected Party redParty;
@@ -56,6 +60,9 @@ public class Race {
     protected Location secondLoc;
     protected RaceStatsEnum stats;
 
+    public MapMeta getMapMeta() {
+        return mapMeta.clone();
+    }
 
     /**
      * 强行使玩家出局
@@ -373,6 +380,9 @@ public class Race {
         }
 
         this.mapMeta = mapMeta;
+        watcher = new ArrayList<>();
+        watcherGameModeBefore = new HashMap<>();
+        watcherLocationBefore=new HashMap<>();
     }
 
     public Long getStartTime() {
@@ -405,8 +415,8 @@ public class Race {
         startTime = System.currentTimeMillis();
         redParty.stats = PartyStatsEnum.GAMING;
         blueParty.stats = PartyStatsEnum.GAMING;
-        redParty.setMemberStats(GamerStatsEnum.GAMING);
-        blueParty.setMemberStats(GamerStatsEnum.GAMING);
+        redParty.setMemberStats(GamerStatsEnum.RACING);
+        blueParty.setMemberStats(GamerStatsEnum.RACING);
 
         for (Gamer g : redParty.memberList) {
             g.race = this;
@@ -424,8 +434,8 @@ public class Race {
         redParty.race = this;
         blueParty.race = this;
 
-        RaceManager.RACE_MANAGER.put(redParty, this);
-        RaceManager.RACE_MANAGER.put(blueParty, this);
+        RaceManager.RACE_MANAGER.add( this);
+        RefreshUtil.refreshAllRacePage();
 
         MatcherManager.MATCHER_MANAGER.remove(redParty);
         MatcherManager.MATCHER_MANAGER.remove(blueParty);
@@ -470,8 +480,8 @@ public class Race {
     public void stop() {
         if (!stats.equals(RaceStatsEnum.GAMING)){return;}
         stats=RaceStatsEnum.ENDING;
-        RaceManager.RACE_MANAGER.remove(redParty);
-        RaceManager.RACE_MANAGER.remove(blueParty);
+        RaceManager.RACE_MANAGER.remove(this);
+        RefreshUtil.refreshAllRacePage();
         blueParty.setMemberStats(GamerStatsEnum.FREEING);
         redParty.setMemberStats(GamerStatsEnum.FREEING);
         redParty.race = null;
@@ -507,6 +517,24 @@ public class Race {
             foodLevelHandleAfter();
         }
         gameModeHandleAfter();
+
+
+        //观战者
+        for (int i=0;i<watcher.size();i++){
+            Gamer g=watcher.get(i);
+            Player p= g.getPlayer();
+            //离开观战
+            p.setGameMode(this.watcherGameModeBefore.get(g));
+            p.teleport(this.watcherLocationBefore.get(g));
+            this.watcherGameModeBefore.remove(g);
+            this.watcherLocationBefore.remove(g);
+            this.watcher.remove(g);
+            g.stats=GamerStatsEnum.FREEING;
+            g.watchingRace=null;
+
+        }
+
+
 
 
         if (redAlive.isEmpty() && !blueAlive.isEmpty()) {

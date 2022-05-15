@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
+import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -62,6 +63,28 @@ public class PlayerClickParty implements Listener {
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
                 List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_MATCHING();
+
+                HashMap<String,String> rep=new HashMap<>();
+                rep.put("{captain}",party.getCaptain().getPlayer().getName());
+                rep.put("{party}",party.getPartyName());
+                ReplaceUtil.replace(list,rep);
+                MessageUtil.sendMessageTo(player, list);
+                return;
+            }
+            if (party.getStats().equals(PartyStatsEnum.GAMING)){
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                        .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING();
+
+                HashMap<String,String> rep=new HashMap<>();
+                rep.put("{captain}",party.getCaptain().getPlayer().getName());
+                rep.put("{party}",party.getPartyName());
+                ReplaceUtil.replace(list,rep);
+                MessageUtil.sendMessageTo(player, list);
+                return;
+            }
+            if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){
+                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                        .MESSAGE_YAML_MANAGER.getCHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING();
 
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());

@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
+import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
@@ -58,6 +59,15 @@ public class PlayerChatAfterClickCreateParty implements Listener {
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY();
             ReplaceUtil.replace(list, Collections.singletonMap("{party}",gamer.getParty().getPartyName()));
+            MessageUtil.sendMessageTo(player, list);
+            backGui();
+            unregisterSelf();
+            return;
+        }
+
+        if (gamer.getStats().equals(GamerStatsEnum.WATCHING)) {
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                    .getCHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING();
             MessageUtil.sendMessageTo(player, list);
             backGui();
             unregisterSelf();

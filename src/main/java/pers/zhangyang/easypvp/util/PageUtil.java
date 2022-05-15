@@ -1,7 +1,9 @@
 package pers.zhangyang.easypvp.util;
 
+import org.bukkit.Bukkit;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
+import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.meta.RecordMeta;
@@ -52,6 +54,14 @@ public class PageUtil {
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
             if (recordMetaList.size()<=i){break;}
             rl.add(recordMetaList.get(i));
+        }
+        return rl;
+    }
+    public static List<Race> pageRace(int pageIndex, int capacity, List<Race> raceList){
+        List<Race> rl=new ArrayList<>();
+        for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
+            if (raceList.size()<=i){break;}
+            rl.add(raceList.get(i));
         }
         return rl;
     }

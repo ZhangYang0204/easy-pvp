@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.PartyManager;
+import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.service.CommandService;
@@ -17,7 +18,25 @@ import java.util.List;
 
 public class RefreshUtil {
 
+    public static void refreshAllRacePage(){
+        for (Player p: Bukkit.getOnlinePlayers()){
 
+            if (p.getOpenInventory().getTopInventory().getHolder() instanceof AllRacePage){
+
+                AllRacePage allRacePage= (AllRacePage) p.getOpenInventory().getTopInventory().getHolder();
+                int maxPageIndex=PageUtil.computeMaxPageIndex(RaceManager.RACE_MANAGER.getRaceList().size(),45);
+                if (maxPageIndex>=allRacePage.getPageIndex()) {
+                    allRacePage.init(PageUtil.pageRace(allRacePage.getPageIndex(), 45, RaceManager.RACE_MANAGER
+                            .getRaceList()), allRacePage.getPageIndex());
+                }else {
+                    allRacePage.init(PageUtil.pageRace(maxPageIndex, 45,RaceManager.RACE_MANAGER.getRaceList()),
+                            maxPageIndex);
+                }
+
+
+            }
+        }
+    }
     public static void refreshAllPartyPage(){
         for (Player p: Bukkit.getOnlinePlayers()){
 

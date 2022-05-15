@@ -19,6 +19,34 @@ public class GuiYaml extends YamlManagerBase {
 
 
 
+
+    private String TITLE_ALL_RACE_PAGE;
+
+    private String BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL;
+    private String BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE;
+
+    private String BUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL;
+    private String BUTTON_ALL_RACE_PAGE_NEXT_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE;
+
+
+    private String BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL;
+    private String BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE;
+
+    private String BUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL;
+    private String BUTTON_ALL_RACE_PAGE_WATCH_RACE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE;
+
+    private String BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL;
+    private String BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE;
+
+
+
+
+
     private String TITLE_RANK_PAGE;
 
 
@@ -63,6 +91,11 @@ public class GuiYaml extends YamlManagerBase {
     private String BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_MATERIAL;
     private String BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_DISPLAY_NAME;
     private List<String> BUTTON_ALL_PARTY_PAGE_NEXT_PAGE_LORE;
+
+
+    private String BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL;
+    private String BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME;
+    private List<String> BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE;
 
 
     private String BUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL;
@@ -131,6 +164,7 @@ public class GuiYaml extends YamlManagerBase {
         TITLE_ALL_MEMBER_PAGE=getString("gui.title.allMemberPage",false);
         TITLE_ALL_KIT_PAGE=getString("gui.title.allKitPage",false);
 
+        TITLE_ALL_RACE_PAGE=getString("gui.title.allRacePage",false);
 
         TITLE_RANK_PAGE=getString("gui.title.rankPage",false);
         BUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_DISPLAY_NAME =getString("gui.button.allKitPagePreviousPage.displayName",false);
@@ -328,7 +362,153 @@ public class GuiYaml extends YamlManagerBase {
         BUTTON_RANK_PAGE_RECORD_LORE =getStringList("gui.button.rankPageRecord.lore",false);
 
 
+
+
+
+        BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME =getString("gui.button.allRacePageBackAllPartyPage.displayName",false);
+        BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL =getString("gui.button.allRacePageBackAllPartyPage.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE =getStringList("gui.button.allRacePageBackAllPartyPage.lore",false);
+
+        BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_DISPLAY_NAME =getString("gui.button.allRacePagePreviousPage.displayName",false);
+        BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL =getString("gui.button.allRacePagePreviousPage.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE =getStringList("gui.button.allRacePagePreviousPage.lore",false);
+
+
+        BUTTON_ALL_RACE_PAGE_NEXT_PAGE_DISPLAY_NAME =getString("gui.button.allRacePageNextPage.displayName",false);
+        BUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL =getString("gui.button.allRacePageNextPage.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE =getStringList("gui.button.allRacePageNextPage.lore",false);
+
+        BUTTON_ALL_RACE_PAGE_WATCH_RACE_DISPLAY_NAME =getString("gui.button.allRacePageWatchRace.displayName",false);
+        BUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL =getString("gui.button.allRacePageWatchRace.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE =getStringList("gui.button.allRacePageWatchRace.lore",false);
+
+        BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME =getString("gui.button.allPartyPageShowAllRacePage.displayName",false);
+        BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL =getString("gui.button.allPartyPageShowAllRacePage.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE =getStringList("gui.button.allPartyPageShowAllRacePage.lore",false);
+
+        BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME =getString("gui.button.allRacePageUnwatchRace.displayName",false);
+        BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL =getString("gui.button.allRacePageUnwatchRace.material",true);
+        material=Material.matchMaterial(BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL);
+        if (material==null||material.equals(Material.AIR)){
+            BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL ="STONE";
+        }
+        BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE =getStringList("gui.button.allRacePageUnwatchRace.lore",false);
+
     }
+
+    public String getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL() {
+        return BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME() {
+        return BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE() {
+        if (BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE==null){
+            return null;
+        }
+        return new ArrayList<>(BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE);
+    }
+
+    public String getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL() {
+        return BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME() {
+        return BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE() {
+        if (BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE==null){
+            return null;
+        }
+        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE);
+    }
+
+    public String getTITLE_ALL_RACE_PAGE() {
+        return TITLE_ALL_RACE_PAGE;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL() {
+        return BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_DISPLAY_NAME() {
+        return BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE() {
+        if (BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE);
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL() {
+        return BUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_DISPLAY_NAME() {
+        return BUTTON_ALL_RACE_PAGE_NEXT_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE() {
+        if (BUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE);
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
+        return BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME() {
+        return BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
+        if (BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL() {
+        return BUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL;
+    }
+
+    public String getBUTTON_ALL_RACE_PAGE_WATCH_RACE_DISPLAY_NAME() {
+        return BUTTON_ALL_RACE_PAGE_WATCH_RACE_DISPLAY_NAME;
+    }
+
+    public List<String> getBUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE() {
+        if (BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE==null){
+            return null;
+        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE);
+    }
+
+
+
+
 
 
     public String getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL() {

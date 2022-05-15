@@ -8,10 +8,10 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -22,13 +22,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-public class PlayerDeadInRace implements Listener {
+public class PlayerDeadInRacing implements Listener {
     @EventHandler
     public void onPlayerDie(PlayerDeathEvent event){
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getEntity());
-        Party party= gamer.getParty();
-        if (party==null){return;}
-        Race race= RaceManager.RACE_MANAGER.getRace(party);
+        if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
+        Race race=gamer.getRace();
         if (race==null){return;}
 
 

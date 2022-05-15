@@ -94,11 +94,11 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerClickKit(),this);
         getServer().getPluginManager().registerEvents(new PlayerQuitGame(),this);
         getServer().getPluginManager().registerEvents(new PlayerMoveWhenChooseKit(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDeadInRace(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDestroyBlockInRace(),this);
-        getServer().getPluginManager().registerEvents(new PlayerMoveOutRaceMap(),this);
-        getServer().getPluginManager().registerEvents(new PlayerOpenEnderChestInRace(),this);
-        getServer().getPluginManager().registerEvents(new PlayerProcessCommandInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDeadInRacing(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDestroyBlockInRacing(),this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveOutRaceMapInRacing(),this);
+        getServer().getPluginManager().registerEvents(new PlayerOpenEnderChestInRacing(),this);
+        getServer().getPluginManager().registerEvents(new PlayerProcessCommandInRacing(),this);
         getServer().getPluginManager().registerEvents(new PlayerJoinGame(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickNextAllPartyPage(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickNextAllMemberPage(),this);
@@ -114,8 +114,20 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickRecord(),this);
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousRankPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerTeleportOtherWorldInRace(),this);
-        getServer().getPluginManager().registerEvents(new PlayerTeleportRaceWorldNotInRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerForceTeleportOtherWorldInRacing(),this);
+        getServer().getPluginManager().registerEvents(new PlayerForceTeleportRaceWorldNotInRacingAntNotInWatching(),this);
+
+
+        getServer().getPluginManager().registerEvents(new PlayerClickShowAllRacePage(),this);
+
+
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllRacePage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRacePage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllRacePage(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickWatchRace(),this);
+        getServer().getPluginManager().registerEvents(new PlayerForceTeleportOtherWorldInWatching(),this);
+        getServer().getPluginManager().registerEvents(new PlayerDeadInWatching(),this);
+        getServer().getPluginManager().registerEvents(new PlayerClickUnwatchRace(),this);
 
 
         Bukkit.getConsoleSender().sendMessage("§a╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
@@ -246,7 +258,7 @@ public class EasyPvp extends JavaPlugin {
 
         }
 
-        for (Race race: RaceManager.RACE_MANAGER.getPartyGamerMap().values()){
+        for (Race race: RaceManager.RACE_MANAGER.getRaceList()){
             race.stop();
 
             try {

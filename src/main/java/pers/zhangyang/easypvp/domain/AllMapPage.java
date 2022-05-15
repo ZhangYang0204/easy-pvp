@@ -42,7 +42,7 @@ public class AllMapPage implements InventoryHolder {
     public void init(Party party, int pageIndex, List<MapMeta> mapMetaList){
         this.pageIndex=pageIndex;
         this.party=party;
-        mapMetaList.clear();
+        this.mapMetaList.clear();
         for (MapMeta k:mapMetaList){this.mapMetaList.add(k.clone());}
         GuiYaml guiYaml = GuiYaml.getGuiManager();
 

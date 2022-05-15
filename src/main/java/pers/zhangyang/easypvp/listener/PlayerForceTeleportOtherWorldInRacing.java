@@ -3,26 +3,32 @@ package pers.zhangyang.easypvp.listener;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 
-public class PlayerOpenEnderChestInRace implements Listener {
-    @EventHandler
-    public void onPlayerOpenEnderChest(InventoryOpenEvent event){
+public class PlayerForceTeleportOtherWorldInRacing implements Listener {
 
+    @EventHandler
+    public void tp(PlayerTeleportEvent event){
+        Player player=event.getPlayer();
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer((Player) event.getPlayer());
         Race race=gamer.getRace();
-        if (race==null){
-            return;
-        }
-        if (!race.isFair()){
-            return;
-        }
 
-        if (event.getPlayer().getEnderChest().equals(event.getInventory())){
+        if (!gamer.getStats().equals(GamerStatsEnum.RACING)){return;}
+
+
+
+        if (!event.getTo().getWorld().equals(race.getWorld())){
             event.setCancelled(true);
         }
+
+
+
+
     }
+
+
 }

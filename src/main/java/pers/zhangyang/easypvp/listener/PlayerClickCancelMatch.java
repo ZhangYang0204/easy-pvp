@@ -75,6 +75,7 @@ public class PlayerClickCancelMatch implements Listener {
             if (g.equals(gamer)) {
                 continue;
             }
+            Player p=g.getPlayer();
 
             list = MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_CANCEL_MATCH();
@@ -82,7 +83,7 @@ public class PlayerClickCancelMatch implements Listener {
             rep.put("{party}", party.getPartyName());
             rep.put("{member}", player.getName());
             ReplaceUtil.replace(list, rep);
-            MessageUtil.sendMessageTo(player, list);
+            MessageUtil.sendMessageTo(p, list);
         }
         return;
 

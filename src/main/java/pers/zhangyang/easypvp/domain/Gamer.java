@@ -1,9 +1,11 @@
 package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
+import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.PartyManager;
 
 import javax.annotation.Nonnull;
@@ -15,7 +17,7 @@ public class Gamer  {
     protected GamerStatsEnum stats;
     protected Party party;
     protected Race race;
-
+    protected Race watchingRace;
     /**
      * new出来的对象不注册是没有作用的,请使用GamerManager.getGamer(Player)方法
      * @param player
@@ -26,19 +28,19 @@ public class Gamer  {
     }
 
     /**
-     * 创建一个Party
-     * 会先调用leaveParty
+     * 如果有队伍什么也不做
+     * 如果正在观战中什么也不做
      * @return
      */
     @Nonnull
-    public Party createParty(String name){
+    public void createParty(String name){
         //首先离开自身的队伍
-        leaveParty();
+        if (party!=null){return ;}
+        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
 
         this.party=new Party(this,name);
         PartyManager.PARTY_MANAGER.add(this.party);
         this.stats=GamerStatsEnum.READING;
-        return this.party;
     }
 
     /**
@@ -100,15 +102,17 @@ public class Gamer  {
 
     /**
      * 加入目标队伍
-     * 会先调用leaveParty,再加入
-     * 如果队伍在游戏中不会加入游戏
-     * 如果队伍正在随机匹配中,队伍匹配的地图会因此人的加入而改变，当匹配结束后.玩家会加入游戏
-     * 如果队伍正在指定地图的匹配中,匹配的地图不会因此人的加入而改变，当匹配结束后.玩家会加入游戏
+     * 如果有队伍或者正在观战,什么也不做
+     * 如果队伍正在比赛什么也不做
+     * 如果队伍正在匹配中什么也不做
      *
      * @param party 要加入的队伍
      */
     public void joinParty(@Nonnull Party party){
-        leaveParty();
+        if (hasParty()){return;}
+        if (party.stats.equals(PartyStatsEnum.GAMING)){return;}
+        if (party.stats.equals(PartyStatsEnum.MATCHING)){return;}
+        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
         party.memberList.add(this);
         this.party=party;
         this.stats=GamerStatsEnum.READING;
@@ -120,15 +124,17 @@ public class Gamer  {
     /**
      * 离开队伍
      * 如果原本没有队伍,不做任何事
-     * 如果队伍正在比赛那么也会调用leaveRace
-     * 如果队伍正在匹配不会终止匹配
+     * 如果队伍正在匹配什么也不做,
+     * 如果队伍正在比赛什么也不做
      * 如果离开后队伍是空的,则队伍销毁
      */
     public void leaveParty(){
         //如果没有队伍,什么也不做
         if (party==null){return;}
         //离开比赛
-        leaveRace();
+        if (party.stats.equals(PartyStatsEnum.GAMING)){return;}
+
+        if (party.stats.equals(PartyStatsEnum.MATCHING)){return;}
 
         //离开队伍
         party.memberList.remove(this);
@@ -179,4 +185,46 @@ public class Gamer  {
     }
 
 
+    /**
+     * 如果在队伍里什么也不做
+     * 如果比赛不在进行什么也不干
+     * 如果已经在观战,什么也不做
+     * @param race
+     */
+    public void watchRace(Race race){
+        if (!race.stats.equals(RaceStatsEnum.GAMING)){return;}
+        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
+        if (party!=null){return;}
+
+
+        this.stats=GamerStatsEnum.WATCHING;
+        this.watchingRace=race;
+        //加入比赛
+        race.watcherLocationBefore.put(this,player.getLocation());
+        race.watcherGameModeBefore.put(this,player.getGameMode());
+        player.teleport(race.redLoc);
+        player.setGameMode(GameMode.SPECTATOR);
+        race.watcher.add(this);
+
+    }
+
+    /**
+     * 不是观战模式不做
+     */
+    public void unwatchRace(){
+        if (!stats.equals(GamerStatsEnum.WATCHING)){return;}
+        this.stats=GamerStatsEnum.FREEING;
+        player.setGameMode(watchingRace.watcherGameModeBefore.get(this));
+        player.teleport(watchingRace.watcherLocationBefore.get(this));
+        watchingRace.watcherGameModeBefore.remove(this);
+        watchingRace.watcherLocationBefore.remove(this);
+        //离开观战
+        watchingRace.watcher.remove(this);
+        this.watchingRace=null;
+    }
+
+
+    public Race getWatchingRace() {
+        return watchingRace;
+    }
 }

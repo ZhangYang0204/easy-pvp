@@ -33,7 +33,7 @@ public class PlayerClickRankPage implements Listener {
         }
 
         int slot=event.getSlot();
-        if (slot!=49){
+        if (slot!=50){
             return;
         }
         ItemStack itemStack=event.getCurrentItem();

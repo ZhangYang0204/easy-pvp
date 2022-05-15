@@ -221,6 +221,9 @@ message:
       - "&b&l成功创建队伍 &f{party}"
     failureCreatePartyBecauseAlreadyJoinParty:
       - "&c&l无法创建队伍,你已经加入了一个队伍 &f{party}"
+
+    failureCreatePartyBecauseInWatching:
+      - "&c&l无法创建队伍,请先退出观战"
     failureCreatePartyBecauseDuplicatePartyName:
       - "&c&l无法创建队伍,队伍名字 &f{party} &c&l重复"
     howToCreateParty:
@@ -241,6 +244,10 @@ message:
       - "&c&l无法加入 &f{captain} &c&l的队伍 &f{target_party} &c&l,你已经加入了队伍 &f{self_party}"
     failureJoinPartyBecausePartyIsMatching:
       - "&c&l无法加入 &f{captain} &c&l的队伍 &f{party} &c&l,该队伍正在匹配中"
+    failureJoinPartyBecausePartyIsRacing:
+      - "&c&l无法加入 &f{captain} &c&l的队伍 &f{party} &c&l,该队伍正在比赛中"
+    failureJoinPartyBecauseInWatching:
+      - "&c&l无法加入 &f{captain} &c&l的队伍 &f{party} &c&l,请先取消观战"
 
     successNextAllPartyPage:
       - "&b&l成功打开下一页全体队伍页面"
@@ -262,7 +269,34 @@ message:
       - "&b&l成功打开上一页战绩榜页面"
     successNextRankPage:
       - "&b&l成功打开下一页战绩榜页面"
-      -
+
+
+
+    successPreviousAllRacePage:
+      - "&b&l成功打开上一页全部比赛页面"
+    successNextAllRacePage:
+      - "&b&l成功打开下一页全部比赛页面"
+    failureNextAllRacePageBecauseNotNext:
+      - "&b&l没有下一页了"
+    failurePreviousAllRacePageBecauseNotPrevious:
+      - "&b&l没有上一页了"
+
+    successBackAllPartyPageInAllRacePage:
+      - "&b&l成功返回全部队伍页面"
+    successWatchRace:
+      - "&b&l成功观战比赛"
+    failureWatchRaceBecauseInParty:
+      - "&c&l无法观战比赛 &f{red} &b&lvs &f{blue} ,请先退出队伍"
+    successUnwatchRace:
+      - "&b&l成功离开观战比赛"
+    failureWatchRaceBecauseAlreadyInWatching:
+      - "&c&l无法观战比赛 &f{red} &b&lvs &f{blue} ,已经在观战了"
+    failureUnwatchRaceBecauseNotInWatching:
+      - "&c&l无法取消观战,已经在不观战了"
+
+
+    successShowAllRacePage:
+      - "&b&l成功打开全部比赛页面"
     failureNextRankPageBecauseNotNext:
       - "&b&l没有下一页了"
     failurePreviousRankPageBecauseNotPrevious:
@@ -294,6 +328,9 @@ message:
     successBackAllPartyPage:
       - "&b&l成功返回全部队伍页面"
 
+    successBackAllPartyPageInRankPage:
+      - "&b&l成功返回全部队伍页面"
+
 
     successKickMember:
       - "&b&l你成功从队伍 &f{party} &b&l踢出了 &f{member}"
@@ -323,6 +360,9 @@ message:
       - "&b&l你成功取消了当前队伍 &f{party} &b&l的匹配"
     someoneSuccessCancelMatch:
       - "&b&l&f{member} &b&l取消了当前队伍 &f{party} &b&l的匹配"
+
+    someoneSuccessQuitGameInMatching:
+      - "&b&l&f{member} &b&l退出了游戏,已取消了当前队伍 &f{party} &b&l的匹配"
     failureCancelMatchBecausePartyIsNotMatching:
       - "&c&l无法取消匹配,队伍 &f{party} &c&l不在匹配中"
 

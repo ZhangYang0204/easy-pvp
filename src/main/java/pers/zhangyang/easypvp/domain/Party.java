@@ -50,11 +50,11 @@ public class Party {
 
     /**
      * 开启匹配指定地图
-     * 会先调用cancelMatch
+     * 如果已经在匹配中了 什么也不做
      * @param mapMeta
      */
     public void startMatch(MapMeta mapMeta){
-        cancelMatch();
+        if (stats.equals(PartyStatsEnum.MATCHING)){return;}
 
         this.stats=PartyStatsEnum.MATCHING;
         Matcher matcher = new Matcher(this, mapMeta);
@@ -77,12 +77,12 @@ public class Party {
     }
     /**
      * 开启匹配地图
-     * 会先调用cancelMatch
+     * 如果已经在匹配中了 什么也不做
      * @param
      */
     public void startMatch(){
 
-        cancelMatch();
+        if (stats.equals(PartyStatsEnum.MATCHING)){return;}
         this.stats=PartyStatsEnum.MATCHING;
         Matcher matcher = new Matcher(this);
         MatcherManager.MATCHER_MANAGER.add(matcher);
@@ -92,7 +92,6 @@ public class Party {
     /**
      * 踢出玩家
      * 如果目标gamer不是成员,什么也不做
-     * 会调用gamer.leaveParty
      * @param gamer
      */
     public void kickGamer(Gamer gamer){
@@ -100,8 +99,17 @@ public class Party {
             return;
         }
 
-        gamer.leaveParty();
+     //离开队伍
+        this.memberList.remove(this);
+        gamer.stats=GamerStatsEnum.FREEING;
 
+        //如果队伍是空的销毁队伍
+        if (this.memberList.isEmpty()){
+            PartyManager.PARTY_MANAGER.remove(this);
+            this.stats=PartyStatsEnum.FREEING;
+            this.cancelMatch();
+        }
+        gamer.party=null;
     }
 
     /**

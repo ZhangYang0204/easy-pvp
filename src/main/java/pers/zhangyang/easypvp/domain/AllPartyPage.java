@@ -74,7 +74,7 @@ public class AllPartyPage implements InventoryHolder {
         //设置48创建队伍
         ItemStack rankPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL(),
                 guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE());
-        inventory.setItem(49,rankPage);
+        inventory.setItem(50,rankPage);
 
         //设置50加入队伍
         ItemStack myParty=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_MY_PARTY_MATERIAL(),
@@ -82,6 +82,10 @@ public class AllPartyPage implements InventoryHolder {
         inventory.setItem(51,myParty);
 
 
+        //设置50加入队伍
+        ItemStack allRace=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE());
+        inventory.setItem(48,allRace);
 
 
     }

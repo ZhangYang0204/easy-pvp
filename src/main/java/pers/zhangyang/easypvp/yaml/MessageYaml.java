@@ -30,6 +30,9 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT;
     private List<String> CHAT_SUCCESS_MAP_CREATE;
 
+    private List<String> CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING;
+
+    private List<String> CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING;
     private List<String> CHAT_SUCCESS_MAP_DELETE;
 
     private List<String> CHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME;
@@ -100,6 +103,14 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT;
 
     private List<String> CHAT_SUCCESS_KIT_DESCRIPTION_ADD;
+    private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING;
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING() {
+        if (CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING==null){
+            return null;
+        }
+        return new ArrayList<>(CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING);
+    }
 
     private List<String> CHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME;
 
@@ -116,6 +127,7 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SUCCESS_KIT_DESCRIPTION_SET;
     private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY;
 
+    private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING;
     private List<String> CHAT_SUCCESS_CREATE_PARTY;
 
     private List<String> CHAT_FAILURE_JOIN_PARTY_BECAUSE_ALREADY_JOIN_PARTY;
@@ -168,6 +180,8 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_SUCCESS_BACK_ALL_PARTY_PAGE;
 
+    private List<String> CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_RANK_PAGE;
+
     private List<String> CHAT_SUCCESS_CHOOSE_KIT;
     private List<String> CHAT_SUCCESS_STOP_CHOOSE_KIT;
     private List<String> CHAT_SUCCESS_BACK_ALL_MEMBER_PAGE;
@@ -184,6 +198,14 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_SUCCESS_PREVIOUS_RANK_PAGE;
     private List<String> CHAT_SUCCESS_NEXT_RANK_PAGE;
+
+
+    private List<String> CHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE;
+    private List<String> CHAT_SUCCESS_NEXT_ALL_RACE_PAGE;
+
+    private List<String> CHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT;
+    private List<String> CHAT_FAILURE_NEXT_ALL_RACE_PAGE_BECAUSE_NOT_NEXT;
+
 
     private List<String> CHAT_FAILURE_PREVIOUS_RANK_PAGE_BECAUSE_NOT_NEXT;
     private List<String> CHAT_FAILURE_NEXT_RANK_PAGE_BECAUSE_NOT_NEXT;
@@ -455,6 +477,18 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(COMPLETER_EASY_PVP_SECTION_SET);
     }
 
+    public List<String> getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING() {
+        if (CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING==null){
+            return null;
+        } return new ArrayList<>(CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING);
+    }
+
+    public List<String> getCHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING() {
+        if (CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING==null){
+            return null;
+        } return new ArrayList<>(CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING);
+    }
+
     @Override
     protected void check()  {
 
@@ -637,6 +671,9 @@ public class MessageYaml extends YamlManagerBase {
 
         CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY =getStringList
                 ("message.chat.failureCreatePartyBecauseAlreadyJoinParty",false);
+
+        CHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING =getStringList
+                ("message.chat.failureCreatePartyBecauseInWatching",false);
         CHAT_SUCCESS_CREATE_PARTY=getStringList("message.chat.successCreateParty",false);
         CHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME =getStringList
                 ("message.chat.failureCreatePartyBecauseDuplicatePartyName",false);
@@ -668,6 +705,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SOMEONE_SUCCESS_START_SPECIFIC_MATCH =getStringList("message.chat.someoneSuccessStartSpecificMatch",false);
         CHAT_SUCCESS_CANCEL_MATCH=getStringList("message.chat.successCancelMatch",false);
         CHAT_SOMEONE_SUCCESS_CANCEL_MATCH=getStringList("message.chat.someoneSuccessCancelMatch",false);
+        CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING=getStringList("message.chat.someoneSuccessQuitGameInMatching",false);
 
 
         CHAT_SUCCESS_START_RANDOM_MATCH =getStringList("message.chat.successStartRandomMatch",false);
@@ -687,12 +725,22 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_MATCHING =getStringList
                 ("message.chat.failureJoinPartyBecausePartyIsMatching",false);
 
+
+        CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING =getStringList
+                ("message.chat.failureJoinPartyBecausePartyIsRacing",false);
+        CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING =getStringList
+                ("message.chat.failureJoinPartyBecauseInWatching",false);
+
+
+
         CHAT_SUCCESS_RACE_START =getStringList("message.chat.successRaceStart",false);
 
         CHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW =getStringList("message.chat.someoneSuccessRaceStopDraw",false);
         CHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW =getStringList("message.chat.someoneSuccessRaceStopNotDraw",false);
         CHAT_SUCCESS_SHOW_ALL_MEMBER_PAGE =getStringList("message.chat.successShowAllMemberPage",false);
         CHAT_SUCCESS_BACK_ALL_PARTY_PAGE =getStringList("message.chat.successBackAllPartyPage",false);
+
+        CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_RANK_PAGE =getStringList("message.chat.successBackAllPartyPageInRankPage",false);
         CHAT_SUCCESS_LEAVE_PARTY =getStringList("message.chat.successLeaveParty",false);
 
         CHAT_SUCCESS_SHOW_ALL_MAP_PAGE =getStringList("message.chat.successShowAllMapPage",false);
@@ -707,12 +755,100 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_PREVIOUS_RANK_PAGE_BECAUSE_NOT_NEXT=getStringList("message.chat.failurePreviousRankPageBecauseNotPrevious",false);
 
 
+        CHAT_SUCCESS_NEXT_ALL_RACE_PAGE=getStringList("message.chat.successNextAllRacePage",false);
+        CHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE=getStringList("message.chat.successPreviousAllRacePage",false);
+        CHAT_FAILURE_NEXT_ALL_RACE_PAGE_BECAUSE_NOT_NEXT=getStringList("message.chat.failureNextAllRacePageBecauseNotNext",false);
+        CHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT=getStringList("message.chat.failurePreviousAllRacePageBecauseNotPrevious",false);
+        CHAT_SUCCESS_SHOW_ALL_RACE_PAGE=getStringList("message.chat.successShowAllRacePage",false);
+        CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE=getStringList("message.chat.successBackAllPartyPageInAllRacePage",false);
+        CHAT_SUCCESS_WATCH_RACE=getStringList("message.chat.successWatchRace",false);
+        CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY=getStringList("message.chat.failureWatchRaceBecauseInParty",false);
+
+        CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING=getStringList("message.chat.failureWatchRaceBecauseAlreadyInWatching",false);
+        CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING=getStringList("message.chat.failureUnwatchRaceBecauseNotInWatching",false);
+        CHAT_SUCCESS_UNWATCH_RACE=getStringList("message.chat.successUnwatchRace",false);
+
         INPUT_CANCEL =getString("message.input.cancel",true);
        if (INPUT_CANCEL.contains(" ")||INPUT_CANCEL.equalsIgnoreCase("")){
            INPUT_CANCEL="cancel";
        }
 
     }
+
+    public List<String> getCHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING() {
+        if (CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING);
+    }
+
+    public List<String> getCHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING() {
+        if (CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING);
+    }
+
+    public List<String> getCHAT_SUCCESS_UNWATCH_RACE() {
+        if (CHAT_SUCCESS_UNWATCH_RACE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_UNWATCH_RACE);
+    }
+
+    public List<String> getCHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE() {
+        if (CHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_NEXT_ALL_RACE_PAGE() {
+        if (CHAT_SUCCESS_NEXT_ALL_RACE_PAGE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_NEXT_ALL_RACE_PAGE);
+    }
+
+    public List<String> getCHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT() {
+        if (CHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT);
+    }
+
+    public List<String> getCHAT_FAILURE_NEXT_ALL_RACE_PAGE_BECAUSE_NOT_NEXT() {
+        if (CHAT_FAILURE_NEXT_ALL_RACE_PAGE_BECAUSE_NOT_NEXT==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_NEXT_ALL_RACE_PAGE_BECAUSE_NOT_NEXT);
+    }
+
+    public List<String> getCHAT_SUCCESS_SHOW_ALL_RACE_PAGE() {
+        if (CHAT_SUCCESS_SHOW_ALL_RACE_PAGE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_SHOW_ALL_RACE_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE() {
+        if (CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_WATCH_RACE() {
+        if (CHAT_SUCCESS_WATCH_RACE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_WATCH_RACE);
+    }
+
+    public List<String> getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY() {
+        if (CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY);
+    }
+
+    private List<String> CHAT_SUCCESS_SHOW_ALL_RACE_PAGE;
+    private List<String> CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE;
+    private List<String> CHAT_SUCCESS_WATCH_RACE;
+    private List<String> CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY;
+    private List<String> CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING;
+    private List<String> CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING;
+
+    private List<String> CHAT_SUCCESS_UNWATCH_RACE;
 
     public List<String> getCHAT_SUCCESS_PREVIOUS_RANK_PAGE() {
         if (CHAT_SUCCESS_PREVIOUS_RANK_PAGE==null){
@@ -893,6 +1029,12 @@ public class MessageYaml extends YamlManagerBase {
         if (CHAT_SUCCESS_BACK_ALL_PARTY_PAGE==null){
             return null;
         }return new ArrayList<>(CHAT_SUCCESS_BACK_ALL_PARTY_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_RANK_PAGE() {
+        if (CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_RANK_PAGE==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_RANK_PAGE);
     }
 
     public List<String> getCHAT_SUCCESS_SHOW_ALL_MEMBER_PAGE() {
@@ -1132,6 +1274,13 @@ public class MessageYaml extends YamlManagerBase {
         if (CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY==null){
             return null;
         }return new ArrayList<>(CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY);
+    }
+
+    public List<String> getCHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING() {
+
+        if (CHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING==null){
+            return null;
+        }return new ArrayList<>(CHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING);
     }
 
     public List<String> getCHAT_SUCCESS_CREATE_PARTY() {

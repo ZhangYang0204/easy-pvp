@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -33,13 +34,32 @@ public class PlayerQuitGame implements Listener {
             Party party= gamer.getParty();
             Race race=gamer.getRace();
             GamerManager.GAMER_MANAGER.remove(player);
-            if (party==null){
-                return;
+
+            if (party.getStats().equals(PartyStatsEnum.MATCHING)){
+                //队伍取消匹配
+                party.cancelMatch();
+                //其他人通知
+                for (Gamer g : party.getMemberList()) {
+                    if (g.equals(gamer)) {
+                        continue;
+                    }
+                    Player p=g.getPlayer();
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                            .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING();
+                    HashMap<String,String> rep = new HashMap<>();
+                    rep.put("{party}", party.getPartyName());
+                    rep.put("{member}", player.getName());
+                    ReplaceUtil.replace(list, rep);
+                    MessageUtil.sendMessageTo(p, list);
+                }
+
             }
-            //队伍取消匹配
-            party.cancelMatch();
+            //离开游戏
+            gamer.leaveRace();
             //离开队伍
             gamer.leaveParty();
+            //离开观战
+            gamer.unwatchRace();
             RefreshUtil.refreshAllPartyPage();
 
             //刷新AllMemberPage

@@ -32,7 +32,7 @@ public class AllKitPage implements InventoryHolder {
 
     public void init(int pageIndex, List<KitMeta> kitMetaList){
         this.pageIndex=pageIndex;
-        kitMetaList.clear();
+        this.kitMetaList.clear();
         for (KitMeta k:kitMetaList){this.kitMetaList.add(k.clone());}
 
 
