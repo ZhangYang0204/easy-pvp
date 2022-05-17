@@ -33,7 +33,7 @@ public class PlayerClickPreviousRankPage implements Listener {
             return;
         }
 
-        int slot=event.getSlot();
+        int slot=event.getRawSlot();
         if (slot!=45){
             return;
         }

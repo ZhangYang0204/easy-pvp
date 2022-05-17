@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -19,13 +20,13 @@ public class AllRacePage implements InventoryHolder {
         if (title==null){
             inventory= Bukkit.createInventory(this,54);
         }else {
-            inventory = Bukkit.createInventory(this, 54, ReplaceUtil.replace(title, Collections.singletonMap("&","§")));
+            inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&',title));
         }
         raceList=new ArrayList<>();
     }
 
     public List<Race> getRaceList() {
-        return raceList;
+        return new ArrayList<>(raceList);
     }
 
     public void init(List<Race> raceList, int pageIndex){
@@ -62,13 +63,13 @@ public class AllRacePage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
         //设置50加入队伍

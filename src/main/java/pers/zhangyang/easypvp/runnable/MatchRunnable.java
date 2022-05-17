@@ -1,5 +1,6 @@
 package pers.zhangyang.easypvp.runnable;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Gamer;
@@ -19,25 +20,39 @@ import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MatchRunnable extends BukkitRunnable {
     private Matcher matcher;
+    private int acc;
 
     public MatchRunnable(Matcher matcher) {
         this.matcher = matcher;
+        acc=0;
+
     }
 
     @Override
     public void run() {
+
+
+
+
+
         if (!matcher.getParty().getStats().equals(PartyStatsEnum.MATCHING)) {
             cancel();
             return;
         }
+        if (acc!=0) {
 
+            matcher.getParty().sendTitleToAll(ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_TITLE(),
+                            Collections.singletonMap("{time}", String.valueOf(acc))),
+                    ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_SUBTITLE(),
+                            Collections.singletonMap("{time}", String.valueOf(acc))));
+
+        }
+
+        acc++;
 
         Matcher tar =null;
         tar=MatcherManager.MATCHER_MANAGER.matchMatcher(matcher);
@@ -91,11 +106,11 @@ public class MatchRunnable extends BukkitRunnable {
             playerList.add(g.getPlayer());
         }
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                .getCHAT_SUCCESS_RACE_START();
+                .getCHAT_SUCCESS_START_RACE();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
         rep.put("{party}", blue.getPartyName());
-        rep.put("{tick}", String.valueOf(mapMeta.getChooseTick()));
+        rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
         ReplaceUtil.replace(list, rep);
         MessageUtil.sendMessageTo(playerList, list);
 
@@ -104,10 +119,10 @@ public class MatchRunnable extends BukkitRunnable {
             playerList.add(g.getPlayer());
         }
         list = MessageYaml.MESSAGE_YAML_MANAGER
-                .getCHAT_SUCCESS_RACE_START();
+                .getCHAT_SUCCESS_START_RACE();
         rep = new HashMap<>();
         rep.put("{captain}", red.getCaptain().getPlayer().getName());
-        rep.put("{tick}", String.valueOf(mapMeta.getChooseTick()));
+        rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
         rep.put("{party}", red.getPartyName());
         ReplaceUtil.replace(list, rep);
         MessageUtil.sendMessageTo(playerList, list);

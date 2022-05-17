@@ -13,7 +13,7 @@ public class PlayerProcessCommandInRacing implements Listener {
     @EventHandler
     public void onCommandProcess(PlayerCommandPreprocessEvent event){
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer((Player) event.getPlayer());
-        Race race=gamer.getRace();
+        Race race=gamer.getRacingRace();
 
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){

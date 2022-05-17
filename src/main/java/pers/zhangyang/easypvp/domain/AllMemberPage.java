@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -22,7 +23,7 @@ public class AllMemberPage implements InventoryHolder {
         if (title==null){
             inventory= Bukkit.createInventory(this,54);
         }else {
-            inventory = Bukkit.createInventory(this, 54, ReplaceUtil.replace(title, Collections.singletonMap("&","§")));
+            inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&',title));
         }
         gamerList=new ArrayList<>();
     }
@@ -63,18 +64,18 @@ public class AllMemberPage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
-        //设置49xuan地图
-        ItemStack chooseMap=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_MATERIAL(),
-                guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_CHOOSE_MAP_LORE());
+        //设置46选地图
+        ItemStack chooseMap=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_LORE());
         inventory.setItem(47,chooseMap);
 
         ItemStack back=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),

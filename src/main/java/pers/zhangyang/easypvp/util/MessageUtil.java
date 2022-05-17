@@ -1,45 +1,51 @@
 package pers.zhangyang.easypvp.util;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class MessageUtil {
 
+    public static void sendTitleTo(Player player,String title,String subtitle){
+
+
+
+        player.sendTitle(ChatColor.translateAlternateColorCodes('&',title),ChatColor.translateAlternateColorCodes('&',subtitle),10,10,20);
+
+
+    }
+
     public static void sendMessageTo(CommandSender sender,@Nullable List<String> strings) {
         if (strings==null){return;}
 
 
-        ReplaceUtil.replace(strings, Collections.singletonMap("&","§"));
         for (String s : strings) {
-            sender.sendMessage(s);
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&',s));
         }
     }
-    public static void sendMessageTo(List<CommandSender> senderList,@Nullable List<String> strings) {
+    public static void sendMessageTo(Collection<? extends CommandSender> senderList, @Nullable List<String> strings) {
         if (strings==null){return;}
 
 
         for (CommandSender sender:senderList) {
-            ReplaceUtil.replace(strings, Collections.singletonMap("&", "§"));
-            for (String s : strings) {
-                sender.sendMessage(s);
+            for (String s : strings) {sender.sendMessage(ChatColor.translateAlternateColorCodes('&',s));
             }
         }
     }
-    public static void sendMessageTo(List<CommandSender> senderList,@Nullable String s) {
+    public static void sendMessageTo(Collection<? extends CommandSender> senderList,@Nullable String s) {
         if (s==null){return;}
-        for (CommandSender sender:senderList) {
-            s = ReplaceUtil.replace(s, Collections.singletonMap("&", "§"));
-            sender.sendMessage(s);
+        for (CommandSender sender:senderList) {sender.sendMessage(ChatColor.translateAlternateColorCodes('&',s));
         }
     }
     public static void sendMessageTo(CommandSender sender,@Nullable String s) {
         if (s==null){return;}
-
-        s=ReplaceUtil.replace(s, Collections.singletonMap("&","§"));
-        sender.sendMessage(s);
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',s));
     }
 }

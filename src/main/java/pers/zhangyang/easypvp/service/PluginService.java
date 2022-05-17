@@ -3,11 +3,11 @@ package pers.zhangyang.easypvp.service;
 import java.sql.SQLException;
 
 public interface PluginService {
-    public String getVersion() throws SQLException;
+     String getVersion() throws SQLException;
 
-    public void setVersion(String updateInfo) throws SQLException;
+     void setVersion(String updateInfo) throws SQLException;
 
-    public void initDatabase() throws SQLException;
+     void initDatabase() throws SQLException;
 
 
 }

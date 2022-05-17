@@ -29,7 +29,7 @@ public class PlayerClickCancelMatch implements Listener {
             return;
         }
 
-        int slot = event.getSlot();
+        int slot = event.getRawSlot();
         if (slot != 51) {
             return;
         }

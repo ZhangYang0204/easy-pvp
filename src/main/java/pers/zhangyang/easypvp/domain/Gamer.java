@@ -16,7 +16,7 @@ public class Gamer  {
     protected final Player player;
     protected GamerStatsEnum stats;
     protected Party party;
-    protected Race race;
+    protected Race racingRace;
     protected Race watchingRace;
     /**
      * new出来的对象不注册是没有作用的,请使用GamerManager.getGamer(Player)方法
@@ -50,15 +50,15 @@ public class Gamer  {
      */
     public void leaveRace(){
         //如果没有比赛什么也不做
-        if (race==null){return;}
+        if (racingRace ==null){return;}
 
         //比赛中移除自己
-        race.redAlive.remove(this);
-        race.blueAlive.remove(this);
+        racingRace.redAlive.remove(this);
+        racingRace.blueAlive.remove(this);
 
         //如果比赛结束条件符合,结束比赛
-        if (race.redAlive.isEmpty()||race.blueAlive.isEmpty()){
-            race.stop();
+        if (racingRace.redAlive.isEmpty()|| racingRace.blueAlive.isEmpty()){
+            racingRace.stop();
             return;
         }
 
@@ -68,36 +68,36 @@ public class Gamer  {
         if (player.isDead()){
             player.spigot().respawn();
         }
-        if (race.locationBefore.get(this).getWorld()==null){
+        if (racingRace.locationBefore.get(this).getWorld()==null){
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         }else {
-            player.teleport(race.locationBefore.get(this));
+            player.teleport(racingRace.locationBefore.get(this));
         }
-        race.locationBefore.remove(this);
+        racingRace.locationBefore.remove(this);
 
-        player.setHealth(race.healthBefore.get(this));
-        race.healthBefore.remove(this);
+        player.setHealth(racingRace.healthBefore.get(this));
+        racingRace.healthBefore.remove(this);
 
-        player.addPotionEffects(race.potionEffectBefore.get(this));
-        race.potionEffectBefore.remove(this);
+        player.addPotionEffects(racingRace.potionEffectBefore.get(this));
+        racingRace.potionEffectBefore.remove(this);
 
-        player.setExp(race.expBefore.get(this));
-        race.expBefore.remove(this);
+        player.setExp(racingRace.expBefore.get(this));
+        racingRace.expBefore.remove(this);
 
-        player.setFoodLevel(race.foodLevelBefore.get(this));
-        race.foodLevelBefore.remove(this);
+        player.setFoodLevel(racingRace.foodLevelBefore.get(this));
+        racingRace.foodLevelBefore.remove(this);
 
-        player.setGameMode(race.gameModeBefore.get(this));
-        race.gameModeBefore.remove(this);
+        player.setGameMode(racingRace.gameModeBefore.get(this));
+        racingRace.gameModeBefore.remove(this);
 
 
         player.getInventory().clear();
-        player.getInventory().setContents(race.inventorySave.get(this));
-        race.inventorySave.remove(this);
+        player.getInventory().setContents(racingRace.inventorySave.get(this));
+        racingRace.inventorySave.remove(this);
 
         this.stats=GamerStatsEnum.READING;
 
-        this.race=null;
+        this.racingRace =null;
     }
 
     /**
@@ -159,8 +159,8 @@ public class Gamer  {
     }
 
     @Nullable
-    public Race getRace() {
-        return race;
+    public Race getRacingRace() {
+        return racingRace;
     }
 
     public boolean hasParty(){

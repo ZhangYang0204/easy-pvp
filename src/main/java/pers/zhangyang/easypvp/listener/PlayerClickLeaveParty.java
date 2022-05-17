@@ -37,7 +37,7 @@ public class PlayerClickLeaveParty implements Listener {
             return;
         }
 
-        int slot=event.getSlot();
+        int slot=event.getRawSlot();
         if (slot!=51){
             return;
         }
@@ -61,6 +61,7 @@ public class PlayerClickLeaveParty implements Listener {
                         .getCHAT_FAILURE_LEAVE_PARTY_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{party}",party.getPartyName());
+                ReplaceUtil.replace(list,rep);
                 MessageUtil.sendMessageTo(player, list);
                 return;
             }

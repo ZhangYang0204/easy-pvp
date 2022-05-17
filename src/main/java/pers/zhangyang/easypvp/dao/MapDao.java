@@ -36,8 +36,9 @@ public class MapDao   extends DaoBase{
                 "  'build' BOOLEAN NOT NULL ," +
                 "  'scale' INT NOT NULL ," +
                 "  'fair' BOOLEAN NOT NULL ," +
-                "  'drop' BOOLEAN NOT NULL ," +
-                "  'chooseTick' LONG NOT NULL ," +
+                "  'keepInventory' BOOLEAN NOT NULL ," +
+                "  'keepLevel' BOOLEAN NOT NULL ," +
+                "  'chooseKitTime' INT NOT NULL ," +
                 "  PRIMARY KEY (uuid)" +
                 ")");
           ps.executeUpdate();
@@ -50,7 +51,7 @@ public class MapDao   extends DaoBase{
                 ",secondPointX,secondPointY,secondPointZ" +
                 ",redPointX,redPointY,redPointZ" +
                 ",bluePointX,bluePointY,bluePointZ" +
-                ",build,'scale',fair,description,'drop',chooseTick) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                ",build,'scale',fair,description,'keepInventory',chooseKitTime,keepLevel) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, mapMeta.getUuid());
         ps.setString(2, mapMeta.getName());
         ps.setInt(3, mapMeta.getFirstPointX());
@@ -71,9 +72,11 @@ public class MapDao   extends DaoBase{
 
         ps.setString(18, mapMeta.getDescription());
 
-        ps.setBoolean(19, mapMeta.isDrop());
+        ps.setBoolean(19, mapMeta.isKeepInventory());
 
-        ps.setLong(20, mapMeta.getChooseTick());
+        ps.setLong(20, mapMeta.getChooseKitTime());
+
+        ps.setBoolean(21, mapMeta.isKeepLevel());
         return ps.executeUpdate();
     }
 
@@ -145,9 +148,10 @@ public class MapDao   extends DaoBase{
             mapMeta.setFair(rs.getBoolean("fair"));
             mapMeta.setDescription(rs.getString("description"));
 
-        mapMeta.setChooseTick(rs.getLong("chooseTick"));
+        mapMeta.setChooseKitTime(rs.getInt("chooseKitTime"));
 
-        mapMeta.setDrop(rs.getBoolean("drop"));
+        mapMeta.setKeepLevel(rs.getBoolean("keepLevel"));
+        mapMeta.setKeepInventory(rs.getBoolean("keepInventory"));
 
         return mapMeta;
     }

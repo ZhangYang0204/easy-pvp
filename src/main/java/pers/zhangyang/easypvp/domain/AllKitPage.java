@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -10,6 +11,7 @@ import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,32 +21,26 @@ public class AllKitPage implements InventoryHolder {
     private final Inventory inventory;
     private final List<KitMeta> kitMetaList;
     private int pageIndex;
-    public AllKitPage(String title){
-        if (title==null){
-            inventory= Bukkit.createInventory(this,54);
-        }else {
-            inventory = Bukkit.createInventory(this, 54, ReplaceUtil.replace(title, Collections.singletonMap("&","§")));
+
+    public AllKitPage(@Nullable String title){
+        if (title==null){inventory= Bukkit.createInventory(this,54);
+        }else {inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&',title));
         }
         kitMetaList=new ArrayList<>();
     }
-
-
 
     public void init(int pageIndex, List<KitMeta> kitMetaList){
         this.pageIndex=pageIndex;
         this.kitMetaList.clear();
         for (KitMeta k:kitMetaList){this.kitMetaList.add(k.clone());}
 
-
         GuiYaml guiYaml = GuiYaml.getGuiManager();
-
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=kitMetaList.size()){break;}
-            String displayName= guiYaml.getBUTTON_ALL_KIT_PAGE_KIT_DISPLAY_NAME();
-            List<String> lore= guiYaml.getBUTTON_ALL_KIT_PAGE_KIT_LORE();
-
+            String displayName= guiYaml.getBUTTON_ALL_KIT_PAGE_CHOOSE_KIT_DISPLAY_NAME();
+            List<String> lore= guiYaml.getBUTTON_ALL_KIT_PAGE_CHOOSE_KIT_LORE();
             displayName=ReplaceUtil.replace(displayName,Collections.singletonMap("{kit}",
                     kitMetaList.get(i).getName()));
 
@@ -55,7 +51,7 @@ public class AllKitPage implements InventoryHolder {
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
             ReplaceUtil.format(lore,"{[description]}",descriptionList);
 
-            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_KIT_MATERIAL(),
+            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_CHOOSE_KIT_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -63,13 +59,13 @@ public class AllKitPage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_LORE());
         inventory.setItem(53,nextPage);
 
 

@@ -19,7 +19,16 @@ public class MapMeta {
     private int BluePointZ;
     private boolean build;
     private int scale;
-    private long chooseTick;
+    private int chooseKitTime;
+    private boolean keepLevel;
+
+    public boolean isKeepLevel() {
+        return keepLevel;
+    }
+
+    public void setKeepLevel(boolean keepLevel) {
+        this.keepLevel = keepLevel;
+    }
 
     public MapMeta clone(){
         MapMeta mapMeta=new MapMeta();
@@ -39,33 +48,34 @@ public class MapMeta {
         mapMeta.setBluePointZ(BluePointZ);
         mapMeta.setBuild(build);
         mapMeta.setScale(scale);
-        mapMeta.setChooseTick(chooseTick);
+        mapMeta.setChooseKitTime(chooseKitTime);
         mapMeta.setDescription(this.description);
-        mapMeta.setDrop(drop);
+        mapMeta.setKeepInventory(keepInventory);
         mapMeta.setFair(fair);
+        mapMeta.setKeepLevel(keepLevel);
         return mapMeta;
 
     }
 
 
-    public void setChooseTick(long chooseTick) {
-        this.chooseTick = chooseTick;
+    public void setChooseKitTime(int chooseKitTime) {
+        this.chooseKitTime = chooseKitTime;
     }
 
-    public long getChooseTick() {
-        return chooseTick;
+    public int getChooseKitTime() {
+        return chooseKitTime;
     }
 
     private String description;
 
-    private boolean drop;
+    private boolean keepInventory;
 
-    public boolean isDrop() {
-        return drop;
+    public boolean isKeepInventory() {
+        return keepInventory;
     }
 
-    public void setDrop(boolean drop) {
-        this.drop = drop;
+    public void setKeepInventory(boolean keepInventory) {
+        this.keepInventory = keepInventory;
     }
 
 
@@ -221,11 +231,11 @@ public class MapMeta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MapMeta mapMeta = (MapMeta) o;
-        return firstPointX == mapMeta.firstPointX && firstPointY == mapMeta.firstPointY && firstPointZ == mapMeta.firstPointZ && secondPointX == mapMeta.secondPointX && secondPointY == mapMeta.secondPointY && secondPointZ == mapMeta.secondPointZ && RedPointX == mapMeta.RedPointX && RedPointY == mapMeta.RedPointY && RedPointZ == mapMeta.RedPointZ && BluePointX == mapMeta.BluePointX && BluePointY == mapMeta.BluePointY && BluePointZ == mapMeta.BluePointZ && build == mapMeta.build && scale == mapMeta.scale && chooseTick == mapMeta.chooseTick && drop == mapMeta.drop && fair == mapMeta.fair && Objects.equals(uuid, mapMeta.uuid) && Objects.equals(name, mapMeta.name) && Objects.equals(description, mapMeta.description);
+        return firstPointX == mapMeta.firstPointX && firstPointY == mapMeta.firstPointY && firstPointZ == mapMeta.firstPointZ && secondPointX == mapMeta.secondPointX && secondPointY == mapMeta.secondPointY && secondPointZ == mapMeta.secondPointZ && RedPointX == mapMeta.RedPointX && RedPointY == mapMeta.RedPointY && RedPointZ == mapMeta.RedPointZ && BluePointX == mapMeta.BluePointX && BluePointY == mapMeta.BluePointY && BluePointZ == mapMeta.BluePointZ && build == mapMeta.build && scale == mapMeta.scale && chooseKitTime == mapMeta.chooseKitTime && keepLevel == mapMeta.keepLevel && keepInventory == mapMeta.keepInventory && fair == mapMeta.fair && Objects.equals(uuid, mapMeta.uuid) && Objects.equals(name, mapMeta.name) && Objects.equals(description, mapMeta.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, name, firstPointX, firstPointY, firstPointZ, secondPointX, secondPointY, secondPointZ, RedPointX, RedPointY, RedPointZ, BluePointX, BluePointY, BluePointZ, build, scale, chooseTick, description, drop, fair);
+        return Objects.hash(uuid, name, firstPointX, firstPointY, firstPointZ, secondPointX, secondPointY, secondPointZ, RedPointX, RedPointY, RedPointZ, BluePointX, BluePointY, BluePointZ, build, scale, chooseKitTime, keepLevel, description, keepInventory, fair);
     }
 }

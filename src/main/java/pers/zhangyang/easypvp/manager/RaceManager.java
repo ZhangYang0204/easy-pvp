@@ -1,11 +1,8 @@
 package pers.zhangyang.easypvp.manager;
 
-import pers.zhangyang.easypvp.domain.Gamer;
-import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class RaceManager {

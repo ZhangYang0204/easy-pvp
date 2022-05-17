@@ -22,10 +22,11 @@ public class CommandCorrectYaml extends CommandBase {
             MessageYaml.MESSAGE_YAML_MANAGER.correct();
         } catch (IOException e) {
             e.printStackTrace();
-            return true;
+            return true ;
         }
 
         MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_CORRECT_YAML());
-        return true;
+
+        return true ;
     }
 }

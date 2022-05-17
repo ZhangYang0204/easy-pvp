@@ -10,7 +10,7 @@ public class Section {
     private Location second;
     private Location red;
     private Location blue;
-    private Player player;
+    private final Player player;
 
     public Section(Player player) {
         this.player = player;
@@ -59,7 +59,4 @@ public class Section {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 }

@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
@@ -32,7 +33,7 @@ public class PlayerQuitGame implements Listener {
             Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getPlayer());
             Player player=gamer.getPlayer();
             Party party= gamer.getParty();
-            Race race=gamer.getRace();
+            Race race=gamer.getRacingRace();
             GamerManager.GAMER_MANAGER.remove(player);
 
             if (party!=null&&party.getStats().equals(PartyStatsEnum.MATCHING)){
@@ -54,10 +55,30 @@ public class PlayerQuitGame implements Listener {
                 }
 
             }
-            //离开游戏
-            gamer.leaveRace();
+
+            if (gamer.getStats().equals(GamerStatsEnum.RACING)) {
+                //离开游戏
+                gamer.leaveRace();
+                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                        .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING();
+
+                race.getBlueParty().sendMessageToAll(list);
+                race.getRedParty().sendMessageToAll(list);
+            }
+
+            if (gamer.getStats().equals(GamerStatsEnum.READING)){
             //离开队伍
             gamer.leaveParty();
+                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                        .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();
+                HashMap<String,String> rep = new HashMap<>();
+                rep.put("{party}", party.getPartyName());
+                ReplaceUtil.replace(list, rep);
+                race.getBlueParty().sendMessageToAll(list);
+                race.getRedParty().sendMessageToAll(list);
+        }
+
+
             //离开观战
             gamer.unwatchRace();
             RefreshUtil.refreshAllPartyPage();

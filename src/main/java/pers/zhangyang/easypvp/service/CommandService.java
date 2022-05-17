@@ -15,7 +15,7 @@ public interface CommandService {
             mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException ;
     void mapDelete(String mapName) throws SQLException, NotExistMapNameException;
 
-    void mapChooseTickSet(String mapName,long chooseTick) throws NotExistMapNameException, SQLException;
+    void mapChooseTickSet(String mapName,int chooseTick) throws NotExistMapNameException, SQLException;
     void mapBuildSet(String mapName,boolean build) throws SQLException, NotExistMapNameException;
     void mapFairSet(String mapName,boolean fair) throws SQLException, NotExistMapNameException;
     void mapDropSet(String mapName,boolean drop) throws NotExistMapNameException, SQLException;
@@ -26,6 +26,7 @@ public interface CommandService {
     void kitCreate(KitMeta kitMeta, List<KitItemStackMeta> kitItemStackMetaList) throws DuplicateKitNameException, SQLException;
     void kitDelete(String kitName) throws SQLException, NotExistKitNameException;
     void kitSet(String kitName,List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException;
+    void setMapKeepLevel(String mapName,boolean keepLevel) throws SQLException, NotExistMapNameException;
 
     void kitDescriptionSet(String kitName,List<String> description) throws NotExistKitNameException, SQLException;
     void mapKitAdd(MapKitMeta mapKitMeta) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapAlreadyAddKitException;

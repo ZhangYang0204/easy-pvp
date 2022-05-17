@@ -1,7 +1,6 @@
 package pers.zhangyang.easypvp;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -44,14 +43,11 @@ public class EasyPvp extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        instance=this;
+        instance = this;
 
 
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            RecordExpansion.recordExpansion.register();
-        }
 
-        //初始化setting.yml
+        //初始化setting.yml,出错直接关闭插件
         try {
             SettingYaml.SETTING_YAML_MANAGER.init();
             MessageYaml.MESSAGE_YAML_MANAGER.init();
@@ -62,9 +58,9 @@ public class EasyPvp extends JavaPlugin {
             return;
         }
 
-        //初始化数据库
+        //初始化数据库,出错直接关闭插件
         try {
-            PluginService pluginService= (PluginService) InvocationUtil.getService(new PluginServiceImpl());
+            PluginService pluginService = (PluginService) InvocationUtil.getService(new PluginServiceImpl());
             pluginService.initDatabase();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,12 +68,20 @@ public class EasyPvp extends JavaPlugin {
             return;
         }
 
-        //更新数据库
+        //更新数据库,出错直接关闭插件,暂不需要
         try {
-            PluginService pluginService= (PluginService) InvocationUtil.getService(new PluginServiceImpl());
-            //先查看版本  然后更新操作
+            PluginService pluginService = (PluginService) InvocationUtil.getService(new PluginServiceImpl());
+            String ver=pluginService.getVersion();
+
+            //如果小于xxx版本,就更新下数据库，然后再设置版本
+            //if<xxx
+
 
             pluginService.setVersion(getDescription().getVersion());
+
+            //重复上述操作
+
+
         } catch (SQLException e) {
             e.printStackTrace();
             setEnabled(false);
@@ -85,168 +89,173 @@ public class EasyPvp extends JavaPlugin {
         }
 
 
-        //注册事件的处理者
-        getServer().getPluginManager().registerEvents(new PlayerClickCreateParty(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickParty(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickMyParty(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickMember(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickLeaveParty(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllMemberPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickChooseMap(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickBackAllMember(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickMap(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickCancelMatch(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickRandomMatch(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickKit(),this);
-        getServer().getPluginManager().registerEvents(new PlayerQuitGame(),this);
-        getServer().getPluginManager().registerEvents(new PlayerMoveWhenChooseKit(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDeadInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDestroyBlockInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerMoveOutRaceMapInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerOpenEnderChestInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerProcessCommandInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinGame(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickNextAllPartyPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMemberPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMapPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickNextAllKitPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllPartyPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMemberPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMapPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllKitPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDamageWhenChooseKit(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickRankPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickNextRankPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickRecord(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRankPage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerForceTeleportOtherWorldInRacing(),this);
-        getServer().getPluginManager().registerEvents(new PlayerForceTeleportRaceWorldNotInRacingAntNotInWatching(),this);
+        //注册事件
+        getServer().getPluginManager().registerEvents(new PlayerClickCreateParty(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickJoinParty(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickShowAllMemberPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMember(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickLeaveParty(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllMemberPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickShowAllMapPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllMember(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMatchMap(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickCancelMatch(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickMatchRandom(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickChooseKit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitGame(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveWhenChooseKit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeadInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDestroyBlockInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveOutRaceMapInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerOpenEnderChestInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerProcessCommandInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinGame(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllPartyPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMemberPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllMapPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllKitPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllPartyPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMemberPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMapPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllKitPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDamageEntityWhenChooseKit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickShowRankPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextRankPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickRecord(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRankPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportOtherWorldInRacing(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportRaceWorldNotInRacingAntNotInWatching(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickShowAllRacePage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextAllRacePage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRacePage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllRacePage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickWatchRace(), this);
+        getServer().getPluginManager().registerEvents(new PlayerTeleportOtherWorldInWatching(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeadInWatching(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickUnwatchRace(), this);
 
 
-        getServer().getPluginManager().registerEvents(new PlayerClickShowAllRacePage(),this);
+        //到这里插件已经成功可以使用了,提示插件标准
+        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ENABLE_PLUGIN());
 
+        //后台更新提示
+        UpdateUtil.notifyVersion(Bukkit.getConsoleSender());
 
-        getServer().getPluginManager().registerEvents(new PlayerClickNextAllRacePage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickPreviousRacePage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInAllRacePage(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickWatchRace(),this);
-        getServer().getPluginManager().registerEvents(new PlayerForceTeleportOtherWorldInWatching(),this);
-        getServer().getPluginManager().registerEvents(new PlayerDeadInWatching(),this);
-        getServer().getPluginManager().registerEvents(new PlayerClickUnwatchRace(),this);
+        //bStats统计信息
+        new Metrics(this, 15185);
 
-
-        Bukkit.getConsoleSender().sendMessage("§a╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
-       Bukkit.getConsoleSender().sendMessage("§a┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃");
-       Bukkit.getConsoleSender().sendMessage("§a┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃");
-       Bukkit.getConsoleSender().sendMessage("§a┃╭━━┫╰━╯┣━━╮┃╰╮╭╯┃╭━━╯┃╰╯┃┃╭━━╯");
-       Bukkit.getConsoleSender().sendMessage("§a┃╰━━┫╭━╮┃╰━╯┃╱┃┃╱┃┃╱╱╱╰╮╭╯┃┃");
-       Bukkit.getConsoleSender().sendMessage("§a╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯");
-
-        UpdateUtil.updateNotify(Bukkit.getConsoleSender());
-
-        new Metrics(this,15185);
+        //注册PAPI变量
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            RecordExpansion.recordExpansion.register();
+        }
 
     }
 
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length==1&&args[0].equalsIgnoreCase("help")){
-            new CommandHelp(sender,false,args).process();
-            return true;
+        if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
+            return  new CommandHelp(sender, false, args).process();
         }
-        if (args.length==1&&args[0].equalsIgnoreCase("reload")){
-            new CommandReload(sender,false,args).process();
-            return true;
+        if (args.length == 1 && args[0].equalsIgnoreCase("reloadYaml")) {
+            return  new CommandReloadYaml(sender, false, args).process();
+
         }
-        if (args.length==1&&args[0].equalsIgnoreCase("correctYaml")){
-            new CommandCorrectYaml(sender,false,args).process();
-            return true;
+        if (args.length == 1 && args[0].equalsIgnoreCase("correctYaml")) {
+            return   new CommandCorrectYaml(sender, false, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("sectionSet")){
-            new CommandSectionSet(sender,true,args).process();
-            return true;
+        if (args.length == 1 && args[0].equalsIgnoreCase("resetRecord")) {
+            return  new CommandResetRecord(sender, false, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("mapCreate")){
-            new CommandMapCreate(sender,true,args).process();
-            return true;
+        if (args.length == 1 && args[0].equalsIgnoreCase("openGui")) {
+            return  new CommandOpenGui(sender, true, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("mapDelete")){
-            new CommandMapDelete(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("setSection")) {
+            return  new CommandSetSection(sender, true, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapDescriptionAdd")){
-            new CommandMapDescriptionAdd(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("createMap")) {
+            return  new CommandCreateMap(sender, true, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapDescriptionRemove")){
-            new CommandMapDescriptionRemove(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("deleteMap")) {
+            return new CommandDeleteMap(sender, false, args).process();
+
         }
-        if (args.length==4&&args[0].equalsIgnoreCase("mapDescriptionSet")){
-            new CommandMapDescriptionSet(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("dddMapDescription")) {
+            return  new CommandAddMapDescription(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapBuildSet")){
-            new CommandMapBuildSet(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("removeMapDescription=")) {
+            return  new CommandRemoveMapDescription(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapScaleSet")){
-            new CommandMapScaleSet(sender,false,args).process();
-            return true;
+        if (args.length == 4 && args[0].equalsIgnoreCase("setMapDescription")) {
+            return  new CommandSetMapDescription(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapDropSet")){
-            new CommandMapDropSet(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapBuild")) {
+            return  new CommandSetMapBuild(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapFairSet")){
-            new CommandMapFairSet(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapScale")) {
+            return  new CommandSetMapScale(sender, false, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("kitCreate")){
-            new CommandKitCreate(sender,true,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapKeepInventory")) {
+            return  new CommandSetMapKeepInventory(sender, false, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("kitDelete")){
-            new CommandKitDelete(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapKeepLevel")) {
+            return  new CommandSetMapKeepLevel(sender, false, args).process();
+
         }
-        if (args.length==2&&args[0].equalsIgnoreCase("kitSet")){
-            new CommandKitSet(sender,true,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapFair")) {
+            return  new CommandSetMapFair(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapKitAdd")){
-            new CommandMapKitAdd(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("createKit")) {
+            return  new CommandCreateKit(sender, true, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapKitRemove")){
-            new CommandMapKitRemove(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("deleteKit")) {
+            return  new CommandDeleteKit(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("kitDescriptionAdd")){
-            new CommandKitDescriptionAdd(sender,false,args).process();
-            return true;
+        if (args.length == 2 && args[0].equalsIgnoreCase("setKit")) {
+            return  new CommandSetKit(sender, true, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("kitDescriptionRemove")){
-            new CommandKitDescriptionRemove(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("addMapKit")) {
+            return  new CommandAddMapKit(sender, false, args).process();
+
         }
-        if (args.length==4&&args[0].equalsIgnoreCase("kitDescriptionSet")){
-            new CommandKitDescriptionSet(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("removeMapKit")) {
+            return new CommandRemoveMapKit(sender, false, args).process();
+
         }
-        if (args.length==1&&args[0].equalsIgnoreCase("gui")){
-            new CommandGui(sender,true,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("addKitDescription")) {
+            return  new CommandAddKitDescription(sender, false, args).process();
+
         }
-        if (args.length==3&&args[0].equalsIgnoreCase("mapChooseTickSet")){
-            new CommandMapChooseTickSet(sender,false,args).process();
-            return true;
-        }if (args.length==1&&args[0].equalsIgnoreCase("recordReset")){
-            new CommandRecordReset(sender,false,args).process();
-            return true;
+        if (args.length == 3 && args[0].equalsIgnoreCase("removeKitDescription")) {
+            return   new CommandRemoveKitDescription(sender, false, args).process();
+
         }
+        if (args.length == 4 && args[0].equalsIgnoreCase("setKitDescription")) {
+            return  new CommandSetKitDescription(sender, false, args).process();
+
+        }
+
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapChooseTime")) {
+            return new CommandSetMapChooseTime(sender, false, args).process();
+
+        }
+
         return true;
 
     }
@@ -254,30 +263,44 @@ public class EasyPvp extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        for (Player player:Bukkit.getOnlinePlayers()){
-            Inventory top=player.getOpenInventory().getTopInventory();
-            if (!(top.getHolder() instanceof AllPartyPage)&&!(top.getHolder() instanceof AllMemberPage)
-                &&!(top.getHolder() instanceof AllMapPage)&&!(top.getHolder() instanceof AllKitPage)){
+        //关闭打开的gui
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Inventory top = player.getOpenInventory().getTopInventory();
+            if (!(top.getHolder() instanceof AllPartyPage) && !(top.getHolder() instanceof AllMemberPage)
+                    && !(top.getHolder() instanceof AllMapPage) && !(top.getHolder() instanceof AllKitPage)
+                &&!(top.getHolder() instanceof AllRacePage&&!(top.getHolder() instanceof RankPage))) {
                 continue;
             }
             player.closeInventory();
-
         }
 
-        for (Race race: RaceManager.RACE_MANAGER.getRaceList()){
+        //结束游戏并广播
+        for (Race race : RaceManager.RACE_MANAGER.getRaceList()) {
             race.stop();
-
             try {
+                RaceService raceService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+                if (race.getWinner() == null) {
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
+                    HashMap<String,String> rep = new HashMap<>();
+                    rep.put("{win_party}", race.getWinner().getPartyName());
+                    rep.put("{lose_party}", race.getLoser().getPartyName());
 
-                RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-                if (race.getWinner()==null) {
+                    ReplaceUtil.replace(list, rep);
+                    MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
+
                     for (Gamer g : race.getRedParty().getMemberList()) {
                         raceService.recordDraw(g.getPlayer().getUniqueId().toString());
                     }
                     for (Gamer g : race.getBlueParty().getMemberList()) {
                         raceService.recordDraw(g.getPlayer().getUniqueId().toString());
                     }
-                }else {
+                } else {
+                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
+                    HashMap<String,String> rep = new HashMap<>();
+                    rep.put("{red_party}", race.getRedParty().getPartyName());
+                    rep.put("{blue_party}", race.getBlueParty().getPartyName());
+                    ReplaceUtil.replace(list, rep);
+                    MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
                     for (Gamer g : race.getWinner().getMemberList()) {
                         raceService.recordWin(g.getPlayer().getUniqueId().toString());
                     }
@@ -285,126 +308,99 @@ public class EasyPvp extends JavaPlugin {
                         raceService.recordLose(g.getPlayer().getUniqueId().toString());
                     }
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
                 return;
             }
-
-
-            for (Player p: Bukkit.getOnlinePlayers()){
-                if (race.getWinner()!=null) {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
-                    HashMap rep = new HashMap<>();
-                    rep.put("{win_party}", race.getWinner().getPartyName());
-                    rep.put("{lose_party}", race.getLoser().getPartyName());
-
-                    ReplaceUtil.replace(list, rep);
-                    MessageUtil.sendMessageTo(p, list);
-                }else {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
-                    HashMap rep = new HashMap<>();
-                    rep.put("{red_party}", race.getRedParty().getPartyName());
-                    rep.put("{blue_party}", race.getBlueParty().getPartyName());
-                    ReplaceUtil.replace(list, rep);
-                    MessageUtil.sendMessageTo(p, list);
-                }
-
-            }
         }
 
+        //关闭消息
+        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DISABLE_PLUGIN());
 
-
-
-
-
-
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+        //取消注册PAPI
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             RecordExpansion.recordExpansion.unregister();
         }
 
-        Bukkit.getConsoleSender().sendMessage("§c╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮");
-        Bukkit.getConsoleSender().sendMessage("§c┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃");
-        Bukkit.getConsoleSender().sendMessage("§c┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃");
-        Bukkit.getConsoleSender().sendMessage("§c┃╭━━┫╰━╯┣━━╮┃╰╮╭╯┃╭━━╯┃╰╯┃┃╭━━╯");
-        Bukkit.getConsoleSender().sendMessage("§c┃╰━━┫╭━╮┃╰━╯┃╱┃┃╱┃┃╱╱╱╰╮╭╯┃┃");
-        Bukkit.getConsoleSender().sendMessage("§c╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯");
+
     }
 
 
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        List<String> list=new ArrayList<>();
-        if (args.length==1){
-            list= MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
-            if (args[0]==null||list==null){
-                return  new ArrayList<>();
-         }
+        List<String> list = new ArrayList<>();
+        if (args.length == 1) {
+            list = MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
+            if (args[0] == null || list == null) {
+                return new ArrayList<>();
+            }
             String ll = args[0].toLowerCase();
             list.removeIf(k -> !k.toLowerCase().startsWith(ll));
             return list;
         }
-        if (args[0].equalsIgnoreCase("kitCreate")){
-            return new CompleterKitCreate().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("kitDelete")){
-            return new CompleterKitDelete().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("kitDescriptionAdd")){
-            return new CompleterKitDescriptionAdd().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("kitDescriptionRemove")){
-            return new CompleterKitDescriptionRemove().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("kitDescriptionSet")){
-            return new CompleterKitDescriptionSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("kitSet")){
-            return new CompleterKitSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapBuildSet")){
-            return new CompleterMapBuildSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapChooseTickSet")){
-            return new CompleterMapChooseTickSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapCreate")){
-            return new CompleterMapCreate().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapDelete")){
-            return new CompleterMapDelete().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapDescriptionAdd")){
-            return new CompleterMapDescriptionAdd().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapDescriptionRemove")){
-            return new CompleterMapDescriptionRemove().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapDescriptionSet")){
-            return new CompleterMapDescriptionSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapDropSet")){
-            return new CompleterMapDropSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapFairSet")){
-            return new CompleterMapFairSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapKitAdd")){
-            return new CompleterMapKitAdd().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapKitRemove")){
-            return new CompleterMapKitRemove().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("MapScaleSet")){
-            return new CompleterMapScaleSet().complete(sender,command,alias,args);
-        }
-        if (args[0].equalsIgnoreCase("SectionSet")){
-            return new CompleterSectionSet().complete(sender,command,alias,args);
-        }
 
+
+        if (args[0].equalsIgnoreCase("createKit")) {
+            return new CompleterCreateKit(sender,true,args).process();
+        }
+        if (args[0].equalsIgnoreCase("deleteKit")) {
+            return new CompleterDeleteKit(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("addKitDescription")) {
+            return new CompleterAddKitDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("removeKitDescription")) {
+            return new CompleterRemoveKitDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setKitDescription")) {
+            return new CompleterSetKitDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setKit")) {
+            return new CompleterSetKit(sender,true,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapBuild")) {
+            return new CompleterSetMapBuild(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapChooseTime")) {
+            return new CompleterSetMapChooseTime(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("createMap")) {
+            return new CompleterCreateMap(sender,true,args).process();
+        }
+        if (args[0].equalsIgnoreCase("deleteMap")) {
+            return new CompleterDeleteMap(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("addMapDescription")) {
+            return new CompleterAddMapDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("removeMapDescription")) {
+            return new CompleterRemoveMapDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapDescription")) {
+            return new CompleterSetMapDescription(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapKeepInventory")) {
+            return new CompleterSetMapKeepInventory(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapKeepLevel")) {
+            return new CompleterSetMapKeepLevel(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapFair")) {
+            return new CompleterSetMapFair(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("addMapKit")) {
+            return new CompleterAddMapKit(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("removeMapKit")) {
+            return new CompleterRemoveMapKit(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapScale")) {
+            return new CompleterSetMapScale(sender,false,args).process();
+        }
+        if (args[0].equalsIgnoreCase("setSection")) {
+            return new CompleterSectionSet(sender,true,args).process();
+        }
 
 
         return list;

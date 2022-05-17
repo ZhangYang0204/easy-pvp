@@ -8,6 +8,7 @@ import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.runnable.MatchRunnable;
+import pers.zhangyang.easypvp.util.MessageUtil;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -60,7 +61,7 @@ public class Party {
         Matcher matcher = new Matcher(this, mapMeta);
         MatcherManager.MATCHER_MANAGER.add(matcher);
         //开始匹配
-        new MatchRunnable(matcher).runTaskTimer(EasyPvp.getInstance(),1,1);
+        new MatchRunnable(matcher).runTaskTimer(EasyPvp.getInstance(),1,20);
 
     }
     /**
@@ -86,7 +87,13 @@ public class Party {
         this.stats=PartyStatsEnum.MATCHING;
         Matcher matcher = new Matcher(this);
         MatcherManager.MATCHER_MANAGER.add(matcher);
-        new MatchRunnable(matcher).runTaskTimer(EasyPvp.getInstance(),1,1);
+        new MatchRunnable(matcher).runTaskTimer(EasyPvp.getInstance(),1,20);
+    }
+    public void sendTitleToAll(String title,String subtitle){
+
+        for (Gamer g:memberList){
+            MessageUtil.sendTitleTo(g.getPlayer(),title,subtitle);
+        }
     }
 
     /**
@@ -146,6 +153,12 @@ public class Party {
     public void teleport(Location location){
         for (Gamer g:memberList){
             g.getPlayer().teleport(location);
+        }
+    }
+
+    public void sendMessageToAll(List<String> list){
+        for (Gamer g:memberList){
+            MessageUtil.sendMessageTo(g.getPlayer(),list);
         }
     }
 

@@ -1,7 +1,7 @@
 package pers.zhangyang.easypvp.base;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -9,6 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CompleterBase {
+    protected boolean forcePlayer;
+    protected CommandSender sender;
+    protected String[] args;
+
+    public CompleterBase(CommandSender sender, boolean forcePlayer , String[] args) {
+        this.sender=sender;
+        this.forcePlayer = forcePlayer;
+        this.args=args;
+    }
     @Nonnull
     protected List<String> removeStartWith(@Nullable String latest, @Nullable List<String> list){
         if (latest==null||list==null){return  new ArrayList<>();}
@@ -16,5 +25,15 @@ public abstract class CompleterBase {
         list.removeIf(k -> !k.toLowerCase().startsWith(ll));
         return list;
     }
-    public abstract List<String> complete(CommandSender sender, Command command, String alias, String[] args) ;
+    public List<String> process(){
+        if (forcePlayer&&!(sender instanceof Player)){
+            return new ArrayList<>();
+        }
+        if (!sender.hasPermission(args[0])){
+            return new ArrayList<>();
+        }
+        return complete();
+    }
+
+    public abstract List<String> complete() ;
 }

@@ -34,8 +34,9 @@ public class Race {
 
     protected final boolean fair;
     protected final boolean build;
-    protected final boolean drop;
-    protected final Long chooseTick;
+    protected final boolean keepInventory;
+    protected final boolean keepLevel;
+    protected final int chooseTick;
     protected final HashMap<Gamer, ItemStack[]> inventorySave;
     protected final HashMap<Gamer, Location> locationBefore;
     protected final HashMap<Gamer, GameMode> gameModeBefore;
@@ -76,7 +77,7 @@ public class Race {
      * @param gamer
      */
     public void out(Gamer gamer) {
-        if (!gamer.race.equals(this)) {
+        if (!gamer.racingRace.equals(this)) {
             return;
         }
         if (gamer.stats.equals(GamerStatsEnum.OUTING)) {
@@ -384,10 +385,12 @@ public class Race {
         }
         this.redAlive = new ArrayList<>();
         this.blueAlive = new ArrayList<>();
-        this.drop = mapMeta.isDrop();
+        this.keepInventory = mapMeta.isKeepInventory();
+
+        this.keepLevel = mapMeta.isKeepLevel();
         this.fair = mapMeta.isFair();
         this.build = mapMeta.isBuild();
-        this.chooseTick = mapMeta.getChooseTick();
+        this.chooseTick = mapMeta.getChooseKitTime();
         this.startTime = System.currentTimeMillis();
         this.mapBlockMetaList = new ArrayList<>();
         for (MapBlockMeta b: mapBlockMetaList){this.mapBlockMetaList.add(b.clone());}
@@ -436,10 +439,10 @@ public class Race {
         blueParty.setMemberStats(GamerStatsEnum.RACING);
 
         for (Gamer g : redParty.memberList) {
-            g.race = this;
+            g.racingRace = this;
         }
         for (Gamer g : blueParty.memberList) {
-            g.race = this;
+            g.racingRace = this;
         }
 
         if (redParty.getRace()!=null){
@@ -483,7 +486,7 @@ public class Race {
         }
         startChooseKit();
         //几秒后关闭gui
-        new StopChooseKitRunnable(this).runTaskLater(EasyPvp.getInstance(),chooseTick);
+        new StopChooseKitRunnable(this).runTaskTimer(EasyPvp.getInstance(),1,20);
     }
 
     @javax.annotation.Nullable
@@ -506,10 +509,10 @@ public class Race {
         redParty.stats = PartyStatsEnum.FREEING;
         blueParty.stats = PartyStatsEnum.FREEING;
         for (Gamer g : redParty.memberList) {
-            g.race = null;
+            g.racingRace = null;
         }
         for (Gamer g : blueParty.memberList) {
-            g.race = null;
+            g.racingRace = null;
         }
 
 
@@ -603,8 +606,12 @@ public class Race {
         return build;
     }
 
-    public boolean isDrop() {
-        return drop;
+    public boolean isKeepInventory() {
+        return keepInventory;
+    }
+
+    public boolean isKeepLevel() {
+        return keepLevel;
     }
 
     public Party getRedParty() {
@@ -619,7 +626,7 @@ public class Race {
        return LocationUtil.blockIsIn(firstLoc,secondLoc,g.getPlayer().getLocation());
     }
 
-    public Long getChooseTick() {
+    public int getChooseTick() {
         return chooseTick;
     }
 
@@ -634,5 +641,14 @@ public class Race {
 
     public HashMap<KitMeta, List<KitItemStackMeta>> getKitItemMap() {
         return new HashMap<>(kitItemMap);
+    }
+
+    public void sendTitleToAll(String title,String subtitle){
+     List<Gamer> gamerList=new ArrayList<>();
+     gamerList.addAll(redParty.getMemberList());
+        gamerList.addAll(blueParty.getMemberList());
+        for (Gamer g:gamerList){
+            MessageUtil.sendTitleTo(g.getPlayer(),title,subtitle);
+        }
     }
 }

@@ -12,12 +12,12 @@ gui:
       displayName: "&b&l&n返回"
       lore:
         - "&e&l返回上一个页面"
-    rankPagePreviousPage:
+    rankPagePreviousRankPage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:
         - "&e&l点我前往上一页"
-    rankPageNextPage:
+    rankPageNextRankPage:
       material: "BOOK"
       displayName: "&b&l&n下一页"
       lore:
@@ -31,18 +31,18 @@ gui:
         - "&b&l平 &f{draw}"
         - "&6&l总 &f{all}"
 
-    allPartyPageRankPage:
+    allPartyPageShowRankPage:
       material: "GOLD_INGOT"
       displayName: "&b&l&n战绩榜"
       lore:
         - "&e&l点我查看战绩榜"
 
-    allPartyPagePreviousPage:
+    allPartyPagePreviousAllPartyPage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:
         - "&e&l点我前往上一页"
-    allPartyPageNextPage:
+    allPartyPageNextAllPartyPage:
       material: "BOOK"
       displayName: "&b&l&n下一页"
       lore:
@@ -52,25 +52,25 @@ gui:
       displayName: "&b&l&n创建队伍"
       lore:
         - "&e&l点我创建一个队伍"
-    allPartyPageParty:
+    allPartyPageJoinParty:
       material: "CHEST"
       displayName: "&b&l&n玩家 &f{captain} &b&l&n的队伍 &f{party}"
       lore:
         - "&a&l队名 &f{party}"
         - "&6&l队长 &f{captain}"
         - "&e&l点我加入该队伍"
-    allPartyPageMyParty:
+    allPartyPageShowAllMemberPage:
       material: "ENDER_CHEST"
       displayName: "&b&l&n我的队伍"
       lore:
         - "&e&l查看我的队伍"
 
-    allMemberPagePreviousPage:
+    allMemberPagePreviousAllMemberPage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:
         - "&e&l点我前往上一页"
-    allMemberPageNextPage:
+    allMemberPageNextAllMemberPage:
       material: "BOOK"
       displayName: "&b&l&n下一页"
       lore:
@@ -80,7 +80,7 @@ gui:
       displayName: "&B&l&n成员 &f{member}"
       lore:
         - "&e&l点我从队伍里请出 &f{member}"
-    allMemberPageChooseMap:
+    allMemberPageShowAllMapPage:
       material: "PAPER"
       displayName: "&B&l&n地图选择"
       lore:
@@ -96,7 +96,7 @@ gui:
       lore:
         - "&e&l离开当前队伍"
 
-    allMapPageMap:
+    allMapPageMatchMap:
       material: "PAPER"
       displayName: "&b&l&n地图 &f{map}"
       lore:
@@ -115,23 +115,23 @@ gui:
       displayName: "&b&l&n取消匹配"
       lore:
         - "&e&l点我取消匹配"
-    allMapPageRandomMatch:
+    allMapPageMatchRandom:
       material: "DIAMOND_SWORD"
       displayName: "&b&l&n随机匹配"
       lore:
         - "&e&l点我随机匹配"
 
-    allKitPagePreviousPage:
+    allKitPagePreviousAllKitPage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:
         - "&e&l点我前往上一页"
-    allKitPageNextPage:
+    allKitPageNextAllKitPage:
       material: "BOOK"
       displayName: "&B&l下一页"
       lore:
         - "&e&l点我前往下一页"
-    allKitPageKit:
+    allKitPageChooseKit:
       material: "CHEST"
       displayName: "&B&l&n装备包 &f{kit}"
       lore:
@@ -139,12 +139,12 @@ gui:
         - "&e&l以下是该装备包的描述"
         - "{[description]}"
 
-    allRacePageNextPage:
+    allRacePageNextAllRacePage:
       material: "BOOK"
       displayName: "&B&l下一页"
       lore:
         - "&e&l点我前往下一页"
-    allRacePagePreviousPage:
+    allRacePagePreviousAllRacePage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:

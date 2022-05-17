@@ -17,12 +17,6 @@ public class MatcherManager {
     private final List<Matcher> matcherList;
 
 
-
-    public List<Matcher> getSpecificMatcherList() {
-        return new ArrayList<>(matcherList);
-    }
-
-
     /**
      * 仅返回匹配的matcher
      * 不会匹配到自己队伍

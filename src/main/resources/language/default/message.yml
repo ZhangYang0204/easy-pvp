@@ -1,5 +1,14 @@
 message:
 
+  title:
+    chooseKitTime:
+      subtitle: "&b&l剩余选择准备时间 &f{time} &b&l秒"
+      title: "&b&l剩余选择准备时间 &f{time} &b&l秒"
+    matchTime:
+      subtitle: "&b&l已匹配 &f{time} &b&l秒"
+      title: "&b&l已匹配 &f{time} &b&l秒"
+
+
   input:
     cancel: "取消"
 
@@ -10,209 +19,236 @@ message:
       - "&c&l缺少权限 &f{permission}"
     invalidArgument:
       - "&c&l无效参数 &f{argument}"
-    versionNotify:
-      - "&b&l当前版本是 &f{current},&b&l最新版本是 &f{latest}"
 
+
+    successNotifyVersion:
+      - "&b&l当前版本是 &f{current},&b&l最新版本是 &f{latest}"
+    failureNotifyVersionBecauseNotGetLatestVersion:
+      - "&c&l获得最新版本失败"
+      -
+    successEnablePlugin:
+      - "§a╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮"
+      - "§a┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃"
+      - "§a┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃"
+      - "§a┃╭━━┫╰━╯┣━━╮┃╰╮╭╯┃╭━━╯┃╰╯┃┃╭━━╯"
+      - "§a┃╰━━┫╭━╮┃╰━╯┃╱┃┃╱┃┃╱╱╱╰╮╭╯┃┃"
+      - "§a╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯"
+        
+    successDisablePlugin:
+      - "§c╭━━━┳━━━┳━━━┳╮╱╱╭┳━━━┳╮╱╱╭┳━━━╮"
+      - "§c┃╭━━┫╭━╮┃╭━╮┃╰╮╭╯┃╭━╮┃╰╮╭╯┃╭━╮┃"
+      - "§c┃╰━━┫┃╱┃┃╰━━╋╮╰╯╭┫╰━╯┣╮┃┃╭┫╰━╯┃"
+      - "§c┃╭━━┫╰━╯┣━━╮┃╰╮╭╯┃╭━━╯┃╰╯┃┃╭━━╯"
+      - "§c┃╰━━┫╭━╮┃╰━╯┃╱┃┃╱┃┃╱╱╱╰╮╭╯┃┃"
+      - "§c╰━━━┻╯╱╰┻━━━╯╱╰╯╱╰╯╱╱╱╱╰╯╱╰╯"
 
     successCorrectYaml:
       - "&b修正所有Yaml文件缺少和多余键值成功"
 
-    successGui:
+    successOpenGui:
       - "&b&l为您打开菜单页面"
 
     successHelp:
       - "&b&l====帮助列表===="
-      - "&e&lEasyPvp gui"
+      - "&e&lEasyPvp openGui"
       - "&b&l打开菜单界面"
       - ""
-      - "&e&lEasyPvp sectionSet <first|second|red|blue>"
+      - "&e&lEasyPvp setSection <first|second|red|blue>"
       - "&b&l设置区域,就像Residence插件一样,需要圈区域"
       - ""
-      - "&e&lEasyPvp mapCreate <地图名字>"
+      - "&e&lEasyPvp createMap <地图名字>"
       - "&b&l以圈好的区域创建地图,会作为模板保存数据,每次游戏时以模板复制,创建完后原区域可删除"
       - ""
-      - "&e&lEasyPvp mapBuildSet <地图名字>  <true|false>"
+      - "&e&lEasyPvp setMapBuild <地图名字>  <true|false>"
       - "&b&l设置是否可被比赛中的玩家破坏方块"
       - ""
-      - "&e&lEasyPvp mapDropSet <地图名字>  <true|false>"
-      - "&b&l设置是否死亡掉落"
+      - "&e&lEasyPvp setMapKeepInventory <地图名字>  <true|false>"
+      - "&b&l设置是否死亡掉落物品"
       - ""
-      - "&e&lEasyPvp mapScaleSet <地图名字>  <数量>"
+      - "&e&lEasyPvp setMapKeepLevel <地图名字>  <true|false>"
+      - "&b&l设置是否死亡掉落经验"
+      - ""
+      - "&e&lEasyPvp setMapScale <地图名字>  <数量>"
       - "&b&l设置每队的人数"
       - ""
-      - "&e&lEasyPvp mapFairSet <地图名字>  <true|false>"
+      - "&e&lEasyPvp setMapFair <地图名字>  <true|false>"
       - "&b&l设置是否为公平模式,公平模式下,玩家的生命值、BUFF、装备、经验都会被隔离"
       - ""
-      - "&e&lEasyPvp mapDescriptionAdd <地图名字>  <一行描述>"
+      - "&e&lEasyPvp addMapDescription <地图名字>  <一行描述>"
       - "&b&l为地图添加一行描述,添加在最后一行"
       - ""
-      - "&e&lEasyPvp mapDescriptionRemove <地图名字>  <行数>"
+      - "&e&lEasyPvp removeMapDescription <地图名字>  <行数>"
       - "&b&l为地图删除一行描述"
       - ""
-      - "&e&lEasyPvp mapDescriptionSet <地图名字>  <行数>"
+      - "&e&lEasyPvp setMapDescription <地图名字>  <行数>"
       - "&b&l为地图设置一行描述"
       - ""
-      - "&e&lEasyPvp kitDescriptionAdd <装备包名字>  <一行描述>"
+      - "&e&lEasyPvp addKitDescription <装备包名字>  <一行描述>"
       - "&b&l为装备包添加一行描述,添加在最后一行"
       - ""
-      - "&e&lEasyPvp kitDescriptionRemove <装备包名字>  <行数>"
+      - "&e&lEasyPvp removeKitDescription <装备包名字>  <行数>"
       - "&b&l为装备包删除一行描述"
       - ""
-      - "&e&lEasyPvp kitDescriptionSet <装备包名字>  <行数>"
+      - "&e&lEasyPvp setKitDescription <装备包名字>  <行数>"
       - "&b&l为装备包设置一行描述"
       - ""
-      - "&e&lEasyPvp mapDelete <地图名字>"
+      - "&e&lEasyPvp deleteMap <地图名字>"
       - "&b&l删除地图,该地图保存的数据将会被删除"
       - ""
-      - "&e&lEasyPvp mapKitAdd <地图名字> <装备包名字>"
+      - "&e&lEasyPvp addMapKit <地图名字> <装备包名字>"
       - "&b&l给地图添加装备包,不同的地图可以添加相同的装备包"
       - ""
-      - "&e&lEasyPvp mapKitRemove <地图名字> <装备包名字>"
+      - "&e&lEasyPvp removeMapKit <地图名字> <装备包名字>"
       - "&b&l给地图删除装备包"
       - ""
-      - "&e&lEasyPvp mapChooseTickSet <地图名字> <刻>"
+      - "&e&lEasyPvp setMapChooseTime <地图名字> <刻>"
       - "&b&l设置地图选择装备的时间,单位为刻,在选择装备期间,比赛玩家无法移动,无法攻击"
       - ""
-      - "&e&lEasyPvp kitCreate <装备包名字>"
+      - "&e&lEasyPvp createKit <装备包名字>"
       - "&b&l以自身背包状态创建一个装备包"
       - ""
-      - "&e&lEasyPvp kitSet <装备包名字>"
+      - "&e&lEasyPvp setKit <装备包名字>"
       - "&b&l以自身背包状态设置一个装备包"
       - ""
-      - "&e&lEasyPvp kitDelete <装备包名字>"
+      - "&e&lEasyPvp deleteKit <装备包名字>"
       - "&b&l删除装备包,如果该装备包被其他地图添加,其他地图将会移除该装备包"
       - ""
       - "&e&lEasyPvp help"
       - "&b&l查看帮助"
       - ""
-      - "&e&lEasyPvp reload"
+      - "&e&lEasyPvp reloadYaml"
       - "&b&l重载配置文件,会把修改后的配置文件重载"
       - ""
-      - "&e&lEasyPvp recordReset"
+      - "&e&lEasyPvp resetRecord"
       - "&b&l清空比赛记录,用于赛季的的更新"
       - ""
       - "&e&lEasyPvp correctYaml"
       - "&b&l补全yml文件中缺失的选项,补全后配置文件不会自动重载,如果需要请重载"
 
-    successKitCreate:
+    successCreateKit:
       - "&b&l创建装备包 &f{kit} &b&l成功"
-    failureKitCreateBecauseDuplicateKitName:
+    failureCreateKitBecauseDuplicateKitName:
       - "&c&l创建装备包 &f{kit} &c&l失败,已经有叫这个名字的装备包了"
 
-    successKitDelete:
+    successDeleteKit:
       - "&b&l删除装备包 &f{kit} &b&l成功"
-    failureKitDeleteBecauseNotExistKitName:
+    failureDeleteKitBecauseNotExistKitName:
       - "&c&l删除装备包 &f{kit} &c&l失败,没有找到叫这个名字的装备包"
 
 
-    successMapDescriptionAdd:
+    successAddMapDescription:
       - "&b&l成功添加地图 &f{map} &b&l的描述 &f{description}"
-    failureMapDescriptionAddBecauseNotExistMapName:
+    failureAddMapDescriptionBecauseNotExistMapName:
       - "&c&l添加地图 &f{map} &c&l的描述 &f{description} &c&l失败,没有找到叫这个名字的地图"
 
-    successMapDescriptionRemove:
+    successRemoveMapDescription:
       - "&b&l成功删除地图 &f{map} &b&l的第 &f{row} &b&l行描述"
-    failureMapDescriptionRemoveBecauseNotExistMapName:
+    failureRemoveMapDescriptionBecauseNotExistMapName:
       - "&c&l删除地图 &f{map} &c&l的第 &f{row} &c&l行描述失败,没有找到叫这个名字的地图"
-    failureMapDescriptionRemoveBecauseNotExistDescriptionRow:
+    failureRemoveMapDescriptionBecauseNotExistDescriptionRow:
       - "&c&l删除地图 &f{map} &c&l的第 &f{row} &c&l行描述失败,你还没有添加这一行呢"
 
-    successMapDescriptionSet:
+    successSetMapDescription:
       - "&b&l成功设置地图 &f{map} &b&l的第 &f{row} &b&l行描述为 &f{description}"
-    failureMapDescriptionSetBecauseNotExistMapName:
+    failureSetMapDescriptionBecauseNotExistMapName:
       - "&c&l设置地图 &f{map} &c&l的第 &f{row} &c&l行描述为 &f{description} &c&l失败,没有找到叫这个名字的地图"
-    failureMapDescriptionSetBecauseNotExistDescriptionRow:
+    failureSetMapDescriptionBecauseNotExistDescriptionRow:
       - "&c&l设置地图 &f{map} &c&l的第 &f{row} &c&l行描述为&f{description} &c&l失败,你还没有添加这一行呢"
 
-    successKitSet:
+    successSetKit:
       - "&b&l设置装备包 &f{kit} &b&l成功"
-    failureKitSetBecauseNotExistKitName:
+    failureSetKitBecauseNotExistKitName:
       - "&c&l设置装备包 &f{kit} &c&l失败,没有找到叫这个名字的装备包"
 
-    successMapBuildSet:
+    successSetMapBuild:
       - "&b&l成功设置地图 &f{map} &b&l的建筑为 &f{build}"
-    failureMapBuildSetBecauseNotExistMapName:
+    failureSetMapBuildBecauseNotExistMapName:
       - "&c&l设置地图 &f{map} &c&l的建筑为 &f{build} &c&l失败,没有找到叫这个名字的地图"
 
-    successMapChooseTickSet:
-      - "&b&l成功设置 &f{map} &b&l的选择装备时间为 &f{tick} &b&l刻"
-    failureMapChooseTickSetBecauseNotExistMapName:
-      - "&c&l无法设置 &f{map} &c&l的选择装备时间为 &f{tick} &c&l刻,没有找到叫这个名字的地图"
+    successSetMapChooseTime:
+      - "&b&l成功设置 &f{map} &b&l的选择装备时间为 &f{time} &b&l秒"
+    failureSetMapChooseTimeBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的选择装备时间为 &f{time} &c&l秒,没有找到叫这个名字的地图"
 
-    successMapCreate:
+    successCreateMap:
       - "&b&l成功创建地图 &f{map}"
     failureMapCreateBecauseNotFourPoint:
       - "&c&l创建地图 &f{map} &c&l失败,请先选择四个点"
     failureMapCreateBecauseInvalidFourPoint:
       - "&c&l创建地图 &f{map} &c&l失败,请选择合理的四个点"
-    failureMapCreateBecauseDuplicateMapName:
+    failureCreateMapBecauseDuplicateMapName:
       - "&c&l创建地图 &f{map} &c&l失败,已经有地图叫这个名字了"
 
-    successMapDelete:
+    successDeleteMap:
       - "&b&l成功创建地图 &f{map}"
-    failureMapDeleteBecauseNotExistMapName:
+    failureDeleteMapBecauseNotExistMapName:
       - "&c&l删除地图 &f{map} &c&l失败,没有找到叫这个名字的地图"
 
 
-    successKitDescriptionAdd:
+    successAddKitDescription:
       - "&b&l成功添加装备包 &f{kit} &b&l的描述 &f{description}"
     failureKitDescriptionAddBecauseNotExistMapName:
       - "&c&l添加装备包 &f{kit} &c&l的描述 &f{description} &c&l失败,没有找到叫这个名字的装备包"
 
     successKitDescriptionRemove:
       - "&b&l成功删除装备包 &f{kit} &b&l的第 &f{row} &b&l行描述"
-    failureKitDescriptionRemoveBecauseNotExistKitName:
+    failureRemoveKitDescriptionBecauseNotExistKitName:
       - "&c&l删除装备包 &f{kit} &c&l的第 &f{row} &c&l行描述失败,没有找到叫这个名字的装备包"
-    failureKitDescriptionRemoveBecauseNotExistDescriptionRow:
+    failureRemoveKitDescriptionBecauseNotExistDescriptionRow:
       - "&c&l删除装备包 &f{kit} &c&l的第 &f{row} &c&l行描述失败,没有过添加过这一行描述"
 
-    successKitDescriptionSet:
+    successSetKitDescription:
       - "&b&l成功删除装备包 &f{kit} &b&l的第 &f{row} &b&l行描述 &f{description}"
-    failureKitDescriptionSetBecauseNotExistKitName:
+    failureSetKitDescriptionBecauseNotExistKitName:
       - "&c&l删除装备包 &f{kit} &c&l的第 &f{row} &c&l行描述 &f{description} &c&l失败,没有找到叫这个名字的装备包"
-    failureKitDescriptionSetBecauseNotExistDescriptionRow:
+    failureSetKitDescriptionBecauseNotExistDescriptionRow:
       - "&c&l删除装备包 &f{kit} &c&l的第 &f{row} &c&l行描述 &f{description} &c&l失败,没有过添加过这一行描述"
 
-    successMapDropSet:
-      - "&b&l成功设置地图 &f{map} &b&l的掉落为 &f{drop}"
-    failureMapDropSetBecauseNotExistMapName:
-      - "&b&l设置地图 &f{map} &c&l的掉落为 &f{drop} &c&l失败,没有找到叫这个名字的地图"
+    successSetMapKeepInventory:
+      - "&b&l成功设置地图 &f{map} &b&l的保存物品为 &f{keep}"
+    failureSetMapKeepInventoryBecauseNotExistMapName:
+      - "&b&l设置地图 &f{map} &c&l的保存物品为 &f{keep} &c&l失败,没有找到叫这个名字的地图"
+    successSetMapKeepLevel:
+      - "&b&l成功设置地图 &f{map} &b&l的保存经验为 &f{keep}"
+    failureSetMapKeepLevelBecauseNotExistMapName:
+      - "&b&l设置地图 &f{map} &c&l的保存经验为 &f{keep} &c&l失败,没有找到叫这个名字的地图"
 
-    successMapFairSet:
+
+    successSetMapFair:
       - "&b&l成功设置地图 &f{map} &b&l的公平为 &f{fair}"
-    failureMapFairSetBecauseNotExistMapName:
+    failureSetMapFairBecauseNotExistMapName:
       - "&c&l设置地图 &f{map} &c&l的公平为 &f{fair} &c&l失败,没有找到叫这个名字的地图"
 
-    successMapKitAdd:
+    successAddMapKit:
       - "&b&l给 &f{map} &b&l添加装备包 &f{kit}  &b&l成功"
-    failureMapKitAddBecauseNotExistKitName:
+    failureAddMapKitBecauseNotExistKitName:
       - "&c&l给 &f{map} &c&l添加装备包 &f{kit} &c&l失败,没有找到叫这个名字的装备包"
-    failureMapKitAddBecauseNotExistMapName:
+    failureAddMapKitBecauseNotExistMapName:
       - "&c&l给 &f{map} &c&l添加装备包 &f{kit} &c&l失败,没有找到叫这个名字的地图"
-    failureMapKitAddBecauseMapAlreadyAddKitException:
+    failureAddMapKitBecauseMapAlreadyAddKitException:
       - "&c&l给 &f{map} &c&l添加装备包 &f{kit} &c&l失败,已经在 &f{map} &c&l添加过 &f{kit} &c&l了"
 
-    successMapKitRemove:
+    successRemoveMapKit:
       - "&b&l给 &f{map} &b&l删除装备包 &f{kit} &b&l成功"
-    failureMapKitRemoveBecauseNotExistKitName:
+    failureRemoveMapKitBecauseNotExistKitName:
       - "&c&l给 &f{map} &c&l删除装备包 &f{kit} &c&l失败,没有找到叫这个名字的装备包"
-    failureMapKitRemoveBecauseNotExistMapName:
+    failureRemoveMapKitBecauseNotExistMapName:
       - "&c&l给 &f{map} &c&l删除装备包 &f{kit} &c&l失败,没有找到叫这个名字的地图"
-    failureMapKitRemoveBecauseMapNotAddKit:
+    failureRemoveMapKitBecauseMapNotAddKit:
       - "&c&l给 &f{map} &c&l删除装备包 &f{kit} &c&l失败,没有在 &f{map} &c&l添加过 &f{kit}"
 
-    successMapScaleSet:
+    successSetMapScale:
       - "&b&l成功设置地图 &f{map} &b&l的规模为 &f{scale}"
-    failureMapScaleSetBecauseNotExistMapName:
+    failureSetMapScaleBecauseNotExistMapName:
       - "&c&l设置地图 &f{map} &c&l的规模为 &f{scale} &c&l失败,没有找到叫这个名字的地图"
 
-    successRecordReset:
+    successResetRecord:
       - "&b&l比赛记录重置成功"
 
-    successReload:
+    successReloadYaml:
       - "&b&l插件重载成功"
 
-    successSectionSet:
+    successSetSection:
       - "&b&l成功设置区域的 &f{point} &b&l点"
 
 
@@ -334,8 +370,8 @@ message:
 
     successKickMember:
       - "&b&l你成功从队伍 &f{party} &b&l踢出了 &f{member}"
-    someoneSuccessWasKickedParty:
-      - "&b&l&f{member} &b&l被踢出了你所在的队伍 &f{party} &b&l,踢人者是 &f{kicker}"
+    someoneSuccessKickMember:
+      - "&b&l&f{kicker} &b&l踢出了你所在的队伍 &f{party} &b&l的成员 &f{member} "
     successWasKickedParty:
       - "&b&l你被踢出了你所在的队伍 &f{party} &b&l,踢人者是 &f{kicker}"
     failureKickMemberBecauseNotCaptain:
@@ -386,12 +422,12 @@ message:
     failureStartRandomMatchBecausePartyIsMatching:
       - "&c&l无法随机匹配,队伍 &f{party} &c&l正在匹配中,队伍的队长是 &f{captain}"
 
-    successRankPage:
+    successShowRankPage:
       - "&b&l成功打开战绩榜"
 
-    successRaceStart:
+    successStartRace:
       - "&b&l游戏开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
-      - "&b&l请在 &f{tick} &b&l刻内选择装备包"
+      - "&b&l请在 &f{time} &b&l刻内选择装备包"
 
     successChooseKit:
       - "&b&l你选择了装备包 &f{kit}"
@@ -403,133 +439,155 @@ message:
       - "&b&l战斗播报 >>> 一场比赛结束 队伍 &f{red_party} &b&l与队伍 &f{blue_party} &b&l平局"
     someoneSuccessRaceStopNotDraw:
       - "&b&l战斗播报 >>> 一场比赛结束 队伍 &f{win_party} &b&l战胜了队伍 &f{lose_party}"
+        
+    someoneSuccessDeadInRacing:
+      - "&b&l&f{player} &b&l在比赛中死亡,被淘汰"
+    successDeadInRacing:
+      - "&b&l你因死亡被淘汰了"
+    someoneSuccessMoveOutMap:
+      - "&b&l&f{player} &b&l自己跳出地图淘汰了自己"
+    successMoveOutMap:
+      - "&b&l你因出地图被淘汰了"
+
+    someoneQuickGameInReading:
+      "&b&l&f{player} 退出了游戏,已自动离开队伍 &f{party}"
+    someoneQuickGameInRacing:
+      "&b&l&f{player} 退出了游戏,已自动被淘汰"
+
 
   completer:
     easyPvp:
       - "correctYaml"
-      - "gui"
+      - "openGui"
       - "help"
-      - "kitCreate"
-      - "kitDelete"
-      - "KitDescriptionAdd"
-      - "KitDescriptionRemove"
-      - "KitDescriptionSet"
-      - "KitSet"
-      - "MapBuildSet"
-      - "MapChooseTickSet"
-      - "MapCreate"
-      - "MapDelete"
-      - "MapDescriptionAdd"
-      - "MapDescriptionRemove"
-      - "MapDescriptionSet"
-      - "MapDropSet"
-      - "MapFairSet"
-      - "MapKitAdd"
-      - "MapKitRemove"
-      - "MapScaleSet"
-      - "MapRecordReset"
-      - "Reload"
-      - "SectionSet"
+      - "createKit"
+      - "deleteKit"
+      - "addKitDescription"
+      - "removeKitDescription"
+      - "setKitDescription"
+      - "setKit"
+      - "setMapBuild"
+      - "setMapChooseTime"
+      - "createMap"
+      - "deleteMap"
+      - "addMapDescription"
+      - "removeMapDescription"
+      - "setMapDescription"
+      - "setMapKeepLevel"
+      - "setMapKeepInventory"
+      - "setMapFair"
+      - "addMapKit"
+      - "removeMapKit"
+      - "setMapScale"
+      - "resetRecord"
+      - "reloadYaml"
+      - "setSection"
 
-    easyPvpKitCreate:
+    easyPvpCreateKit:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpKitDelete:
+    easyPvpDeleteKit:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpKitDescriptionAdd:
+    easyPvpAddKitDescription:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpKitDescriptionAdd$:
+    easyPvpAddKitDescription$:
       - "在描述的最后一行添加描述"
       - "一行描述"
-    easyPvpKitDescriptionSet:
+    easyPvpSetKitDescription:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpKitDescriptionSet$:
+    easyPvpSetKitDescription$:
       - "行数"
       - "1"
-    easyPvpKitDescriptionSet$$:
+    easyPvpSetKitDescription$$:
       - "一行描述"
       - "1"
 
-    easyPvpKitDescriptionRemove:
+    easyPvpRemoveKitDescription:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpKitDescriptionRemove$:
+    easyPvpRemoveKitDescription$:
       - "行数"
       - "1"
 
-    easyPvpKitSet$:
+    easyPvpSetKit:
       - "注意名字不要重复"
       - "装备包名字"
 
-    easyPvpMapCreate:
+    easyPvpCreateMap:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapDelete:
+    easyPvpDeleteMap:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapDescriptionAdd:
+    easyPvpAddMapDescription:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapDescriptionAdd$:
+    easyPvpAddMapDescription$:
       - "在描述的最后一行添加描述"
       - "一行描述"
-    easyPvpMapDescriptionSet:
+    easyPvpSetMapDescription:
       - "注意名字不要重复"
       - "地图名字"
 
-    easyPvpMapDescriptionSet$:
+    easyPvpSetMapDescription$:
       - "行数"
       - "1"
-    easyPvpMapDescriptionSet$$:
+    easyPvpSetMapDescription$$:
       - "一行描述"
 
-    easyPvpMapBuildSet:
+    easyPvpSetMapBuild:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapBuildSet$:
+    easyPvpSetMapBuild$:
       - "true"
       - "false"
-    easyPvpMapChooseTickSet:
+    easyPvpSetMapChooseTime:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapChooseTickSet$:
+    easyPvpSetMapChooseTime$:
       - "大于1的数字,一刻为50毫秒"
-    easyPvpMapDropSet:
+    easyPvpSetMapKeepInventory:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapDropSet$:
+    easyPvpSetMapKeepInventory$:
       - "true"
       - "false"
-    easyPvpMapFairSet:
+    easyPvpSetMapKeepLevel:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapFairSet$:
+    easyPvpSetMapKeepLevel$:
       - "true"
       - "false"
-    easyPvpMapScaleSet:
+    easyPvpSetMapFair:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapScaleSet$:
+    easyPvpSetMapFair$:
+      - "true"
+      - "false"
+    easyPvpSetMapScale:
+      - "注意名字不要重复"
+      - "地图名字"
+    easyPvpSetMapScale$:
       - "大于0的数字"
-    easyPvpSectionSet:
+    easyPvpSetSection:
       - "first和second确定了区域"
       - "red和blue分别是两个队伍的出售点"
       - "first"
       - "second"
       - "red"
       - "blue"
-    easyPvpMapKitAdd:
+    easyPvpAddMapKit:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapKitAdd$:
+    easyPvpAddMapKit$:
       - "注意名字不要重复"
       - "装备包名字"
-    easyPvpMapKitRemove:
+    easyPvpRemoveMapKit:
       - "注意名字不要重复"
       - "地图名字"
-    easyPvpMapKitRemove$:
+    easyPvpRemoveMapKit$:
       - "注意名字不要重复"
       - "装备包名字"

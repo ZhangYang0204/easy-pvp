@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.domain;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -22,13 +23,13 @@ public class AllPartyPage implements InventoryHolder {
         if (title==null){
             inventory= Bukkit.createInventory(this,54);
         }else {
-            inventory = Bukkit.createInventory(this, 54, ReplaceUtil.replace(title, Collections.singletonMap("&","§")));
+            inventory = Bukkit.createInventory(this, 54, ChatColor.translateAlternateColorCodes('&',title));
         }
         partyList=new ArrayList<>();
     }
 
     public List<Party> getPartyList() {
-        return partyList;
+        return new ArrayList<>(partyList);
     }
 
     public void init(List<Party> partyList, int pageIndex){
@@ -41,8 +42,9 @@ public class AllPartyPage implements InventoryHolder {
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=partyList.size()){break;}
-            String displayName= guiYaml.getBUTTON_ALL_PARTY_PAGE_PARTY_DISPLAY_NAME();
-            List<String> lore= guiYaml.getBUTTON_ALL_PARTY_PAGE_PARTY_LORE();
+            String displayName= guiYaml.getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_DISPLAY_NAME();
+
+            List<String> lore= guiYaml.getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_LORE();
 
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{captain}",partyList.get(i).getCaptain().getPlayer().getName());
@@ -51,7 +53,7 @@ public class AllPartyPage implements InventoryHolder {
             displayName=ReplaceUtil.replace(displayName,rep);
 
             ReplaceUtil.replace(lore,rep);
-            ItemStack itemStack=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_PARTY_MATERIAL(),
+            ItemStack itemStack=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_MATERIAL(),
                 displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -59,26 +61,26 @@ public class AllPartyPage implements InventoryHolder {
 
 
         //设置45上一页
-        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_PAGE_LORE());
+        ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_LORE());
         inventory.setItem(53,nextPage);
         //设置48创建队伍
         ItemStack createParty=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_CREATE_PARTY_MATERIAL(),
                 guiYaml.getBUTTON_ALL_PARTY_PAGE_CREATE_PARTY_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE());
         inventory.setItem(47,createParty);
         //设置48创建队伍
-        ItemStack rankPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_RANK_PAGE_LORE());
+        ItemStack rankPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_MATERIAL(),
+                guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE());
         inventory.setItem(50,rankPage);
 
         //设置50加入队伍
-        ItemStack myParty=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_MY_PARTY_MATERIAL(),
-                guiYaml.getBUTTON_ALL_PARTY_PAGE_MY_PARTY_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_MY_PARTY_LORE());
+        ItemStack myParty=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_LORE());
         inventory.setItem(51,myParty);
 
 

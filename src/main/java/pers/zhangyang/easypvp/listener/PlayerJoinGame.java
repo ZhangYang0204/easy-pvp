@@ -11,7 +11,7 @@ public class PlayerJoinGame implements Listener {
     public void onJo(PlayerJoinEvent event){
         Player player=event.getPlayer();
         if (player.hasPermission("EasyPvp.updateNotify")){
-            UpdateUtil.updateNotify(player);
+            UpdateUtil.notifyVersion(player);
         }
 
     }

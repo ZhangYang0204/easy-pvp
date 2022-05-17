@@ -1,12 +1,10 @@
 package pers.zhangyang.easypvp.listener;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
-import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
@@ -19,6 +17,7 @@ import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,16 +26,42 @@ public class PlayerDeadInRacing implements Listener {
     public void onPlayerDie(PlayerDeathEvent event){
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getEntity());
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
-        Race race=gamer.getRace();
+        Race race=gamer.getRacingRace();
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
 
-        if (!race.isDrop()){
+        if (race.isKeepInventory()){
             event.setKeepInventory(true);
         }
 
+        if (race.isKeepLevel()){
+            event.setKeepLevel(true);
+        }
+
+
+
         race.out(gamer);
+        //告诉死掉的人
+        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                .getCHAT_SUCCESS_DEAD_IN_RACING();
+        MessageUtil.sendMessageTo(gamer.getPlayer(), list);
+
+        //告诉其他人
+        list = MessageYaml.MESSAGE_YAML_MANAGER
+                .getCHAT_SOMEONE_SUCCESS_DEAD_IN_RACING();
+        HashMap<String,String> rep = new HashMap<>();
+        rep.put("{player}", gamer.getPlayer().getName());
+        ReplaceUtil.replace(list, rep);
+        List<Gamer> gamerList=new ArrayList<>();
+        gamerList.addAll(race.getRedParty().getMemberList());
+        gamerList.addAll(race.getBlueParty().getMemberList());
+        for (Gamer g:gamerList){
+            if (g.equals(gamer)){continue;}
+            MessageUtil.sendMessageTo(g.getPlayer(),list);
+        }
+
+
 
         if (!race.getStats().equals(RaceStatsEnum.ENDING)){
             return;
@@ -67,27 +92,26 @@ public class PlayerDeadInRacing implements Listener {
         }
 
 
-        for (Player p: Bukkit.getOnlinePlayers()){
             if (race.getWinner()!=null) {
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                list = MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
-                HashMap rep = new HashMap<>();
+                rep = new HashMap<>();
                 rep.put("{win_party}", race.getWinner().getPartyName());
                 rep.put("{lose_party}", race.getLoser().getPartyName());
 
                 ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(p, list);
+                MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
             }else {
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                 MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
-                HashMap rep = new HashMap<>();
+                rep = new HashMap<>();
                 rep.put("{red_party}", race.getRedParty().getPartyName());
                 rep.put("{blue_party}", race.getBlueParty().getPartyName());
                 ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(p, list);
+                MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
             }
 
-        }
+
 
 
 

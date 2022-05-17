@@ -12,97 +12,112 @@ public class MessageYaml extends YamlManagerBase {
         super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/message.yml");
     }
 
+    private List<String> CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION;
     private String INPUT_CANCEL;
     private List<String> CHAT_NOT_PLAYER;
     private List<String> CHAT_NO_PERMISSION;
 
     private List<String> CHAT_SUCCESS_CORRECT_YAML;
-    private List<String> CHAT_SUCCESS_RECORD_RESET;
-    private List<String> CHAT_SUCCESS_RELOAD;
+    private List<String> CHAT_SUCCESS_RESET_RECORD;
+    private List<String> CHAT_SUCCESS_RELOAD_YAML;
     private List<String> CHAT_SUCCESS_HELP;
     private List<String> CHAT_SUCCESS_CANCEL_CREATE_PARTY;
-    private List<String> CHAT_SUCCESS_GUI;
-    private List<String> CHAT_SUCCESS_SECTION_SET;
+    private List<String> CHAT_SUCCESS_OPEN_GUI;
+    private List<String> CHAT_SUCCESS_SET_SECTION;
+
+
+    private List<String> CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING;
+    private List<String> CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP;
+    private List<String> CHAT_SUCCESS_DEAD_IN_RACING;
+    
 
     private List<String> CHAT_INVALID_ARGUMENT;
     private List<String> CHAT_FAILURE_MAP_CREATE_BECAUSE_INVALID_FOUR_POINT;
 
     private List<String> CHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT;
-    private List<String> CHAT_SUCCESS_MAP_CREATE;
+    private List<String> CHAT_SUCCESS_CREATE_MAP;
 
     private List<String> CHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING;
 
     private List<String> CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING;
-    private List<String> CHAT_SUCCESS_MAP_DELETE;
+    private List<String> CHAT_SUCCESS_DELETE_MAP;
 
-    private List<String> CHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME;
-    private List<String> CHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME;
+    private List<String> CHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME;
 
-    private List<String> CHAT_SUCCESS_MAP_CHOOSE_TICK_SET;
+    private List<String> CHAT_SUCCESS_SET_MAP_CHOOSE_TIME;
 
-    private List<String> CHAT_FAILURE_MAP_CHOOSE_TICK_SET_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_CHOOSE_TIME_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_SUCCESS_MAP_DESCRIPTION_ADD;
+    private List<String> CHAT_SUCCESS_ADD_MAP_DESCRIPTION;
 
-    private List<String> CHAT_FAILURE_MAP_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_ADD_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
+    private List<String> CHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
 
-    private List<String> CHAT_SUCCESS_MAP_DESCRIPTION_REMOVE;
+    private List<String> CHAT_SUCCESS_REMOVE_MAP_DESCRIPTION;
 
-    private List<String> CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
+    private List<String> CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
 
-    private List<String> CHAT_SUCCESS_MAP_DESCRIPTION_SET;
+    private List<String> CHAT_SUCCESS_SET_MAP_DESCRIPTION;
 
-    private List<String> CHAT_VERSION_NOTIFY;
+    private List<String> CHAT_SUCCESS_NOTIFY_VERSION;
 
-    private List<String> CHAT_SUCCESS_MAP_BUILD_SET;
-    private List<String> CHAT_SUCCESS_MAP_FAIR_SET;
-    private List<String> CHAT_SUCCESS_MAP_SCALE_SET;
-    private List<String> CHAT_SUCCESS_MAP_DROP_SET;
+    private List<String> CHAT_SUCCESS_SET_MAP_BUILD;
+    private List<String> CHAT_SUCCESS_SET_MAP_FAIR;
+    private List<String> CHAT_SUCCESS_SET_MAP_SCALE;
+    private List<String> CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY;
 
+    private List<String> CHAT_SUCCESS_SET_MAP_KEEP_LEVEL;
+
+    private List<String> CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME;
+    
     private List<String> CHAT_SUCCESS_LEAVE_PARTY;
-    private List<String> CHAT_FAILURE_MAP_FAIR_SET_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_BUILD_SET_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_DROP_SET_BECAUSE_NOT_EXIST_MAP_NAME;
-    private List<String> CHAT_FAILURE_MAP_SCALE_SET_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_SUCCESS_KIT_CREATE;
+    private List<String> CHAT_SUCCESS_CREATE_KIT;
 
-    private List<String> CHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME;
+    private List<String> CHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME;
 
-    private List<String> CHAT_SUCCESS_KIT_DELETE;
+    private List<String> CHAT_SUCCESS_DELETE_KIT;
 
-    private List<String> CHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_SUCCESS_KIT_SET;
+    private List<String> CHAT_SUCCESS_SET_KIT;
 
-    private List<String> CHAT_FAILURE_KIT_SET_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_SUCCESS_MAP_KIT_ADD;
+    private List<String> CHAT_SUCCESS_ADD_MAP_KIT;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_MAP_ALREADY_ADD_KIT;
+    private List<String> CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT;
 
     private List<String> CHAT_SUCCESS_SHOW_ALL_MEMBER_PAGE;
-    private List<String> CHAT_SUCCESS_MAP_KIT_REMOVE;
+    private List<String> CHAT_SUCCESS_REMOVE_MAP_KIT;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME;
+    private List<String> CHAT_SUCCESS_ENABLE_PLUGIN;
+    private List<String> CHAT_SUCCESS_DISABLE_PLUGIN;
+    
+    private List<String> CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT;
+    private List<String> CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME;
 
-    private List<String> CHAT_SUCCESS_KIT_DESCRIPTION_ADD;
+    private List<String> CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT;
+
+    private List<String> CHAT_SUCCESS_ADD_KIT_DESCRIPTION;
     private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING;
 
     public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING() {
@@ -112,19 +127,19 @@ public class MessageYaml extends YamlManagerBase {
         return new ArrayList<>(CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING);
     }
 
-    private List<String> CHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
+    private List<String> CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
 
     private List<String> CHAT_SUCCESS_KIT_DESCRIPTION_REMOVE;
 
-    private List<String> CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_KIT_NAME;
+    private List<String> CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME;
 
-    private List<String> CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
+    private List<String> CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW;
 
-    private List<String> CHAT_SUCCESS_KIT_DESCRIPTION_SET;
+    private List<String> CHAT_SUCCESS_SET_KIT_DESCRIPTION;
     private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY;
 
     private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_IN_WATCHING;
@@ -140,9 +155,16 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SOMEONE_SUCCESS_WAS_KICKED_PARTY;
 
 
-    private List<String> CHAT_SUCCESS_RANK_PAGE;
+    private List<String> CHAT_SUCCESS_SHOW_RANK_PAGE;
 
     private List<String> CHAT_SUCCESS_WAS_KICKED_PARTY;
+
+
+    private String TITLE_CHOOSE_KIT_TIME_TITLE;
+    private String TITLE_CHOOSE_KIT_TIME_SUBTITLE;
+
+    private String TITLE_MATCH_TIME_TITLE;
+    private String TITLE_MATCH_TIME_SUBTITLE;
 
     private List<String> CHAT_FAILURE_SHOW_ALL_MEMBER_PAGE_BECAUSE_NOT_JOIN_PARTY;
     private List<String> CHAT_SUCCESS_CANCEL_MATCH;
@@ -173,7 +195,7 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW;
 
-    private List<String> CHAT_SUCCESS_RACE_START;
+    private List<String> CHAT_SUCCESS_START_RACE;
     private List<String> CHAT_SUCCESS_KICK_MEMBER;
     private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME;
     private List<String> CHAT_HOW_TO_CREATE_PARTY;
@@ -222,51 +244,53 @@ public class MessageYaml extends YamlManagerBase {
 
 
     private List<String> COMPLETER_EASY_PVP;
-    private List<String> COMPLETER_EASY_PVP_KIT_CREATE;
-    private List<String> COMPLETER_EASY_PVP_KIT_DELETE;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE;
+    private List<String> COMPLETER_EASY_PVP_CREATE_KIT;
+    private List<String> COMPLETER_EASY_PVP_DELETE_KIT;
+    private List<String> COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION;
+    private List<String> COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$;
+    private List<String> COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$;
+    private List<String> COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION;
 
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$;
-    private List<String> COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET;
-    private List<String> COMPLETER_EASY_PVP_KIT_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_BUILD_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_BUILD_SET_$;
-    private List<String> COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET_$;
-    private List<String> COMPLETER_EASY_PVP_MAP_CREATE;
-    private List<String> COMPLETER_EASY_PVP_MAP_DELETE;
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD;
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD_$;
+    private List<String> COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$;
+    private List<String> COMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$;
+    private List<String> COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION;
+    private List<String> COMPLETER_EASY_PVP_SET_KIT;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_BUILD;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_BUILD_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$;
+    private List<String> COMPLETER_EASY_PVP_CREATE_MAP;
+    private List<String> COMPLETER_EASY_PVP_DELETE_MAP;
+    private List<String> COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION;
+    private List<String> COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$;
 
     private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE;
     private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$;
 
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$;
 
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$;
-    private List<String> COMPLETER_EASY_PVP_MAP_DROP_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_DROP_SET_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$;
 
-    private List<String> COMPLETER_EASY_PVP_MAP_FAIR_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_FAIR_SET_$;
-
-
-    private List<String> COMPLETER_EASY_PVP_MAP_SCALE_SET;
-    private List<String> COMPLETER_EASY_PVP_MAP_SCALE_SET_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_FAIR;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_FAIR_$;
 
 
-    private List<String> COMPLETER_EASY_PVP_MAP_KIT_ADD;
-    private List<String> COMPLETER_EASY_PVP_MAP_KIT_ADD_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_SCALE;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_SCALE_$;
 
-    private List<String> COMPLETER_EASY_PVP_MAP_KIT_REMOVE;
-    private List<String> COMPLETER_EASY_PVP_MAP_KIT_REMOVE_$;
 
-    private List<String> COMPLETER_EASY_PVP_SECTION_SET;
+    private List<String> COMPLETER_EASY_PVP_ADD_MAP_KIT;
+    private List<String> COMPLETER_EASY_PVP_ADD_MAP_KIT_$;
+
+    private List<String> COMPLETER_EASY_PVP_REMOVE_MAP_KIT;
+    private List<String> COMPLETER_EASY_PVP_REMOVE_MAP_KIT_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_SECTION;
 
 
     public List<String> getCOMPLETER_EASY_PVP() {
@@ -275,111 +299,111 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(COMPLETER_EASY_PVP);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_CREATE() {
-        if (COMPLETER_EASY_PVP_KIT_CREATE==null){
+    public List<String> getCOMPLETER_EASY_PVP_CREATE_KIT() {
+        if (COMPLETER_EASY_PVP_CREATE_KIT ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_CREATE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_CREATE_KIT);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DELETE() {
-        if (COMPLETER_EASY_PVP_KIT_DELETE==null){
+    public List<String> getCOMPLETER_EASY_PVP_DELETE_KIT() {
+        if (COMPLETER_EASY_PVP_DELETE_KIT ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DELETE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_DELETE_KIT);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD==null){
+    public List<String> getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$);
     }
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$() {
+        if (COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$);
-    }
-
-    public List<String> getCOMPLETER_EASY_PVP_KIT_DESCRIPTION_SET() {
-        if (COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET==null){
-            return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_KIT_SET() {
-        if (COMPLETER_EASY_PVP_KIT_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_BUILD_SET() {
-        if (COMPLETER_EASY_PVP_MAP_BUILD_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_KIT() {
+        if (COMPLETER_EASY_PVP_SET_KIT ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_BUILD_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_KIT);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_BUILD_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_BUILD_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_BUILD() {
+        if (COMPLETER_EASY_PVP_SET_MAP_BUILD ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_BUILD_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_BUILD);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET() {
-        if (COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_BUILD_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_BUILD_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_BUILD_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME() {
+        if (COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_CREATE() {
-        if (COMPLETER_EASY_PVP_MAP_CREATE==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_CREATE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DELETE() {
-        if (COMPLETER_EASY_PVP_MAP_DELETE==null){
+    public List<String> getCOMPLETER_EASY_PVP_CREATE_MAP() {
+        if (COMPLETER_EASY_PVP_CREATE_MAP ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DELETE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_CREATE_MAP);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD==null){
+    public List<String> getCOMPLETER_EASY_PVP_DELETE_MAP() {
+        if (COMPLETER_EASY_PVP_DELETE_MAP ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_DELETE_MAP);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD_$() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$ ==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$);
     }
 
     public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE() {
@@ -394,87 +418,87 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_SET() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$);
     }
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$);
-    }
-
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DROP_SET() {
-        if (COMPLETER_EASY_PVP_MAP_DROP_SET==null){
-            return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DROP_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DROP_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_DROP_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DROP_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_FAIR_SET() {
-        if (COMPLETER_EASY_PVP_MAP_FAIR_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_FAIR_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_FAIR_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_FAIR_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_FAIR() {
+        if (COMPLETER_EASY_PVP_SET_MAP_FAIR ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_FAIR_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_FAIR);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_SCALE_SET() {
-        if (COMPLETER_EASY_PVP_MAP_SCALE_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_FAIR_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_SCALE_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_FAIR_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_SCALE_SET_$() {
-        if (COMPLETER_EASY_PVP_MAP_SCALE_SET_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_SCALE() {
+        if (COMPLETER_EASY_PVP_SET_MAP_SCALE ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_SCALE_SET_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_SCALE);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_KIT_ADD() {
-        if (COMPLETER_EASY_PVP_MAP_KIT_ADD==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_SCALE_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_SCALE_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_KIT_ADD);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_SCALE_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_KIT_ADD_$() {
-        if (COMPLETER_EASY_PVP_MAP_KIT_ADD_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_ADD_MAP_KIT() {
+        if (COMPLETER_EASY_PVP_ADD_MAP_KIT ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_KIT_ADD_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_MAP_KIT);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_KIT_REMOVE() {
-        if (COMPLETER_EASY_PVP_MAP_KIT_REMOVE==null){
+    public List<String> getCOMPLETER_EASY_PVP_ADD_MAP_KIT_$() {
+        if (COMPLETER_EASY_PVP_ADD_MAP_KIT_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_KIT_REMOVE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_MAP_KIT_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_KIT_REMOVE_$() {
-        if (COMPLETER_EASY_PVP_MAP_KIT_REMOVE_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT() {
+        if (COMPLETER_EASY_PVP_REMOVE_MAP_KIT ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_KIT_REMOVE_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_MAP_KIT);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_SECTION_SET() {
-        if (COMPLETER_EASY_PVP_SECTION_SET==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT_$() {
+        if (COMPLETER_EASY_PVP_REMOVE_MAP_KIT_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_SECTION_SET);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_MAP_KIT_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_SECTION() {
+        if (COMPLETER_EASY_PVP_SET_SECTION ==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_SECTION);
     }
 
     public List<String> getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING() {
@@ -489,47 +513,89 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING);
     }
 
+    public String getTITLE_CHOOSE_KIT_TIME_TITLE() {
+        return TITLE_CHOOSE_KIT_TIME_TITLE;
+    }
+
+    public String getTITLE_CHOOSE_KIT_TIME_SUBTITLE() {
+        return TITLE_CHOOSE_KIT_TIME_SUBTITLE;
+    }
+
+
+    public String getTITLE_MATCH_TIME_SUBTITLE() {
+        return TITLE_MATCH_TIME_SUBTITLE;
+    }
+
+    public String getTITLE_MATCH_TIME_TITLE() {
+        return TITLE_MATCH_TIME_TITLE;
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_KEEP_LEVEL() {
+        if (CHAT_SUCCESS_SET_MAP_KEEP_LEVEL==null){
+            return null;
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_KEEP_LEVEL);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME==null){
+            return null;
+        } return new ArrayList<>(CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL ==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$ ==null){
+            return null;
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$);
+    }
+
     @Override
     protected void check()  {
 
         COMPLETER_EASY_PVP=getStringList("message.completer.easyPvp",false);
 
-        COMPLETER_EASY_PVP_KIT_CREATE=getStringList("message.completer.easyPvpKitCreate",false);
-        COMPLETER_EASY_PVP_KIT_DELETE=getStringList("message.completer.easyPvpKitDelete",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD=getStringList("message.completer.easyPvpKitDescriptionAdd",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_ADD_$=getStringList("message.completer.easyPvpKitDescriptionAdd$",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE_$=getStringList("message.completer.easyPvpKitDescriptionRemove$",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_REMOVE=getStringList("message.completer.easyPvpKitDescriptionRemove",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$=getStringList("message.completer.easyPvpKitDescriptionSet$",false);
+        COMPLETER_EASY_PVP_CREATE_KIT =getStringList("message.completer.easyPvpCreateKit",false);
+        COMPLETER_EASY_PVP_DELETE_KIT =getStringList("message.completer.easyPvpDeleteKit",false);
+        COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION =getStringList("message.completer.easyPvpAddKitDescription",false);
+        COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$ =getStringList("message.completer.easyPvpAddKitDescription$",false);
+        COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$ =getStringList("message.completer.easyPvpRemoveKitDescription$",false);
+        COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION =getStringList("message.completer.easyPvpRemoveKitDescription",false);
+        COMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$ =getStringList("message.completer.easyPvpSetKitDescription$",false);
 
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET_$_$=getStringList("message.completer.easyPvpKitDescriptionSet$$",false);
-        COMPLETER_EASY_PVP_KIT_DESCRIPTION_SET=getStringList("message.completer.easyPvpKitDescriptionSet",false);
-        COMPLETER_EASY_PVP_KIT_SET=getStringList("message.completer.easyPvpKitSet",false);
-        COMPLETER_EASY_PVP_MAP_BUILD_SET=getStringList("message.completer.easyPvpMapBuildSet",false);
-        COMPLETER_EASY_PVP_MAP_BUILD_SET_$=getStringList("message.completer.easyPvpMapBuildSet$",false);
-        COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET=getStringList("message.completer.easyPvpMapChooseTickSet",false);
-        COMPLETER_EASY_PVP_MAP_CHOOSE_TICK_SET_$=getStringList("message.completer.easyPvpMapChooseTickSet$",false);
-        COMPLETER_EASY_PVP_MAP_CREATE=getStringList("message.completer.easyPvpMapCreate",false);
-        COMPLETER_EASY_PVP_MAP_DELETE=getStringList("message.completer.easyPvpMapDelete",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD=getStringList("message.completer.easyPvpMapDescriptionAdd",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_ADD_$=getStringList("message.completer.easyPvpMapDescriptionAdd$",false);
+        COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$ =getStringList("message.completer.easyPvpSetKitDescription$$",false);
+        COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION =getStringList("message.completer.easyPvpSetKitDescription",false);
+        COMPLETER_EASY_PVP_SET_KIT =getStringList("message.completer.easyPvpSetKit",false);
+        COMPLETER_EASY_PVP_SET_MAP_BUILD =getStringList("message.completer.easyPvpSetMapBuild",false);
+        COMPLETER_EASY_PVP_SET_MAP_BUILD_$ =getStringList("message.completer.easyPvpSetMapBuild$",false);
+        COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME =getStringList("message.completer.easyPvpSetMapChooseTime",false);
+        COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$ =getStringList("message.completer.easyPvpSetMapChooseTime$",false);
+        COMPLETER_EASY_PVP_CREATE_MAP =getStringList("message.completer.easyPvpCreateMap",false);
+        COMPLETER_EASY_PVP_DELETE_MAP =getStringList("message.completer.easyPvpDeleteMap",false);
+        COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION =getStringList("message.completer.easyPvpAddMapDescription",false);
+        COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$ =getStringList("message.completer.easyPvpAddMapDescription$",false);
         COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE=getStringList("message.completer.easyPvpMapDescriptionRemove",false);
         COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$=getStringList("message.completer.easyPvpMapDescriptionRemove$",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET=getStringList("message.completer.easyPvpMapDescriptionSet",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$=getStringList("message.completer.easyPvpMapDescriptionSet$",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_SET_$_$=getStringList("message.completer.easyPvpMapDescriptionSet$$",false);
-        COMPLETER_EASY_PVP_MAP_DROP_SET=getStringList("message.completer.easyPvpMapDropSet",false);
-        COMPLETER_EASY_PVP_MAP_DROP_SET_$=getStringList("message.completer.easyPvpMapDropSet$",false);
-        COMPLETER_EASY_PVP_MAP_FAIR_SET=getStringList("message.completer.easyPvpMapFairSet",false);
-        COMPLETER_EASY_PVP_MAP_FAIR_SET_$=getStringList("message.completer.easyPvpMapFairSet$",false);
-        COMPLETER_EASY_PVP_MAP_SCALE_SET=getStringList("message.completer.easyPvpMapScaleSet",false);
-        COMPLETER_EASY_PVP_MAP_SCALE_SET_$=getStringList("message.completer.easyPvpMapScaleSet$",false);
-        COMPLETER_EASY_PVP_MAP_KIT_ADD=getStringList("message.completer.easyPvpMapKitAdd",false);
-        COMPLETER_EASY_PVP_MAP_KIT_ADD_$=getStringList("message.completer.easyPvpMapKitAdd$",false);
-        COMPLETER_EASY_PVP_MAP_KIT_REMOVE=getStringList("message.completer.easyPvpMapKitRemove",false);
-        COMPLETER_EASY_PVP_MAP_KIT_REMOVE_$=getStringList("message.completer.easyPvpMapKitRemove$",false);
-        COMPLETER_EASY_PVP_SECTION_SET=getStringList("message.completer.easyPvpSectionSet",false);
-
+        COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION =getStringList("message.completer.easyPvpSetMapDescription",false);
+        COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$ =getStringList("message.completer.easyPvpSetMapDescription$",false);
+        COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$ =getStringList("message.completer.easyPvpSetMapDescription$$",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY =getStringList("message.completer.easyPvpSetMapKeepInventory",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$ =getStringList("message.completer.easyPvpSetMapKeepInventory$",false);
+        COMPLETER_EASY_PVP_SET_MAP_FAIR =getStringList("message.completer.easyPvpSetMapFair",false);
+        COMPLETER_EASY_PVP_SET_MAP_FAIR_$ =getStringList("message.completer.easyPvpSetMapFair$",false);
+        COMPLETER_EASY_PVP_SET_MAP_SCALE =getStringList("message.completer.easyPvpSetMapScale",false);
+        COMPLETER_EASY_PVP_SET_MAP_SCALE_$ =getStringList("message.completer.easyPvpSetMapScale$",false);
+        COMPLETER_EASY_PVP_ADD_MAP_KIT =getStringList("message.completer.easyPvpAddMapKit",false);
+        COMPLETER_EASY_PVP_ADD_MAP_KIT_$ =getStringList("message.completer.easyPvpAddMapKit$",false);
+        COMPLETER_EASY_PVP_REMOVE_MAP_KIT =getStringList("message.completer.easyPvpRemoveMapKit",false);
+        COMPLETER_EASY_PVP_REMOVE_MAP_KIT_$ =getStringList("message.completer.easyPvpRemoveMapKit$",false);
+        COMPLETER_EASY_PVP_SET_SECTION =getStringList("message.completer.easyPvpSetSection",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL =getStringList("message.completer.easyPvpSetMapKeepLevel",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$ =getStringList("message.completer.easyPvpSetMapKeepLevel$",false);
 
 
 
@@ -555,25 +621,25 @@ public class MessageYaml extends YamlManagerBase {
 
 
 
-        CHAT_VERSION_NOTIFY=getStringList("message.chat.versionNotify",false);
+        CHAT_SUCCESS_NOTIFY_VERSION =getStringList("message.chat.successNotifyVersion",false);
         CHAT_NOT_PLAYER=getStringList("message.chat.notPlayer",false);
 
         CHAT_NO_PERMISSION=getStringList("message.chat.noPermission",false);
         CHAT_SUCCESS_KICK_MEMBER =getStringList("message.chat.successKickMember",false);
 
 
-        CHAT_SUCCESS_GUI =getStringList("message.chat.successGui",false);
+        CHAT_SUCCESS_OPEN_GUI =getStringList("message.chat.successOpenGui",false);
         CHAT_SUCCESS_HELP =getStringList("message.chat.successHelp",false);
 
         CHAT_SUCCESS_CORRECT_YAML=getStringList("message.chat.successCorrectYaml",false);
-        CHAT_SUCCESS_RECORD_RESET=getStringList("message.chat.successRecordReset",false);
+        CHAT_SUCCESS_RESET_RECORD =getStringList("message.chat.successResetRecord",false);
 
-        CHAT_SUCCESS_RELOAD=getStringList("message.chat.successReload",false);
+        CHAT_SUCCESS_RELOAD_YAML =getStringList("message.chat.successReloadYaml",false);
 
 
-        CHAT_SUCCESS_RANK_PAGE=getStringList("message.chat.successRankPage",false);
+        CHAT_SUCCESS_SHOW_RANK_PAGE =getStringList("message.chat.successShowRankPage",false);
 
-        CHAT_SUCCESS_SECTION_SET=getStringList("message.chat.successSectionSet",false);
+        CHAT_SUCCESS_SET_SECTION =getStringList("message.chat.successSetSection",false);
 
         CHAT_INVALID_ARGUMENT=getStringList("message.chat.invalidArgument",false);
 
@@ -583,91 +649,93 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT =getStringList
                 ("message.chat.failureMapCreateBecauseNotFourPoint",false);
 
-        CHAT_SUCCESS_MAP_CREATE=getStringList("message.chat.successMapCreate",false);
-        CHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME=getStringList
-                ("message.chat.failureMapCreateBecauseDuplicateMapName",false);
+        CHAT_SUCCESS_CREATE_MAP =getStringList("message.chat.successCreateMap",false);
+        CHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME =getStringList
+                ("message.chat.failureCreateMapBecauseDuplicateMapName",false);
 
-        CHAT_SUCCESS_MAP_DELETE=getStringList("message.chat.successMapDelete",false);
-        CHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapDeleteBecauseNotExistMapName",false);
+        CHAT_SUCCESS_DELETE_MAP =getStringList("message.chat.successDeleteMap",false);
+        CHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureDeleteMapBecauseNotExistMapName",false);
 
-        CHAT_SUCCESS_MAP_DESCRIPTION_ADD=getStringList("message.chat.successMapDescriptionAdd",false);
-        CHAT_FAILURE_MAP_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapDescriptionAddBecauseNotExistMapName",false);
+        CHAT_SUCCESS_ADD_MAP_DESCRIPTION =getStringList("message.chat.successAddMapDescription",false);
+        CHAT_FAILURE_ADD_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureAddMapDescriptionBecauseNotExistMapName",false);
 
-        CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapDescriptionRemoveBecauseNotExistMapName",false);
-        CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW=getStringList
-                ("message.chat.failureMapDescriptionRemoveBecauseNotExistDescriptionRow",false);
-        CHAT_SUCCESS_MAP_DESCRIPTION_REMOVE=getStringList("message.chat.successMapDescriptionRemove",false);
+        CHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureRemoveMapDescriptionBecauseNotExistMapName",false);
+        CHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW =getStringList
+                ("message.chat.failureRemoveMapDescriptionBecauseNotExistDescriptionRow",false);
+        CHAT_SUCCESS_REMOVE_MAP_DESCRIPTION =getStringList("message.chat.successRemoveMapDescription",false);
 
-        CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapDescriptionSetBecauseNotExistMapName",false);
-        CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW=getStringList
-                ("message.chat.failureMapDescriptionSetBecauseNotExistDescriptionRow",false);
-        CHAT_SUCCESS_MAP_DESCRIPTION_SET=getStringList("message.chat.successMapDescriptionSet",false);
+        CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureSetMapDescriptionBecauseNotExistMapName",false);
+        CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW =getStringList
+                ("message.chat.failureSetMapDescriptionBecauseNotExistDescriptionRow",false);
+        CHAT_SUCCESS_SET_MAP_DESCRIPTION =getStringList("message.chat.successSetMapDescription",false);
 
-        CHAT_FAILURE_MAP_BUILD_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList("message.chat.failureMapBuildSetBecauseNotExistMapName",false);
-        CHAT_SUCCESS_MAP_BUILD_SET=getStringList("message.chat.successMapBuildSet",false);
-
-
-        CHAT_FAILURE_MAP_CHOOSE_TICK_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList("message.chat.failureMapChooseTickSetBecauseNotExistMapName",false);
-        CHAT_SUCCESS_MAP_CHOOSE_TICK_SET=getStringList("message.chat.successMapChooseTickSet",false);
+        CHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapBuildBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_BUILD =getStringList("message.chat.successSetMapBuild",false);
 
 
-        CHAT_FAILURE_MAP_FAIR_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList("message.chat.failureMapFairSetBecauseNotExistMapName",false);
-        CHAT_SUCCESS_MAP_FAIR_SET=getStringList("message.chat.successMapFairSet",false);
-
-        CHAT_FAILURE_MAP_SCALE_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList("message.chat.failureMapScaleSetBecauseNotExistMapName",false);
-        CHAT_SUCCESS_MAP_SCALE_SET=getStringList("message.chat.successMapScaleSet",false);
-
-        CHAT_FAILURE_MAP_DROP_SET_BECAUSE_NOT_EXIST_MAP_NAME=getStringList("message.chat.failureMapDropSetBecauseNotExistMapName",false);
-        CHAT_SUCCESS_MAP_DROP_SET=getStringList("message.chat.successMapDropSet",false);
+        CHAT_FAILURE_SET_MAP_CHOOSE_TIME_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapChooseTimeBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_CHOOSE_TIME =getStringList("message.chat.successSetMapChooseTime",false);
 
 
-        CHAT_SUCCESS_KIT_CREATE=getStringList("message.chat.successKitCreate",false);
-        CHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME=getStringList
-                ("message.chat.failureKitCreateBecauseDuplicateKitName",false);
+        CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapFairBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_FAIR =getStringList("message.chat.successSetMapFair",false);
 
-        CHAT_SUCCESS_KIT_DELETE=getStringList("message.chat.successKitDelete",false);
-        CHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureKitDeleteBecauseNotExistKitName",false);
+        CHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapScaleBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_SCALE =getStringList("message.chat.successSetMapScale",false);
 
-        CHAT_SUCCESS_KIT_SET=getStringList("message.chat.successKitSet",false);
-        CHAT_FAILURE_KIT_SET_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureKitSetBecauseNotExistKitName",false);
+        CHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapKeepInventoryBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY =getStringList("message.chat.successSetMapKeepInventory",false);
+        CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapKeepLevelBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_KEEP_LEVEL =getStringList("message.chat.successSetMapKeepLevel",false);
 
-        CHAT_SUCCESS_MAP_KIT_ADD=getStringList("message.chat.successMapKitAdd",false);
-        CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureMapKitAddBecauseNotExistKitName",false);
-        CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapKitAddBecauseNotExistMapName",false);
-        CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_MAP_ALREADY_ADD_KIT=getStringList
-                ("message.chat.failureMapKitAddBecauseMapAlreadyAddKit",false);
 
-        CHAT_SUCCESS_MAP_KIT_REMOVE=getStringList("message.chat.successMapKitRemove",false);
-        CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureMapKitRemoveBecauseNotExistKitName",false);
-        CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME=getStringList
-                ("message.chat.failureMapKitRemoveBecauseNotExistMapName",false);
-        CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT=getStringList
-                ("message.chat.failureMapKitRemoveBecauseMapNotAddKit",false);
+        CHAT_SUCCESS_CREATE_KIT =getStringList("message.chat.successCreateKit",false);
+        CHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME =getStringList
+                ("message.chat.failureCreateKitBecauseDuplicateKitName",false);
 
-        CHAT_SUCCESS_KIT_DESCRIPTION_ADD=getStringList("message.chat.successKitDescriptionAdd",false);
-        CHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureKitDescriptionAddBecauseNotExistKitName",false);
+        CHAT_SUCCESS_DELETE_KIT =getStringList("message.chat.successDeleteKit",false);
+        CHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureDeleteKitBecauseNotExistKitName",false);
 
-        CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureKitDescriptionRemoveBecauseNotExistKitName",false);
-        CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW=getStringList
-                ("message.chat.failureKitDescriptionRemoveBecauseNotExistDescriptionRow",false);
+        CHAT_SUCCESS_SET_KIT =getStringList("message.chat.successSetKit",false);
+        CHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureSetKitBecauseNotExistKitName",false);
+
+        CHAT_SUCCESS_ADD_MAP_KIT =getStringList("message.chat.successAddMapKit",false);
+        CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureAddMapKitBecauseNotExistKitName",false);
+        CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureAddMapKitBecauseNotExistMapName",false);
+        CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT =getStringList
+                ("message.chat.failureAddMapKitBecauseMapAlreadyAddKit",false);
+
+        CHAT_SUCCESS_REMOVE_MAP_KIT =getStringList("message.chat.successRemoveMapKit",false);
+        CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureRemoveMapKitBecauseNotExistKitName",false);
+        CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME =getStringList
+                ("message.chat.failureRemoveMapKitBecauseNotExistMapName",false);
+        CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT =getStringList
+                ("message.chat.failureRemoveMapKitBecauseMapNotAddKit",false);
+
+        CHAT_SUCCESS_ADD_KIT_DESCRIPTION =getStringList("message.chat.successAddKitDescription",false);
+        CHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureAddKitDescriptionBecauseNotExistKitName",false);
+
+        CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureRemoveKitDescriptionBecauseNotExistKitName",false);
+        CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW =getStringList
+                ("message.chat.failureRemoveKitDescriptionBecauseNotExistDescriptionRow",false);
         CHAT_SUCCESS_KIT_DESCRIPTION_REMOVE=getStringList("message.chat.successKitDescriptionRemove",false);
 
-        CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_KIT_NAME=getStringList
-                ("message.chat.failureKitDescriptionSetBecauseNotExistKitName",false);
-        CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW=getStringList
-                ("message.chat.failureKitDescriptionSetBecauseNotExistDescriptionRow",false);
-        CHAT_SUCCESS_KIT_DESCRIPTION_SET=getStringList("message.chat.successKitDescriptionSet",false);
+        CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
+                ("message.chat.failureSetKitDescriptionBecauseNotExistKitName",false);
+        CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW =getStringList
+                ("message.chat.failureSetKitDescriptionBecauseNotExistDescriptionRow",false);
+        CHAT_SUCCESS_SET_KIT_DESCRIPTION =getStringList("message.chat.successSetKitDescription",false);
 
         CHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY =getStringList
                 ("message.chat.failureCreatePartyBecauseAlreadyJoinParty",false);
@@ -687,7 +755,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SOMEONE_SUCCESS_JOIN_PARTY=getStringList("message.chat.someoneSuccessJoinParty",false);
 
         CHAT_SOMEONE_SUCCESS_LEAVE_PARTY=getStringList("message.chat.someoneSuccessLeaveParty",false);
-        CHAT_SOMEONE_SUCCESS_WAS_KICKED_PARTY=getStringList("message.chat.someoneSuccessWasKickedParty",false);
+        CHAT_SOMEONE_SUCCESS_WAS_KICKED_PARTY=getStringList("message.chat.someoneSuccessKickMember",false);
         CHAT_SUCCESS_WAS_KICKED_PARTY=getStringList("message.chat.successWasKickedParty",false);
 
         CHAT_FAILURE_SHOW_ALL_MEMBER_PAGE_BECAUSE_NOT_JOIN_PARTY =getStringList
@@ -730,10 +798,11 @@ public class MessageYaml extends YamlManagerBase {
                 ("message.chat.failureJoinPartyBecausePartyIsRacing",false);
         CHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING =getStringList
                 ("message.chat.failureJoinPartyBecauseInWatching",false);
-
-
-
-        CHAT_SUCCESS_RACE_START =getStringList("message.chat.successRaceStart",false);
+        TITLE_MATCH_TIME_SUBTITLE =getString("message.title.matchTime.subtitle",false);
+        TITLE_MATCH_TIME_TITLE =getString("message.title.matchTime.title",false);
+        TITLE_CHOOSE_KIT_TIME_SUBTITLE =getString("message.title.chooseKitTime.subtitle",false);
+        TITLE_CHOOSE_KIT_TIME_TITLE =getString("message.title.chooseKitTime.title",false);
+        CHAT_SUCCESS_START_RACE =getStringList("message.chat.successStartRace",false);
 
         CHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW =getStringList("message.chat.someoneSuccessRaceStopDraw",false);
         CHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW =getStringList("message.chat.someoneSuccessRaceStopNotDraw",false);
@@ -768,11 +837,85 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING=getStringList("message.chat.failureUnwatchRaceBecauseNotInWatching",false);
         CHAT_SUCCESS_UNWATCH_RACE=getStringList("message.chat.successUnwatchRace",false);
 
+        CHAT_SUCCESS_ENABLE_PLUGIN=getStringList("message.chat.successEnablePlugin",false);
+        CHAT_SUCCESS_DISABLE_PLUGIN=getStringList("message.chat.successDisablePlugin",false);
+
+
+
+        CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING =getStringList("message.chat.someoneSuccessDeadInRacing",false);
+        CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP =getStringList("message.chat.someoneSuccessMoveOutMap",false);
+        CHAT_SUCCESS_DEAD_IN_RACING =getStringList("message.chat.successDeadInRacing",false);
+        CHAT_SUCCESS_MOVE_OUT_MAP =getStringList("message.chat.successMoveOutMap",false);
+
+        CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING=getStringList("message.chat.someoneSuccessQuitGameInReading",false);
+        CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING=getStringList("message.chat.someoneSuccessQuitGameInRacing",false);
+
+        CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION =getStringList("message.chat.failureNotifyVersionBecauseNotGetLatestVersion",false);
         INPUT_CANCEL =getString("message.input.cancel",true);
        if (INPUT_CANCEL.contains(" ")||INPUT_CANCEL.equalsIgnoreCase("")){
-           INPUT_CANCEL="cancel";
+           INPUT_CANCEL="取消";
        }
 
+    }
+
+    public List<String> getCHAT_SUCCESS_MOVE_OUT_MAP() {
+        if (CHAT_SUCCESS_MOVE_OUT_MAP ==null){
+            return null; }
+        return new ArrayList<>(CHAT_SUCCESS_MOVE_OUT_MAP);
+    }
+
+    private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING;
+    private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING;
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING() {
+        if (CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING ==null){
+            return null; }
+        return new ArrayList<>(CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING);
+    }
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING() {
+        if (CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING ==null){
+            return null; }
+        return new ArrayList<>(CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING);
+    }
+
+    private List<String> CHAT_SUCCESS_MOVE_OUT_MAP;
+
+
+
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_DEAD_IN_RACING() {
+        if (CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING ==null){
+            return null; }return new ArrayList<>(CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING);
+    }
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP() {
+        if (CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP ==null){
+            return null; }return new ArrayList<>(CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP);
+    }
+
+    public List<String> getCHAT_SUCCESS_DEAD_IN_RACING() {
+        if (CHAT_SUCCESS_DEAD_IN_RACING ==null){
+            return null; }return new ArrayList<>(CHAT_SUCCESS_DEAD_IN_RACING);
+    }
+
+    public List<String> getCHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION() {
+        if (CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION==null){
+            return null; }return new ArrayList<>(CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION);
+    }
+    
+    
+    
+    
+
+    public List<String> getCHAT_SUCCESS_ENABLE_PLUGIN() {
+        if (CHAT_SUCCESS_ENABLE_PLUGIN==null){
+            return null; }return new ArrayList<>(CHAT_SUCCESS_ENABLE_PLUGIN);
+    }
+
+    public List<String> getCHAT_SUCCESS_DISABLE_PLUGIN() {
+        if (CHAT_SUCCESS_DISABLE_PLUGIN==null){
+            return null; }return new ArrayList<>(CHAT_SUCCESS_DISABLE_PLUGIN);
     }
 
     public List<String> getCHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING() {
@@ -874,10 +1017,10 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_FAILURE_NEXT_RANK_PAGE_BECAUSE_NOT_NEXT);
     }
 
-    public List<String> getCHAT_SUCCESS_RANK_PAGE() {
-        if (CHAT_SUCCESS_RANK_PAGE==null){
+    public List<String> getCHAT_SUCCESS_SHOW_RANK_PAGE() {
+        if (CHAT_SUCCESS_SHOW_RANK_PAGE ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_RANK_PAGE);
+        }return new ArrayList<>(CHAT_SUCCESS_SHOW_RANK_PAGE);
     }
 
     public List<String> getCHAT_SUCCESS_NEXT_ALL_MAP_PAGE() {
@@ -982,10 +1125,10 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_FAILURE_PREVIOUS_ALL_KIT_PAGE_BECAUSE_NOT_PREVIOUS);
     }
 
-    public List<String> getCHAT_VERSION_NOTIFY() {
-        if (CHAT_VERSION_NOTIFY==null){
+    public List<String> getCHAT_SUCCESS_NOTIFY_VERSION() {
+        if (CHAT_SUCCESS_NOTIFY_VERSION ==null){
             return null;
-        }return new ArrayList<>(CHAT_VERSION_NOTIFY);
+        }return new ArrayList<>(CHAT_SUCCESS_NOTIFY_VERSION);
     }
 
     public List<String> getCHAT_SUCCESS_CHOOSE_KIT() {
@@ -1053,16 +1196,16 @@ public class MessageYaml extends YamlManagerBase {
         return INPUT_CANCEL;
     }
 
-    public List<String> getCHAT_SUCCESS_GUI() {
-        if (CHAT_SUCCESS_GUI==null){
+    public List<String> getCHAT_SUCCESS_OPEN_GUI() {
+        if (CHAT_SUCCESS_OPEN_GUI ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_GUI);
+        }return new ArrayList<>(CHAT_SUCCESS_OPEN_GUI);
     }
 
-    public List<String> getCHAT_SUCCESS_RECORD_RESET() {
-        if (CHAT_SUCCESS_RECORD_RESET==null){
+    public List<String> getCHAT_SUCCESS_RESET_RECORD() {
+        if (CHAT_SUCCESS_RESET_RECORD ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_RECORD_RESET);
+        }return new ArrayList<>(CHAT_SUCCESS_RESET_RECORD);
     }
 
     public List<String> getCHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME() {
@@ -1088,17 +1231,17 @@ public class MessageYaml extends YamlManagerBase {
             return null;
         }return new ArrayList<>(CHAT_NO_PERMISSION);
     }
-    public List<String> getCHAT_SUCCESS_MAP_CHOOSE_TICK_SET() {
+    public List<String> getCHAT_SUCCESS_SET_MAP_CHOOSE_TIME() {
 
-        if (CHAT_SUCCESS_MAP_CHOOSE_TICK_SET==null){
+        if (CHAT_SUCCESS_SET_MAP_CHOOSE_TIME ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_CHOOSE_TICK_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_CHOOSE_TIME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_CHOOSE_TICK_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_CHOOSE_TICK_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_CHOOSE_TIME_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_CHOOSE_TIME_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_CHOOSE_TICK_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_CHOOSE_TIME_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
     public List<String> getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW() {
@@ -1113,10 +1256,10 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW);
     }
 
-    public List<String> getCHAT_SUCCESS_RACE_START() {
-        if (CHAT_SUCCESS_RACE_START==null){
+    public List<String> getCHAT_SUCCESS_START_RACE() {
+        if (CHAT_SUCCESS_START_RACE ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_RACE_START);
+        }return new ArrayList<>(CHAT_SUCCESS_START_RACE);
     }
 
     public List<String> getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_MATCHING() {
@@ -1234,16 +1377,16 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SOMEONE_SUCCESS_JOIN_PARTY);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_DESCRIPTION_ADD() {
-        if (CHAT_SUCCESS_MAP_DESCRIPTION_ADD==null){
+    public List<String> getCHAT_SUCCESS_ADD_MAP_DESCRIPTION() {
+        if (CHAT_SUCCESS_ADD_MAP_DESCRIPTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_DESCRIPTION_ADD);
+        }return new ArrayList<>(CHAT_SUCCESS_ADD_MAP_DESCRIPTION);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_ADD_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_ADD_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_ADD_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
     public List<String> getCHAT_FAILURE_KICK_MEMBER_BECAUSE_NOT_CAPTAIN() {
@@ -1289,28 +1432,28 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SUCCESS_CREATE_PARTY);
     }
 
-    public List<String> getCHAT_SUCCESS_KIT_DESCRIPTION_ADD() {
-        if (CHAT_SUCCESS_KIT_DESCRIPTION_ADD==null){
+    public List<String> getCHAT_SUCCESS_ADD_KIT_DESCRIPTION() {
+        if (CHAT_SUCCESS_ADD_KIT_DESCRIPTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_KIT_DESCRIPTION_ADD);
+        }return new ArrayList<>(CHAT_SUCCESS_ADD_KIT_DESCRIPTION);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DESCRIPTION_ADD_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
-        if (CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW==null){
+    public List<String> getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
+        if (CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
     }
 
     public List<String> getCHAT_SUCCESS_KIT_DESCRIPTION_REMOVE() {
@@ -1319,196 +1462,196 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SUCCESS_KIT_DESCRIPTION_REMOVE);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
-        if (CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW==null){
+    public List<String> getCHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
+        if (CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
+        }return new ArrayList<>(CHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
     }
 
-    public List<String> getCHAT_SUCCESS_KIT_DESCRIPTION_SET() {
-        if (CHAT_SUCCESS_KIT_DESCRIPTION_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_KIT_DESCRIPTION() {
+        if (CHAT_SUCCESS_SET_KIT_DESCRIPTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_KIT_DESCRIPTION_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_KIT_DESCRIPTION);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_KIT_REMOVE() {
-        if (CHAT_SUCCESS_MAP_KIT_REMOVE==null){
+    public List<String> getCHAT_SUCCESS_REMOVE_MAP_KIT() {
+        if (CHAT_SUCCESS_REMOVE_MAP_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_KIT_REMOVE);
+        }return new ArrayList<>(CHAT_SUCCESS_REMOVE_MAP_KIT);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT() {
-        if (CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT==null){
+    public List<String> getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT() {
+        if (CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_REMOVE_BECAUSE_MAP_NOT_ADD_KIT);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_KIT_ADD() {
-        if (CHAT_SUCCESS_MAP_KIT_ADD==null){
+    public List<String> getCHAT_SUCCESS_ADD_MAP_KIT() {
+        if (CHAT_SUCCESS_ADD_MAP_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_KIT_ADD);
+        }return new ArrayList<>(CHAT_SUCCESS_ADD_MAP_KIT);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_KIT_ADD_BECAUSE_MAP_ALREADY_ADD_KIT() {
-        if (CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_MAP_ALREADY_ADD_KIT==null){
+    public List<String> getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT() {
+        if (CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_KIT_ADD_BECAUSE_MAP_ALREADY_ADD_KIT);
+        }return new ArrayList<>(CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT);
     }
 
-    public List<String> getCHAT_SUCCESS_KIT_SET() {
-        if (CHAT_SUCCESS_KIT_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_KIT() {
+        if (CHAT_SUCCESS_SET_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_KIT_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_KIT);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_SET_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_SET_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_SET_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_SUCCESS_KIT_DELETE() {
-        if (CHAT_SUCCESS_KIT_DELETE==null){
+    public List<String> getCHAT_SUCCESS_DELETE_KIT() {
+        if (CHAT_SUCCESS_DELETE_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_KIT_DELETE);
+        }return new ArrayList<>(CHAT_SUCCESS_DELETE_KIT);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME() {
+        if (CHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_DELETE_BECAUSE_NOT_EXIST_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME);
     }
 
-    public List<String> getCHAT_SUCCESS_KIT_CREATE() {
-        if (CHAT_SUCCESS_KIT_CREATE==null){
+    public List<String> getCHAT_SUCCESS_CREATE_KIT() {
+        if (CHAT_SUCCESS_CREATE_KIT ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_KIT_CREATE);
+        }return new ArrayList<>(CHAT_SUCCESS_CREATE_KIT);
     }
 
-    public List<String> getCHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME() {
-        if (CHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME==null){
+    public List<String> getCHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME() {
+        if (CHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_KIT_CREATE_BECAUSE_DUPLICATE_KIT_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_BUILD_SET() {
-        if (CHAT_SUCCESS_MAP_BUILD_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_BUILD() {
+        if (CHAT_SUCCESS_SET_MAP_BUILD ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_BUILD_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_BUILD);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_FAIR_SET() {
-        if (CHAT_SUCCESS_MAP_FAIR_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_FAIR() {
+        if (CHAT_SUCCESS_SET_MAP_FAIR ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_FAIR_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_FAIR);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_SCALE_SET() {
-        if (CHAT_SUCCESS_MAP_SCALE_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_SCALE() {
+        if (CHAT_SUCCESS_SET_MAP_SCALE ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_SCALE_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_SCALE);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_DROP_SET() {
-        if (CHAT_SUCCESS_MAP_DROP_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_KEEP_INVENTORY() {
+        if (CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_DROP_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_FAIR_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_FAIR_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_FAIR_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_BUILD_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_BUILD_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_BUILD_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DROP_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_DROP_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DROP_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_SCALE_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_SCALE_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_SCALE_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
-        if (CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
+        if (CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DESCRIPTION_SET_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
+        }return new ArrayList<>(CHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_DESCRIPTION_SET() {
-        if (CHAT_SUCCESS_MAP_DESCRIPTION_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_DESCRIPTION() {
+        if (CHAT_SUCCESS_SET_MAP_DESCRIPTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_DESCRIPTION_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_DESCRIPTION);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
-        if (CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW==null){
+    public List<String> getCHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW() {
+        if (CHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DESCRIPTION_REMOVE_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
+        }return new ArrayList<>(CHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_DESCRIPTION_REMOVE() {
-        if (CHAT_SUCCESS_MAP_DESCRIPTION_REMOVE==null){
+    public List<String> getCHAT_SUCCESS_REMOVE_MAP_DESCRIPTION() {
+        if (CHAT_SUCCESS_REMOVE_MAP_DESCRIPTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_DESCRIPTION_REMOVE);
+        }return new ArrayList<>(CHAT_SUCCESS_REMOVE_MAP_DESCRIPTION);
     }
 
-    public List<String> getCHAT_SUCCESS_SECTION_SET() {
-        if (CHAT_SUCCESS_SECTION_SET==null){
+    public List<String> getCHAT_SUCCESS_SET_SECTION() {
+        if (CHAT_SUCCESS_SET_SECTION ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_SECTION_SET);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_SECTION);
     }
 
     public List<String> getCHAT_INVALID_ARGUMENT() {
@@ -1516,28 +1659,28 @@ public class MessageYaml extends YamlManagerBase {
             return null;
         }return new ArrayList<>(CHAT_INVALID_ARGUMENT);
     }
-    public List<String> getCHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_DELETE_BECAUSE_NOT_EXIST_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_DELETE() {
-        if (CHAT_SUCCESS_MAP_DELETE==null){
+    public List<String> getCHAT_SUCCESS_DELETE_MAP() {
+        if (CHAT_SUCCESS_DELETE_MAP ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_DELETE);
+        }return new ArrayList<>(CHAT_SUCCESS_DELETE_MAP);
     }
 
-    public List<String> getCHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME() {
-        if (CHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME() {
+        if (CHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_MAP_CREATE_BECAUSE_DUPLICATE_MAP_NAME);
+        }return new ArrayList<>(CHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME);
     }
 
-    public List<String> getCHAT_SUCCESS_MAP_CREATE() {
-        if (CHAT_SUCCESS_MAP_CREATE==null){
+    public List<String> getCHAT_SUCCESS_CREATE_MAP() {
+        if (CHAT_SUCCESS_CREATE_MAP ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_MAP_CREATE);
+        }return new ArrayList<>(CHAT_SUCCESS_CREATE_MAP);
     }
 
     public List<String> getCHAT_FAILURE_MAP_CREATE_BECAUSE_INVALID_FOUR_POINT() {
@@ -1552,10 +1695,10 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT);
     }
 
-    public List<String> getCHAT_SUCCESS_RELOAD() {
-        if (CHAT_SUCCESS_RELOAD==null){
+    public List<String> getCHAT_SUCCESS_RELOAD_YAML() {
+        if (CHAT_SUCCESS_RELOAD_YAML ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_RELOAD);
+        }return new ArrayList<>(CHAT_SUCCESS_RELOAD_YAML);
     }
 
     public List<String> getCHAT_SUCCESS_CORRECT_YAML() {

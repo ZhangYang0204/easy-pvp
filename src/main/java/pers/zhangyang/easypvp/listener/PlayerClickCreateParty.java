@@ -25,7 +25,7 @@ public class PlayerClickCreateParty implements Listener {
             return;
         }
 
-        int slot=event.getSlot();
+        int slot=event.getRawSlot();
         if (slot!=47){
             return;
         }
@@ -45,7 +45,7 @@ public class PlayerClickCreateParty implements Listener {
 
 
             //创建队伍并注册
-        Bukkit.getPluginManager().registerEvents(new PlayerChatAfterClickCreateParty(gamer), EasyPvp.getInstance());
+        Bukkit.getPluginManager().registerEvents(new PlayerCreateParty(gamer), EasyPvp.getInstance());
         MessageUtil.sendMessageTo(player, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_CREATE_PARTY());
         player.closeInventory();
 

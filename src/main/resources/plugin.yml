@@ -3,7 +3,7 @@
 
   api-version: 1.13
     #版本
-  version: 1.1.0
+  version: 1.1.1
 
   #主类的位置，插件开启时会调用这个类的相关方法
   main: pers.zhangyang.easypvp.EasyPvp

@@ -11,26 +11,21 @@ public class KitDao   extends DaoBase{
     }
 
     public void init() throws SQLException {
-
-
         PreparedStatement ps =  getConnection().prepareStatement("" +
                 "CREATE TABLE if not exists kit_table (" +
                 "  'uuid' STRING NOT NULL ," +
                 "  'name' STRING NOT NULL  UNIQUE ," +
                 "  'description'STRING  ," +
                 "  PRIMARY KEY (uuid)" +
-
                 ")");
         ps.executeUpdate();
     }
     public KitMeta selectByName(String name) throws SQLException {
-
         PreparedStatement ps=getConnection().prepareStatement("" +
                 "select * from kit_table where name=?");
         ps.setString(1,name);
         ResultSet rs=ps.executeQuery();
         if (rs.next()){
-
             return changeFromResultSet(rs);
         }else {
             return null;

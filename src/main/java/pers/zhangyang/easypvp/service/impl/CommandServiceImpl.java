@@ -59,7 +59,7 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void mapChooseTickSet(String mapName, long chooseTick) throws NotExistMapNameException, SQLException {
+    public void mapChooseTickSet(String mapName, int chooseTick) throws NotExistMapNameException, SQLException {
         if (chooseTick<0){throw new IllegalArgumentException();}
         MapMeta mapMeta=mapDao.selectByName(mapName);
         //检查名字
@@ -68,7 +68,7 @@ public class CommandServiceImpl implements CommandService {
         }
         //先删除再插入
         mapDao.deleteByUuid(mapMeta.getUuid());
-        mapMeta.setChooseTick(chooseTick);
+        mapMeta.setChooseKitTime(chooseTick);
         mapDao.insert(mapMeta);
     }
 
@@ -107,7 +107,7 @@ public class CommandServiceImpl implements CommandService {
         }
         //先删除再插入
         mapDao.deleteByUuid(mapMeta.getUuid());
-        mapMeta.setDrop(drop);
+        mapMeta.setKeepInventory(drop);
         mapDao.insert(mapMeta);
     }
 
@@ -188,6 +188,19 @@ public class CommandServiceImpl implements CommandService {
         for (KitItemStackMeta kitItemStackMeta : kitItemStackMetaList) {
             kitItemStackDao.insert(kitItemStackMeta);
         }
+    }
+
+    @Override
+    public void setMapKeepLevel(String mapName, boolean keepLevel) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setKeepLevel(keepLevel);
+        mapDao.insert(mapMeta);
     }
 
     @Override

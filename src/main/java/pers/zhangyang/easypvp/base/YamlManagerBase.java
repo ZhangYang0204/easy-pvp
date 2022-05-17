@@ -26,11 +26,17 @@ public abstract class YamlManagerBase {
      * @throws InvalidConfigurationException
      */
 
-    public YamlManagerBase(String filePath){
+    protected YamlManagerBase(String filePath){
         this.filePath=filePath;
         this.yamlConfiguration=new YamlConfiguration();
         this.backUpConfiguration=new YamlConfiguration();
     }
+
+    /**
+     * 会把对应的文件保存到PluginEasyPvp下
+     * @throws IOException
+     * @throws InvalidConfigurationException
+     */
     public void init( ) throws IOException, InvalidConfigurationException {
 
         File file=new File(EasyPvp.getInstance().getDataFolder(), filePath);
@@ -56,8 +62,18 @@ public abstract class YamlManagerBase {
         this.backUpConfiguration.load(inputStreamReader);
         check();
     }
+
+    /**
+     * 用于检查配置文件的值的正确性
+     * @throws IOException
+     * @throws InvalidConfigurationException
+     */
     protected abstract void check() throws IOException, InvalidConfigurationException;
 
+    /**
+     * 修正配置文件内容
+     * @throws IOException
+     */
     public void correct() throws IOException {
         //删除多余的
         for (String path: yamlConfiguration.getKeys(true)){
@@ -91,16 +107,18 @@ public abstract class YamlManagerBase {
     }
 
 
-    protected    void setDefault( @Nonnull String path) {
+    /**
+     * 将指定键设置为resource里的默认值
+     * @param path
+     */
+    private     void setDefault( @Nonnull String path) {
 
         Object ob=yamlConfiguration.get(path);
         yamlConfiguration.set(path,backUpConfiguration.get(path));
         try {
             yamlConfiguration.save(EasyPvp.getInstance().getDataFolder().getAbsoluteFile()+"/"+filePath);
 
-            Bukkit.getConsoleSender().sendMessage("自动补全"+filePath+"中键为:" + path + " 的内容成功");
         } catch (IOException e) {
-            Bukkit.getConsoleSender().sendMessage("自动补全"+filePath+"中键为:" + path + " 的内容失败");
             yamlConfiguration.set(path,ob);
         }
 

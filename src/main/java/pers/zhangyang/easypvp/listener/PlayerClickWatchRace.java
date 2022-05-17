@@ -30,7 +30,7 @@ public class PlayerClickWatchRace  implements Listener {
             return;
         }
 
-        int slot = event.getSlot();
+        int slot = event.getRawSlot();
         if (slot <0||slot>44) {
             return;
         }

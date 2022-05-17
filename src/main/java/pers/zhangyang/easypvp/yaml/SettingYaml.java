@@ -21,6 +21,7 @@ public class SettingYaml extends YamlManagerBase {
     private String DATABASE_USERNAME;
     private  String LANGUAGE;
 
+
     public String getDATABASE_URL() {
         return DATABASE_URL;
     }

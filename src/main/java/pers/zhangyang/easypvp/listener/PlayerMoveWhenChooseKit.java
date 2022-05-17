@@ -13,7 +13,7 @@ public class PlayerMoveWhenChooseKit implements Listener {
     public void onM(PlayerMoveEvent event){
 
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer((Player) event.getPlayer());
-        Race race=gamer.getRace();
+        Race race=gamer.getRacingRace();
         if (race==null){
             return;
         }

@@ -21,10 +21,10 @@ public abstract class CommandBase {
         this.forcePlayer = forcePlayer;
         this.args=args;
     }
-    public void process(){
+    public boolean process(){
         if (!(sender instanceof Player)&&forcePlayer){
             MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_NOT_PLAYER());
-            return;
+            return true;
         }
         String permission="EasyPvp."+args[0];
         if (!sender.hasPermission(permission)){
@@ -34,9 +34,15 @@ public abstract class CommandBase {
             ReplaceUtil.replace(list, Collections.singletonMap("{permission}",permission));
             MessageUtil.sendMessageTo(sender, list);
 
-            return;
+            return true;
         }
-        run();
+        return run();
+    }
+
+    protected void invalidArgument(String arg){
+        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_INVALID_ARGUMENT();
+        ReplaceUtil.replace(list,Collections.singletonMap("{argument}",arg));
+        MessageUtil.sendMessageTo(sender, list);
     }
 
     protected abstract boolean run();
