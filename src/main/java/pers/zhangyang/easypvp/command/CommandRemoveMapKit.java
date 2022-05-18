@@ -27,13 +27,15 @@ public class CommandRemoveMapKit extends CommandBase {
         try {
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapKitRemove(args[1],args[2]);
+            commandService.removeMapKit(args[1],args[2]);
         } catch (NotExistMapNameException e) {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         } catch (SQLException e) {
@@ -44,7 +46,9 @@ public class CommandRemoveMapKit extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         } catch (MapNotAddKitException e) {
@@ -52,7 +56,9 @@ public class CommandRemoveMapKit extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_MAP_NOT_ADD_KIT();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -60,7 +66,9 @@ public class CommandRemoveMapKit extends CommandBase {
         rep.put("{map}",args[1]);
         rep.put("{kit}",args[2]);
         List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_REMOVE_MAP_KIT();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

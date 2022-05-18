@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,13 +16,13 @@ public class ItemStackUtil {
 
 
 
-    public static ItemStack getItemStack(String materialName, String displayName, List<String> lore){
+    @Nonnull
+    public static ItemStack getItemStack(@Nonnull String materialName, @Nullable String displayName,@Nullable List<String> lore){
 
         Material material= Material.matchMaterial(materialName);
-        if (material.equals(Material.AIR)){throw new IllegalArgumentException();}
+        if (material==null){throw new IllegalArgumentException();}
         ItemStack itemStack=new ItemStack(material);
         ItemMeta itemMeta=itemStack.getItemMeta();
-
         if (lore!=null){
             for(int i=0;i< lore.size();i++){
                 lore.set(i, ChatColor.translateAlternateColorCodes('&',lore.get(i)));
@@ -40,16 +41,17 @@ public class ItemStackUtil {
 
     }
 
+    @Nonnull
     public static String itemStackSerialize(@Nonnull ItemStack itemStack) {
         if (itemStack==null) {throw new NullPointerException();}
         YamlConfiguration yml = new YamlConfiguration();
         yml.set("item", itemStack);
         return yml.saveToString();
-
     }
 
     @Nonnull
     public static ItemStack itemStackDeserialize(@Nonnull String str)  {
+        if (str==null){throw new IllegalArgumentException();}
         YamlConfiguration yml = new YamlConfiguration();
         ItemStack item;
         try {

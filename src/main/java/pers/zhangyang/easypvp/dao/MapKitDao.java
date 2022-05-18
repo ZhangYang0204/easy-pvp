@@ -74,6 +74,8 @@ public class MapKitDao   extends DaoBase{
             return null;
         }
     }
+
+
     private MapKitMeta changeFromResultSet(ResultSet rs) throws SQLException {
         MapKitMeta
                 mapKitMeta =new MapKitMeta();

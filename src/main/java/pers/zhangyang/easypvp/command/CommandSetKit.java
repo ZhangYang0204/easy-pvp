@@ -31,30 +31,23 @@ public class CommandSetKit extends CommandBase {
 
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            KitMeta kitMeta= commandService.getKitMeta(args[1]);
-            String kitUuid= kitMeta.getUuid();
-            List<KitItemStackMeta> kitItemStackMetaList =new ArrayList<>();
-            for (int i=0;i<player.getInventory().getContents().length;i++){
-                if (player.getInventory().getContents()[i]==null){continue;}
-                KitItemStackMeta kitItemStackMeta =new KitItemStackMeta();
-                kitItemStackMeta.setKitUuid(kitUuid);
-                kitItemStackMeta.setData(ItemStackUtil.itemStackSerialize(player.getInventory().getContents()[i]));
-                kitItemStackMeta.setSlot(i);
-                kitItemStackMetaList.add(kitItemStackMeta);
-            }
-            commandService.kitSet(args[1], kitItemStackMetaList);
+            commandService.setKit(args[1], player.getInventory().getContents());
         }  catch (SQLException e) {
             e.printStackTrace();
             return true ;
         } catch (NotExistKitNameException e) {
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+            if (list!=null) {
+                ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
 
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_KIT();
-        ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

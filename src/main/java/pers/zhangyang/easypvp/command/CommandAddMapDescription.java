@@ -25,11 +25,7 @@ public class CommandAddMapDescription extends CommandBase {
 
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            MapMeta mapMeta=commandService.getMapMeta(args[1]);
-            String[] descriptions = mapMeta.getDescription()==null?new String[0]:mapMeta.getDescription().split(" ");
-            List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
-            descriptionList.add(args[2]);
-            commandService.mapDescriptionSet(args[1], descriptionList);
+            commandService.addMapDescription(args[1],args[2] );
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,6 +39,7 @@ public class CommandAddMapDescription extends CommandBase {
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
+
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{map}",args[1]);
         rep.put("{description}",args[2]);

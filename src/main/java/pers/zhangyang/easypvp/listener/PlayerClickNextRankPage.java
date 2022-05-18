@@ -55,7 +55,7 @@ public class PlayerClickNextRankPage implements Listener {
         List<RecordMeta> recordMetaList;
         try {
             RaceService raceService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-            recordMetaList = raceService.getRecord();
+            recordMetaList = raceService.getRecordMetaList();
         } catch (SQLException e) {
             e.printStackTrace();
             return;

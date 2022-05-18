@@ -25,10 +25,7 @@ public class PlayerClickBackAllMember implements Listener {
     @EventHandler
     public void onClickInventory(InventoryClickEvent event){
         Inventory inventory=event.getInventory();
-        if (!(inventory.getHolder() instanceof AllMapPage)){
-            return;
-        }
-
+        if (!(inventory.getHolder() instanceof AllMapPage)){return;}
         int slot=event.getRawSlot();
         if (slot!=49){
             return;

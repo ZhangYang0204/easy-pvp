@@ -24,11 +24,7 @@ public class CommandAddKitDescription extends CommandBase {
         try {
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            KitMeta kitMeta=commandService.getKitMeta(args[1]);
-            String[] descriptions = kitMeta.getDescription()==null?new String[0]:kitMeta.getDescription().split(" ");
-            List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
-            descriptionList.add(args[2]);
-            commandService.kitDescriptionSet(args[1], descriptionList);
+            commandService.addKitDescription(args[1],args[2] );
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;
@@ -37,7 +33,10 @@ public class CommandAddKitDescription extends CommandBase {
             rep.put("{kit}",args[1]);
             rep.put("{description}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list,rep);
+            if (list!=null) {
+                ReplaceUtil.replace(list, rep);
+            }
+            
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -45,7 +44,9 @@ public class CommandAddKitDescription extends CommandBase {
         rep.put("{kit}",args[1]);
         rep.put("{description}",args[2]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_KIT_DESCRIPTION();
-        ReplaceUtil.replace(list,rep);
+        if (list!=null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

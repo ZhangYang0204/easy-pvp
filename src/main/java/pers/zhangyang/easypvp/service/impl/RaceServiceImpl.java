@@ -18,9 +18,12 @@ public class RaceServiceImpl implements RaceService {
     private final MapBlockInventoryItemStackDao mapBlockInventoryItemStackDao =new MapBlockInventoryItemStackDao();
     public RaceServiceImpl() throws SQLException {
     }
-
     @Override
-    public List<MapBlockMeta> getBlockMeta(String mapUuid) throws SQLException {
+    public List<MapMeta> getMapMeta(int scale) throws SQLException {
+        return mapDao.selectByScale(scale);
+    }
+    @Override
+    public List<MapBlockMeta> getMapBlockMetaList(String mapUuid) throws SQLException {
         return mapBlockDao.selectByMapUuid(mapUuid);
     }
 
@@ -76,13 +79,13 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<KitItemStackMeta> getItemMeta(String kitUuid) throws SQLException {
+    public List<KitItemStackMeta> getKitItemStackMetaList(String kitUuid) throws SQLException {
 
         return kitItemStackDao.selectByKitUuid(kitUuid);
     }
 
     @Override
-    public List<KitMeta> getKitMetaByMapUuid(String mapUuid) throws SQLException {
+    public List<KitMeta> getKitMetaList(String mapUuid) throws SQLException {
        List<MapKitMeta> mapKitMetaList= mapKitDao.selectByMapUuid(mapUuid);
        List<KitMeta> kitMetaList=new ArrayList<>();
        for (MapKitMeta mapKitMeta:mapKitMetaList){
@@ -93,17 +96,17 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException {
+    public List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMetaList(String mapUuid) throws SQLException {
         return mapBlockInventoryItemStackDao.selectByMapUuid(mapUuid);
     }
 
     @Override
-    public RecordMeta getRecord(String playerUuid) throws SQLException {
+    public RecordMeta getRecordMetaList(String playerUuid) throws SQLException {
         return recordDao.selectByPlayerUuid(playerUuid);
     }
 
     @Override
-    public List<RecordMeta> getRecord() throws SQLException {
+    public List<RecordMeta> getRecordMetaList() throws SQLException {
         return recordDao.select();
     }
 }

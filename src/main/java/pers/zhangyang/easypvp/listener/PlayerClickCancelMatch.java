@@ -53,7 +53,9 @@ public class PlayerClickCancelMatch implements Listener {
                     .getCHAT_FAILURE_CANCEL_MATCH_BECAUSE_PARTY_IS_NOT_MATCHING();
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{party}", party.getPartyName());
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(player, list);
             return;
         }
@@ -67,7 +69,9 @@ public class PlayerClickCancelMatch implements Listener {
                 .getCHAT_SUCCESS_CANCEL_MATCH();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{party}", party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(player, list);
 
         //其他人通知
@@ -82,7 +86,9 @@ public class PlayerClickCancelMatch implements Listener {
             rep = new HashMap<>();
             rep.put("{party}", party.getPartyName());
             rep.put("{member}", player.getName());
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(p, list);
         }
         return;

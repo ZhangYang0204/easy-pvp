@@ -10,6 +10,7 @@ import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,15 +29,19 @@ public class AllMemberPage implements InventoryHolder {
         gamerList=new ArrayList<>();
     }
 
+    @Nonnull
     public List<Gamer> getGamerList() {
         return new ArrayList<>(gamerList);
     }
 
+    @Nonnull
     public Party getParty() {
         return party;
     }
 
     public void init(Party party, int pageIndex,List<Gamer> gamerList){
+
+        if (party==null||gamerList==null){throw new IllegalArgumentException();}
         this.pageIndex=pageIndex;
         this.party=party;
         this.gamerList.clear();
@@ -50,12 +55,14 @@ public class AllMemberPage implements InventoryHolder {
             String displayName= guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_DISPLAY_NAME();
             List<String> lore= guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_LORE();
 
+            if (displayName!=null)
             displayName=ReplaceUtil.replace(displayName,Collections.singletonMap("{member}",
                     party.getMemberList().get(i).getPlayer().getName()));
 
-            ReplaceUtil.replace(lore,Collections.singletonMap("{member}",
-                    party.getMemberList().get(i).getPlayer().getName()));
-
+            if (lore!=null) {
+                ReplaceUtil.replace(lore, Collections.singletonMap("{member}",
+                        party.getMemberList().get(i).getPlayer().getName()));
+            }
             ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MEMBER_PAGE_MEMBER_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
@@ -90,12 +97,13 @@ public class AllMemberPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }
-    public void send(Player player){
+    }public void send(@Nonnull Player player){
+        if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
+    @Nonnull
     public Inventory getInventory() {
         return inventory;
     }

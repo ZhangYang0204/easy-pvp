@@ -55,7 +55,9 @@ public class PlayerClickMatchMap implements Listener {
                 rep.put("{map}",mapMeta.getName());
                 rep.put("{party}",party.getPartyName());
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)) {
@@ -66,7 +68,9 @@ public class PlayerClickMatchMap implements Listener {
 
                 rep.put("{party}",party.getPartyName());
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);return;
             }
 
@@ -80,7 +84,9 @@ public class PlayerClickMatchMap implements Listener {
 
         rep.put("{party}",party.getPartyName());
         rep.put("{map}",mapMeta.getName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(player, list);
 
         //其他人通知
@@ -94,7 +100,9 @@ public class PlayerClickMatchMap implements Listener {
 
             rep.put("{party}",party.getPartyName());
             rep.put("{map}",mapMeta.getName());
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(p, list);
         }
 

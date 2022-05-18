@@ -19,7 +19,7 @@ public class CommandResetRecord extends CommandBase {
     protected boolean run() {
         try {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.recordReset();
+            commandService.resetRecord();
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;

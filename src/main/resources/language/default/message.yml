@@ -141,6 +141,7 @@ message:
     failureAddMapDescriptionBecauseNotExistMapName:
       - "&c&l添加地图 &f{map} &c&l的描述 &f{description} &c&l失败,没有找到叫这个名字的地图"
 
+
     successRemoveMapDescription:
       - "&b&l成功删除地图 &f{map} &b&l的第 &f{row} &b&l行描述"
     failureRemoveMapDescriptionBecauseNotExistMapName:
@@ -187,7 +188,7 @@ message:
 
     successAddKitDescription:
       - "&b&l成功添加装备包 &f{kit} &b&l的描述 &f{description}"
-    failureKitDescriptionAddBecauseNotExistMapName:
+    failureAddKitDescriptionBecauseNotExistKitName:
       - "&c&l添加装备包 &f{kit} &c&l的描述 &f{description} &c&l失败,没有找到叫这个名字的装备包"
 
     successKitDescriptionRemove:
@@ -484,110 +485,133 @@ message:
       - "setSection"
 
     easyPvpCreateKit:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
     easyPvpDeleteKit:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpAddKitDescription:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpAddKitDescription$:
-      - "在描述的最后一行添加描述"
-      - "一行描述"
+      - "(在描述的最后一行添加描述)"
+      - "(一行描述)"
     easyPvpSetKitDescription:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpSetKitDescription$:
-      - "行数"
-      - "1"
+      - "(行数)"
+      - "{[$]}"
     easyPvpSetKitDescription$$:
-      - "一行描述"
-      - "1"
+      - "(一行描述)"
 
     easyPvpRemoveKitDescription:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpRemoveKitDescription$:
-      - "行数"
-      - "1"
-
+      - "(行数)"
+      - "{[$]}"
     easyPvpSetKit:
-      - "注意名字不要重复"
-      - "装备包名字"
-
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpCreateMap:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
     easyPvpDeleteMap:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpAddMapDescription:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpAddMapDescription$:
-      - "在描述的最后一行添加描述"
-      - "一行描述"
+      - "(在描述的最后一行添加描述)"
+      - "(一行描述)"
     easyPvpSetMapDescription:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
 
     easyPvpSetMapDescription$:
-      - "行数"
-      - "1"
+      - "(行数)"
+      - "{[$]}"
+    easyPvpRemoveMapDescription:
+      - "(注意名字不要重复0"
+      - "(地图名字)"
+      - "{[$]}"
+
+    easyPvpRemoveMapDescription$:
+      - "(行数)"
+      - "{[$]}"
     easyPvpSetMapDescription$$:
-      - "一行描述"
+      - "(一行描述)"
 
     easyPvpSetMapBuild:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapBuild$:
       - "true"
       - "false"
     easyPvpSetMapChooseTime:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapChooseTime$:
-      - "大于1的数字,一刻为50毫秒"
+      - "(大于1的数字,一刻为50毫秒)"
     easyPvpSetMapKeepInventory:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapKeepInventory$:
       - "true"
       - "false"
     easyPvpSetMapKeepLevel:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapKeepLevel$:
       - "true"
       - "false"
     easyPvpSetMapFair:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapFair$:
       - "true"
       - "false"
     easyPvpSetMapScale:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpSetMapScale$:
       - "大于0的数字"
     easyPvpSetSection:
-      - "first和second确定了区域"
-      - "red和blue分别是两个队伍的出售点"
+      - "(first和second确定了区域)"
+      - "(red和blue分别是两个队伍的出生点)"
       - "first"
       - "second"
       - "red"
       - "blue"
     easyPvpAddMapKit:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpAddMapKit$:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"
     easyPvpRemoveMapKit:
-      - "注意名字不要重复"
-      - "地图名字"
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
     easyPvpRemoveMapKit$:
-      - "注意名字不要重复"
-      - "装备包名字"
+      - "(注意名字不要重复)"
+      - "(装备包名字)"
+      - "{[$]}"

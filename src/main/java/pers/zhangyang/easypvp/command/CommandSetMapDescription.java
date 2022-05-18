@@ -2,6 +2,7 @@ package pers.zhangyang.easypvp.command;
 
 import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CommandBase;
+import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
@@ -36,25 +37,8 @@ public class CommandSetMapDescription extends CommandBase {
         }
         try {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            MapMeta mapMeta = commandService.getMapMeta((args[1]));
-
-            String[] descriptions = mapMeta.getDescription() == null ? new String[0] : mapMeta.getDescription().split(" ");
-            if (descriptions.length < index + 1) {
-                HashMap<String, String> rep = new HashMap<>();
-                rep.put("{map}", args[1]);
-                rep.put("{row}", args[2]);
-                rep.put("{description}", args[3]);
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
-                ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(sender, list);
-                return true;
-            }
-            descriptions[index] = args[3];
-            commandService.mapDescriptionSet(args[1], Arrays.asList(descriptions));
-
+            commandService.setMapDescription(args[1],index,args[3] );
             RefreshUtil.refreshAllMapPage();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
             return true;
@@ -64,7 +48,20 @@ public class CommandSetMapDescription extends CommandBase {
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
+            MessageUtil.sendMessageTo(sender, list);
+            return true;
+        } catch (NotExistDesciptionRowException e) {
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{row}", args[2]);
+            rep.put("{description}", args[3]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
@@ -73,7 +70,9 @@ public class CommandSetMapDescription extends CommandBase {
         rep.put("{row}", args[2]);
         rep.put("{description}", args[3]);
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_DESCRIPTION();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
 

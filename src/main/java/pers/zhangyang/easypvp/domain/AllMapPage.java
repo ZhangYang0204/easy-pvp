@@ -11,6 +11,7 @@ import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,10 +30,12 @@ public class AllMapPage implements InventoryHolder {
         this.mapMetaList=new ArrayList<>();
     }
 
+    @Nonnull
     public Party getParty() {
         return party;
     }
 
+    @Nonnull
     public List<MapMeta> getMapMetaList() {
         List<MapMeta> mapMetaList=new ArrayList<>();
         for (MapMeta m:this.mapMetaList){
@@ -41,7 +44,9 @@ public class AllMapPage implements InventoryHolder {
         return mapMetaList;
     }
 
-    public void init(Party party, int pageIndex, List<MapMeta> mapMetaList){
+    public void init(@Nonnull Party party, int pageIndex,@Nonnull List<MapMeta> mapMetaList){
+
+        if (party==null||mapMetaList==null){throw new IllegalArgumentException();}
         this.pageIndex=pageIndex;
         this.party=party;
         this.mapMetaList.clear();
@@ -56,16 +61,20 @@ public class AllMapPage implements InventoryHolder {
 
             List<String> lore= guiYaml.getBUTTON_ALL_MAP_PAGE_MATCH_MAP_LORE();
 
-            displayName=ReplaceUtil.replace(displayName,Collections.singletonMap("{map}",
-                    mapMetaList.get(i).getName()));
-
-            ReplaceUtil.replace(lore,Collections.singletonMap("{map}",
-                    mapMetaList.get(i).getName()));
-
+            if (displayName!=null) {
+                displayName = ReplaceUtil.replace(displayName, Collections.singletonMap("{map}",
+                        mapMetaList.get(i).getName()));
+            }
+            if (lore!=null) {
+                ReplaceUtil.replace(lore, Collections.singletonMap("{map}",
+                        mapMetaList.get(i).getName()));
+            }
             String[] descriptions = mapMetaList.get(i).getDescription()==null?new String[0]:mapMetaList.get(i).getDescription().split(" ");
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
-            ReplaceUtil.format(lore,"{[description]}",descriptionList);
+            if (lore!=null) {
+                ReplaceUtil.format(lore, "{[description]}", descriptionList);
 
+            }
             ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_MAP_PAGE_MATCH_MAP_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
@@ -102,12 +111,13 @@ public class AllMapPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }
-    public void send(Player player){
+    }public void send(@Nonnull Player player){
+        if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
+    @Nonnull
     public Inventory getInventory() {
         return inventory;
     }

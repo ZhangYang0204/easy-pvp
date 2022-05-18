@@ -29,7 +29,7 @@ public class CommandSetMapBuild extends CommandBase  {
         boolean build=Boolean.parseBoolean(args[2]);
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapBuildSet(args[1],build);
+            commandService.setMapBuild(args[1],build);
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;
@@ -38,7 +38,9 @@ public class CommandSetMapBuild extends CommandBase  {
             rep.put("{map}",args[1]);
             rep.put("{build}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -46,7 +48,9 @@ public class CommandSetMapBuild extends CommandBase  {
         rep.put("{map}",args[1]);
         rep.put("{build}",args[2]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_BUILD();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

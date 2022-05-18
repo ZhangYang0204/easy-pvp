@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
+import pers.zhangyang.easypvp.exception.*;
 import pers.zhangyang.easypvp.manager.PartyManager;
 
 import javax.annotation.Nonnull;
@@ -22,35 +23,39 @@ public class Gamer  {
      * new出来的对象不注册是没有作用的,请使用GamerManager.getGamer(Player)方法
      * @param player
      */
-    public Gamer(Player player) {
+    public Gamer(@Nonnull Player player) {
+        if (player==null) {throw new NullPointerException();}
         this.player = player;
         this.stats = GamerStatsEnum.FREEING;
     }
 
     /**
-     * 如果有队伍什么也不做
-     * 如果正在观战中什么也不做
+     *
      * @return
+     * @exception IllegalGamerStatsException 如果状态不是FREEING
      */
-    @Nonnull
-    public void createParty(String name){
-        //首先离开自身的队伍
-        if (party!=null){return ;}
-        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
-
+    public void createParty(@Nonnull String name){
+        if (name==null){throw new NullPointerException();}
+        if(!stats.equals(GamerStatsEnum.FREEING)){
+            throw new IllegalGamerStatsException("Gamer stats is not freeing");
+        }
         this.party=new Party(this,name);
         PartyManager.PARTY_MANAGER.add(this.party);
         this.stats=GamerStatsEnum.READING;
     }
 
     /**
-     * 离开比赛
-     * 如果本身不在比赛,什么也不做
-     * 有可能触发比赛结束
+     * 离开比赛  如果符合条件触发比赛结束
+     * @exception IllegalGamerStatsException 当不在比赛中
      */
-    public void leaveRace(){
+    public void leaveRace() throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
         //如果没有比赛什么也不做
         if (racingRace ==null){return;}
+
+        if(!stats.equals(GamerStatsEnum.RACING)){
+            throw new IllegalGamerStatsException("Gamer stats is not gaming");
+        }
+
 
         //比赛中移除自己
         racingRace.redAlive.remove(this);
@@ -101,18 +106,15 @@ public class Gamer  {
     }
 
     /**
-     * 加入目标队伍
-     * 如果有队伍或者正在观战,什么也不做
-     * 如果队伍正在比赛什么也不做
-     * 如果队伍正在匹配中什么也不做
-     *
      * @param party 要加入的队伍
+     * @exception IllegalGamerStatsException 不是freeing状态
      */
     public void joinParty(@Nonnull Party party){
-        if (hasParty()){return;}
-        if (party.stats.equals(PartyStatsEnum.GAMING)){return;}
-        if (party.stats.equals(PartyStatsEnum.MATCHING)){return;}
-        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
+        if (party==null){throw new NullPointerException();}
+
+        if(!stats.equals(GamerStatsEnum.FREEING)){
+            throw new IllegalGamerStatsException("Gamer stats is not freeing");
+        }
         party.memberList.add(this);
         this.party=party;
         this.stats=GamerStatsEnum.READING;
@@ -122,19 +124,14 @@ public class Gamer  {
     }
 
     /**
-     * 离开队伍
-     * 如果原本没有队伍,不做任何事
-     * 如果队伍正在匹配什么也不做,
-     * 如果队伍正在比赛什么也不做
-     * 如果离开后队伍是空的,则队伍销毁
+     * 离开队伍  如果离开后队伍是空的,则队伍销毁
+     * @exception  IllegalGamerStatsException 当不是reading状态
      */
     public void leaveParty(){
-        //如果没有队伍,什么也不做
-        if (party==null){return;}
-        //离开比赛
-        if (party.stats.equals(PartyStatsEnum.GAMING)){return;}
 
-        if (party.stats.equals(PartyStatsEnum.MATCHING)){return;}
+        if(!stats.equals(GamerStatsEnum.READING)){
+            throw new IllegalGamerStatsException("Gamer stats is not reading");
+        }
 
         //离开队伍
         party.memberList.remove(this);
@@ -192,10 +189,15 @@ public class Gamer  {
      * @param race
      */
     public void watchRace(Race race){
-        if (!race.stats.equals(RaceStatsEnum.GAMING)){return;}
-        if (stats.equals(GamerStatsEnum.WATCHING)){return;}
-        if (party!=null){return;}
+        if (race==null){throw new NullPointerException();}
 
+        if (!race.stats.equals(RaceStatsEnum.RACING)){
+            throw new IllegalRaceStatsException("Race is not racing");
+        }
+
+        if (!stats.equals(GamerStatsEnum.FREEING)){
+            throw new IllegalGamerStatsException("Gamer is not freeing");
+        }
 
         this.stats=GamerStatsEnum.WATCHING;
         this.watchingRace=race;
@@ -212,7 +214,9 @@ public class Gamer  {
      * 不是观战模式不做
      */
     public void unwatchRace(){
-        if (!stats.equals(GamerStatsEnum.WATCHING)){return;}
+        if (!stats.equals(GamerStatsEnum.WATCHING)){
+            throw new IllegalGamerStatsException("Gamer is not watching");
+        }
         this.stats=GamerStatsEnum.FREEING;
         player.setGameMode(watchingRace.watcherGameModeBefore.get(this));
         player.teleport(watchingRace.watcherLocationBefore.get(this));
@@ -223,7 +227,7 @@ public class Gamer  {
         this.watchingRace=null;
     }
 
-
+@Nullable
     public Race getWatchingRace() {
         return watchingRace;
     }

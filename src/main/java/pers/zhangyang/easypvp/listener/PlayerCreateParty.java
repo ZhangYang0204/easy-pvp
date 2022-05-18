@@ -49,7 +49,9 @@ public class PlayerCreateParty implements Listener {
         for (Party p: PartyManager.PARTY_MANAGER.getPartyList()){
             if (p.getPartyName().equals(args[0])){
                 List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME();
-                ReplaceUtil.replace(list, Collections.singletonMap("{party}",args[0]));
+                if (list!=null) {
+                    ReplaceUtil.replace(list, Collections.singletonMap("{party}", args[0]));
+                }
                 MessageUtil.sendMessageTo(player,list);
                 return;
             }
@@ -58,7 +60,10 @@ public class PlayerCreateParty implements Listener {
         if (gamer.hasParty()) {
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_FAILURE_CREATE_PARTY_BECAUSE_ALREADY_JOIN_PARTY();
-            ReplaceUtil.replace(list, Collections.singletonMap("{party}",gamer.getParty().getPartyName()));
+            if (list!=null) {
+
+                ReplaceUtil.replace(list, Collections.singletonMap("{party}", gamer.getParty().getPartyName()));
+            }
             MessageUtil.sendMessageTo(player, list);
             backGui();
             unregisterSelf();
@@ -80,7 +85,10 @@ public class PlayerCreateParty implements Listener {
 
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_CREATE_PARTY();
-        ReplaceUtil.replace(list, Collections.singletonMap("{party}",args[0]));
+
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{party}", args[0]));
+        }
         MessageUtil.sendMessageTo(player, list);
         //刷新全部打开的页面
         RefreshUtil.refreshAllPartyPage();

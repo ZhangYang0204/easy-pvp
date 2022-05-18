@@ -42,7 +42,6 @@ public class PlayerClickBackAllPartyPageInRankPage implements Listener {
         }
         event.setCancelled(true);
         Player player= (Player) event.getWhoClicked();
-        Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
 
 
         String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();

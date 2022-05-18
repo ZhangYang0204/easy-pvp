@@ -39,7 +39,9 @@ public class CommandSetMapKeepLevel extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{keep}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -47,7 +49,9 @@ public class CommandSetMapKeepLevel extends CommandBase {
         rep.put("{map}",args[1]);
         rep.put("{keep}",args[2]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_KEEP_LEVEL();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
         return true ;
     }

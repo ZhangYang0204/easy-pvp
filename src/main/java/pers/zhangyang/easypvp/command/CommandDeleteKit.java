@@ -25,18 +25,23 @@ public class CommandDeleteKit extends CommandBase {
         try {
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.kitDelete(args[1]);
+            commandService.deleteKit(args[1]);
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;
         } catch (NotExistKitNameException e) {
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_DELETE_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+            if (list!=null) {
+                ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+            }
+
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DELETE_KIT();
-        ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

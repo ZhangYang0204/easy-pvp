@@ -6,6 +6,9 @@ import javax.annotation.Nonnull;
 
 public class LocationUtil {
     public static boolean isSameWorld(@Nonnull Location location1, @Nonnull Location location2){
+        if (location1==null||location2==null){
+            throw new IllegalArgumentException();
+        }
         if (location1.getWorld()==null||location2.getWorld()==null){
             return false;
         }
@@ -20,6 +23,10 @@ public class LocationUtil {
 
     //按方块
     public static boolean blockIsIn(@Nonnull Location corner1, @Nonnull Location corner2,@Nonnull Location target){
+
+        if (corner1==null||corner2==null||target==null){
+            throw new IllegalArgumentException();
+        }
 
         if (!isSameWorld(corner1,corner2)
                 ||!isSameWorld(corner1,target)

@@ -42,16 +42,12 @@ public class PlayerClickBackAllPartyPageInAllMemberPage implements Listener {
         }
         event.setCancelled(true);
         Player player= (Player) event.getWhoClicked();
-        Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
-
 
         String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
         AllPartyPage allPartyPage=new AllPartyPage(title);
-        allPartyPage.init(PageUtil.pageParty(0,45,
-                PartyManager.PARTY_MANAGER.getPartyList()),0);
+        allPartyPage.init(PageUtil.pageParty(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
         allPartyPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                .getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE();
+        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE();
         MessageUtil.sendMessageTo(player, list);
 
     }

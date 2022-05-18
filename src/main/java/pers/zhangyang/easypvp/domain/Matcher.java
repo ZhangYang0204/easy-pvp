@@ -9,11 +9,20 @@ public class Matcher {
     private final Party party;
     private final MapMeta mapMeta;
 
-    public Matcher(Party party, MapMeta mapMeta) {
+    public Matcher(@Nonnull Party party, @Nonnull MapMeta mapMeta) {
+
+        if (party==null||mapMeta==null){throw new NullPointerException();}
         this.party = party;
         this.mapMeta = mapMeta;
     }
-    public Matcher(Party party) {
+
+    /**
+     * 仅仅是new对象 没注册不会匹配
+     * @param party
+     */
+    public Matcher(@Nonnull Party party) {
+
+        if (party==null){throw new NullPointerException();}
         this.party = party;
         mapMeta=null;
     }

@@ -1,6 +1,5 @@
 package pers.zhangyang.easypvp.runnable;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Gamer;
@@ -8,12 +7,12 @@ import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
+import pers.zhangyang.easypvp.exception.FailureCreateWorldException;
+import pers.zhangyang.easypvp.exception.FailureTeleportException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.meta.*;
-import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
@@ -44,11 +43,19 @@ public class MatchRunnable extends BukkitRunnable {
             return;
         }
         if (acc!=0) {
-
-            matcher.getParty().sendTitleToAll(ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_TITLE(),
-                            Collections.singletonMap("{time}", String.valueOf(acc))),
-                    ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_SUBTITLE(),
-                            Collections.singletonMap("{time}", String.valueOf(acc))));
+            
+            String s=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_TITLE();
+            if (s!=null) {
+            s=ReplaceUtil.replace(s,
+                Collections.singletonMap("{time}", String.valueOf(acc)));
+            }
+            String ss=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_SUBTITLE();
+            if (ss!=null) {
+                ss=ReplaceUtil.replace(s,
+                        Collections.singletonMap("{time}", String.valueOf(acc)));
+            }
+            matcher.getParty().sendTitleToAll(s,ss);
+            
 
         }
 
@@ -67,8 +74,8 @@ public class MatchRunnable extends BukkitRunnable {
         if (mapMeta==null){
             List<MapMeta> mapMetaList;
             try {
-                CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-                mapMetaList = commandService.getMapByScale(matcher.getParty().getMemberList().size());
+                RaceService commandService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+                mapMetaList = commandService.getMapMeta(matcher.getParty().getMemberList().size());
             } catch (SQLException e) {
                 
                 e.printStackTrace();
@@ -83,19 +90,25 @@ public class MatchRunnable extends BukkitRunnable {
 
         try {
             RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-            List<MapBlockMeta> mapBlockMetaList =raceService.getBlockMeta(mapMeta.getUuid());
+            List<MapBlockMeta> mapBlockMetaList =raceService.getMapBlockMetaList(mapMeta.getUuid());
             HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap=new HashMap<>();
-            for (KitMeta k:raceService.getKitMetaByMapUuid(mapMeta.getUuid())){
-                List<KitItemStackMeta> kitItemStackMetaList =raceService.getItemMeta(k.getUuid());
+            for (KitMeta k:raceService.getKitMetaList(mapMeta.getUuid())){
+                List<KitItemStackMeta> kitItemStackMetaList =raceService.getKitItemStackMetaList(k.getUuid());
                 kitItemMap.put(k, kitItemStackMetaList);
             }
-            List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList =raceService.getContainerInventoryItemStackMeta(mapMeta.getUuid());
+            List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList =raceService.getContainerInventoryItemStackMetaList(mapMeta.getUuid());
 
             //比赛开始
             Race race=new Race(mapMeta, mapBlockMetaList,kitItemMap, mapContainerInventoryItemStackMetaList);
 
             race.start(red,blue);
         } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureCreateWorldException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureTeleportException e) {
             e.printStackTrace();
             return;
         }
@@ -111,7 +124,9 @@ public class MatchRunnable extends BukkitRunnable {
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
         rep.put("{party}", blue.getPartyName());
         rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(playerList, list);
 
         playerList = new ArrayList<>();
@@ -124,7 +139,9 @@ public class MatchRunnable extends BukkitRunnable {
         rep.put("{captain}", red.getCaptain().getPlayer().getName());
         rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
         rep.put("{party}", red.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(playerList, list);
 
 

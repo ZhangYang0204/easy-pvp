@@ -6,7 +6,6 @@ import pers.zhangyang.easypvp.exception.MapAlreadyAddKitException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.meta.MapKitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -29,10 +28,7 @@ public class CommandAddMapKit extends CommandBase {
         try {
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            MapKitMeta mapKitMeta=new MapKitMeta();
-            mapKitMeta.setKitUuid(commandService.getKitMeta(args[2]).getUuid());
-            mapKitMeta.setMapUuid(commandService.getMapMeta(args[1]).getUuid());
-            commandService.mapKitAdd(mapKitMeta);
+            commandService.addMapKit(args[1],args[2]);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +38,9 @@ public class CommandAddMapKit extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
 
             return true ;
@@ -51,7 +49,9 @@ public class CommandAddMapKit extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         } catch (MapAlreadyAddKitException e) {
@@ -59,7 +59,9 @@ public class CommandAddMapKit extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{kit}",args[2]);
             List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -68,7 +70,9 @@ public class CommandAddMapKit extends CommandBase {
         rep.put("{kit}",args[2]);
 
         List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_MAP_KIT();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

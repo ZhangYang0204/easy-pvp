@@ -12,6 +12,9 @@ import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easypvp.bstats.Metrics;
 import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
+import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
+import pers.zhangyang.easypvp.exception.FailureTeleportException;
+import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
 import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
@@ -276,7 +279,18 @@ public class EasyPvp extends JavaPlugin {
 
         //结束游戏并广播
         for (Race race : RaceManager.RACE_MANAGER.getRaceList()) {
-            race.stop();
+            try {
+                race.stop();
+            } catch (FailureDeleteWorldException e) {
+                e.printStackTrace();
+                return;
+            } catch (FailureUnloadWorldException e) {
+                e.printStackTrace();
+                return;
+            } catch (FailureTeleportException e) {
+                e.printStackTrace();
+                return;
+            }
             try {
                 RaceService raceService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
                 if (race.getWinner() == null) {
@@ -284,8 +298,13 @@ public class EasyPvp extends JavaPlugin {
                     HashMap<String,String> rep = new HashMap<>();
                     rep.put("{win_party}", race.getWinner().getPartyName());
                     rep.put("{lose_party}", race.getLoser().getPartyName());
-
-                    ReplaceUtil.replace(list, rep);
+                    
+                  
+                        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
+                   
+                    
                     MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
 
                     for (Gamer g : race.getRedParty().getMemberList()) {
@@ -299,7 +318,9 @@ public class EasyPvp extends JavaPlugin {
                     HashMap<String,String> rep = new HashMap<>();
                     rep.put("{red_party}", race.getRedParty().getPartyName());
                     rep.put("{blue_party}", race.getBlueParty().getPartyName());
-                    ReplaceUtil.replace(list, rep);
+                    if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                     MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
                     for (Gamer g : race.getWinner().getMemberList()) {
                         raceService.recordWin(g.getPlayer().getUniqueId().toString());

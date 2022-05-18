@@ -4,6 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.util.LocationUtil;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 
 public class Section {
     private Location first;
@@ -12,7 +15,8 @@ public class Section {
     private Location blue;
     private final Player player;
 
-    public Section(Player player) {
+    public Section(@Nonnull Player player) {
+        if (player==null){throw new NullPointerException();}
         this.player = player;
     }
     public boolean isFour(){
@@ -23,6 +27,7 @@ public class Section {
         return LocationUtil.blockIsIn(first, second, red) && LocationUtil.blockIsIn(first, second, blue);
     }
 
+    @Nullable
     public Location getFirst() {
         return first;
     }
@@ -31,6 +36,7 @@ public class Section {
         this.first = first;
     }
 
+    @Nullable
     public Location getSecond() {
         return second;
     }
@@ -39,6 +45,7 @@ public class Section {
         this.second = second;
     }
 
+    @Nullable
     public Location getRed() {
         return red;
     }
@@ -47,6 +54,7 @@ public class Section {
         this.red = red;
     }
 
+    @Nullable
     public Location getBlue() {
         return blue;
     }
@@ -55,6 +63,7 @@ public class Section {
         this.blue = blue;
     }
 
+    @Nonnull
     public Player getPlayer() {
         return player;
     }

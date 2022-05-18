@@ -103,7 +103,9 @@ public class PlayerClickLeaveParty implements Listener {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{player}",player.getName());
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(playerList, list);
 
 
@@ -111,7 +113,9 @@ public class PlayerClickLeaveParty implements Listener {
                 .getCHAT_SUCCESS_LEAVE_PARTY();
         rep=new HashMap<>();
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(player, list);
 
 

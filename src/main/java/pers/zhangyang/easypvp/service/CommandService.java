@@ -1,5 +1,8 @@
 package pers.zhangyang.easypvp.service;
 
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.exception.*;
 import pers.zhangyang.easypvp.meta.*;
 
@@ -9,32 +12,30 @@ import java.util.List;
 public interface CommandService {
 
 
-    void recordReset() throws SQLException;
+    void resetRecord() throws SQLException;
 
-    void mapCreate(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapBlockInventoryItemStackMeta>
-            mapContainerInventoryItemStackMetaList) throws SQLException, DuplicateMapNameException ;
-    void mapDelete(String mapName) throws SQLException, NotExistMapNameException;
+    void createMap(MapMeta meta, List<BlockState> blockStateList) throws SQLException, DuplicateMapNameException ;
+    void deleteMap(String mapName) throws SQLException, NotExistMapNameException;
+    void setMapChooseTime(String mapName, int chooseTick) throws NotExistMapNameException, SQLException;
+    void setMapBuild(String mapName, boolean build) throws SQLException, NotExistMapNameException;
+    void setMapFair(String mapName, boolean fair) throws SQLException, NotExistMapNameException;
+    void setMapDrop(String mapName, boolean drop) throws NotExistMapNameException, SQLException;
+    void setMapScale(String mapName, int scale) throws SQLException, NotExistMapNameException;
+    void addMapDescription(String maoName, String des) throws NotExistMapNameException, SQLException;
+    void removeMapDescription(String maoName, int line) throws NotExistMapNameException, SQLException, NotExistDesciptionRowException;
+    void setMapDescription(String maoName, int line,String des) throws NotExistMapNameException, SQLException, NotExistDesciptionRowException;
 
-    void mapChooseTickSet(String mapName,int chooseTick) throws NotExistMapNameException, SQLException;
-    void mapBuildSet(String mapName,boolean build) throws SQLException, NotExistMapNameException;
-    void mapFairSet(String mapName,boolean fair) throws SQLException, NotExistMapNameException;
-    void mapDropSet(String mapName,boolean drop) throws NotExistMapNameException, SQLException;
-    void mapScaleSet(String mapName,int scale) throws SQLException, NotExistMapNameException;
-    void mapDescriptionSet(String maoName,List<String> description) throws NotExistMapNameException, SQLException;
-    MapMeta getMapMeta(String mapName) throws SQLException, NotExistMapNameException;
+    void createKit(KitMeta kitMeta, ItemStack[] itemStacks) throws SQLException, DuplicateKitNameException;
 
-    void kitCreate(KitMeta kitMeta, List<KitItemStackMeta> kitItemStackMetaList) throws DuplicateKitNameException, SQLException;
-    void kitDelete(String kitName) throws SQLException, NotExistKitNameException;
-    void kitSet(String kitName,List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException;
+    void deleteKit(String kitName) throws SQLException, NotExistKitNameException;
+    void setKit(String kitName, ItemStack[] itemStacks) throws SQLException, NotExistKitNameException;
     void setMapKeepLevel(String mapName,boolean keepLevel) throws SQLException, NotExistMapNameException;
+    void addKitDescription(String kitName, String des) throws NotExistKitNameException, SQLException;
+    void removeKitDescription(String kitName,int ind) throws NotExistKitNameException, SQLException, NotExistDesciptionRowException;
+    void setKitDescription(String kitName,int ind,String des) throws NotExistKitNameException, SQLException, NotExistDesciptionRowException;
+    void addMapKit(String mapName, String kitName) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapAlreadyAddKitException;
+    void removeMapKit(String mapName, String kitName) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapNotAddKitException;
 
-    void kitDescriptionSet(String kitName,List<String> description) throws NotExistKitNameException, SQLException;
-    void mapKitAdd(MapKitMeta mapKitMeta) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapAlreadyAddKitException;
 
-    void mapKitRemove(String mapName,String kitName) throws SQLException, NotExistKitNameException, NotExistMapNameException, MapNotAddKitException;
-
-    KitMeta getKitMeta(String kitName) throws SQLException, NotExistKitNameException;
-
-    List<MapMeta> getMapByScale(int scale) throws SQLException;
 
 }

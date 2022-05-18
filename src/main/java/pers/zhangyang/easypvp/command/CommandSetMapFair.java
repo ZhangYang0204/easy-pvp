@@ -29,7 +29,7 @@ public class CommandSetMapFair extends CommandBase {
         boolean fair=Boolean.parseBoolean(args[2]);
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapFairSet(args[1],fair);
+            commandService.setMapFair(args[1],fair);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,7 +39,9 @@ public class CommandSetMapFair extends CommandBase {
             rep.put("{map}",args[1]);
             rep.put("{fair}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -47,7 +49,9 @@ public class CommandSetMapFair extends CommandBase {
         rep.put("{map}",args[1]);
         rep.put("{fair}",args[2]);
         List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_FAIR();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

@@ -10,6 +10,7 @@ import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,11 +29,13 @@ public class AllPartyPage implements InventoryHolder {
         partyList=new ArrayList<>();
     }
 
+    @Nonnull
     public List<Party> getPartyList() {
         return new ArrayList<>(partyList);
     }
 
-    public void init(List<Party> partyList, int pageIndex){
+    public void init(@Nonnull List<Party> partyList, int pageIndex){
+        if (partyList==null){throw new NullPointerException();}
         this.pageIndex=pageIndex;
         this.partyList.clear();
         this.partyList.addAll(partyList);
@@ -50,8 +53,9 @@ public class AllPartyPage implements InventoryHolder {
             rep.put("{captain}",partyList.get(i).getCaptain().getPlayer().getName());
             rep.put("{party}",partyList.get(i).getPartyName());
 
-            displayName=ReplaceUtil.replace(displayName,rep);
-
+            if (displayName!=null) {
+                displayName = ReplaceUtil.replace(displayName, rep);
+            }
             ReplaceUtil.replace(lore,rep);
             ItemStack itemStack=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_MATERIAL(),
                 displayName,lore);
@@ -94,12 +98,13 @@ public class AllPartyPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }
-    public void send(Player player){
+    }public void send(@Nonnull Player player){
+        if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
+    @Nonnull
     public Inventory getInventory() {
         return inventory;
     }

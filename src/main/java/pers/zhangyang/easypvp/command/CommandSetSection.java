@@ -37,7 +37,9 @@ public class CommandSetSection extends CommandBase {
         }
 
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_SECTION();
-        ReplaceUtil.replace(list, Collections.singletonMap("{point}", args[1]));
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{point}", args[1]));
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

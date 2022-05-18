@@ -38,7 +38,7 @@ public class CommandSetMapScale extends CommandBase {
 
         try {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapScaleSet(args[1], scale);
+            commandService.setMapScale(args[1], scale);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +48,9 @@ public class CommandSetMapScale extends CommandBase {
             rep.put("{map}", args[1]);
             rep.put("{scale}", args[2]);
             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
@@ -56,7 +58,9 @@ public class CommandSetMapScale extends CommandBase {
         rep.put("{map}", args[1]);
         rep.put("{scale}", args[2]);
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_SCALE();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

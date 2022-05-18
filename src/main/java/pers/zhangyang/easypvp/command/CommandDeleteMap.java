@@ -26,19 +26,22 @@ public class CommandDeleteMap extends CommandBase {
     protected boolean run() {
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.mapDelete(args[1]);
+            commandService.deleteMap(args[1]);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;
         } catch (NotExistMapNameException e) {
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME();
-            ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
+            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME();if (list!=null) {
+                ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DELETE_MAP();
-        ReplaceUtil.replace(list, Collections.singletonMap("{map}",args[1]));
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
+        }
         MessageUtil.sendMessageTo(sender, list);
 
 

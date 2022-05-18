@@ -8,13 +8,14 @@ import java.util.List;
 public interface RaceService {
 
 
-    List<MapBlockMeta> getBlockMeta(String mapUuid) throws SQLException;
+    List<MapBlockMeta> getMapBlockMetaList(String mapUuid) throws SQLException;
     void recordWin(String playerUuid) throws SQLException;
     void recordLose(String playerUuid) throws SQLException;
     void recordDraw(String playerUuid) throws SQLException;
-    List<KitItemStackMeta> getItemMeta(String kitUuid) throws SQLException;
-    List<KitMeta> getKitMetaByMapUuid(String mapUuid) throws SQLException;
-    List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMeta(String mapUuid) throws SQLException;
-    RecordMeta getRecord(String playerUuid) throws SQLException;
-    List<RecordMeta> getRecord() throws SQLException;
+    List<KitItemStackMeta> getKitItemStackMetaList(String kitUuid) throws SQLException;
+    List<KitMeta> getKitMetaList(String mapUuid) throws SQLException;
+    List<MapBlockInventoryItemStackMeta> getContainerInventoryItemStackMetaList(String mapUuid) throws SQLException;
+    RecordMeta getRecordMetaList(String playerUuid) throws SQLException;
+    List<RecordMeta> getRecordMetaList() throws SQLException;
+    List<MapMeta> getMapMeta(int scale) throws SQLException;
 }

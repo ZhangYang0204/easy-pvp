@@ -22,7 +22,7 @@ public class RecordExpansion extends PlaceholderExpansion {
         RecordMeta recordMeta;
         try {
             RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-            recordMeta=raceService.getRecord(player.getUniqueId().toString());
+            recordMeta=raceService.getRecordMetaList(player.getUniqueId().toString());
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

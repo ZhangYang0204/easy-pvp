@@ -39,14 +39,7 @@ public class CommandRemoveKitDescription extends CommandBase {
         try {
 
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            KitMeta kitMeta=commandService.getKitMeta(args[1]);
-            String[] descriptions = kitMeta.getDescription()==null?new String[0]:kitMeta.getDescription().split(" ");
-            if (descriptions.length<index+1){
-                throw new NotExistDesciptionRowException();
-            }
-            List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
-            descriptionList.remove(index);
-            commandService.kitDescriptionSet(args[1], descriptionList);
+            commandService.removeKitDescription(args[1],index );
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;

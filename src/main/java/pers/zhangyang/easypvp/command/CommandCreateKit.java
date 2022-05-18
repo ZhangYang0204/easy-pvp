@@ -41,10 +41,12 @@ public class CommandCreateKit extends CommandBase {
         }
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.kitCreate(kitMeta, kitItemStackMetaList);
+            commandService.createKit(kitMeta, player.getInventory().getContents());
         } catch (DuplicateKitNameException e) {
            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME();
-            ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+            if (list!=null) {
+                ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         } catch (SQLException e) {
@@ -52,7 +54,9 @@ public class CommandCreateKit extends CommandBase {
             return true ;
         }
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_CREATE_KIT();
-        ReplaceUtil.replace(list, Collections.singletonMap("{kit}",args[1]));
+        if (list!=null) {
+            ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

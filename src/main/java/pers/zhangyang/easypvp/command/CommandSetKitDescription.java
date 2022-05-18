@@ -1,7 +1,9 @@
 package pers.zhangyang.easypvp.command;
 
 import org.bukkit.command.CommandSender;
+import org.checkerframework.checker.units.qual.A;
 import pers.zhangyang.easypvp.base.CommandBase;
+import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.KitMeta;
@@ -35,20 +37,8 @@ public class CommandSetKitDescription extends CommandBase {
         try {
 
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            KitMeta kitMeta = commandService.getKitMeta(args[1]);
-            String[] descriptions = kitMeta.getDescription() == null ? new String[0] : kitMeta.getDescription().split(" ");
-            if (descriptions.length < index + 1) {
-                HashMap<String, String> rep = new HashMap<>();
-                rep.put("{kit}", args[1]);
-                rep.put("{row}", args[2]);
-                rep.put("{description}", args[3]);
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
-                ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(sender, list);
-                return true;
-            }
-            descriptions[index] = args[3];
-            commandService.kitDescriptionSet(args[1], Arrays.asList(descriptions));
+            commandService.setKitDescription(args[1],index,args[3] );
+
         } catch (SQLException e) {
             e.printStackTrace();
             return true;
@@ -58,7 +48,20 @@ public class CommandSetKitDescription extends CommandBase {
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
+            MessageUtil.sendMessageTo(sender, list);
+            return true;
+        } catch (NotExistDesciptionRowException e) {
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{kit}", args[1]);
+            rep.put("{row}", args[2]);
+            rep.put("{description}", args[3]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
@@ -67,7 +70,9 @@ public class CommandSetKitDescription extends CommandBase {
         rep.put("{row}", args[2]);
         rep.put("{description}", args[3]);
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_KIT_DESCRIPTION();
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

@@ -6,11 +6,13 @@ import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.generator.ChunkGenerator;
 import org.jetbrains.annotations.NotNull;
+import pers.zhangyang.easypvp.exception.FailureCreateWorldException;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class WorldUtil {
-    public static World getVoidWorld(String worldName){
+    public static World getVoidWorld(@Nonnull String worldName) throws FailureCreateWorldException {
 
         WorldCreator worldCreator = new WorldCreator(worldName);
 
@@ -25,7 +27,9 @@ public class WorldUtil {
                     new ChunkGenerator() {
                     });
         }
-
-        return worldCreator.createWorld();
+        World world=worldCreator.createWorld();
+        if (world==null){
+            throw new FailureCreateWorldException();
+        }return world;
     }
 }

@@ -13,18 +13,20 @@ public abstract class CompleterBase {
     protected CommandSender sender;
     protected String[] args;
 
-    public CompleterBase(CommandSender sender, boolean forcePlayer , String[] args) {
+    public CompleterBase(@Nonnull CommandSender sender, boolean forcePlayer ,@Nonnull String[] args) {
+        if (args.length<1){throw new IllegalArgumentException();}
         this.sender=sender;
         this.forcePlayer = forcePlayer;
         this.args=args;
     }
     @Nonnull
-    protected List<String> removeStartWith(@Nullable String latest, @Nullable List<String> list){
-        if (latest==null||list==null){return  new ArrayList<>();}
+    protected List<String> removeStartWith(@Nonnull String latest, @Nullable List<String> list){
+        if (latest==null){return  new ArrayList<>();}
         String ll = latest.toLowerCase();
         list.removeIf(k -> !k.toLowerCase().startsWith(ll));
         return list;
     }
+    @Nonnull
     public List<String> process(){
         if (forcePlayer&&!(sender instanceof Player)){
             return new ArrayList<>();

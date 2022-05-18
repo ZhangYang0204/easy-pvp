@@ -264,8 +264,8 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION;
     private List<String> COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$;
 
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE;
-    private List<String> COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$;
+    private List<String> COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION;
+    private List<String> COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$;
 
     private List<String> COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$;
@@ -406,16 +406,16 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION() {
+        if (COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$() {
-        if (COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$==null){
+    public List<String> getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$() {
+        if (COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$);
     }
 
     public List<String> getCOMPLETER_EASY_PVP_SET_MAP_DESCRIPTION() {
@@ -578,8 +578,8 @@ public class MessageYaml extends YamlManagerBase {
         COMPLETER_EASY_PVP_DELETE_MAP =getStringList("message.completer.easyPvpDeleteMap",false);
         COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION =getStringList("message.completer.easyPvpAddMapDescription",false);
         COMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$ =getStringList("message.completer.easyPvpAddMapDescription$",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE=getStringList("message.completer.easyPvpMapDescriptionRemove",false);
-        COMPLETER_EASY_PVP_MAP_DESCRIPTION_REMOVE_$=getStringList("message.completer.easyPvpMapDescriptionRemove$",false);
+        COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION =getStringList("message.completer.easyPvpMapRemoveDescription",false);
+        COMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$ =getStringList("message.completer.easyPvpRemoveMapDescription$",false);
         COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION =getStringList("message.completer.easyPvpSetMapDescription",false);
         COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$ =getStringList("message.completer.easyPvpSetMapDescription$",false);
         COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$ =getStringList("message.completer.easyPvpSetMapDescription$$",false);

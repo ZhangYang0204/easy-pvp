@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 
 public class PlayerDamageEntityWhenChooseKit implements Listener {
@@ -20,7 +21,7 @@ public class PlayerDamageEntityWhenChooseKit implements Listener {
 
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
         Race race=gamer.getRacingRace();
-        if (race==null){
+        if (!race.getStats().equals(RaceStatsEnum.RACING)){
             return;
         }
 

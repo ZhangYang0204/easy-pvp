@@ -12,14 +12,14 @@ import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
+import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
+import pers.zhangyang.easypvp.exception.FailureTeleportException;
+import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.util.*;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
-import pers.zhangyang.easypvp.util.MessageUtil;
-import pers.zhangyang.easypvp.util.RefreshUtil;
-import pers.zhangyang.easypvp.util.ReplaceUtil;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -50,7 +50,9 @@ public class PlayerQuitGame implements Listener {
                     HashMap<String,String> rep = new HashMap<>();
                     rep.put("{party}", party.getPartyName());
                     rep.put("{member}", player.getName());
-                    ReplaceUtil.replace(list, rep);
+                    if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                     MessageUtil.sendMessageTo(p, list);
                 }
 
@@ -64,7 +66,7 @@ public class PlayerQuitGame implements Listener {
 
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
-            }
+             }
 
             if (gamer.getStats().equals(GamerStatsEnum.READING)){
             //离开队伍
@@ -73,14 +75,21 @@ public class PlayerQuitGame implements Listener {
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();
                 HashMap<String,String> rep = new HashMap<>();
                 rep.put("{party}", party.getPartyName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
-        }
+              }
+
 
 
             //离开观战
-            gamer.unwatchRace();
+            if (gamer.getStats().equals(GamerStatsEnum.WATCHING)) {
+                gamer.unwatchRace();
+            }
+
+
             RefreshUtil.refreshAllPartyPage();
 
             //刷新AllMemberPage
@@ -97,56 +106,18 @@ public class PlayerQuitGame implements Listener {
             }
 
 
-
-            try {
-
-                    RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-                    if (race.getWinner()==null) {
-                        for (Gamer g : race.getRedParty().getMemberList()) {
-                            raceService.recordDraw(g.getPlayer().getUniqueId().toString());
-                        }
-                        for (Gamer g : race.getBlueParty().getMemberList()) {
-                            raceService.recordDraw(g.getPlayer().getUniqueId().toString());
-                        }
-                    }else {
-                        for (Gamer g : race.getWinner().getMemberList()) {
-                            raceService.recordWin(g.getPlayer().getUniqueId().toString());
-                        }
-                        for (Gamer g : race.getLoser().getMemberList()) {
-                            raceService.recordLose(g.getPlayer().getUniqueId().toString());
-                        }
-                    }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            return;
-            }
-
-
-            for (Player p: Bukkit.getOnlinePlayers()){
-                if (race.getWinner()!=null) {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
-                    HashMap rep = new HashMap<>();
-                    rep.put("{win_party}", race.getWinner().getPartyName());
-                    rep.put("{lose_party}", race.getLoser().getPartyName());
-
-                    ReplaceUtil.replace(list, rep);
-                    MessageUtil.sendMessageTo(p, list);
-                }else {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                            .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
-                    HashMap rep = new HashMap<>();
-                    rep.put("{red_party}", race.getRedParty().getPartyName());
-                    rep.put("{blue_party}", race.getBlueParty().getPartyName());
-                    ReplaceUtil.replace(list, rep);
-                    MessageUtil.sendMessageTo(p, list);
-                }
-
-            }
-
+            RaceUtil.AfterRaceStop(race);
 
         } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureDeleteWorldException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureUnloadWorldException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureTeleportException e) {
             e.printStackTrace();
             return;
         }

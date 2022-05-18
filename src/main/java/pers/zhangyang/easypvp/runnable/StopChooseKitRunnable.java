@@ -24,11 +24,17 @@ public class StopChooseKitRunnable extends BukkitRunnable {
     @Override
     public void run() {
 
-
-        race.sendTitleToAll(ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
-                        Collections.singletonMap("{time}",String.valueOf(rest))),
-                ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
-                        Collections.singletonMap("{time}",String.valueOf(rest))) );
+        String title=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+        if (title!=null){
+            title=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
+                    Collections.singletonMap("{time}",String.valueOf(rest)));
+        }
+        String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+        if (stitle!=null){
+            stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
+                    Collections.singletonMap("{time}",String.valueOf(rest)));
+        }
+        race.sendTitleToAll(title, stitle);
 
 
         rest-=1;

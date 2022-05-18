@@ -92,6 +92,18 @@ public class MapDao   extends DaoBase{
             return null;
         }
     }
+    public List<MapMeta> select( ) throws SQLException {
+
+        PreparedStatement ps=getConnection().prepareStatement("" +
+                "select * from map_table ");
+        ResultSet rs=ps.executeQuery();
+        List<MapMeta> mapMetaList=new ArrayList<>();
+        while (rs.next()) {
+            mapMetaList.add(changeFromResultSet(rs));
+        }
+        return mapMetaList;
+    }
+
     public MapMeta selectByUuid(String uuid) throws SQLException {
 
         PreparedStatement ps=getConnection().prepareStatement("" +

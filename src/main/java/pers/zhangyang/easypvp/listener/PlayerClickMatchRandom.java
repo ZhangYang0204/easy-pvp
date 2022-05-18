@@ -12,10 +12,10 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.service.RaceService;
+import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
-import pers.zhangyang.easypvp.service.CommandService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
@@ -57,7 +57,9 @@ public class PlayerClickMatchRandom implements Listener {
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
                 rep.put("{party}",party.getPartyName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
@@ -66,19 +68,23 @@ public class PlayerClickMatchRandom implements Listener {
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
                 rep.put("{party}",party.getPartyName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);return;
             }
             List<MapMeta> mapMetaList;
-            CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            mapMetaList = commandService.getMapByScale(party.getMemberList().size());
+            RaceService commandService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+            mapMetaList = commandService.getMapMeta(party.getMemberList().size());
             if (mapMetaList.isEmpty()){
                 List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_NOT_AVAILABLE_MAP();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
                 rep.put("{party}",party.getPartyName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);return;
             }
 
@@ -98,7 +104,9 @@ public class PlayerClickMatchRandom implements Listener {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(player, list);
 
         //其他人通知
@@ -111,7 +119,9 @@ public class PlayerClickMatchRandom implements Listener {
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());
             rep.put("{party}",party.getPartyName());
-            ReplaceUtil.replace(list, rep);
+            if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
             MessageUtil.sendMessageTo(p, list);
         }
 

@@ -71,7 +71,7 @@ public class PlayerClickJoinParty implements Listener {
                 MessageUtil.sendMessageTo(player, list);
                 return;
             }
-            if (party.getStats().equals(PartyStatsEnum.GAMING)){
+            if (party.getStats().equals(PartyStatsEnum.RACING)){
                 List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING();
 
@@ -126,7 +126,9 @@ public class PlayerClickJoinParty implements Listener {
         rep.put("{player}",player.getName());
 
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(playerList, list);
 
 

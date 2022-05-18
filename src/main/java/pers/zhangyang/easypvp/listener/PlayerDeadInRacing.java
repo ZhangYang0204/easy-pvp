@@ -8,7 +8,11 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
+import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
+import pers.zhangyang.easypvp.exception.FailureTeleportException;
+import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.util.RaceUtil;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
@@ -40,8 +44,18 @@ public class PlayerDeadInRacing implements Listener {
         }
 
 
-
-        race.out(gamer);
+        try {
+            race.out(gamer);
+        } catch (FailureDeleteWorldException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureUnloadWorldException e) {
+            e.printStackTrace();
+            return;
+        } catch (FailureTeleportException e) {
+            e.printStackTrace();
+            return;
+        }
         //告诉死掉的人
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_DEAD_IN_RACING();
@@ -52,7 +66,9 @@ public class PlayerDeadInRacing implements Listener {
                 .getCHAT_SOMEONE_SUCCESS_DEAD_IN_RACING();
         HashMap<String,String> rep = new HashMap<>();
         rep.put("{player}", gamer.getPlayer().getName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         List<Gamer> gamerList=new ArrayList<>();
         gamerList.addAll(race.getRedParty().getMemberList());
         gamerList.addAll(race.getBlueParty().getMemberList());
@@ -67,51 +83,7 @@ public class PlayerDeadInRacing implements Listener {
             return;
         }
 
-        try {
-
-                RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-                if (race.getWinner()==null) {
-                    for (Gamer g : race.getRedParty().getMemberList()) {
-                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
-                    }
-                    for (Gamer g : race.getBlueParty().getMemberList()) {
-                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
-                    }
-                }else {
-                    for (Gamer g : race.getWinner().getMemberList()) {
-                        raceService.recordWin(g.getPlayer().getUniqueId().toString());
-                    }
-                    for (Gamer g : race.getLoser().getMemberList()) {
-                        raceService.recordLose(g.getPlayer().getUniqueId().toString());
-                    }
-                }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
-
-
-            if (race.getWinner()!=null) {
-                list = MessageYaml.MESSAGE_YAML_MANAGER
-                        .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
-                rep = new HashMap<>();
-                rep.put("{win_party}", race.getWinner().getPartyName());
-                rep.put("{lose_party}", race.getLoser().getPartyName());
-
-                ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
-            }else {
-                 MessageYaml.MESSAGE_YAML_MANAGER
-                        .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
-                rep = new HashMap<>();
-                rep.put("{red_party}", race.getRedParty().getPartyName());
-                rep.put("{blue_party}", race.getBlueParty().getPartyName());
-                ReplaceUtil.replace(list, rep);
-                MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
-            }
-
-
+        RaceUtil.AfterRaceStop(race);
 
 
 

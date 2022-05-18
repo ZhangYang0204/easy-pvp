@@ -1,10 +1,12 @@
 package pers.zhangyang.easypvp.util;
 
+import javax.annotation.Nonnull;
 import java.io.*;
 import java.net.URL;
 
 public class ResourceUtil {
-    public static boolean deleteFile(File file){
+    public static boolean deleteFile(@Nonnull File file){
+        if (file==null){throw new NullPointerException();}
         File[] files = file.listFiles();
         for(File deleteFile : files){
             if(deleteFile.isDirectory()){

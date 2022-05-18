@@ -10,7 +10,6 @@ public class EventBase extends Event {
         return HANDLERS;
     }
 
-
     @Override
     public HandlerList getHandlers() {
         return HANDLERS;

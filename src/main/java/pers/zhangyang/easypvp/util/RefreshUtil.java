@@ -7,9 +7,7 @@ import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.meta.RecordMeta;
-import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 
 import java.sql.SQLException;
@@ -84,8 +82,8 @@ public class RefreshUtil {
 
                 AllMapPage allPartyPage= (AllMapPage) p.getOpenInventory().getTopInventory().getHolder();
                 Party party=allPartyPage.getParty();
-                CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-                mapMetaList=commandService.getMapByScale(party.getMemberList().size());
+                RaceService commandService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+                mapMetaList=commandService.getMapMeta(party.getMemberList().size());
 
                 int maxPageIndex=PageUtil.computeMaxPageIndex(mapMetaList.size(),45);
                 if (maxPageIndex>=allPartyPage.getPageIndex()) {
@@ -110,7 +108,7 @@ public class RefreshUtil {
 
                 RankPage rankPage= (RankPage) p.getOpenInventory().getTopInventory().getHolder();
                 RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-                recordMetaList=raceService.getRecord();
+                recordMetaList=raceService.getRecordMetaList();
 
                 recordMetaList.sort(new Comparator<RecordMeta>() {
                     @Override

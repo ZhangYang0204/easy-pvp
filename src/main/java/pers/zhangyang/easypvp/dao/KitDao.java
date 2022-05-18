@@ -3,6 +3,9 @@ package pers.zhangyang.easypvp.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import pers.zhangyang.easypvp.base.DaoBase;
 import pers.zhangyang.easypvp.meta.*;
 public class KitDao   extends DaoBase{
@@ -32,6 +35,17 @@ public class KitDao   extends DaoBase{
         }
     }
 
+
+
+    public List<KitMeta> select( ) throws SQLException {
+        PreparedStatement ps=getConnection().prepareStatement("" +
+                "select * from kit_table ");
+        ResultSet rs=ps.executeQuery();
+        List<KitMeta> kitMetaList=new ArrayList<>();
+        while (rs.next()){
+            kitMetaList.add(changeFromResultSet(rs));
+        }return kitMetaList;
+    }
 
     public KitMeta selectByUuid(String uuid) throws SQLException {
 

@@ -65,7 +65,9 @@ public class PlayerClickMember implements Listener {
                 rep.put("{member}",m.getName());
                 rep.put("{party}",party.getPartyName());
                 rep.put("{captain}",player.getName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(player, list);
                 return;
             }
@@ -77,7 +79,9 @@ public class PlayerClickMember implements Listener {
                 rep.put("{member}",m.getName());
                 rep.put("{party}",party.getPartyName());
                 rep.put("{captain}",player.getName());
-                ReplaceUtil.replace(list, rep);
+                if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
                 MessageUtil.sendMessageTo(m, list);
                 return;
             }
@@ -119,7 +123,9 @@ public class PlayerClickMember implements Listener {
         rep.put("{kicker}",player.getName());
 
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(m, list);
 
         //通知队员有人被t了
@@ -134,7 +140,9 @@ public class PlayerClickMember implements Listener {
         rep.put("{kicker}",player.getName());
         rep.put("{member}",m.getName());
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(playerList, list);
 
         //通知踢人者
@@ -143,7 +151,9 @@ public class PlayerClickMember implements Listener {
         rep=new HashMap<>();
         rep.put("{member}",m.getName());
         rep.put("{party}",party.getPartyName());
-        ReplaceUtil.replace(list, rep);
+        if (list!=null){
+                        ReplaceUtil.replace(list, rep);
+                    }
         MessageUtil.sendMessageTo(player, list);
 
     }

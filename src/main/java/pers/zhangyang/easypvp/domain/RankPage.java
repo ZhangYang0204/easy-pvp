@@ -11,6 +11,7 @@ import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 public class RankPage  implements InventoryHolder {
@@ -28,6 +29,8 @@ public class RankPage  implements InventoryHolder {
 
 
     public void init( int pageIndex, List<RecordMeta> recordMetaList){
+
+        if (recordMetaList==null){throw new NullPointerException();}
         this.pageIndex=pageIndex;
         for (RecordMeta m:recordMetaList){this.recordMetaList.add(m.clone());}
 
@@ -46,10 +49,10 @@ public class RankPage  implements InventoryHolder {
             rep.put("{win}", String.valueOf(recordMetaList.get(i).getWin()));
             rep.put("{lose}", String.valueOf(recordMetaList.get(i).getLose()));
             rep.put("{draw}", String.valueOf(recordMetaList.get(i).getDraw()));
-
-            displayName=ReplaceUtil.replace(displayName,rep);
-            ReplaceUtil.replace(lore,rep);
-
+            if (displayName!=null) {
+                displayName = ReplaceUtil.replace(displayName, rep);
+                ReplaceUtil.replace(lore, rep);
+            }
             ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_RANK_PAGE_RECORD_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
@@ -78,12 +81,13 @@ public class RankPage  implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }
-    public void send(Player player){
+    }public void send(@Nonnull Player player){
+        if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
+    @Nonnull
     public Inventory getInventory() {
         return inventory;
     }

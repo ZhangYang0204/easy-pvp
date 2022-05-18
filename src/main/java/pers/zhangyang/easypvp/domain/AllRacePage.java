@@ -10,6 +10,7 @@ import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 public class AllRacePage implements InventoryHolder {
@@ -25,11 +26,14 @@ public class AllRacePage implements InventoryHolder {
         raceList=new ArrayList<>();
     }
 
+    @Nonnull
     public List<Race> getRaceList() {
         return new ArrayList<>(raceList);
     }
 
     public void init(List<Race> raceList, int pageIndex){
+
+        if (raceList==null){throw new NullPointerException();}
         this.pageIndex=pageIndex;
         this.raceList.clear();
         this.raceList.addAll(raceList);
@@ -47,14 +51,16 @@ public class AllRacePage implements InventoryHolder {
             rep.put("{blue}",raceList.get(i).getBlueParty().getPartyName());
             rep.put("{map}",raceList.get(i).getMapMeta().getName());
 
-            displayName=ReplaceUtil.replace(displayName,rep);
-
+            if (displayName!=null) {
+                displayName = ReplaceUtil.replace(displayName, rep);
+            }
             ReplaceUtil.replace(lore,rep);
 
             String[] descriptions = raceList.get(i).getMapMeta().getDescription()==null?new String[0]:raceList.get(i).getMapMeta().getDescription().split(" ");
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
-            ReplaceUtil.format(lore,"{[description]}",descriptionList);
-
+            if (lore!=null) {
+                ReplaceUtil.format(lore, "{[description]}", descriptionList);
+            }
             ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
@@ -87,12 +93,13 @@ public class AllRacePage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }
-    public void send(Player player){
+    }public void send(@Nonnull Player player){
+        if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
+    @Nonnull
     public Inventory getInventory() {
         return inventory;
     }

@@ -16,10 +16,6 @@ public class GuiYaml extends YamlManagerBase {
     private String TITLE_ALL_MEMBER_PAGE;
     private String TITLE_ALL_PARTY_PAGE;
     private String TITLE_ALL_MAP_PAGE;
-
-
-
-
     private String TITLE_ALL_RACE_PAGE;
 
     private String BUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_MATERIAL;

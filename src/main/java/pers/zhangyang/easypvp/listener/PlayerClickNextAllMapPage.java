@@ -11,10 +11,10 @@ import pers.zhangyang.easypvp.domain.AllMapPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.service.RaceService;
+import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
-import pers.zhangyang.easypvp.service.CommandService;
-import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -51,8 +51,8 @@ public class PlayerClickNextAllMapPage implements Listener {
 
         List<MapMeta> mapMetaList;
         try {
-            CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            mapMetaList = commandService.getMapByScale(party.getMemberList().size());
+            RaceService commandService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
+            mapMetaList = commandService.getMapMeta(party.getMemberList().size());
         } catch (SQLException e) {
             e.printStackTrace();
             return;

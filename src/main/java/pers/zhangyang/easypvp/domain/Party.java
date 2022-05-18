@@ -4,6 +4,8 @@ import org.bukkit.Location;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
+import pers.zhangyang.easypvp.exception.IllegalPartyStatsException;
+import pers.zhangyang.easypvp.exception.NotPartyMemberException;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.meta.MapMeta;
@@ -30,8 +32,9 @@ public class Party {
      * 仅仅是new出来,没注册不会有效果的
      * @param captain
      */
-    public Party(@Nonnull Gamer captain,String partyName) {
-        if (captain==null){throw new IllegalArgumentException();}
+    public Party(@Nonnull Gamer captain,@Nonnull String partyName) {
+
+        if (captain==null||partyName==null){throw new NullPointerException();}
         memberList=new ArrayList<>();
         stats=PartyStatsEnum.FREEING;
         memberList.add(captain);
@@ -55,6 +58,8 @@ public class Party {
      * @param mapMeta
      */
     public void startMatch(MapMeta mapMeta){
+
+        if (mapMeta==null){throw new NullPointerException();}
         if (stats.equals(PartyStatsEnum.MATCHING)){return;}
 
         this.stats=PartyStatsEnum.MATCHING;
@@ -89,7 +94,7 @@ public class Party {
         MatcherManager.MATCHER_MANAGER.add(matcher);
         new MatchRunnable(matcher).runTaskTimer(EasyPvp.getInstance(),1,20);
     }
-    public void sendTitleToAll(String title,String subtitle){
+    public void sendTitleToAll(@Nullable String title,@Nullable String subtitle){
 
         for (Gamer g:memberList){
             MessageUtil.sendTitleTo(g.getPlayer(),title,subtitle);
@@ -98,12 +103,19 @@ public class Party {
 
     /**
      * 踢出玩家
-     * 如果目标gamer不是成员,什么也不做
      * @param gamer
+     * @exception NotPartyMemberException 玩家不是该队伍成员
      */
-    public void kickGamer(Gamer gamer){
-        if (!memberList.contains(gamer)){
-            return;
+    public void kickGamer(@Nonnull Gamer gamer){
+
+        if (gamer==null){throw new NullPointerException();}
+
+        if (!gamer.party.equals(this)){
+            throw new NotPartyMemberException("Gamer is not this party's member");
+        }
+
+        if (!stats.equals(PartyStatsEnum.FREEING)){
+            throw new IllegalPartyStatsException("Party is not freeing");
         }
 
      //离开队伍
@@ -124,7 +136,9 @@ public class Party {
      * @param gamer
      * @return
      */
-    public boolean contains(Gamer gamer){
+    public boolean contains(@Nonnull Gamer gamer){
+
+        if (gamer==null){throw new NullPointerException();}
         return memberList.contains(gamer);
     }
 
@@ -144,19 +158,7 @@ public class Party {
     }
 
 
-    public void setMemberStats(GamerStatsEnum gamerStats){
-        for (Gamer g:memberList){
-            g.stats=gamerStats;
-        }
-    }
-
-    public void teleport(Location location){
-        for (Gamer g:memberList){
-            g.getPlayer().teleport(location);
-        }
-    }
-
-    public void sendMessageToAll(List<String> list){
+    public void sendMessageToAll(@Nullable List<String> list){
         for (Gamer g:memberList){
             MessageUtil.sendMessageTo(g.getPlayer(),list);
         }

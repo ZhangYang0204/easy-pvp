@@ -17,16 +17,15 @@ public abstract class YamlManagerBase {
     protected YamlConfiguration yamlConfiguration;
     protected String filePath;
     protected YamlConfiguration backUpConfiguration;
-
-
+    
     /**
      *
      * @param filePath 在resource下的文件路径
      * @throws IOException
      * @throws InvalidConfigurationException
      */
-
-    protected YamlManagerBase(String filePath){
+    protected YamlManagerBase(@Nonnull String filePath){
+        if (filePath==null){throw new NullPointerException();}
         this.filePath=filePath;
         this.yamlConfiguration=new YamlConfiguration();
         this.backUpConfiguration=new YamlConfiguration();
@@ -38,7 +37,6 @@ public abstract class YamlManagerBase {
      * @throws InvalidConfigurationException
      */
     public void init( ) throws IOException, InvalidConfigurationException {
-
         File file=new File(EasyPvp.getInstance().getDataFolder(), filePath);
         //如果文件不存在就创建
         if (!file.exists()){
@@ -87,7 +85,6 @@ public abstract class YamlManagerBase {
                     throw e;
                 }
             }
-
         }
         //补充缺失的
         for (String pathBase:backUpConfiguration.getKeys(true)){
@@ -96,93 +93,83 @@ public abstract class YamlManagerBase {
                 yamlConfiguration.set(pathBase,backUpConfiguration.get(pathBase));
                 try {
                     yamlConfiguration.save(EasyPvp.getInstance().getDataFolder().getAbsoluteFile()+"/"+filePath);
-
                 } catch (IOException e) {
                     yamlConfiguration.set(pathBase,ob);
                     throw e;
                 }
-
             }
         }
     }
 
 
-    /**
-     * 将指定键设置为resource里的默认值
-     * @param path
-     */
-    private     void setDefault( @Nonnull String path) {
-
-        Object ob=yamlConfiguration.get(path);
-        yamlConfiguration.set(path,backUpConfiguration.get(path));
-        try {
-            yamlConfiguration.save(EasyPvp.getInstance().getDataFolder().getAbsoluteFile()+"/"+filePath);
-
-        } catch (IOException e) {
-            yamlConfiguration.set(path,ob);
-        }
-
-    }
     @Nullable
     public Boolean getBoolean(@Nonnull String path ,boolean isDef){
+
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isBoolean(path)){
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getBoolean(path);
         }
         return yamlConfiguration.getBoolean(path);
     }
     @Nullable
     public String getString(@Nonnull String path,boolean isDef){
+
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isString(path)) {
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getString(path);
         }
         return yamlConfiguration.getString(path);
     }
     @Nullable
     public Integer getInteger(@Nonnull String path, boolean isDef){
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isInt(path)) {
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getInt(path);
         }
         return  yamlConfiguration.getInt(path);
     }
 
     @Nullable
     public Long getLong(@Nonnull String path,boolean isDef){
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isLong(path)) {
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getLong(path);
         }
         return  yamlConfiguration.getLong(path);
     }
 
     @Nullable
     public Double getDouble(@Nonnull String path,boolean isDef){
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isDouble(path)) {
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getDouble(path);
         }
         return  yamlConfiguration.getDouble(path);
     }
 
     @Nullable
     public List<String> getStringList(@Nonnull String path, boolean isDef){
+        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isList(path)){
             if (!isDef){
                 return null;
             }
-            setDefault(path);
+            return backUpConfiguration.getStringList(path);
         }
         return  yamlConfiguration.getStringList(path);
     }
