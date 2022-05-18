@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllRacePage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
-import pers.zhangyang.easypvp.domain.RankPage;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.util.MessageUtil;

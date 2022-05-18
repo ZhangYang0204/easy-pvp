@@ -28,53 +28,87 @@ public class RaceServiceImpl implements RaceService {
     }
 
     @Override
-    public void recordWin(String playerUuid) throws SQLException {
+    public void gamerWin(String playerUuid) throws SQLException {
         RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
         if (recordMeta==null){
             recordMeta=new RecordMeta();
-            recordMeta.setAll(0);
-            recordMeta.setDraw(0);
-            recordMeta.setWin(0);
-            recordMeta.setLose(0);
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
-        recordMeta.setAll(recordMeta.getAll()+1);
-        recordMeta.setWin(recordMeta.getWin()+1);
+        recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);
+        recordMeta.setSeasonWin(recordMeta.getSeasonWin()+1);
+
+        recordMeta.setTotalAll(recordMeta.getTotalAll()+1);
+        recordMeta.setTotalWin(recordMeta.getTotalWin()+1);
+        recordMeta.setSeasonStar(recordMeta.getSeasonStar()+1);
+        recordMeta.setTotalStreak(recordMeta.getTotalStreak()+1);
         recordDao.insert(recordMeta);
     }
 
     @Override
-    public void recordLose(String playerUuid) throws SQLException {
+    public void gamerLose(String playerUuid) throws SQLException {
         RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
         if (recordMeta==null){
             recordMeta=new RecordMeta();
-            recordMeta.setAll(0);
-            recordMeta.setDraw(0);
-            recordMeta.setWin(0);
-            recordMeta.setLose(0);
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
-        recordMeta.setAll(recordMeta.getAll()+1);
-        recordMeta.setLose(recordMeta.getLose()+1);
+        recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);
+        recordMeta.setSeasonLose(recordMeta.getSeasonLose()+1);
+
+        recordMeta.setTotalAll(recordMeta.getTotalAll()+1);
+        recordMeta.setTotalLose(recordMeta.getTotalLose()+1);
+        recordMeta.setSeasonStar(recordMeta.getSeasonStar()-1);
+        if (recordMeta.getSeasonStar()<0){
+            recordMeta.setSeasonStar(0);
+        }
+        recordMeta.setTotalStreak(0);
         recordDao.insert(recordMeta);
     }
 
     @Override
-    public void recordDraw(String playerUuid) throws SQLException {
+    public void gamerDraw(String playerUuid) throws SQLException {
         RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
         if (recordMeta==null){
             recordMeta=new RecordMeta();
-            recordMeta.setAll(0);
-            recordMeta.setDraw(0);
-            recordMeta.setWin(0);
-            recordMeta.setLose(0);
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
-        recordMeta.setAll(recordMeta.getAll()+1);
-        recordMeta.setDraw(recordMeta.getDraw()+1);
+        recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);
+        recordMeta.setSeasonDraw(recordMeta.getSeasonDraw()+1);
+
+        recordMeta.setTotalAll(recordMeta.getTotalAll()+1);
+        recordMeta.setTotalDraw(recordMeta.getTotalDraw()+1);
         recordDao.insert(recordMeta);
     }
 

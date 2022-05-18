@@ -22,6 +22,7 @@ import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
+import pers.zhangyang.easypvp.yaml.DanYaml;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.RaceManager;
@@ -55,6 +56,7 @@ public class EasyPvp extends JavaPlugin {
             SettingYaml.SETTING_YAML_MANAGER.init();
             MessageYaml.MESSAGE_YAML_MANAGER.init();
             GuiYaml.GUI_MANAGER.init();
+            DanYaml.SETTING_YAML_MANAGER.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
             setEnabled(false);
@@ -271,7 +273,7 @@ public class EasyPvp extends JavaPlugin {
             Inventory top = player.getOpenInventory().getTopInventory();
             if (!(top.getHolder() instanceof AllPartyPage) && !(top.getHolder() instanceof AllMemberPage)
                     && !(top.getHolder() instanceof AllMapPage) && !(top.getHolder() instanceof AllKitPage)
-                &&!(top.getHolder() instanceof AllRacePage&&!(top.getHolder() instanceof RankPage))) {
+                &&!(top.getHolder() instanceof AllRacePage&&!(top.getHolder() instanceof StarRankPage))) {
                 continue;
             }
             player.closeInventory();
@@ -308,10 +310,10 @@ public class EasyPvp extends JavaPlugin {
                     MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
 
                     for (Gamer g : race.getRedParty().getMemberList()) {
-                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                        raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
                     }
                     for (Gamer g : race.getBlueParty().getMemberList()) {
-                        raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                        raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
                     }
                 } else {
                     List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
@@ -323,10 +325,10 @@ public class EasyPvp extends JavaPlugin {
                     }
                     MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
                     for (Gamer g : race.getWinner().getMemberList()) {
-                        raceService.recordWin(g.getPlayer().getUniqueId().toString());
+                        raceService.gamerWin(g.getPlayer().getUniqueId().toString());
                     }
                     for (Gamer g : race.getLoser().getMemberList()) {
-                        raceService.recordLose(g.getPlayer().getUniqueId().toString());
+                        raceService.gamerLose(g.getPlayer().getUniqueId().toString());
                     }
                 }
             } catch (SQLException e) {

@@ -4,32 +4,39 @@ gui:
     allMemberPage: "&b&l&n队伍成员&e&l(您的队伍信息)"
     allMapPage: "&b&l&n可选地图&e&l(符合当前队伍人数的地图)"
     allKitPage: "&b&l&n可选装备包&e&l(当前地图添加的装备包)"
-    rankPage: "&b&l&n战绩榜&e&l(排名顺序为胜负差>平局>总场数)"
+    winRankPage: "&b&l&n星星榜"
     allRacePage: "&b&l&n全部比赛&e&l(所有正在进行的比赛)"
   button:
-    rankPageBackAllPartyPage:
+    starRankPageBackAllPartyPage:
       material: "BARRIER"
       displayName: "&b&l&n返回"
       lore:
         - "&e&l返回上一个页面"
-    rankPagePreviousRankPage:
+    starRankPagePreviousRankPage:
       material: "BOOK"
       displayName: "&b&l&n上一页"
       lore:
         - "&e&l点我前往上一页"
-    rankPageNextRankPage:
+    starRankPageNextRankPage:
       material: "BOOK"
       displayName: "&b&l&n下一页"
       lore:
         - "&e&l点我前往下一页"
-    rankPageRecord:
+    starRankPageRecord:
       material: "PAPER"
       displayName: "&b&l&n玩家 &f{player} &b&l&n的战绩"
       lore:
-        - "&a&l胜 &f{win}"
-        - "&c&l败 &f{lose}"
-        - "&b&l平 &f{draw}"
-        - "&6&l总 &f{all}"
+        - "&6&l星星 &f{season_star}"
+        - "&e&l段位 &f{dan}"
+        - "&d&l连胜 &f{total_streak}"
+        - "&a&l赛季胜 &f{season_win}"
+        - "&c&l赛季败 &f{season_lose}"
+        - "&b&l赛季平 &f{season_draw}"
+        - "&6&l赛季总 &f{season_all}"
+        - "&a&l总胜 &f{total_win}"
+        - "&c&l总败 &f{total_lose}"
+        - "&b&l总平 &f{total_draw}"
+        - "&6&l总总 &f{total_all}"
 
     allPartyPageShowRankPage:
       material: "GOLD_INGOT"

@@ -1,5 +1,7 @@
 message:
 
+
+
   title:
     chooseKitTime:
       subtitle: "&b&l剩余选择准备时间 &f{time} &b&l秒"
@@ -13,6 +15,19 @@ message:
     cancel: "取消"
 
   chat:
+    streak:
+      5:
+        - "&a&l&n玩家 &f{player} &a&l&n 刚刚达成了五连胜,可以很强"
+      10:
+        - "&b&l&n玩家 &f{player} &a&l&n 刚刚达成了十连胜,似乎无敌了"
+      20:
+        - "&c&l&n玩家 &f{player} &a&l&n 刚刚达成了二十连胜,开挂了？"
+      50:
+        - "&d&l&n玩家 &f{player} &a&l&n 刚刚达成了五十连胜,这个人多少有点问题,请联系腐竹举报"
+      100:
+        - "&e&l&n玩家 &f{player} &a&l&n 刚刚达成了一百连胜,开挂实锤了"
+
+
     notPlayer:
       - "&c&l只有玩家才能执行这条命令"
     noPermission:
@@ -101,8 +116,8 @@ message:
       - "&e&lEasyPvp removeMapKit <地图名字> <装备包名字>"
       - "&b&l给地图删除装备包"
       - ""
-      - "&e&lEasyPvp setMapChooseTime <地图名字> <刻>"
-      - "&b&l设置地图选择装备的时间,单位为刻,在选择装备期间,比赛玩家无法移动,无法攻击"
+      - "&e&lEasyPvp setMapChooseTime <地图名字> <秒>"
+      - "&b&l设置地图选择装备的时间,单位为秒,在选择装备期间,比赛玩家无法移动,无法攻击"
       - ""
       - "&e&lEasyPvp createKit <装备包名字>"
       - "&b&l以自身背包状态创建一个装备包"
@@ -428,7 +443,7 @@ message:
 
     successStartRace:
       - "&b&l游戏开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
-      - "&b&l请在 &f{time} &b&l刻内选择装备包"
+      - "&b&l请在 &f{time} &b&l秒内选择装备包"
 
     successChooseKit:
       - "&b&l你选择了装备包 &f{kit}"
@@ -564,7 +579,7 @@ message:
       - "(地图名字)"
       - "{[$]}"
     easyPvpSetMapChooseTime$:
-      - "(大于1的数字,一刻为50毫秒)"
+      - "(大于1的数字)"
     easyPvpSetMapKeepInventory:
       - "(注意名字不要重复)"
       - "(地图名字)"

@@ -33,9 +33,9 @@ public class InvocationUtil {
             obj = method.invoke(target, args);
 
             connection.commit();
-        }catch(Exception e){
+        }catch(Throwable e){
             connection.rollback();
-            throw e.getCause();
+            throw e;
             //处理的是什么异常，继续往上抛什么异常
         }finally{
             connection.close();

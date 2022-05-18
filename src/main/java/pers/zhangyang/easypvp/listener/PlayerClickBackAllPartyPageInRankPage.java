@@ -8,9 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
-import pers.zhangyang.easypvp.domain.Gamer;
-import pers.zhangyang.easypvp.domain.RankPage;
-import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.domain.StarRankPage;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
@@ -25,7 +23,7 @@ public class PlayerClickBackAllPartyPageInRankPage implements Listener {
     @EventHandler
     public void onClickInventory(InventoryClickEvent event){
         Inventory inventory=event.getInventory();
-        if (!(inventory.getHolder() instanceof RankPage)){
+        if (!(inventory.getHolder() instanceof StarRankPage)){
             return;
         }
 

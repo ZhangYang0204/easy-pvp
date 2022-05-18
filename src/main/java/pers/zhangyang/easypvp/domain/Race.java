@@ -33,7 +33,7 @@ public class Race {
     protected final boolean build;
     protected final boolean keepInventory;
     protected final boolean keepLevel;
-    protected final int chooseTick;
+    protected final int chooseTime;
     protected final HashMap<Gamer, ItemStack[]> inventorySave;
     protected final HashMap<Gamer, Location> locationBefore;
     protected final HashMap<Gamer, GameMode> gameModeBefore;
@@ -52,7 +52,8 @@ public class Race {
     protected Party loser;
     protected Party redParty;
     protected Party blueParty;
-    protected Long startTime;
+
+    protected Long startTimeMillis;
     protected World world;
     protected Location redLoc;
     protected Location blueLoc;
@@ -399,8 +400,8 @@ public class Race {
         this.keepLevel = mapMeta.isKeepLevel();
         this.fair = mapMeta.isFair();
         this.build = mapMeta.isBuild();
-        this.chooseTick = mapMeta.getChooseKitTime();
-        this.startTime = System.currentTimeMillis();
+        this.chooseTime = mapMeta.getChooseKitTime();
+        this.startTimeMillis = System.currentTimeMillis();
         this.mapBlockMetaList = new ArrayList<>();
         for (MapBlockMeta b: mapBlockMetaList){this.mapBlockMetaList.add(b.clone());}
         this.mapContainerInventoryItemStackMetaList = new ArrayList<>();
@@ -413,8 +414,8 @@ public class Race {
         watcherLocationBefore=new HashMap<>();
     }
 
-    public Long getStartTime() {
-        return startTime;
+    public Long getStartTimeMillis() {
+        return startTimeMillis;
     }
 
     public RaceStatsEnum getStats() {
@@ -435,11 +436,11 @@ public class Race {
         if (stats.equals(RaceStatsEnum.RACING)){
             throw new IllegalRaceStatsException("This race is not freeing");
         }
-        if (!redParty.getStats().equals(PartyStatsEnum.FREEING)){
-            throw new IllegalPartyStatsException("Party "+redParty.partyName+" is not freeing");
+            if (redParty.getStats().equals(PartyStatsEnum.RACING)){
+            throw new IllegalPartyStatsException("Party "+redParty.partyName+" is  racing");
         }
-        if (!blueParty.getStats().equals(PartyStatsEnum.FREEING)){
-            throw new IllegalPartyStatsException("Party "+blueParty.partyName+" is not freeing");
+        if (blueParty.getStats().equals(PartyStatsEnum.RACING)){
+            throw new IllegalPartyStatsException("Party "+blueParty.partyName+" is  racing");
         }
         initWorld();
         this.stats=RaceStatsEnum.RACING;
@@ -451,7 +452,7 @@ public class Race {
         this.secondLoc = new Location(world, mapMeta.getSecondPointX(), mapMeta.getSecondPointY(), mapMeta.getSecondPointZ());
         this.redAlive.addAll(redParty.memberList);
         this.blueAlive.addAll(blueParty.memberList);
-        this.startTime = System.currentTimeMillis();
+        this.startTimeMillis = System.currentTimeMillis();
         redParty.stats = PartyStatsEnum.RACING;
         blueParty.stats = PartyStatsEnum.RACING;
         redParty.race = this;
@@ -636,8 +637,8 @@ public class Race {
        return LocationUtil.blockIsIn(firstLoc,secondLoc,g.getPlayer().getLocation());
     }
 
-    public int getChooseTick() {
-        return chooseTick;
+    public int getChooseTime() {
+        return chooseTime;
     }
 
     @Nonnull

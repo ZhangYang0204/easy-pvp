@@ -22,10 +22,16 @@ public class RecordDao   extends DaoBase{
         ps =  getConnection().prepareStatement("" +
                 "CREATE TABLE if not exists record_table (" +
                 "  'playerUuid' STRING NOT NULL  ," +
-                "  'draw' INT NOT NULL  ," +
-                "  'all' INT NOT NULL  ," +
-                "  'win' INT NOT NULL  ," +
-                "  'lose' INT NOT NULL  ," +
+                "  'seasonDraw' INT NOT NULL  ," +
+                "  'seasonAll' INT NOT NULL  ," +
+                "  'seasonWin' INT NOT NULL  ," +
+                "  'seasonLose' INT NOT NULL  ," +
+                "  'seasonStar' INT NOT NULL  ," +
+                "  'totalDraw' INT NOT NULL  ," +
+                "  'totalAll' INT NOT NULL  ," +
+                "  'totalWin' INT NOT NULL  ," +
+                "  'totalLose' INT NOT NULL  ," +
+                "  'totalStreak' INT NOT NULL  ," +
                 "  PRIMARY KEY (playerUuid)" +
                 ")");
 
@@ -38,12 +44,19 @@ public class RecordDao   extends DaoBase{
     public int insert(RecordMeta recordMeta) throws SQLException {
 
         PreparedStatement ps=getConnection().prepareStatement("insert into record_table " +
-                "(playerUuid,draw,'all',win,'lose') values (?,?,?,?,?)");
+                "(playerUuid,seasonDraw,'seasonAll',seasonWin,'seasonLose',totalAll,totalDraw,totalLose,totalWin,seasonStar,totalStreak) values (?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, recordMeta.getPlayerUuid());
-        ps.setInt(2, recordMeta.getDraw());
-        ps.setInt(3, recordMeta.getAll());
-        ps.setInt(4, recordMeta.getWin());
-        ps.setInt(5, recordMeta.getLose());
+        ps.setInt(2, recordMeta.getSeasonDraw());
+        ps.setInt(3, recordMeta.getSeasonAll());
+        ps.setInt(4, recordMeta.getSeasonWin());
+        ps.setInt(5, recordMeta.getSeasonLose());
+        ps.setInt(6, recordMeta.getTotalAll());
+        ps.setInt(7, recordMeta.getTotalDraw());
+        ps.setInt(8, recordMeta.getTotalLose());
+        ps.setInt(9, recordMeta.getTotalWin());
+        ps.setInt(10, recordMeta.getSeasonStar());
+        ps.setInt(11, recordMeta.getTotalStreak());
+
         return ps.executeUpdate();
     }
     public int deleteByPlayerUuid(String playerUuid ) throws SQLException {
@@ -77,11 +90,17 @@ public class RecordDao   extends DaoBase{
 
     private RecordMeta changeFromResultSet(ResultSet rs) throws SQLException {
         RecordMeta recordMeta =new RecordMeta();
-        recordMeta.setDraw(rs.getInt("draw"));
+        recordMeta.setSeasonDraw(rs.getInt("seasonDraw"));
         recordMeta.setPlayerUuid(rs.getString("playerUuid"));
-        recordMeta.setAll(rs.getInt("all"));
-        recordMeta.setLose(rs.getInt("lose"));
-        recordMeta.setWin(rs.getInt("win"));
+        recordMeta.setSeasonAll(rs.getInt("seasonAll"));
+        recordMeta.setSeasonLose(rs.getInt("seasonLose"));
+        recordMeta.setSeasonWin(rs.getInt("seasonWin"));
+        recordMeta.setTotalAll(rs.getInt("totalAll"));
+        recordMeta.setTotalDraw(rs.getInt("totalDraw"));
+        recordMeta.setTotalLose(rs.getInt("totalLose"));
+        recordMeta.setTotalWin(rs.getInt("totalWin"));
+        recordMeta.setSeasonStar(rs.getInt("seasonStar"));
+        recordMeta.setTotalStreak(rs.getInt("totalStreak"));
         return recordMeta;
     }
 }

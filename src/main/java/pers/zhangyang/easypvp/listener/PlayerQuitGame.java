@@ -36,7 +36,7 @@ public class PlayerQuitGame implements Listener {
             Race race=gamer.getRacingRace();
             GamerManager.GAMER_MANAGER.remove(player);
 
-            if (party!=null&&party.getStats().equals(PartyStatsEnum.MATCHING)){
+            if (party.getStats().equals(PartyStatsEnum.MATCHING)){
                 //队伍取消匹配
                 party.cancelMatch();
                 //其他人通知
@@ -66,21 +66,22 @@ public class PlayerQuitGame implements Listener {
 
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
+
+                RaceUtil.AfterRaceStop(race);
              }
 
             if (gamer.getStats().equals(GamerStatsEnum.READING)){
-            //离开队伍
-            gamer.leaveParty();
                 List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();
                 HashMap<String,String> rep = new HashMap<>();
                 rep.put("{party}", party.getPartyName());
                 if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
-                race.getBlueParty().sendMessageToAll(list);
-                race.getRedParty().sendMessageToAll(list);
-              }
+                    ReplaceUtil.replace(list, rep);
+                }
+                gamer.getParty().sendMessageToAll(list);
+                //离开队伍
+                gamer.leaveParty();
+            }
 
 
 
@@ -100,13 +101,6 @@ public class PlayerQuitGame implements Listener {
             if (race==null){return;}
 
 
-
-            if (!race.getStats().equals(RaceStatsEnum.ENDING)){
-                return;
-            }
-
-
-            RaceUtil.AfterRaceStop(race);
 
         } catch (SQLException e) {
             e.printStackTrace();

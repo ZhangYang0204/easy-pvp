@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
@@ -51,6 +52,8 @@ public class PlayerClickNextAllPartyPage implements Listener {
             MessageUtil.sendMessageTo(player, list);
             return;
         }
+        String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+         allPartyPage=new AllPartyPage(title);
         allPartyPage.init(PageUtil.pageParty(currentPageIndex+1,45,PartyManager.PARTY_MANAGER.getPartyList()),
                 currentPageIndex+1);
         allPartyPage.send(player);

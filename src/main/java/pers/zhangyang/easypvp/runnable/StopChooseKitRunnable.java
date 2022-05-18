@@ -1,6 +1,5 @@
 package pers.zhangyang.easypvp.runnable;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Gamer;
@@ -18,7 +17,7 @@ public class StopChooseKitRunnable extends BukkitRunnable {
 
     public StopChooseKitRunnable(Race race) {
         this.race = race;
-        this.rest=race.getChooseTick();
+        this.rest=race.getChooseTime();
     }
 
     @Override
@@ -35,7 +34,6 @@ public class StopChooseKitRunnable extends BukkitRunnable {
                     Collections.singletonMap("{time}",String.valueOf(rest)));
         }
         race.sendTitleToAll(title, stitle);
-
 
         rest-=1;
 

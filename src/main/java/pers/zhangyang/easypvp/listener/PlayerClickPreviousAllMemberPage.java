@@ -11,6 +11,7 @@ import pers.zhangyang.easypvp.domain.AllMemberPage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -51,7 +52,7 @@ public class PlayerClickPreviousAllMemberPage implements Listener {
                     .getCHAT_FAILURE_PREVIOUS_ALL_MEMBER_PAGE_BECAUSE_NOT_PREVIOUS();
             MessageUtil.sendMessageTo(player, list);
             return;
-        }
+        }allPartyPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
         allPartyPage.init(party,currentPageIndex-1,PageUtil.pageGamer(currentPageIndex-1,45,
                 party.getMemberList()));
         allPartyPage.send(player);

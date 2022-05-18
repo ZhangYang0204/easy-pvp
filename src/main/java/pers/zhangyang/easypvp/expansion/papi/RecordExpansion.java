@@ -8,8 +8,10 @@ import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
+import pers.zhangyang.easypvp.yaml.DanYaml;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 
 public class RecordExpansion extends PlaceholderExpansion {
     public static final RecordExpansion recordExpansion=new RecordExpansion();
@@ -28,21 +30,51 @@ public class RecordExpansion extends PlaceholderExpansion {
             return null;
         }
 
-        if (params.equalsIgnoreCase("amount_win")){
+        if (params.equalsIgnoreCase("amount_total_win")){
 
-            return recordMeta==null?"0":String.valueOf(recordMeta.getWin());
+            return recordMeta==null?"0":String.valueOf(recordMeta.getTotalWin());
 
-        }else   if (params.equalsIgnoreCase("amount_lose")){
+        }else   if (params.equalsIgnoreCase("amount_total_lose")){
 
-            return recordMeta==null?"0":String.valueOf(recordMeta.getLose());
-        }else   if (params.equalsIgnoreCase("amount_draw")) {
+            return recordMeta==null?"0":String.valueOf(recordMeta.getTotalLose());
+        }else   if (params.equalsIgnoreCase("amount_total_draw")) {
 
-            return recordMeta==null?"0":String.valueOf(recordMeta.getDraw());
+            return recordMeta==null?"0":String.valueOf(recordMeta.getTotalDraw());
 
-        }else   if (params.equalsIgnoreCase("amount_all")) {
+        }else   if (params.equalsIgnoreCase("amount_total_all")) {
 
-            return recordMeta==null?"0":String.valueOf(recordMeta.getAll());
+            return recordMeta==null?"0":String.valueOf(recordMeta.getTotalAll());
+        }else   if (params.equalsIgnoreCase("amount_season_all")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonAll());
+        }else   if (params.equalsIgnoreCase("amount_season_win")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonWin());
+        }else   if (params.equalsIgnoreCase("amount_season_lose")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonLose());
+        }else   if (params.equalsIgnoreCase("amount_season_draw")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonDraw());
+        }else   if (params.equalsIgnoreCase("amount_season_star")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonStar());
+        }else   if (params.equalsIgnoreCase("amount_total_streak")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonStar());
+        }else   if (params.equalsIgnoreCase("dan")) {
+            String dan=null;
+            Iterator<Integer> it=DanYaml.SETTING_YAML_MANAGER.getSECTION().keySet().stream().sorted().iterator();
+            while (it.hasNext()){
+                Integer iii=it.next();
+                if (recordMeta.getSeasonStar()>=iii){
+                    dan=DanYaml.SETTING_YAML_MANAGER.getSECTION().get(iii);
+                }
+            }
+
+            return dan;
         }
+
         return null;
     }
 

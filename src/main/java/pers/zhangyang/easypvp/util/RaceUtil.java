@@ -3,6 +3,7 @@ package pers.zhangyang.easypvp.util;
 import org.bukkit.Bukkit;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -19,17 +20,33 @@ public class RaceUtil {
             RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
             if (race.getWinner()==null) {
                 for (Gamer g : race.getRedParty().getMemberList()) {
-                    raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                    raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
                 }
                 for (Gamer g : race.getBlueParty().getMemberList()) {
-                    raceService.recordDraw(g.getPlayer().getUniqueId().toString());
+                    raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
                 }
             }else {
                 for (Gamer g : race.getWinner().getMemberList()) {
-                    raceService.recordWin(g.getPlayer().getUniqueId().toString());
+                    raceService.gamerWin(g.getPlayer().getUniqueId().toString());
+                    RecordMeta recordMeta=raceService.getRecordMetaList(g.getPlayer().getUniqueId().toString());
+                    for (int x:MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().keySet()) {
+                        if (recordMeta.getTotalStreak() ==x){
+
+                            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().get(x);
+                            HashMap<String,String> rep = new HashMap<>();
+                            rep.put("{player}", g.getPlayer().getName());
+                            if (list!=null){
+                                ReplaceUtil.replace(list, rep);
+                            }
+                            MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
+
+                        }
+                    }
+
+
                 }
                 for (Gamer g : race.getLoser().getMemberList()) {
-                    raceService.recordLose(g.getPlayer().getUniqueId().toString());
+                    raceService.gamerLose(g.getPlayer().getUniqueId().toString());
                 }
             }
 
@@ -40,8 +57,7 @@ public class RaceUtil {
 
 
         if (race.getWinner()!=null) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                    .getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
             HashMap<String,String> rep = new HashMap<>();
             rep.put("{win_party}", race.getWinner().getPartyName());
             rep.put("{lose_party}", race.getLoser().getPartyName());
@@ -50,6 +66,8 @@ public class RaceUtil {
                 ReplaceUtil.replace(list, rep);
             }
             MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
+
+
         }else {
             List<String>  list=MessageYaml.MESSAGE_YAML_MANAGER
                     .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();

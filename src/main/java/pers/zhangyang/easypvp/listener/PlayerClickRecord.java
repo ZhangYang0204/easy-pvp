@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.domain.RankPage;
+import pers.zhangyang.easypvp.domain.StarRankPage;
 
 public class PlayerClickRecord  implements Listener {
 
@@ -15,7 +15,7 @@ public class PlayerClickRecord  implements Listener {
     @EventHandler
     public void onClickInventory(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
-        if (!(inventory.getHolder() instanceof RankPage)) {
+        if (!(inventory.getHolder() instanceof StarRankPage)) {
             return;
         }
 

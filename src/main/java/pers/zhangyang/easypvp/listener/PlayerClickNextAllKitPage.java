@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -54,6 +55,7 @@ public class PlayerClickNextAllKitPage implements Listener {
             return;
         }
 
+        allPartyPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
         allPartyPage.init(currentPageIndex+1, PageUtil.pageKitMeta(currentPageIndex+1,45,
                 new ArrayList<>(race.getKitItemMap().keySet())));
         allPartyPage.send(player);

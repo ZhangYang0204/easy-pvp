@@ -13,6 +13,7 @@ import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -65,7 +66,8 @@ public class PlayerClickNextAllMapPage implements Listener {
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-
+        String title = GuiYaml.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
+        allPartyPage = new AllMapPage(title);
         allPartyPage.init(party,currentPageIndex+1, PageUtil.pageMapMeta(currentPageIndex+1,45,
                 mapMetaList));
         allPartyPage.send(player);

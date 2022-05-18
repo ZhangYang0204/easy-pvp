@@ -212,6 +212,7 @@ public class Gamer  {
 
     /**
      * 不是观战模式不做
+     * @exception IllegalGamerStatsException 如果不在观战
      */
     public void unwatchRace(){
         if (!stats.equals(GamerStatsEnum.WATCHING)){

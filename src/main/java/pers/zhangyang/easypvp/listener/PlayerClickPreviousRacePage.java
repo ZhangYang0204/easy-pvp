@@ -16,6 +16,7 @@ import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class PlayerClickPreviousRacePage implements Listener {
                     .getCHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
-        }
+        } allPartyPage=new AllRacePage(GuiYaml.GUI_MANAGER.getTITLE_ALL_RACE_PAGE());
         allPartyPage.init(PageUtil.pageRace(currentPageIndex-1,45, RaceManager.RACE_MANAGER.getRaceList()),
                 currentPageIndex-1);
         allPartyPage.send(player);

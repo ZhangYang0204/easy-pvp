@@ -3,6 +3,7 @@ package pers.zhangyang.easypvp.yaml;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MessageYaml extends YamlManagerBase {
@@ -25,6 +26,7 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SUCCESS_OPEN_GUI;
     private List<String> CHAT_SUCCESS_SET_SECTION;
 
+    private HashMap<Integer,List<String>> CHAT_STREAK;
 
     private List<String> CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING;
     private List<String> CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP;
@@ -554,8 +556,23 @@ public class MessageYaml extends YamlManagerBase {
         } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$);
     }
 
+    public HashMap<Integer, List<String>> getCHAT_STREAK() {
+        return new HashMap<>(CHAT_STREAK);
+    }
+
     @Override
     protected void check()  {
+
+        CHAT_STREAK=new HashMap<>();
+        for (String key:yamlConfiguration.getConfigurationSection("message.chat.streak").getKeys(false)){
+            String last=key.split("\\.")[key.split("\\.").length-1];
+            int q;
+            try {q=Integer.valueOf(last);}catch (NumberFormatException e){continue;}
+            if (q<0){continue;}
+            if (getStringList("message.chat.streak."+key,false)==null){continue;}
+            CHAT_STREAK.put(q,getStringList("message.chat.streak."+key,false));
+        }
+
 
         COMPLETER_EASY_PVP=getStringList("message.completer.easyPvp",false);
 

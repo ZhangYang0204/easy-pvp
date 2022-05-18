@@ -12,6 +12,7 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.manager.GamerManager;
+import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -55,7 +56,7 @@ public class PlayerClickPreviousAllKitPage implements Listener {
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-
+        allPartyPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
         allPartyPage.init(currentPageIndex-1, PageUtil.pageKitMeta(currentPageIndex-1,45,
                 new ArrayList<>(race.getKitItemMap().keySet())));
         allPartyPage.send(player);

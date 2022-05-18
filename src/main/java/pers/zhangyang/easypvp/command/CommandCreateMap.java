@@ -75,7 +75,7 @@ public class CommandCreateMap extends CommandBase {
             mapInfo.setBluePointX(section.getBlue().getBlockX());
             mapInfo.setBluePointY(section.getBlue().getBlockY());
             mapInfo.setBluePointZ(section.getBlue().getBlockZ());
-            mapInfo.setChooseKitTime(100);
+            mapInfo.setChooseKitTime(10);
 
             //保存方块数据
             int x1=section.getFirst().getBlockX();
