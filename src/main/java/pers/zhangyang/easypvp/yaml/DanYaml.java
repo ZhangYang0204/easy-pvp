@@ -7,10 +7,9 @@ import java.util.HashMap;
 public class DanYaml extends YamlManagerBase {
     public static final DanYaml SETTING_YAML_MANAGER =new DanYaml();
 
-    private DanYaml( ) {
-        super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/dan.yml");
+    private DanYaml(){
+        super("dan.yml");
     }
-
     private HashMap<Integer,String> SECTION;
 
 
@@ -28,6 +27,7 @@ public class DanYaml extends YamlManagerBase {
     }
 
     public HashMap<Integer, String> getSECTION() {
+
         return new HashMap<>(SECTION);
 
     }

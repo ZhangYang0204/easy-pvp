@@ -19,7 +19,7 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_NO_PERMISSION;
 
     private List<String> CHAT_SUCCESS_CORRECT_YAML;
-    private List<String> CHAT_SUCCESS_RESET_RECORD;
+    private List<String> CHAT_SUCCESS_RESET_SEASON;
     private List<String> CHAT_SUCCESS_RELOAD_YAML;
     private List<String> CHAT_SUCCESS_HELP;
     private List<String> CHAT_SUCCESS_CANCEL_CREATE_PARTY;
@@ -588,7 +588,12 @@ public class MessageYaml extends YamlManagerBase {
     }
 
     public HashMap<Integer, List<String>> getCHAT_STREAK() {
-        return new HashMap<>(CHAT_STREAK);
+        HashMap<Integer,List<String>> hashMap=new HashMap<>(CHAT_STREAK);
+
+        for (int k:CHAT_STREAK.keySet()){
+            hashMap.put(k,new ArrayList<>(CHAT_STREAK.get(k)));
+        }
+        return hashMap;
     }
 
     public List<String> getCHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR() {
@@ -805,7 +810,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SUCCESS_HELP =getStringList("message.chat.successHelp",false);
 
         CHAT_SUCCESS_CORRECT_YAML=getStringList("message.chat.successCorrectYaml",false);
-        CHAT_SUCCESS_RESET_RECORD =getStringList("message.chat.successResetRecord",false);
+        CHAT_SUCCESS_RESET_SEASON =getStringList("message.chat.successResetSeason",false);
 
         CHAT_SUCCESS_RELOAD_YAML =getStringList("message.chat.successReloadYaml",false);
 
@@ -1389,10 +1394,10 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SUCCESS_OPEN_GUI);
     }
 
-    public List<String> getCHAT_SUCCESS_RESET_RECORD() {
-        if (CHAT_SUCCESS_RESET_RECORD ==null){
+    public List<String> getCHAT_SUCCESS_RESET_SEASON() {
+        if (CHAT_SUCCESS_RESET_SEASON ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_RESET_RECORD);
+        }return new ArrayList<>(CHAT_SUCCESS_RESET_SEASON);
     }
 
     public List<String> getCHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME() {

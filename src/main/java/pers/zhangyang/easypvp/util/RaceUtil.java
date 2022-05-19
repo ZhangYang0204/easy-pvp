@@ -42,8 +42,6 @@ public class RaceUtil {
 
                         }
                     }
-
-
                 }
                 for (Gamer g : race.getLoser().getMemberList()) {
                     raceService.gamerLose(g.getPlayer().getUniqueId().toString());
@@ -79,7 +77,13 @@ public class RaceUtil {
             }
             MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
         }
-
+    RefreshUtil.refreshAllRacePage();
+        try {
+            RefreshUtil.refreshRankPage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
 
     }
 

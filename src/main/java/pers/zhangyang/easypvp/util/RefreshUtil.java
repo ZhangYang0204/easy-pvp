@@ -10,6 +10,7 @@ import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
+import pers.zhangyang.easypvp.yaml.ShopYaml;
 
 import java.sql.SQLException;
 import java.util.Comparator;
@@ -34,6 +35,7 @@ public class RefreshUtil {
                 }
 
 
+                p.openInventory(allRacePage.getInventory());
             }
         }
     }
@@ -53,7 +55,7 @@ public class RefreshUtil {
                     allPartyPage.init(PageUtil.pageParty(maxPageIndex, 45,PartyManager.PARTY_MANAGER.getPartyList()),
                             maxPageIndex);
                 }
-
+                p.openInventory(allPartyPage.getInventory());
 
             }
         }
@@ -74,7 +76,9 @@ public class RefreshUtil {
                     allMemberPage.init(party,maxPageIndex, PageUtil.pageGamer(maxPageIndex,45,party.getMemberList()));
                 }
 
+                p.openInventory(allMemberPage.getInventory());
             }
+
 
         }
     }
@@ -100,12 +104,45 @@ public class RefreshUtil {
 
                     allPartyPage.init(party, maxPageIndex,PageUtil.pageMapMeta(maxPageIndex,45,mapMetaList));
                 }
+                p.openInventory(allPartyPage.getInventory());
 
             }
 
         }
     }
+    public static void refreshShopPage( )   {
 
+        for (Player p: Bukkit.getOnlinePlayers()){
+            if (p.getOpenInventory().getTopInventory().getHolder() instanceof ShopPage){
+
+                List<RecordMeta> recordMetaList;
+
+                ShopPage starRankPage = (ShopPage) p.getOpenInventory().getTopInventory().getHolder();
+
+                int maxPageIndex=PageUtil.computeMaxPageIndex(ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL().size(),45);
+                starRankPage =new ShopPage(GuiYaml.GUI_MANAGER.getTITLE_SHOP_PAGE());
+                if (maxPageIndex>= starRankPage.getPageIndex()) {
+
+                    starRankPage.init(starRankPage.getPageIndex(),PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
+                            PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
+                            PageUtil.pageInteger(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+                }else {
+                    starRankPage.init(maxPageIndex,PageUtil.pageString(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
+                            PageUtil.pageString(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
+                            PageUtil.pageInteger(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+                }
+                p.openInventory(starRankPage.getInventory());
+
+            }
+
+        }
+    }
 
     public static void refreshRankPage( ) throws SQLException {
 
@@ -137,6 +174,7 @@ public class RefreshUtil {
                 }else {
                     starRankPage.init(maxPageIndex,PageUtil.pageRecordMeta(maxPageIndex,45,recordMetaList));
                 }
+                p.openInventory(starRankPage.getInventory());
 
             }
 

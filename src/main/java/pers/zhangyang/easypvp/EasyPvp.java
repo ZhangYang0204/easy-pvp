@@ -20,14 +20,11 @@ import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.MessageUtil;
-import pers.zhangyang.easypvp.util.ReplaceUtil;
+import pers.zhangyang.easypvp.util.*;
 import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.service.PluginService;
 import pers.zhangyang.easypvp.service.impl.PluginServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
-import pers.zhangyang.easypvp.util.UpdateUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -350,6 +347,13 @@ public class EasyPvp extends JavaPlugin {
                 e.printStackTrace();
                 return;
             }
+        }
+
+        try {
+            RefreshUtil.refreshRankPage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
         }
 
         //关闭消息

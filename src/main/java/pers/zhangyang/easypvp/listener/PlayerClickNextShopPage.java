@@ -69,12 +69,12 @@ public class PlayerClickNextShopPage  implements Listener {
         String title= GuiYaml.getGuiManager().getTITLE_SHOP_PAGE();
         starRankPage =new ShopPage(title);
 
-        starRankPage.init(0,PageUtil.pageString(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                PageUtil.pageString(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                PageUtil.pageInteger(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+        starRankPage.init(currentPageIndex+1,PageUtil.pageString(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
+                PageUtil.pageString(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
+                PageUtil.pageInteger(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
         starRankPage.send(player);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_NEXT_SHOP_PAGE();

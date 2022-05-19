@@ -258,7 +258,7 @@ message:
       - "&c&l设置地图 &f{map} &c&l的规模为 &f{scale} &c&l失败,没有找到叫这个名字的地图"
 
     successResetSeason:
-      - "&b&l比赛记录重置成功"
+      - "&b&l赛季重置成功"
 
     successReloadYaml:
       - "&b&l插件重载成功"

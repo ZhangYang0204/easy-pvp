@@ -98,7 +98,6 @@ public class PlayerClickJoinParty implements Listener {
             gamer.joinParty(party);
             //刷新页面
             RefreshUtil.refreshAllMemberPage();
-
             RefreshUtil.refreshAllMapPage();
 
         } catch (SQLException e) {

@@ -80,6 +80,7 @@ public class PlayerDeadInRacing implements Listener {
             return;
         }
 
+
         RaceUtil.AfterRaceStop(race);
 
 

@@ -17,6 +17,7 @@ import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.util.RefreshUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
@@ -85,6 +86,8 @@ public class PlayerInputAfterClickCreateParty implements Listener {
 
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_CREATE_PARTY();
+
+        RefreshUtil.refreshAllPartyPage();
 
         if (list!=null) {
             ReplaceUtil.replace(list, Collections.singletonMap("{party}", args[0]));

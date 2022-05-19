@@ -72,7 +72,6 @@ public class ShopYaml extends YamlManagerBase {
         CONTENT_$_COMMAND=new ArrayList<>();
         CONTENT_$_DISPLAY_NAME=new ArrayList<>();
         for (String key:yamlConfiguration.getConfigurationSection("shop.content").getKeys(false)){
-            System.out.println(key);
             String materialName=getString("shop.content."+key+".material",false);
             String displayName=getString("shop.content."+key+".displayName",false);
             Integer cost=getInteger("shop.content."+key+".cost",false);

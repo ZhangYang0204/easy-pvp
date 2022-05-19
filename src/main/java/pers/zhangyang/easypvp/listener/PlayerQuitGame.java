@@ -98,6 +98,8 @@ public class PlayerQuitGame implements Listener {
 
             //刷新地图页面
             RefreshUtil.refreshAllMapPage();
+
+
             if (race==null){return;}
 
 

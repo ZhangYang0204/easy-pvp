@@ -15,6 +15,7 @@ import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
+import pers.zhangyang.easypvp.util.RefreshUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 
@@ -64,6 +65,14 @@ public class PlayerClickBuyGood implements Listener {
             MessageUtil.sendMessageTo(player,no);
             return;
         }
+
+        try {
+            RefreshUtil.refreshRankPage();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
 
         ReplaceUtil.replace(cmdMap, Collections.singletonMap("{player}",player.getName()));
         //执行命令
