@@ -32,12 +32,14 @@ public class CompleterAddMapKit extends CompleterBase {
             } catch (SQLException e) {
                 e.printStackTrace();
 
-                return removeStartWith(args[1], list);
+                return removeStartWith(args[1], list==null?new ArrayList<>():list);
             }
             if (list!=null){
                 ReplaceUtil.format(list,"{[$]}",mapName);
             }
-            return removeStartWith(args[1],list );
+
+            
+            return removeStartWith(args[1],list==null?new ArrayList<>():list );
 
         }
         if (args.length==3){
@@ -51,12 +53,12 @@ public class CompleterAddMapKit extends CompleterBase {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                return removeStartWith(args[2], list);
+                return removeStartWith(args[2],list==null?new ArrayList<>():list );
             }
             if (list!=null){
                 ReplaceUtil.format(list,"{[$]}",mapName);
             }
-            return removeStartWith(args[2], list);
+            return removeStartWith(args[2],list==null?new ArrayList<>():list );
 
         }
 

@@ -1,0 +1,27 @@
+shop:
+  title: "&b&l&n星星商店"
+  content:
+    0:
+      material: "DIAMOND"
+      displayName: "兑换钻石"
+      cost: 1
+      lore:
+        - "花费1个星星兑换5个钻石"
+      command:
+        - "op:give {player} diamond 5"
+        - "console:give {player} diamond 5"
+        - "player:give {player} diamond 5"
+      notEnough:
+        - "&c&l星星不足"
+    1:
+      material: "PAPER"
+      displayName: "兑换点券"
+      cost: 10
+      lore:
+        - "花费10个星星兑换1个点券"
+      command:
+        - "op:playerpoints give {player} 1"
+        - "console:playerpoints give {player} 1"
+        - "player:playerpoints give {player} 1"
+      notEnough:
+        - "&c&l星星不足"

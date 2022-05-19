@@ -21,29 +21,29 @@ public class CompleterAddMapDescription extends CompleterBase {
     @Override
     public List<String> complete() {
 
-        if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION();
-            List<String> mapName=new ArrayList<>();
+        if (args.length == 2) {
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION();
+            List<String> mapName = new ArrayList<>();
             try {
-                CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
-                for (MapMeta mm:completerService.getMapMetaList()){
+                CompleterService completerService = (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
+                for (MapMeta mm : completerService.getMapMetaList()) {
                     mapName.add(mm.getName());
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
 
-                return removeStartWith(args[1], list);
+                return removeStartWith(args[1], list == null ? new ArrayList<>() : list);
             }
-            if (list!=null){
-                ReplaceUtil.format(list,"{[$]}",mapName);
+            if (list != null) {
+                ReplaceUtil.format(list, "{[$]}", mapName);
             }
-            return removeStartWith(args[1],list );
-
+            return removeStartWith(args[1], list==null?new ArrayList<>():list);
 
 
         }
-        if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$());
+        if (args.length == 3) {
+            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$() == null ? new ArrayList<>() : MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_DESCRIPTION_$()
+            );
         }
         return new ArrayList<>();
     }

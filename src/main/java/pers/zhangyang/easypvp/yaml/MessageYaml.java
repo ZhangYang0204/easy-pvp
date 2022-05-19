@@ -100,6 +100,17 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_SUCCESS_ADD_MAP_KIT;
 
+
+
+    private List<String> CHAT_SUCCESS_NEXT_SHOP_PAGE;
+    private List<String> CHAT_SUCCESS_PREVIOUS_SHOP_PAGE;
+    private List<String> CHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT;
+    private List<String> CHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS;
+    private List<String> CHAT_SUCCESS_SHOW_SHOP_PAGE;
+    private List<String> CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE;
+
+
+
     private List<String> CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME;
 
     private List<String> CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME;
@@ -156,6 +167,14 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SOMEONE_SUCCESS_LEAVE_PARTY;
     private List<String> CHAT_SOMEONE_SUCCESS_WAS_KICKED_PARTY;
 
+    private List<String> CHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR;
+    private List<String> CHAT_SUCCESS_SET_CUMULATIVE_STAR;
+    private List<String> CHAT_SUCCESS_PLUS_CUMULATIVE_STAR;
+
+    private List<String> CHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR;
+    private List<String> CHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR;
+    private List<String> CHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR;
+    private List<String> CHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR;
 
     private List<String> CHAT_SUCCESS_SHOW_RANK_PAGE;
 
@@ -252,6 +271,18 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$;
     private List<String> COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION_$;
     private List<String> COMPLETER_EASY_PVP_REMOVE_KIT_DESCRIPTION;
+
+
+    private List<String> COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR;
+    private List<String> COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR;
+    private List<String> COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR;
+    private List<String> COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$;
+    private List<String> COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR_$;
+    private List<String> COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR_$;
+
+
+
+
 
     private List<String> COMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$;
     private List<String> COMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$;
@@ -560,6 +591,123 @@ public class MessageYaml extends YamlManagerBase {
         return new HashMap<>(CHAT_STREAK);
     }
 
+    public List<String> getCHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_SET_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_SET_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCHAT_SUCCESS_PLUS_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_PLUS_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_PLUS_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR() {
+        if (CHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR);
+    }
+
+    public List<String> getCHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR() {
+        if (CHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR ==null){
+            return null;
+        } return new ArrayList<>(CHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR() {
+        if (COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR() {
+        if (COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR() {
+        if (COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$() {
+
+        if (COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR_$() {
+
+        if (COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR_$() {
+
+        if (COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR_$);
+    }
+
+    public List<String> getCHAT_SUCCESS_NEXT_SHOP_PAGE() {
+        if (CHAT_SUCCESS_NEXT_SHOP_PAGE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_NEXT_SHOP_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_PREVIOUS_SHOP_PAGE() {
+        if (CHAT_SUCCESS_PREVIOUS_SHOP_PAGE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_PREVIOUS_SHOP_PAGE);
+    }
+
+    public List<String> getCHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT() {
+        if (CHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT);
+    }
+
+    public List<String> getCHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS() {
+        if (CHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS);
+    }
+
+    public List<String> getCHAT_SUCCESS_SHOW_SHOP_PAGE() {
+        if (CHAT_SUCCESS_SHOW_SHOP_PAGE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SHOW_SHOP_PAGE);
+    }
+
+    public List<String> getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE() {
+        if (CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE);
+    }
+
     @Override
     protected void check()  {
 
@@ -636,6 +784,14 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_PREVIOUS_ALL_KIT_PAGE_BECAUSE_NOT_PREVIOUS=getStringList("message.chat.failurePreviousAllKitPageBecauseNotPrevious",false);
 
 
+        CHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR=getStringList("message.chat.successSubtractCumulativeStar",false);
+        CHAT_SUCCESS_SET_CUMULATIVE_STAR=getStringList("message.chat.successSetCumulativeStar",false);
+        CHAT_SUCCESS_PLUS_CUMULATIVE_STAR=getStringList("message.chat.successPlusCumulativeStar",false);
+        CHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR=getStringList("message.chat.failureSubtractCumulativeStarBecauseNotEnoughStar",false);
+        CHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR=getStringList("message.chat.successWasSubtractCumulativeStar",false);
+        CHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR=getStringList("message.chat.successWasSetCumulativeStar",false);
+        CHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR=getStringList("message.chat.successWasPlusCumulativeStar",false);
+        
 
 
         CHAT_SUCCESS_NOTIFY_VERSION =getStringList("message.chat.successNotifyVersion",false);
@@ -729,6 +885,15 @@ public class MessageYaml extends YamlManagerBase {
                 ("message.chat.failureAddMapKitBecauseNotExistMapName",false);
         CHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT =getStringList
                 ("message.chat.failureAddMapKitBecauseMapAlreadyAddKit",false);
+
+        CHAT_SUCCESS_NEXT_SHOP_PAGE=getStringList("message.chat.successNextShopPage",false);
+        CHAT_SUCCESS_PREVIOUS_SHOP_PAGE=getStringList("message.chat.successPreviousShopPage",false);
+        CHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT=getStringList("message.chat.failureNextShopPageBecauseNotNext",false);
+        CHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS =getStringList("message.chat.failurePreviousShopPageBecauseNotPrevious",false);
+        CHAT_SUCCESS_SHOW_SHOP_PAGE=getStringList("message.chat.successShowShopPage",false);
+        CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE=getStringList("message.chat.successBackAllPartyPageInShopPage",false);
+
+
 
         CHAT_SUCCESS_REMOVE_MAP_KIT =getStringList("message.chat.successRemoveMapKit",false);
         CHAT_FAILURE_REMOVE_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME =getStringList
@@ -848,7 +1013,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SUCCESS_SHOW_ALL_RACE_PAGE=getStringList("message.chat.successShowAllRacePage",false);
         CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE=getStringList("message.chat.successBackAllPartyPageInAllRacePage",false);
         CHAT_SUCCESS_WATCH_RACE=getStringList("message.chat.successWatchRace",false);
-        CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY=getStringList("message.chat.failureWatchRaceBecauseInParty",false);
+        CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING =getStringList("message.chat.failureWatchRaceBecauseInReading",false);
 
         CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING=getStringList("message.chat.failureWatchRaceBecauseAlreadyInWatching",false);
         CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING=getStringList("message.chat.failureUnwatchRaceBecauseNotInWatching",false);
@@ -857,7 +1022,12 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SUCCESS_ENABLE_PLUGIN=getStringList("message.chat.successEnablePlugin",false);
         CHAT_SUCCESS_DISABLE_PLUGIN=getStringList("message.chat.successDisablePlugin",false);
 
-
+        COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR=getStringList("message.completer.easyPvpSetCumulativeStar",false);
+        COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR=getStringList("message.completer.easyPvpSubtractCumulativeStar",false);
+        COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR=getStringList("message.completer.easyPvpPlusCumulativeStar",false);
+        COMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$=getStringList("message.completer.easyPvpSetCumulativeStar$",false);
+        COMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR_$=getStringList("message.completer.easyPvpSubtractCumulativeStar$",false);
+        COMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR_$=getStringList("message.completer.easyPvpPlusCumulativeStar$",false);
 
         CHAT_SOMEONE_SUCCESS_DEAD_IN_RACING =getStringList("message.chat.someoneSuccessDeadInRacing",false);
         CHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP =getStringList("message.chat.someoneSuccessMoveOutMap",false);
@@ -995,16 +1165,16 @@ public class MessageYaml extends YamlManagerBase {
         }return new ArrayList<>(CHAT_SUCCESS_WATCH_RACE);
     }
 
-    public List<String> getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY() {
-        if (CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY==null){
+    public List<String> getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING() {
+        if (CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING ==null){
             return null;
-        }return new ArrayList<>(CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY);
+        }return new ArrayList<>(CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING);
     }
 
     private List<String> CHAT_SUCCESS_SHOW_ALL_RACE_PAGE;
     private List<String> CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_ALL_RACE_PAGE;
     private List<String> CHAT_SUCCESS_WATCH_RACE;
-    private List<String> CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY;
+    private List<String> CHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING;
     private List<String> CHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING;
     private List<String> CHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING;
 

@@ -31,11 +31,10 @@ public class InvocationUtil {
         Object obj=null;
         try{
             obj = method.invoke(target, args);
-
             connection.commit();
-        }catch(Throwable e){
+        }catch(Exception e){
             connection.rollback();
-            throw e;
+            throw e.getCause();
             //处理的是什么异常，继续往上抛什么异常
         }finally{
             connection.close();

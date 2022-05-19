@@ -14,6 +14,24 @@ public class RecordMeta {
     private int totalLose;
     private int totalDraw;
     private int totalStreak;
+    private int cumulativeStar;
+    private int seasonStreak;
+
+    public int getCumulativeStar() {
+        return cumulativeStar;
+    }
+
+    public void setCumulativeStar(int cumulativeStar) {
+        this.cumulativeStar = cumulativeStar;
+    }
+
+    public int getSeasonStreak() {
+        return seasonStreak;
+    }
+
+    public void setSeasonStreak(int seasonStreak) {
+        this.seasonStreak = seasonStreak;
+    }
 
     public int getTotalStreak() {
         return totalStreak;
@@ -35,21 +53,23 @@ public class RecordMeta {
         recordMeta.setTotalAll(this.totalAll);
 
         recordMeta.setTotalStreak(this.totalStreak);
-
+recordMeta.setSeasonStreak(this.seasonStreak);
+        recordMeta.setCumulativeStar(this.cumulativeStar);
         return recordMeta;
     }
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecordMeta that = (RecordMeta) o;
-        return seasonAll == that.seasonAll && seasonWin == that.seasonWin && seasonLose == that.seasonLose && seasonDraw == that.seasonDraw && seasonStar == that.seasonStar && totalAll == that.totalAll && totalWin == that.totalWin && totalLose == that.totalLose && totalDraw == that.totalDraw && totalStreak == that.totalStreak && Objects.equals(playerUuid, that.playerUuid);
+        return seasonAll == that.seasonAll && seasonWin == that.seasonWin && seasonLose == that.seasonLose && seasonDraw == that.seasonDraw && seasonStar == that.seasonStar && totalAll == that.totalAll && totalWin == that.totalWin && totalLose == that.totalLose && totalDraw == that.totalDraw && totalStreak == that.totalStreak && cumulativeStar == that.cumulativeStar && seasonStreak == that.seasonStreak && Objects.equals(playerUuid, that.playerUuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerUuid, seasonAll, seasonWin, seasonLose, seasonDraw, seasonStar, totalAll, totalWin, totalLose, totalDraw, totalStreak);
+        return Objects.hash(playerUuid, seasonAll, seasonWin, seasonLose, seasonDraw, seasonStar, totalAll, totalWin, totalLose, totalDraw, totalStreak, cumulativeStar, seasonStreak);
     }
 
     public void setTotalStreak(int totalStreak) {

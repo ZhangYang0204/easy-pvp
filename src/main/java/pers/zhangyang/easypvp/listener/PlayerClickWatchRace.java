@@ -50,7 +50,7 @@ public class PlayerClickWatchRace  implements Listener {
 
         if (gamer.getStats().equals(GamerStatsEnum.READING)){
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                    .getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_PARTY();
+                    .getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING();
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{red}",race.getRedParty().getPartyName());
             rep.put("{blue}",race.getBlueParty().getPartyName());

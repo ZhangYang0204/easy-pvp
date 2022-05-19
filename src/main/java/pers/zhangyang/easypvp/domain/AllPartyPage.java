@@ -93,6 +93,11 @@ public class AllPartyPage implements InventoryHolder {
                 guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE());
         inventory.setItem(48,allRace);
 
+        //设置50加入队伍
+        ItemStack ew=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_MATERIAL(),
+                guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_DISPLAY_NAME(), guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_LORE());
+        inventory.setItem(49,ew);
+
 
     }
 

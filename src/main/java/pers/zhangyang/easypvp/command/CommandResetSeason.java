@@ -10,8 +10,8 @@ import pers.zhangyang.easypvp.util.MessageUtil;
 
 import java.sql.SQLException;
 
-public class CommandResetRecord extends CommandBase {
-    public CommandResetRecord(CommandSender sender, boolean forcePlayer, String[] args) {
+public class CommandResetSeason extends CommandBase {
+    public CommandResetSeason(CommandSender sender, boolean forcePlayer, String[] args) {
         super(sender, forcePlayer, args);
     }
 
@@ -19,7 +19,7 @@ public class CommandResetRecord extends CommandBase {
     protected boolean run() {
         try {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.resetRecord();
+            commandService.resetSeason();
         } catch (SQLException e) {
             e.printStackTrace();
             return true ;

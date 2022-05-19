@@ -30,16 +30,18 @@ public class CompleterSetMapFair extends CompleterBase {
             } catch (SQLException e) {
                 e.printStackTrace();
 
-                return removeStartWith(args[1], list);
+                return removeStartWith(args[1], list==null?new ArrayList<>():list);
             }
             if (list!=null){
                 ReplaceUtil.format(list,"{[$]}",mapName);
             }
-            return removeStartWith(args[1],list );
+            return removeStartWith(args[1],list==null?new ArrayList<>():list );
 
         }
         if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$());
+            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$()
+                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$()
+            );
         }
 
         return new ArrayList<>();

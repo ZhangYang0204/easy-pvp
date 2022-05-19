@@ -43,11 +43,15 @@ public class RaceServiceImpl implements RaceService {
             recordMeta.setSeasonStar(0);
             recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
         recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);
         recordMeta.setSeasonWin(recordMeta.getSeasonWin()+1);
 
+        recordMeta.setSeasonStreak(recordMeta.getSeasonStreak()+1);
         recordMeta.setTotalAll(recordMeta.getTotalAll()+1);
         recordMeta.setTotalWin(recordMeta.getTotalWin()+1);
         recordMeta.setSeasonStar(recordMeta.getSeasonStar()+1);
@@ -71,11 +75,16 @@ public class RaceServiceImpl implements RaceService {
             recordMeta.setSeasonStar(0);
             recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
         recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);
         recordMeta.setSeasonLose(recordMeta.getSeasonLose()+1);
 
+
+        recordMeta.setSeasonStreak(0);
         recordMeta.setTotalAll(recordMeta.getTotalAll()+1);
         recordMeta.setTotalLose(recordMeta.getTotalLose()+1);
         recordMeta.setSeasonStar(recordMeta.getSeasonStar()-1);
@@ -102,6 +111,9 @@ public class RaceServiceImpl implements RaceService {
             recordMeta.setSeasonStar(0);
             recordMeta.setTotalStreak(0);
             recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
         }
         recordDao.deleteByPlayerUuid(playerUuid);
         recordMeta.setSeasonAll(recordMeta.getSeasonAll()+1);

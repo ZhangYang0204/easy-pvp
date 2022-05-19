@@ -11,11 +11,42 @@ import pers.zhangyang.easypvp.meta.RecordMeta;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PageUtil {
+    //返回第x页的内容,
+    public static List<String> pageString(int pageIndex, int capacity, @Nonnull List<String> partyList){
+        if (partyList==null){throw new NullPointerException();}
+        List<String> rl=new ArrayList<>();
+        for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
+            if (partyList.size()<=i){break;}
+            rl.add(partyList.get(i));
+        }
 
-    @Nonnull
+        return rl;
+    }
+    public static List<Integer> pageInteger(int pageIndex, int capacity, @Nonnull List<Integer> partyList){
+        if (partyList==null){throw new NullPointerException();}
+        List<Integer> rl=new ArrayList<>();
+        for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
+            if (partyList.size()<=i){break;}
+            rl.add(partyList.get(i));
+        }
+
+        return rl;
+    }
+    public static List<List<String>> pageListSTring(int pageIndex, int capacity, @Nonnull List<List<String>> partyList){
+        if (partyList==null){throw new NullPointerException();}
+        List<List<String>> rl=new ArrayList<>();
+        for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
+            if (partyList.size()<=i){break;}
+            rl.add(partyList.get(i));
+        }
+
+        return rl;
+    }
+        @Nonnull
     //返回第x页的内容,
     public static List<Party> pageParty(int pageIndex, int capacity, @Nonnull List<Party> partyList){
         if (partyList==null){throw new NullPointerException();}

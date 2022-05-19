@@ -33,8 +33,8 @@ public class StarRankPage implements InventoryHolder {
 
         if (recordMetaList==null){throw new NullPointerException();}
         this.pageIndex=pageIndex;
+        this.recordMetaList.clear();
         for (RecordMeta m:recordMetaList){this.recordMetaList.add(m.clone());}
-
         GuiYaml guiYaml = GuiYaml.getGuiManager();
         inventory.clear();
         //设置内容
@@ -56,7 +56,8 @@ public class StarRankPage implements InventoryHolder {
             rep.put("{total_draw}", String.valueOf(recordMetaList.get(i).getSeasonDraw()));
             rep.put("{season_star}", String.valueOf(recordMetaList.get(i).getSeasonStar()));
             rep.put("{total_streak}", String.valueOf(recordMetaList.get(i).getSeasonDraw()));
-
+            rep.put("{season_streak}", String.valueOf(recordMetaList.get(i).getSeasonStreak()));
+            rep.put("{cumulative_star}", String.valueOf(recordMetaList.get(i).getCumulativeStar()));
             Iterator<Integer> it= DanYaml.SETTING_YAML_MANAGER.getSECTION().keySet().stream().sorted().iterator();
 
             while (it.hasNext()){

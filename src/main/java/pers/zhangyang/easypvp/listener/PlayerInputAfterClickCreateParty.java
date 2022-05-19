@@ -20,10 +20,10 @@ import pers.zhangyang.easypvp.util.ReplaceUtil;
 import java.util.Collections;
 import java.util.List;
 
-public class PlayerCreateParty implements Listener {
+public class PlayerInputAfterClickCreateParty implements Listener {
     private Gamer gamer;
 
-    public PlayerCreateParty(Gamer gamer) {
+    public PlayerInputAfterClickCreateParty(Gamer gamer) {
         this.gamer = gamer;
     }
 

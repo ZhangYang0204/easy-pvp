@@ -59,10 +59,18 @@ public class RecordExpansion extends PlaceholderExpansion {
         }else   if (params.equalsIgnoreCase("amount_season_star")) {
 
             return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonStar());
+        }else   if (params.equalsIgnoreCase("amount_season_streak")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonStreak());
         }else   if (params.equalsIgnoreCase("amount_total_streak")) {
 
-            return recordMeta==null?"0":String.valueOf(recordMeta.getSeasonStar());
-        }else   if (params.equalsIgnoreCase("dan")) {
+            return recordMeta==null?"0":String.valueOf(recordMeta.getTotalStreak());
+        }else   if (params.equalsIgnoreCase("amount_cumulative_star")) {
+
+            return recordMeta==null?"0":String.valueOf(recordMeta.getCumulativeStar());
+        }
+
+        else   if (params.equalsIgnoreCase("dan")) {
             String dan=null;
             Iterator<Integer> it=DanYaml.SETTING_YAML_MANAGER.getSECTION().keySet().stream().sorted().iterator();
             while (it.hasNext()){

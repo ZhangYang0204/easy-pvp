@@ -1,8 +1,6 @@
 package pers.zhangyang.easypvp.service.impl;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Container;
 import org.bukkit.inventory.BlockInventoryHolder;
@@ -32,81 +30,39 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void resetRecord() throws SQLException {
+    public void resetSeason() throws SQLException {
+        List<RecordMeta> recordMetaList=recordDao.select();
+
         recordDao.delete();
+        for (RecordMeta r:recordMetaList){
+            r.setSeasonStreak(0);
+            r.setCumulativeStar(r.getCumulativeStar()+r.getSeasonStar());
+            r.setSeasonStar(0);
+            r.setSeasonAll(0);
+            r.setSeasonDraw(0);
+            r.setSeasonLose(0);
+            r.setSeasonAll(0);
+            recordDao.insert(r);
+        }
+
+
     }
 
     @Override
-    public void createMap(MapMeta mapMeta, List<BlockState> blockStateList) throws SQLException, DuplicateMapNameException {
-
-
+    public void createMap(MapMeta meta, List<MapBlockMeta> mapBlockMetaList,List<MapBlockInventoryItemStackMeta> metaList) throws SQLException, DuplicateMapNameException {
         //检查名字
-        if (mapDao.selectByName(mapMeta.getName())!=null){
+        if (mapDao.selectByName(meta.getName())!=null){
             throw new DuplicateMapNameException();
         }
 
-
-        mapDao.insert(mapMeta);
-
-        for (BlockState blockState:blockStateList){
-
-            if (blockState.getType().equals(Material.AIR)){
-                continue;
-            }
-
-
-            if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
-                if (blockState instanceof Container){
-                    ItemStack[] invContents=((Container) blockState).getInventory().getContents();
-                    for (int i=0;i<invContents.length;i++){
-                        if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
-                            continue;
-                        }
-                        MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
-                        meta.setMapUuid(mapMeta.getUuid());
-                        meta.setX(blockState.getX());
-                        meta.setY(blockState.getY());
-                        meta.setZ(blockState.getZ());
-                        meta.setSlot(i);
-                        meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
-                        mapBlockInventoryItemStackDao.insert(meta);
-                    }
-                }
-            }else {
-                if (blockState instanceof BlockInventoryHolder){
-                    ItemStack[] invContents=((BlockInventoryHolder) blockState).getInventory().getContents();
-                    for (int i=0;i<invContents.length;i++){
-                        if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
-                            continue;
-                        }
-                        MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
-                        meta.setMapUuid(mapMeta.getUuid());
-                        meta.setX(blockState.getX());
-                        meta.setY(blockState.getY());
-                        meta.setZ(blockState.getZ());
-                        meta.setSlot(i);
-                        meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
-                        mapBlockInventoryItemStackDao.insert(meta);
-                    }
-                }
-            }
-
-
-            MapBlockMeta blockInfo=new MapBlockMeta();
-            blockInfo.setX(blockState.getX());
-            blockInfo.setY(blockState.getY());
-            blockInfo.setZ(blockState.getZ());
-            blockInfo.setMapUuid(mapMeta.getUuid());
-
-            if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
-                blockInfo.setData(MaterialDataUtil.serializeMaterialData(blockState.getData()));
-            }else {
-                blockInfo.setData(blockState.getBlockData().getAsString());
-            }
-            mapBlockDao.insert(blockInfo);
+        mapDao.insert(meta);
+        for (MapBlockMeta mb:mapBlockMetaList){
+            mapBlockDao.insert(mb);
         }
 
-
+        for (MapBlockInventoryItemStackMeta mapBlockInventoryItemStackMeta:metaList){
+            mapBlockInventoryItemStackDao.insert(mapBlockInventoryItemStackMeta);
+        }
 
     }
 
@@ -282,23 +238,6 @@ public class CommandServiceImpl implements CommandService {
 
 
     @Override
-    public void createKit(KitMeta kitMeta, ItemStack[] itemStacks) throws SQLException, DuplicateKitNameException {
-
-        if (kitDao.selectByName(kitMeta.getName())!=null){
-            throw new DuplicateKitNameException();
-        }
-        kitDao.insert(kitMeta);
-        for (int i=0;i<itemStacks.length;i++){
-            if (itemStacks[i]==null){continue;}
-            KitItemStackMeta kitItemStackMeta =new KitItemStackMeta();
-            kitItemStackMeta.setKitUuid(kitMeta.getUuid());
-            kitItemStackMeta.setData(ItemStackUtil.itemStackSerialize(itemStacks[i]));
-            kitItemStackMeta.setSlot(i);
-            kitItemStackDao.insert(kitItemStackMeta);
-        }
-    }
-
-    @Override
     public void deleteKit(String kitName) throws SQLException, NotExistKitNameException {
         KitMeta kitMeta=kitDao.selectByName(kitName);
         if (kitMeta==null){
@@ -310,22 +249,26 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void setKit(String kitName, ItemStack[] itemStacks) throws SQLException, NotExistKitNameException {
+    public void createKit(KitMeta kitMeta, List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, DuplicateKitNameException {
+        if (kitDao.selectByName(kitMeta.getName())!=null){
+            throw new DuplicateKitNameException();
+        }
+        kitDao.insert(kitMeta);
+       for (KitItemStackMeta k:kitItemStackMetaList){
+           kitItemStackDao.insert(k);
+       }
+
+    }
+
+    @Override
+    public void setKit(String kitName, List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException {
         KitMeta kitMeta=kitDao.selectByName(kitName);
-
-
         if (kitMeta==null){
             throw new NotExistKitNameException();
         }
-
         kitItemStackDao.deleteByKitUuid(kitMeta.getUuid());
-        for (int i=0;i<itemStacks.length;i++){
-            if (itemStacks[i]==null){continue;}
-            KitItemStackMeta kitItemStackMeta =new KitItemStackMeta();
-            kitItemStackMeta.setKitUuid(kitMeta.getUuid());
-            kitItemStackMeta.setData(ItemStackUtil.itemStackSerialize(itemStacks[i]));
-            kitItemStackMeta.setSlot(i);
-            kitItemStackDao.insert(kitItemStackMeta);
+        for (KitItemStackMeta k:kitItemStackMetaList){
+            kitItemStackDao.insert(k);
         }
     }
 
@@ -481,7 +424,91 @@ public class CommandServiceImpl implements CommandService {
 
     }
 
+    @Override
+    public void subtractCumulativeStar(String playerUuid, int subAmount) throws SQLException, NotEnoughStarException {
+        if (subAmount<0){throw  new IllegalArgumentException();}
+        RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
 
+        if (recordMeta==null){
+            recordMeta=new RecordMeta();
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
+            recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
+        }
+
+
+        if (recordMeta.getCumulativeStar()<subAmount){
+            throw new NotEnoughStarException();
+        }
+        recordDao.deleteByPlayerUuid(playerUuid);
+        recordMeta.setCumulativeStar(recordMeta.getCumulativeStar()-subAmount);
+        recordDao.insert(recordMeta);
+    }
+
+    @Override
+    public void plusCumulativeStar(String playerUuid, int plusAmount) throws SQLException {
+        if (plusAmount<0){throw  new IllegalArgumentException();}
+        RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
+        if (recordMeta==null){
+            recordMeta=new RecordMeta();
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
+            recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
+        }
+        recordDao.deleteByPlayerUuid(playerUuid);
+        recordMeta.setCumulativeStar(recordMeta.getCumulativeStar()+plusAmount);
+        recordDao.insert(recordMeta);
+    }
+
+    @Override
+    public void setCumulativeStar(String playerUuid, int plusAmount) throws SQLException {
+        if (plusAmount<0){throw  new IllegalArgumentException();}
+
+
+        RecordMeta recordMeta=recordDao.selectByPlayerUuid(playerUuid);
+        if (recordMeta==null){
+            recordMeta=new RecordMeta();
+            recordMeta.setSeasonAll(0);
+            recordMeta.setSeasonDraw(0);
+            recordMeta.setSeasonWin(0);
+            recordMeta.setSeasonLose(0);
+            recordMeta.setTotalAll(0);
+            recordMeta.setTotalWin(0);
+            recordMeta.setTotalLose(0);
+            recordMeta.setTotalDraw(0);
+            recordMeta.setSeasonStar(0);
+            recordMeta.setTotalStreak(0);
+            recordMeta.setPlayerUuid(playerUuid);
+
+            recordMeta.setSeasonStreak(0);
+            recordMeta.setCumulativeStar(0);
+        }
+        recordDao.deleteByPlayerUuid(playerUuid);
+        recordMeta.setCumulativeStar(plusAmount);
+        recordDao.insert(recordMeta);
+    }
 
 
 }

@@ -20,8 +20,8 @@ public abstract class CompleterBase {
         this.args=args;
     }
     @Nonnull
-    protected List<String> removeStartWith(@Nonnull String latest, @Nullable List<String> list){
-        if (latest==null){return  new ArrayList<>();}
+    protected List<String> removeStartWith(@Nullable String latest, @Nonnull List<String> list){
+        if (latest==null){return  list;}
         String ll = latest.toLowerCase();
         list.removeIf(k -> !k.toLowerCase().startsWith(ll));
         return list;

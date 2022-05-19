@@ -27,7 +27,6 @@ message:
       100:
         - "&e&l&n玩家 &f{player} &a&l&n 刚刚达成了一百连胜,开挂实锤了"
 
-
     notPlayer:
       - "&c&l只有玩家才能执行这条命令"
     noPermission:
@@ -134,7 +133,7 @@ message:
       - "&e&lEasyPvp reloadYaml"
       - "&b&l重载配置文件,会把修改后的配置文件重载"
       - ""
-      - "&e&lEasyPvp resetRecord"
+      - "&e&lEasyPvp resetSeason"
       - "&b&l清空比赛记录,用于赛季的的更新"
       - ""
       - "&e&lEasyPvp correctYaml"
@@ -258,7 +257,7 @@ message:
     failureSetMapScaleBecauseNotExistMapName:
       - "&c&l设置地图 &f{map} &c&l的规模为 &f{scale} &c&l失败,没有找到叫这个名字的地图"
 
-    successResetRecord:
+    successResetSeason:
       - "&b&l比赛记录重置成功"
 
     successReloadYaml:
@@ -337,7 +336,7 @@ message:
       - "&b&l成功返回全部队伍页面"
     successWatchRace:
       - "&b&l成功观战比赛"
-    failureWatchRaceBecauseInParty:
+    failureWatchRaceBecauseInReading:
       - "&c&l无法观战比赛 &f{red} &b&lvs &f{blue} ,请先退出队伍"
     successUnwatchRace:
       - "&b&l成功离开观战比赛"
@@ -345,6 +344,21 @@ message:
       - "&c&l无法观战比赛 &f{red} &b&lvs &f{blue} ,已经在观战了"
     failureUnwatchRaceBecauseNotInWatching:
       - "&c&l无法取消观战,已经在不观战了"
+
+    successShowShopPage:
+      - "&b&l成功打开商店页面"
+    successBackAllPartyPageInShopPage:
+      - "&b&l成功返回全部队伍页面"
+    failureNextShopPageBecauseNotNext:
+      - "&b&l没有下一页了"
+    failurePreviousShopPageBecauseNotPrevious:
+      - "&b&l没有上一页了"
+    successPreviousShopPage:
+      - "&b&l成功上一页"
+    successNextShopPage:
+      - "&b&l成功下一页"
+
+
 
 
     successShowAllRacePage:
@@ -443,7 +457,7 @@ message:
 
     successStartRace:
       - "&b&l游戏开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
-      - "&b&l请在 &f{time} &b&l秒内选择装备包"
+      - "&b&l请在 &f{time} &b&l秒内选择装备包,选择期间禁止移动、攻击等"
 
     successChooseKit:
       - "&b&l你选择了装备包 &f{kit}"
@@ -471,6 +485,23 @@ message:
       "&b&l&f{player} 退出了游戏,已自动被淘汰"
 
 
+    successSubtractCumulativeStar:
+      - "&b&l成功扣除 &f{player} &f{amount} &b&l颗累计星星"
+    successPlusCumulativeStar:
+      - "&b&l成功增加 &f{player} &f{amount} &b&l颗累计星星"
+    successSetCumulativeStar:
+      - "&b&l成功设置 &f{player} &b&l累计星星数量为 &f{amount}"
+    failureSubtractCumulativeStarBecauseNotEnoughStar:
+      - "&c&l无法扣除 &f{player} &f{amount} &c&l颗累计星星,星星不足"
+    successWasSubtractedCumulativeStar:
+      - "&b&l成功被 &f{player} &b&l扣除 &f{amount} &b&l颗累计星星"
+    successWasPlusCumulativeStar:
+      - "&b&l成功被 &f{player} &b&l增加 &f{amount} &b&l颗累计星星"
+    successWasSetCumulativeStar:
+      - "&b&l成功被 &f{player} &b&l设置累计星星数量为 &f{amount}"
+
+
+
   completer:
     easyPvp:
       - "correctYaml"
@@ -495,9 +526,27 @@ message:
       - "addMapKit"
       - "removeMapKit"
       - "setMapScale"
-      - "resetRecord"
+      - "resetSeason"
       - "reloadYaml"
       - "setSection"
+      - "setCumulativeStar"
+      - "plusCumulativeStar"
+      - "subtractCumulativeStar"
+    easyPvpSetCumulativeStar:
+      - "(在线的玩家)"
+      - "{[$]}"
+    easyPvpPlusCumulativeStar:
+      - "(在线的玩家)"
+      - "{[$]}"
+    easyPvpSubtractCumulativeStar:
+      - "(在线的玩家)"
+      - "{[$]}"
+    easyPvpSetCumulativeStar$:
+      - "(数量大于等于0)"
+    easyPvpPlusCumulativeStar$:
+      - "(数量大于等于0)"
+    easyPvpSubtractCumulativeStar$:
+      - "(数量大于等于0)"
 
     easyPvpCreateKit:
       - "(注意名字不要重复)"
@@ -579,7 +628,7 @@ message:
       - "(地图名字)"
       - "{[$]}"
     easyPvpSetMapChooseTime$:
-      - "(大于1的数字)"
+      - "(大于等于0的数字)"
     easyPvpSetMapKeepInventory:
       - "(注意名字不要重复)"
       - "(地图名字)"

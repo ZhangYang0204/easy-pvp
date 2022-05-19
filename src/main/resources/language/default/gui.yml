@@ -6,7 +6,28 @@ gui:
     allKitPage: "&b&l&n可选装备包&e&l(当前地图添加的装备包)"
     winRankPage: "&b&l&n星星榜"
     allRacePage: "&b&l&n全部比赛&e&l(所有正在进行的比赛)"
+    shopPage: "&b&l&n星星商店"
   button:
+    allPartyPageShowShopPage:
+      material: "CHEST"
+      displayName: "&b&l&n商店"
+      lore:
+        - "&e&l前往商店"
+    shopPageBackAllPartyPage:
+      material: "BARRIER"
+      displayName: "&b&l&n返回"
+      lore:
+        - "&e&l返回"
+    shopPagePreviousShopPage:
+      material: "BOOK"
+      displayName: "&b&l&n上一页"
+      lore:
+        - "&e&l点我前往上一页"
+    shopPageNextShopPage:
+      material: "BOOK"
+      displayName: "&b&l&n下一页"
+      lore:
+        - "&e&l点我前往下一页"
     starRankPageBackAllPartyPage:
       material: "BARRIER"
       displayName: "&b&l&n返回"
@@ -26,9 +47,11 @@ gui:
       material: "PAPER"
       displayName: "&b&l&n玩家 &f{player} &b&l&n的战绩"
       lore:
-        - "&6&l星星 &f{season_star}"
+        - "&6&l赛季星星 &f{season_star}"
+        - "&6&l总星星 &f{cumulative_star}"
         - "&e&l段位 &f{dan}"
-        - "&d&l连胜 &f{total_streak}"
+        - "&6&l赛季连胜 &f{season_streak}"
+        - "&d&l总连胜 &f{total_streak}"
         - "&a&l赛季胜 &f{season_win}"
         - "&c&l赛季败 &f{season_lose}"
         - "&b&l赛季平 &f{season_draw}"

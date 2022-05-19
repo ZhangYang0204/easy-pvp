@@ -22,11 +22,8 @@ import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
-import pers.zhangyang.easypvp.yaml.DanYaml;
-import pers.zhangyang.easypvp.yaml.GuiYaml;
-import pers.zhangyang.easypvp.yaml.MessageYaml;
+import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.manager.RaceManager;
-import pers.zhangyang.easypvp.yaml.SettingYaml;
 import pers.zhangyang.easypvp.service.PluginService;
 import pers.zhangyang.easypvp.service.impl.PluginServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -57,6 +54,7 @@ public class EasyPvp extends JavaPlugin {
             MessageYaml.MESSAGE_YAML_MANAGER.init();
             GuiYaml.GUI_MANAGER.init();
             DanYaml.SETTING_YAML_MANAGER.init();
+            ShopYaml.SETTING_YAML_MANAGER.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
             setEnabled(false);
@@ -140,6 +138,11 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeadInWatching(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickUnwatchRace(), this);
 
+        getServer().getPluginManager().registerEvents(new PlayerClickShowShopPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBuyGood(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInShopPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickNextShopPage(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClickPreviousShopPage(), this);
 
         //到这里插件已经成功可以使用了,提示插件标准
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ENABLE_PLUGIN());
@@ -171,8 +174,8 @@ public class EasyPvp extends JavaPlugin {
             return   new CommandCorrectYaml(sender, false, args).process();
 
         }
-        if (args.length == 1 && args[0].equalsIgnoreCase("resetRecord")) {
-            return  new CommandResetRecord(sender, false, args).process();
+        if (args.length == 1 && args[0].equalsIgnoreCase("resetSeason")) {
+            return  new CommandResetSeason(sender, false, args).process();
 
         }
         if (args.length == 1 && args[0].equalsIgnoreCase("openGui")) {
@@ -251,6 +254,18 @@ public class EasyPvp extends JavaPlugin {
             return   new CommandRemoveKitDescription(sender, false, args).process();
 
         }
+
+        if (args.length == 3 && args[0].equalsIgnoreCase("plusCumulativeStar")) {
+            return   new CommandPlusCumulativeStar(sender, false, args).process();
+
+        } if (args.length == 3 && args[0].equalsIgnoreCase("setCumulativeStar")) {
+            return   new CommandSetCumulativeStar(sender, false, args).process();
+
+        } if (args.length == 3 && args[0].equalsIgnoreCase("subtractCumulativeStar")) {
+            return   new CommandSubtractCumulativeStar(sender, false, args).process();
+
+        }
+
         if (args.length == 4 && args[0].equalsIgnoreCase("setKitDescription")) {
             return  new CommandSetKitDescription(sender, false, args).process();
 
@@ -424,7 +439,13 @@ public class EasyPvp extends JavaPlugin {
         if (args[0].equalsIgnoreCase("setSection")) {
             return new CompleterSectionSet(sender,true,args).process();
         }
-
+        if (args[0].equalsIgnoreCase("setCumulativeStar")) {
+            return new CompleterSetCumulativeStar(sender,false,args).process();
+        } if (args[0].equalsIgnoreCase("plusCumulativeStar")) {
+            return new CompleterPlusCumulativeStar(sender,false,args).process();
+        } if (args[0].equalsIgnoreCase("subtractCumulativeStar")) {
+            return new CompleterSubtractCumulativeStar(sender,false,args).process();
+        }
 
         return list;
     }

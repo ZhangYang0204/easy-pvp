@@ -91,13 +91,68 @@ public class CommandCreateMap extends CommandBase {
             int zFrom=Math.min(z1,z2);
             int zTo=Math.max(z1,z2);
 
-            List<BlockState> blockStateList=new ArrayList<>();
+            List<MapBlockMeta> mapBlockMetaList=new ArrayList<>();
+            List<MapBlockInventoryItemStackMeta> metaList=new ArrayList<>();
             //所有方块遍历保存数据
             for (int x=xFrom;x<=xTo;x++){
                 for (int y=yFrom;y<=yTo;y++){
                     for (int z=zFrom;z<=zTo;z++){
                         Block block=new Location(section.getFirst().getWorld(),x,y,z).getBlock();
-                        blockStateList.add(block.getState());
+                        BlockState blockState=block.getState();
+                        if (blockState.getType().equals(Material.AIR)){
+                            continue;
+                        }
+                        if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+                            if (blockState instanceof Container){
+                                ItemStack[] invContents=((Container) blockState).getInventory().getContents();
+                                for (int i=0;i<invContents.length;i++){
+                                    if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
+                                        continue;
+                                    }
+                                    MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
+                                    meta.setMapUuid(mapInfo.getUuid());
+                                    meta.setX(blockState.getX());
+                                    meta.setY(blockState.getY());
+                                    meta.setZ(blockState.getZ());
+                                    meta.setSlot(i);
+                                    meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
+                                    metaList.add(meta);
+                                }
+                            }
+                        }else {
+                            if (blockState instanceof BlockInventoryHolder){
+                                ItemStack[] invContents=((BlockInventoryHolder) blockState).getInventory().getContents();
+                                for (int i=0;i<invContents.length;i++){
+                                    if (invContents[i]==null||invContents[i].getType().equals(Material.AIR)){
+                                        continue;
+                                    }
+                                    MapBlockInventoryItemStackMeta meta=new MapBlockInventoryItemStackMeta();
+                                    meta.setMapUuid(mapInfo.getUuid());
+                                    meta.setX(blockState.getX());
+                                    meta.setY(blockState.getY());
+                                    meta.setZ(blockState.getZ());
+                                    meta.setSlot(i);
+                                    meta.setData(ItemStackUtil.itemStackSerialize(invContents[i]));
+                                    metaList.add(meta);
+                                }
+                            }
+                        }
+
+
+                        MapBlockMeta blockInfo=new MapBlockMeta();
+                        blockInfo.setX(blockState.getX());
+                        blockInfo.setY(blockState.getY());
+                        blockInfo.setZ(blockState.getZ());
+                        blockInfo.setMapUuid(mapInfo.getUuid());
+                        if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+                            blockInfo.setData(MaterialDataUtil.serializeMaterialData(blockState.getData()));
+                        }else {
+                            blockInfo.setData(blockState.getBlockData().getAsString());
+                        }
+                        mapBlockMetaList.add(blockInfo);
+
+
+
                     }
                 }
             }
@@ -105,7 +160,7 @@ public class CommandCreateMap extends CommandBase {
 
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.createMap(mapInfo, blockStateList);
+            commandService.createMap(mapInfo, mapBlockMetaList,metaList);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -32,6 +32,8 @@ public class RecordDao   extends DaoBase{
                 "  'totalWin' INT NOT NULL  ," +
                 "  'totalLose' INT NOT NULL  ," +
                 "  'totalStreak' INT NOT NULL  ," +
+                "  'seasonStreak' INT NOT NULL  ," +
+                "  'cumulativeStar' INT NOT NULL  ," +
                 "  PRIMARY KEY (playerUuid)" +
                 ")");
 
@@ -44,7 +46,8 @@ public class RecordDao   extends DaoBase{
     public int insert(RecordMeta recordMeta) throws SQLException {
 
         PreparedStatement ps=getConnection().prepareStatement("insert into record_table " +
-                "(playerUuid,seasonDraw,'seasonAll',seasonWin,'seasonLose',totalAll,totalDraw,totalLose,totalWin,seasonStar,totalStreak) values (?,?,?,?,?,?,?,?,?,?,?)");
+                "(playerUuid,seasonDraw,'seasonAll',seasonWin,'seasonLose',totalAll,totalDraw,totalLose,totalWin,seasonStar,totalStreak,seasonStreak,cumulativeStar)" +
+                " values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, recordMeta.getPlayerUuid());
         ps.setInt(2, recordMeta.getSeasonDraw());
         ps.setInt(3, recordMeta.getSeasonAll());
@@ -57,6 +60,8 @@ public class RecordDao   extends DaoBase{
         ps.setInt(10, recordMeta.getSeasonStar());
         ps.setInt(11, recordMeta.getTotalStreak());
 
+        ps.setInt(12, recordMeta.getSeasonStreak());
+        ps.setInt(13, recordMeta.getCumulativeStar());
         return ps.executeUpdate();
     }
     public int deleteByPlayerUuid(String playerUuid ) throws SQLException {
@@ -101,6 +106,9 @@ public class RecordDao   extends DaoBase{
         recordMeta.setTotalWin(rs.getInt("totalWin"));
         recordMeta.setSeasonStar(rs.getInt("seasonStar"));
         recordMeta.setTotalStreak(rs.getInt("totalStreak"));
+
+        recordMeta.setSeasonStreak(rs.getInt("seasonStreak"));
+        recordMeta.setCumulativeStar(rs.getInt("cumulativeStar"));
         return recordMeta;
     }
 }

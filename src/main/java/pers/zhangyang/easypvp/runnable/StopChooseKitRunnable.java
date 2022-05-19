@@ -23,21 +23,26 @@ public class StopChooseKitRunnable extends BukkitRunnable {
     @Override
     public void run() {
 
-        String title=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
-        if (title!=null){
-            title=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
-                    Collections.singletonMap("{time}",String.valueOf(rest)));
-        }
-        String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
-        if (stitle!=null){
-            stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
-                    Collections.singletonMap("{time}",String.valueOf(rest)));
-        }
-        race.sendTitleToAll(title, stitle);
 
-        rest-=1;
 
-        if (rest>0){return;}
+        if (rest>0){
+
+
+            String title=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+            if (title!=null){
+                title=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
+                        Collections.singletonMap("{time}",String.valueOf(rest)));
+            }
+            String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+            if (stitle!=null){
+                stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
+                        Collections.singletonMap("{time}",String.valueOf(rest)));
+            }
+            race.sendTitleToAll(title, stitle);
+            rest-=1;
+            return;
+
+        }
 
 
 

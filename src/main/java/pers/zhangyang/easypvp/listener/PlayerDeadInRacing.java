@@ -38,12 +38,9 @@ public class PlayerDeadInRacing implements Listener {
         if (race.isKeepInventory()){
             event.setKeepInventory(true);
         }
-
         if (race.isKeepLevel()){
             event.setKeepLevel(true);
         }
-
-
         try {
             race.out(gamer);
         } catch (FailureDeleteWorldException e) {
