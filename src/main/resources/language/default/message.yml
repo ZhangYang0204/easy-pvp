@@ -427,6 +427,14 @@ message:
     someoneSuccessCancelMatch:
       - "&b&l&f{member} &b&l取消了当前队伍 &f{party} &b&l的匹配"
 
+    someoneSuccessQuitGameInReading:
+      - "&b&l&f{member} &b&l退出了游戏,已离开当前队伍 &f{party}"
+    someoneSuccessQuitGameInRacing:
+      - "&b&l&f{member} &b&l退出了游戏,已自动淘汰"
+    someoneSuccessQuitGameInOuting:
+      - "&b&l&f{member} &b&l退出了游戏,&b&l已离开了死亡观战视角"
+
+
     someoneSuccessQuitGameInMatching:
       - "&b&l&f{member} &b&l退出了游戏,已取消了当前队伍 &f{party} &b&l的匹配"
     failureCancelMatchBecausePartyIsNotMatching:

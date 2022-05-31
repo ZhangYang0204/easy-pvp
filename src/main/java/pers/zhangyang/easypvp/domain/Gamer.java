@@ -52,8 +52,8 @@ public class Gamer  {
         //如果没有比赛什么也不做
         if (racingRace ==null){return;}
 
-        if(!stats.equals(GamerStatsEnum.RACING)){
-            throw new IllegalGamerStatsException("Gamer stats is not gaming");
+        if(!stats.equals(GamerStatsEnum.RACING)&&!stats.equals(GamerStatsEnum.OUTING)){
+            throw new IllegalGamerStatsException("Gamer stats is not racing and is not outing");
         }
 
 
@@ -86,8 +86,15 @@ public class Gamer  {
         player.addPotionEffects(racingRace.potionEffectBefore.get(this));
         racingRace.potionEffectBefore.remove(this);
 
+        player.setLevel(racingRace.levelBefore.get(this));
+        racingRace.levelBefore.remove(this);
+
         player.setExp(racingRace.expBefore.get(this));
         racingRace.expBefore.remove(this);
+
+        player.setAllowFlight(racingRace.flyBefore.get(this));
+        racingRace.flyBefore.remove(this);
+
 
         player.setFoodLevel(racingRace.foodLevelBefore.get(this));
         racingRace.foodLevelBefore.remove(this);

@@ -266,10 +266,32 @@ public class CommandServiceImpl implements CommandService {
         if (kitMeta==null){
             throw new NotExistKitNameException();
         }
+        String oldU=kitMeta.getUuid();
+
+        //更新装备包内物品
         kitItemStackDao.deleteByKitUuid(kitMeta.getUuid());
         for (KitItemStackMeta k:kitItemStackMetaList){
             kitItemStackDao.insert(k);
         }
+
+        //更新装备包
+        if (!kitItemStackMetaList.isEmpty()) {
+            kitDao.deleteByUuid(oldU);
+            kitMeta.setUuid(kitItemStackMetaList.get(0).getKitUuid());
+            kitDao.insert(kitMeta);
+
+            //更新地图和装备包映射
+            List<MapKitMeta> mapKitMeta=mapKitDao.selectByKitUuid(oldU);
+            mapKitDao.deleteByKitUuid(oldU);
+            for (MapKitMeta m:mapKitMeta){
+                m.setKitUuid(kitMeta.getUuid());
+                mapKitDao.insert(m);
+            }
+        }
+
+
+
+
     }
 
     @Override

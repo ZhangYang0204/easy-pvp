@@ -61,6 +61,19 @@ public class MapKitDao   extends DaoBase{
         return mapKitMetaList;
     }
 
+    public List<MapKitMeta> selectByKitUuid(String kitUuid) throws SQLException {
+
+        PreparedStatement ps=getConnection().prepareStatement("" +
+                "select * from map_kit_table where  kitUuid=?");
+        ps.setString(1,kitUuid);
+        ResultSet rs=ps.executeQuery();
+        List<MapKitMeta> mapKitMetaList=new ArrayList<>();
+        while (rs.next()) {
+mapKitMetaList.add(changeFromResultSet(rs)) ;
+        }
+        return mapKitMetaList;
+    }
+
     public MapKitMeta selectByKitUuidAndMapUuid(String kitUuid, String mapUuid) throws SQLException {
 
         PreparedStatement ps=getConnection().prepareStatement("" +

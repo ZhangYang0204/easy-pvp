@@ -1041,6 +1041,7 @@ public class MessageYaml extends YamlManagerBase {
 
         CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING=getStringList("message.chat.someoneSuccessQuitGameInReading",false);
         CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING=getStringList("message.chat.someoneSuccessQuitGameInRacing",false);
+        CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING=getStringList("message.chat.someoneSuccessQuitGameInOuting",false);
 
         CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION =getStringList("message.chat.failureNotifyVersionBecauseNotGetLatestVersion",false);
         INPUT_CANCEL =getString("message.input.cancel",true);
@@ -1058,6 +1059,14 @@ public class MessageYaml extends YamlManagerBase {
 
     private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING;
     private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING;
+
+    private List<String> CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING;
+
+    public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING() {
+        if (CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING ==null){
+            return null; }
+        return new ArrayList<>(CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING);
+    }
 
     public List<String> getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING() {
         if (CHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING ==null){

@@ -41,6 +41,8 @@ public class Race {
     protected final HashMap<Gamer, Integer> foodLevelBefore;
     protected final HashMap<Gamer, Double> healthBefore;
     protected final HashMap<Gamer, Float> expBefore;
+    protected final HashMap<Gamer, Integer> levelBefore;
+    protected final HashMap<Gamer, Boolean> flyBefore;
     protected final List<MapBlockMeta> mapBlockMetaList;
     protected final List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList;
     protected final MapMeta mapMeta;
@@ -209,6 +211,34 @@ public class Race {
         }
     }
 
+    //保存等级 设置为0
+    private void levelHandleBefore() {
+        for (Gamer g : redParty.memberList) {
+            Player p = g.player;
+            levelBefore.put(g, p.getLevel());
+            p.setLevel(0);
+        }
+        for (Gamer g : blueParty.memberList) {
+            Player p = g.player;
+            levelBefore.put(g, p.getLevel());
+            p.setLevel(0);
+        }
+    }
+
+    //保存飞行 设置为0
+    private void flyHandleBefore() {
+        for (Gamer g : redParty.memberList) {
+            Player p = g.player;
+            flyBefore.put(g, p.getAllowFlight());
+            p.setAllowFlight(false);
+        }
+        for (Gamer g : blueParty.memberList) {
+            Player p = g.player;
+            flyBefore.put(g, p.getAllowFlight());
+            p.setAllowFlight(false);
+        }
+    }
+
     //保存药水效果 设置为无
     private void potionEffectHandleBefore() {
         for (Gamer g : redParty.memberList) {
@@ -346,12 +376,25 @@ public class Race {
     private void expHandleAfter() {
         for (Gamer g : expBefore.keySet()) {
             Player p = g.getPlayer();
-
             p.setExp(expBefore.get(g));
 
         }
     }
 
+    private void levelHandleAfter() {
+        for (Gamer g : levelBefore.keySet()) {
+            Player p = g.getPlayer();
+            p.setLevel(levelBefore.get(g));
+
+        }
+    }
+    private void flyHandleAfter() {
+        for (Gamer g : flyBefore.keySet()) {
+            Player p = g.getPlayer();
+            p.setAllowFlight(flyBefore.get(g));
+
+        }
+    }
     private void foodLevelHandleAfter() {
         for (Gamer g : foodLevelBefore.keySet()) {
             Player p = g.getPlayer();
@@ -406,7 +449,9 @@ public class Race {
         potionEffectBefore = new HashMap<>();
         foodLevelBefore = new HashMap<>();
         healthBefore = new HashMap<>();
+        flyBefore=new HashMap<>();
         expBefore = new HashMap<>();
+        levelBefore=new HashMap<>();
         this.kitItemMap = new HashMap<>();
         for (KitMeta b:kitItemMap.keySet()){
             List<KitItemStackMeta> il=new ArrayList<>();
@@ -509,9 +554,11 @@ public class Race {
         if (fair) {
             foodLevelHandleBefore();
             expHandleBefore();
+            levelHandleBefore();
             potionEffectHandleBefore();
             heathHandleBefore();
             inventoryHandleBefore();
+            flyHandleBefore();
         }
         startChooseKit();
         //几秒后关闭gui
@@ -568,8 +615,10 @@ public class Race {
             inventoryHandleAfter();
             heathHandlerAfter();
             potionEffectHandleAfter();
+            levelHandleAfter();
             expHandleAfter();
             foodLevelHandleAfter();
+            flyHandleAfter();
         }
         gameModeHandleAfter();
 

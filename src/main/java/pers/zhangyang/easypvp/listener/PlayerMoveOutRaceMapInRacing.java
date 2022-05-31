@@ -78,9 +78,6 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
             return;
         }
 
-
-
-
         RaceUtil.AfterRaceStop(race);
 
     }

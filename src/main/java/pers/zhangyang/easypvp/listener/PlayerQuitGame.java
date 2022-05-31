@@ -64,11 +64,39 @@ public class PlayerQuitGame implements Listener {
                 List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING();
 
+                HashMap<String,String> rep = new HashMap<>();
+                rep.put("{party}", party.getPartyName());
+                rep.put("{member}", player.getName());
+
+                if (list!=null){
+                    ReplaceUtil.replace(list, rep);
+                }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
-
-                RaceUtil.AfterRaceStop(race);
+                if (race.getStats().equals(RaceStatsEnum.ENDING)){
+                    RaceUtil.AfterRaceStop(race);
+                }
              }
+
+            if (gamer.getStats().equals(GamerStatsEnum.OUTING)) {
+                //离开游戏
+                gamer.leaveRace();
+                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                        .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING();
+
+                HashMap<String,String> rep = new HashMap<>();
+                rep.put("{party}", party.getPartyName());
+                rep.put("{member}", player.getName());
+
+                if (list!=null){
+                    ReplaceUtil.replace(list, rep);
+                }
+                race.getBlueParty().sendMessageToAll(list);
+                race.getRedParty().sendMessageToAll(list);
+                if (race.getStats().equals(RaceStatsEnum.ENDING)){
+                    RaceUtil.AfterRaceStop(race);
+                }
+            }
 
 
             if (gamer.getStats().equals(GamerStatsEnum.READING)){
@@ -76,6 +104,7 @@ public class PlayerQuitGame implements Listener {
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();
                 HashMap<String,String> rep = new HashMap<>();
                 rep.put("{party}", party.getPartyName());
+                rep.put("{member}", player.getName());
                 if (list!=null){
                     ReplaceUtil.replace(list, rep);
                 }

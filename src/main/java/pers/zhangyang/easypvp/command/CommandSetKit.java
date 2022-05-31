@@ -31,10 +31,11 @@ public class CommandSetKit extends CommandBase {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
 
             List<KitItemStackMeta> kitItemStackMetaList=new ArrayList<>();
+            String uuid=UuidUtil.getUUID();
             for (int i=0;i<player.getInventory().getContents().length;i++){
                 if (player.getInventory().getContents()[i]==null){continue;}
                 KitItemStackMeta kitItemStackMeta =new KitItemStackMeta();
-                kitItemStackMeta.setKitUuid(UuidUtil.getUUID());
+                kitItemStackMeta.setKitUuid(uuid);
                 kitItemStackMeta.setData(ItemStackUtil.itemStackSerialize(player.getInventory().getContents()[i]));
                 kitItemStackMeta.setSlot(i);
                 kitItemStackMetaList.add(kitItemStackMeta);

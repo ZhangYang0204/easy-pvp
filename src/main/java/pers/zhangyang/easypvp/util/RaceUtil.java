@@ -66,8 +66,7 @@ public class RaceUtil {
 
 
         }else {
-            List<String>  list=MessageYaml.MESSAGE_YAML_MANAGER
-                    .getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
+            List<String>  list=MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
             HashMap<String,String>  rep = new HashMap<>();
             rep.put("{red_party}", race.getRedParty().getPartyName());
             rep.put("{blue_party}", race.getBlueParty().getPartyName());
