@@ -118,8 +118,8 @@ public class Party {
             throw new IllegalPartyStatsException("Party is not freeing");
         }
 
-     //离开队伍
-        this.memberList.remove(this);
+        //离开队伍
+        this.memberList.remove(gamer);
         gamer.stats=GamerStatsEnum.FREEING;
 
         //如果队伍是空的销毁队伍
