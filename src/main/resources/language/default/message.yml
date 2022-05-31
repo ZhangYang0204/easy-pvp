@@ -195,7 +195,7 @@ message:
       - "&c&l创建地图 &f{map} &c&l失败,已经有地图叫这个名字了"
 
     successDeleteMap:
-      - "&b&l成功创建地图 &f{map}"
+      - "&b&l成功删除地图 &f{map}"
     failureDeleteMapBecauseNotExistMapName:
       - "&c&l删除地图 &f{map} &c&l失败,没有找到叫这个名字的地图"
 
