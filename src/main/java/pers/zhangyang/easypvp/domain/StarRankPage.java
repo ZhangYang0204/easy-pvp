@@ -69,8 +69,11 @@ public class StarRankPage implements InventoryHolder {
 
             if (displayName!=null) {
                 displayName = ReplaceUtil.replace(displayName, rep);
+            }
+            if (lore!=null) {
                 ReplaceUtil.replace(lore, rep);
             }
+
             ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_STAR_RANK_PAGE_RECORD_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);

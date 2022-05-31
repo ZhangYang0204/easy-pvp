@@ -21,11 +21,20 @@ public class WorldUtil {
             worldCreator.type(WorldType.FLAT);
             worldCreator.generatorSettings("2;0;1;"); //This is what makes the world empty (void)
             worldCreator.createWorld();
-        }else {
+        }else  if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<18){
             worldCreator.generator(
-
+                    new ChunkGenerator() {
+                        @NotNull
+                        @Override
+                        public ChunkData generateChunkData(@NotNull World world, @NotNull Random random, int x, int z, @NotNull ChunkGenerator.BiomeGrid biome) {
+                            return Bukkit.createChunkData(world);
+                        }
+                    });
+        }else{
+            worldCreator.generator(
                     new ChunkGenerator() {
                     });
+
         }
         World world=worldCreator.createWorld();
         if (world==null){

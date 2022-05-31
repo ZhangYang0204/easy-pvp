@@ -101,24 +101,44 @@ public class Race {
     private void initWorld() throws FailureCreateWorldException {
         this.world = WorldUtil.getVoidWorld("/plugins/EasyPvp/world/" + System.currentTimeMillis());
         this.world.setAutoSave(false);
+
+        List<MapBlockMeta> torL=new ArrayList<>();
+
         for (MapBlockMeta b : mapBlockMetaList) {
             Block block = world.getBlockAt(b.getX(), b.getY(), b.getZ());
 
             if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13){
+                if (b.getData().contains("TORCH")){
+                    torL.add(b);
+                    continue;
+                }
                 MaterialData materialData=MaterialDataUtil.deserializeMaterialData(b.getData());
-
-
                 BlockState blockState=block.getState();
                blockState.setType(materialData.getItemType());
                blockState.setRawData(materialData.getData());
-                blockState.update(true,true);
-
-
+                blockState.update(true,false);
             }else {
                 block.setBlockData(Bukkit.createBlockData(b.getData()));
-                block.getState().update(true,true);
+                block.getState().update(true,false);
             }
         }
+
+        if (MinecraftVersionUtil.getBigVersion()==1&&MinecraftVersionUtil.getMiddleVersion()<13) {
+            for (MapBlockMeta b : torL) {
+                Block block = world.getBlockAt(b.getX(), b.getY(), b.getZ());
+                MaterialData materialData=MaterialDataUtil.deserializeMaterialData(b.getData());
+                BlockState blockState=block.getState();
+                blockState.setType(materialData.getItemType());
+                blockState.setRawData(materialData.getData());
+                blockState.update(true,false);
+            }
+        }
+
+
+
+
+
+
         for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
             Block block = world.getBlockAt(m.getX(), m.getY(), m.getZ());
             Inventory inv;
@@ -513,10 +533,11 @@ public class Race {
         }
         stats=RaceStatsEnum.ENDING;
         RaceManager.RACE_MANAGER.remove(this);
-        RefreshUtil.refreshAllRacePage(); for (Gamer g:redParty.memberList){
-            g.stats=GamerStatsEnum.FREEING;
+        RefreshUtil.refreshAllRacePage();
+        for (Gamer g:redParty.memberList){
+            g.stats=GamerStatsEnum.READING;
         }for (Gamer g:blueParty.memberList){
-            g.stats=GamerStatsEnum.FREEING;
+            g.stats=GamerStatsEnum.READING;
         }
         redParty.race = null;
         blueParty.race = null;

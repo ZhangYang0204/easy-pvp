@@ -32,11 +32,10 @@ public class ReplaceUtil {
     public static String replace( @Nonnull String s,  @Nonnull  Map<String,String> rep){
         if (s==null||rep==null){throw new NullPointerException();}
 
-        if (s!=null) {
             for (String key : rep.keySet()) {
                 s = s.replace(key, rep.get(key));
             }
-        }
+
         return s;
     }
 

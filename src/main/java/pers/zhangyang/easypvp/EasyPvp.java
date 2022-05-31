@@ -305,56 +305,9 @@ public class EasyPvp extends JavaPlugin {
                 e.printStackTrace();
                 return;
             }
-            try {
-                RaceService raceService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
-                if (race.getWinner() == null) {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
-                    HashMap<String,String> rep = new HashMap<>();
-                    rep.put("{win_party}", race.getWinner().getPartyName());
-                    rep.put("{lose_party}", race.getLoser().getPartyName());
-                    
-                  
-                        if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
-                   
-                    
-                    MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
-
-                    for (Gamer g : race.getRedParty().getMemberList()) {
-                        raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
-                    }
-                    for (Gamer g : race.getBlueParty().getMemberList()) {
-                        raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
-                    }
-                } else {
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
-                    HashMap<String,String> rep = new HashMap<>();
-                    rep.put("{red_party}", race.getRedParty().getPartyName());
-                    rep.put("{blue_party}", race.getBlueParty().getPartyName());
-                    if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
-                    MessageUtil.sendMessageTo(Bukkit.getOnlinePlayers(), list);
-                    for (Gamer g : race.getWinner().getMemberList()) {
-                        raceService.gamerWin(g.getPlayer().getUniqueId().toString());
-                    }
-                    for (Gamer g : race.getLoser().getMemberList()) {
-                        raceService.gamerLose(g.getPlayer().getUniqueId().toString());
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return;
-            }
+           RaceUtil.AfterRaceStop(race);
         }
 
-        try {
-            RefreshUtil.refreshRankPage();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
 
         //关闭消息
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DISABLE_PLUGIN());

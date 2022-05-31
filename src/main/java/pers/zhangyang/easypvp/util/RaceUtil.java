@@ -31,7 +31,6 @@ public class RaceUtil {
                     RecordMeta recordMeta=raceService.getRecordMetaList(g.getPlayer().getUniqueId().toString());
                     for (int x:MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().keySet()) {
                         if (recordMeta.getTotalStreak() ==x){
-
                             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().get(x);
                             HashMap<String,String> rep = new HashMap<>();
                             rep.put("{player}", g.getPlayer().getName());

@@ -70,6 +70,7 @@ public class PlayerQuitGame implements Listener {
                 RaceUtil.AfterRaceStop(race);
              }
 
+
             if (gamer.getStats().equals(GamerStatsEnum.READING)){
                 List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();

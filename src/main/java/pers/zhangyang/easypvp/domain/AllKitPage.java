@@ -47,9 +47,11 @@ public class AllKitPage implements InventoryHolder {
             if (displayName!=null) {
                 displayName = ReplaceUtil.replace(displayName, Collections.singletonMap("{kit}",
                         kitMetaList.get(i).getName()));
-            }if (lore!=null) {
+            }
+            if (lore!=null) {
             ReplaceUtil.replace(lore,Collections.singletonMap("{kit}",
-                    kitMetaList.get(i).getName()));}
+                    kitMetaList.get(i).getName()));
+            }
 
             String[] descriptions = kitMetaList.get(i).getDescription()==null?new String[0]:kitMetaList.get(i).getDescription().split(" ");
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
