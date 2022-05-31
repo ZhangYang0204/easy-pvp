@@ -111,11 +111,12 @@ public class Race {
                 BlockState blockState=block.getState();
                blockState.setType(materialData.getItemType());
                blockState.setRawData(materialData.getData());
-                blockState.update(true);
+                blockState.update(true,true);
 
 
             }else {
                 block.setBlockData(Bukkit.createBlockData(b.getData()));
+                block.getState().update(true,true);
             }
         }
         for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
