@@ -35,18 +35,8 @@ public class RaceTimeRunnable extends BukkitRunnable {
             return;
         }
 
-        try {
             race.stop();
-        } catch (FailureDeleteWorldException e) {
-            e.printStackTrace();
-            return;
-        } catch (FailureUnloadWorldException e) {
-            e.printStackTrace();
-            return;
-        } catch (FailureTeleportException e) {
-            e.printStackTrace();
-            return;
-        }
+
 
         RaceUtil.AfterRaceStop(race);
 
