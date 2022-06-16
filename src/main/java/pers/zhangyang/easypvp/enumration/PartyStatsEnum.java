@@ -1,6 +1,6 @@
 package pers.zhangyang.easypvp.enumration;
 
 public enum PartyStatsEnum {
-    FREEING,MATCHING, RACING
+    FREEING,MATCHING, RACING,CELEBRATING
 
 }

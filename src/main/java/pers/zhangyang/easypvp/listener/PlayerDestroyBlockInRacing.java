@@ -20,7 +20,7 @@ public class PlayerDestroyBlockInRacing implements Listener {
             return;
         }
 
-        if (!race.isBuild()){
+        if (!race.getMapMeta().isBuild()){
             event.setCancelled(true);
         }
     }

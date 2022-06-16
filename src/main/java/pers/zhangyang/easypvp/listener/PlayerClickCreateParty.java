@@ -45,7 +45,7 @@ public class PlayerClickCreateParty implements Listener {
 
 
             //创建队伍并注册
-        Bukkit.getPluginManager().registerEvents(new PlayerInputAfterClickCreateParty(gamer), EasyPvp.getInstance());
+        Bukkit.getPluginManager().registerEvents(new PlayerChatAfterClickCreateParty(gamer), EasyPvp.getInstance());
         MessageUtil.sendMessageTo(player, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_HOW_TO_CREATE_PARTY());
         player.closeInventory();
 

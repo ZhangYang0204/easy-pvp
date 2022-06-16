@@ -37,7 +37,7 @@ public class CommandSetMapDescription extends CommandBase {
         }
         try {
             CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.setMapDescription(args[1],index,args[3] );
+            commandService.setMapDescription(args[1], index, args[3]);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,9 +48,9 @@ public class CommandSetMapDescription extends CommandBase {
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true;
         } catch (NotExistDesciptionRowException e) {
@@ -59,9 +59,9 @@ public class CommandSetMapDescription extends CommandBase {
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
             List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true;
         }
@@ -70,12 +70,12 @@ public class CommandSetMapDescription extends CommandBase {
         rep.put("{row}", args[2]);
         rep.put("{description}", args[3]);
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_DESCRIPTION();
-        if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+        if (list != null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
 
 
-        return true ;
+        return true;
     }
 }

@@ -2,6 +2,7 @@ package pers.zhangyang.easypvp.base;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class EventBase extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
@@ -11,7 +12,7 @@ public class EventBase extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return HANDLERS;
     }
 }

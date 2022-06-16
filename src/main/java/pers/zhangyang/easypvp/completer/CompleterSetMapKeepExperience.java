@@ -13,14 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompleterSetMapKeepLevel extends CompleterBase {
-    public CompleterSetMapKeepLevel(CommandSender sender, boolean forcePlayer, String[] args) {
+public class CompleterSetMapKeepExperience extends CompleterBase {
+    public CompleterSetMapKeepExperience(CommandSender sender, boolean forcePlayer, String[] args) {
         super(sender, forcePlayer, args);
     }
 
     @Override
     public List<String> complete() {
-        if (args.length==2){     List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL();
+        if (args.length==2){     List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -40,8 +40,8 @@ public class CompleterSetMapKeepLevel extends CompleterBase {
         }
         if (args.length==3){
 
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$()
+            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$()
+                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$()
             );
 
         }

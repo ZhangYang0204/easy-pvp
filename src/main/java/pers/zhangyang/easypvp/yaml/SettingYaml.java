@@ -1,5 +1,6 @@
 package pers.zhangyang.easypvp.yaml;
 
+import org.bukkit.Effect;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
 import java.sql.DriverManager;
@@ -21,7 +22,6 @@ public class SettingYaml extends YamlManagerBase {
     private String DATABASE_USERNAME;
     private  String LANGUAGE;
 
-
     public String getDATABASE_URL() {
         return DATABASE_URL;
     }
@@ -33,6 +33,8 @@ public class SettingYaml extends YamlManagerBase {
     public String getDATABASE_USERNAME() {
         return DATABASE_USERNAME;
     }
+
+
 
     protected void check()  {
 
@@ -52,8 +54,6 @@ public class SettingYaml extends YamlManagerBase {
             DATABASE_USERNAME =null;
             DATABASE_PASSWORD =null;
         }
-
-
 
 
     }

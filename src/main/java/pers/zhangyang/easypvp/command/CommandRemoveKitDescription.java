@@ -1,6 +1,8 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
@@ -27,7 +29,6 @@ public class CommandRemoveKitDescription extends CommandBase {
         try {
             index=Integer.parseInt(args[2])-1;
         }catch (NumberFormatException e){
-
            invalidArgument(args[2]);
             return true ;
         }
@@ -42,13 +43,16 @@ public class CommandRemoveKitDescription extends CommandBase {
             commandService.removeKitDescription(args[1],index );
         } catch (SQLException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         } catch (NotExistDesciptionRowException e) {
             Map rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
-            ReplaceUtil.replace(list,rep);
+            if (list!=null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         } catch (NotExistKitNameException e) {
@@ -56,7 +60,9 @@ public class CommandRemoveKitDescription extends CommandBase {
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
-            ReplaceUtil.replace(list,rep);
+            if (list!=null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -64,7 +70,9 @@ public class CommandRemoveKitDescription extends CommandBase {
         rep.put("{kit}",args[1]);
         rep.put("{row}",args[2]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_KIT_DESCRIPTION_REMOVE();
-        ReplaceUtil.replace(list,rep);
+        if (list!=null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
         return true ;
     }

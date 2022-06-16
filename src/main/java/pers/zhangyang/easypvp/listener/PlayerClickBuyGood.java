@@ -12,7 +12,9 @@ import pers.zhangyang.easypvp.domain.ShopPage;
 import pers.zhangyang.easypvp.domain.StarRankPage;
 import pers.zhangyang.easypvp.exception.NotEnoughStarException;
 import pers.zhangyang.easypvp.service.CommandService;
+import pers.zhangyang.easypvp.service.ShopService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
+import pers.zhangyang.easypvp.service.impl.ShopServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.RefreshUtil;
@@ -54,8 +56,8 @@ public class PlayerClickBuyGood implements Listener {
         int cost=shopPage.getCostList().get(slot);
         //扣除
         try {
-            CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.subtractCumulativeStar(player.getUniqueId().toString(),cost);
+            ShopService shopService= (ShopService) InvocationUtil.getService(new ShopServiceImpl());
+            shopService.subtractCumulativeStar(player.getUniqueId().toString(),cost);
         } catch (SQLException e) {
             e.printStackTrace();
             return;

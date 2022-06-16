@@ -12,10 +12,7 @@ import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class CommandSetKit extends CommandBase {
     public CommandSetKit(CommandSender sender, boolean forcePlayer, String[] args) {
@@ -29,7 +26,6 @@ public class CommandSetKit extends CommandBase {
 
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-
             List<KitItemStackMeta> kitItemStackMetaList=new ArrayList<>();
             String uuid=UuidUtil.getUUID();
             for (int i=0;i<player.getInventory().getContents().length;i++){
@@ -46,17 +42,20 @@ public class CommandSetKit extends CommandBase {
             e.printStackTrace();
             return true ;
         } catch (NotExistKitNameException e) {
+            Map rep=new HashMap<>();
+            rep.put("{kit}", args[1]);
             List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
             if (list!=null) {
-                ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+                ReplaceUtil.replace(list, rep);
             }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
-
+        Map rep=new HashMap<>();
+        rep.put("{kit}", args[1]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_KIT();
         if (list!=null) {
-            ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
+            ReplaceUtil.replace(list, rep);
         }
         MessageUtil.sendMessageTo(sender, list);
 

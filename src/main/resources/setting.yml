@@ -1,7 +1,19 @@
 setting:
+
+  #目前仅支持default
   language: "default"
+
+
+  #以下是数据库的设置,本插件全部存储都是用数据库的，已知支持sqlite mysql这种关系数据库，其他的关系数据库请自测
   database:
-    #如果填完的数据库不可用，将采用默认值"jdbc:sqlite:plugins/EasyPvp/data.db"
+
+    #如果填写的数据库不可用，将采用默认值"jdbc:sqlite:plugins/EasyPvp/data.db"
+    #格式为jdbc:数据库类型:数据库url"
+    #如果不明白可以去浏览器寻找答案
     url: "jdbc:sqlite:plugins/EasyPvp/data.db"
+
+    #数据库的用户名,没有可以不填写
     username: []
+
+    #数据库的密码,没有可以不填写
     password: []

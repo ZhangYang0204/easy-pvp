@@ -11,23 +11,174 @@ public class MapMeta {
     private int secondPointX;
     private int secondPointY;
     private int secondPointZ;
-    private int RedPointX;
-    private int RedPointY;
-    private int RedPointZ;
-    private int BluePointX;
-    private int BluePointY;
-    private int BluePointZ;
+    private int redPointX;
+    private int redPointY;
+    private int redPointZ;
+    private int bluePointX;
+    private int bluePointY;
+    private int bluePointZ;
     private boolean build;
     private int scale;
     private int chooseKitTime;
-    private boolean keepLevel;
+    private boolean keepExperience;
+    private float redPointPitch;
+    private float redPointYaw;
+    private float bluePointPitch;
+    private float bluePointYaw;
+    private boolean forbiddenEnderChest;
+    private int raceStartReadyTime;
+    private int redSpawnInterval;
+    private int blueSpawnInterval;
+    private boolean ignorePartyDamage;
+    private int celebrateTime;
+    private int raceTime;
+    private boolean  isolateExperience;
+    private boolean   isolateFood;
+    private boolean   isolateHealth;
+    private boolean   isolatePotionEffect;
+    private boolean   isolateInventory;
+    private boolean   isolateFly;
+    private String description;
+    private boolean keepInventory;
 
-    public boolean isKeepLevel() {
-        return keepLevel;
+    public float getRedPointPitch() {
+        return redPointPitch;
     }
 
-    public void setKeepLevel(boolean keepLevel) {
-        this.keepLevel = keepLevel;
+    public void setRedPointPitch(float redPointPitch) {
+        this.redPointPitch = redPointPitch;
+    }
+
+    public float getRedPointYaw() {
+        return redPointYaw;
+    }
+
+    public void setRedPointYaw(float redPointYaw) {
+        this.redPointYaw = redPointYaw;
+    }
+
+    public float getBluePointPitch() {
+        return bluePointPitch;
+    }
+
+    public void setBluePointPitch(float bluePointPitch) {
+        this.bluePointPitch = bluePointPitch;
+    }
+
+    public float getBluePointYaw() {
+        return bluePointYaw;
+    }
+
+    public void setBluePointYaw(float bluePointYaw) {
+        this.bluePointYaw = bluePointYaw;
+    }
+
+    public int getRedSpawnInterval() {
+        return redSpawnInterval;
+    }
+
+    public void setRedSpawnInterval(int redSpawnInterval) {
+        this.redSpawnInterval = redSpawnInterval;
+    }
+
+    public int getBlueSpawnInterval() {
+        return blueSpawnInterval;
+    }
+
+    public void setBlueSpawnInterval(int blueSpawnInterval) {
+        this.blueSpawnInterval = blueSpawnInterval;
+    }
+
+    public int getRaceStartReadyTime() {return raceStartReadyTime;}
+
+    public void setRaceStartReadyTime(int raceStartReadyTime) {this.raceStartReadyTime = raceStartReadyTime;}
+
+    public boolean isIgnorePartyDamage() {
+        return ignorePartyDamage;
+    }
+
+    public void setIgnorePartyDamage(boolean ignorePartyDamage) {
+        this.ignorePartyDamage = ignorePartyDamage;
+    }
+
+    public boolean isForbiddenEnderChest() {
+        return forbiddenEnderChest;
+    }
+
+    public void setForbiddenEnderChest(boolean forbiddenEnderChest) {
+        this.forbiddenEnderChest = forbiddenEnderChest;
+    }
+
+    public int getCelebrateTime() {
+        return celebrateTime;
+    }
+
+    public void setCelebrateTime(int celebrateTime) {
+        this.celebrateTime = celebrateTime;
+    }
+
+    public int getRaceTime() {
+        return raceTime;
+    }
+
+    public void setRaceTime(int raceTime) {
+        this.raceTime = raceTime;
+    }
+
+    public void setIsolateExperience(boolean isolateExperience) {
+        this.isolateExperience = isolateExperience;
+    }
+
+    public void setIsolateFood(boolean isolateFood) {
+        this.isolateFood = isolateFood;
+    }
+
+    public void setIsolateHealth(boolean isolateHealth) {
+        this.isolateHealth = isolateHealth;
+    }
+
+    public void setIsolatePotionEffect(boolean isolatePotionEffect) {
+        this.isolatePotionEffect = isolatePotionEffect;
+    }
+
+    public void setIsolateInventory(boolean isolateInventory) {
+        this.isolateInventory = isolateInventory;
+    }
+
+    public void setIsolateFly(boolean isolateFly) {
+        this.isolateFly = isolateFly;
+    }
+
+    public boolean isIsolateExperience() {
+        return isolateExperience;
+    }
+
+    public boolean isIsolateFood() {
+        return isolateFood;
+    }
+
+    public boolean isIsolateHealth() {
+        return isolateHealth;
+    }
+
+    public boolean isIsolatePotionEffect() {
+        return isolatePotionEffect;
+    }
+
+    public boolean isIsolateInventory() {
+        return isolateInventory;
+    }
+
+    public boolean isIsolateFly() {
+        return isolateFly;
+    }
+
+    public boolean isKeepExperience() {
+        return keepExperience;
+    }
+
+    public void setKeepExperience(boolean keepExperience) {
+        this.keepExperience = keepExperience;
     }
 
     public MapMeta clone(){
@@ -40,19 +191,35 @@ public class MapMeta {
         mapMeta.setSecondPointX(secondPointX);
         mapMeta.setSecondPointY(secondPointY);
         mapMeta.setSecondPointZ(secondPointZ);
-        mapMeta.setRedPointX(RedPointX);
-        mapMeta.setRedPointY(RedPointY);
-        mapMeta.setRedPointZ(RedPointZ);
-        mapMeta.setBluePointX(BluePointX);
-        mapMeta.setBluePointY(BluePointY);
-        mapMeta.setBluePointZ(BluePointZ);
+        mapMeta.setRedPointX(redPointX);
+        mapMeta.setRedPointY(redPointY);
+        mapMeta.setRedPointZ(redPointZ);
+        mapMeta.setBluePointX(bluePointX);
+        mapMeta.setBluePointY(bluePointY);
+        mapMeta.setBluePointZ(bluePointZ);
         mapMeta.setBuild(build);
         mapMeta.setScale(scale);
         mapMeta.setChooseKitTime(chooseKitTime);
-        mapMeta.setDescription(this.description);
+        mapMeta.setDescription(description);
         mapMeta.setKeepInventory(keepInventory);
-        mapMeta.setFair(fair);
-        mapMeta.setKeepLevel(keepLevel);
+        mapMeta.setKeepExperience(keepExperience);
+        mapMeta.setIsolateExperience(isolateExperience);
+        mapMeta.setIsolateFood(isolateFood);
+        mapMeta.setIsolateHealth(isolateHealth);
+        mapMeta.setIsolateInventory(isolateInventory);
+        mapMeta.setIsolatePotionEffect(isolatePotionEffect);
+        mapMeta.setIsolateFly(isolateFly);
+        mapMeta.setRedPointPitch(redPointPitch);
+        mapMeta.setRedPointYaw(redPointYaw);
+        mapMeta.setBluePointPitch(bluePointPitch);
+        mapMeta.setBluePointYaw(bluePointYaw);
+        mapMeta.setRedSpawnInterval(redSpawnInterval);
+        mapMeta.setBlueSpawnInterval(blueSpawnInterval);
+        mapMeta.setIgnorePartyDamage(ignorePartyDamage);
+        mapMeta.setForbiddenEnderChest(forbiddenEnderChest);
+        mapMeta.setCelebrateTime(celebrateTime);
+        mapMeta.setRaceTime(raceTime);
+        mapMeta.setRaceStartReadyTime(raceStartReadyTime);
         return mapMeta;
 
     }
@@ -66,9 +233,7 @@ public class MapMeta {
         return chooseKitTime;
     }
 
-    private String description;
 
-    private boolean keepInventory;
 
     public boolean isKeepInventory() {
         return keepInventory;
@@ -88,15 +253,7 @@ public class MapMeta {
         this.description = description;
     }
 
-    private boolean fair;
 
-    public boolean isFair() {
-        return fair;
-    }
-
-    public void setFair(boolean fair) {
-        this.fair = fair;
-    }
 
     public boolean isBuild() {
         return build;
@@ -179,51 +336,51 @@ public class MapMeta {
     }
 
     public int getRedPointX() {
-        return RedPointX;
+        return redPointX;
     }
 
     public void setRedPointX(int RedPointX) {
-        this.RedPointX = RedPointX;
+        this.redPointX = RedPointX;
     }
 
     public int getRedPointY() {
-        return RedPointY;
+        return redPointY;
     }
 
     public void setRedPointY(int RedPointY) {
-        this.RedPointY = RedPointY;
+        this.redPointY = RedPointY;
     }
 
     public int getRedPointZ() {
-        return RedPointZ;
+        return redPointZ;
     }
 
     public void setRedPointZ(int RedPointZ) {
-        this.RedPointZ = RedPointZ;
+        this.redPointZ = RedPointZ;
     }
 
     public int getBluePointX() {
-        return BluePointX;
+        return bluePointX;
     }
 
     public void setBluePointX(int BluePointX) {
-        this.BluePointX = BluePointX;
+        this.bluePointX = BluePointX;
     }
 
     public int getBluePointY() {
-        return BluePointY;
+        return bluePointY;
     }
 
     public void setBluePointY(int BluePointY) {
-        this.BluePointY = BluePointY;
+        this.bluePointY = BluePointY;
     }
 
     public int getBluePointZ() {
-        return BluePointZ;
+        return bluePointZ;
     }
 
     public void setBluePointZ(int BluePointZ) {
-        this.BluePointZ = BluePointZ;
+        this.bluePointZ = BluePointZ;
     }
 
     @Override
@@ -231,11 +388,11 @@ public class MapMeta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MapMeta mapMeta = (MapMeta) o;
-        return firstPointX == mapMeta.firstPointX && firstPointY == mapMeta.firstPointY && firstPointZ == mapMeta.firstPointZ && secondPointX == mapMeta.secondPointX && secondPointY == mapMeta.secondPointY && secondPointZ == mapMeta.secondPointZ && RedPointX == mapMeta.RedPointX && RedPointY == mapMeta.RedPointY && RedPointZ == mapMeta.RedPointZ && BluePointX == mapMeta.BluePointX && BluePointY == mapMeta.BluePointY && BluePointZ == mapMeta.BluePointZ && build == mapMeta.build && scale == mapMeta.scale && chooseKitTime == mapMeta.chooseKitTime && keepLevel == mapMeta.keepLevel && keepInventory == mapMeta.keepInventory && fair == mapMeta.fair && Objects.equals(uuid, mapMeta.uuid) && Objects.equals(name, mapMeta.name) && Objects.equals(description, mapMeta.description);
+        return firstPointX == mapMeta.firstPointX && firstPointY == mapMeta.firstPointY && firstPointZ == mapMeta.firstPointZ && secondPointX == mapMeta.secondPointX && secondPointY == mapMeta.secondPointY && secondPointZ == mapMeta.secondPointZ && redPointX == mapMeta.redPointX && redPointY == mapMeta.redPointY && redPointZ == mapMeta.redPointZ && bluePointX == mapMeta.bluePointX && bluePointY == mapMeta.bluePointY && bluePointZ == mapMeta.bluePointZ && build == mapMeta.build && scale == mapMeta.scale && chooseKitTime == mapMeta.chooseKitTime && keepExperience == mapMeta.keepExperience && Float.compare(mapMeta.redPointPitch, redPointPitch) == 0 && Float.compare(mapMeta.redPointYaw, redPointYaw) == 0 && Float.compare(mapMeta.bluePointPitch, bluePointPitch) == 0 && Float.compare(mapMeta.bluePointYaw, bluePointYaw) == 0 && redSpawnInterval == mapMeta.redSpawnInterval && blueSpawnInterval == mapMeta.blueSpawnInterval && raceStartReadyTime == mapMeta.raceStartReadyTime && ignorePartyDamage == mapMeta.ignorePartyDamage && forbiddenEnderChest == mapMeta.forbiddenEnderChest && celebrateTime == mapMeta.celebrateTime && raceTime == mapMeta.raceTime && isolateExperience == mapMeta.isolateExperience && isolateFood == mapMeta.isolateFood && isolateHealth == mapMeta.isolateHealth && isolatePotionEffect == mapMeta.isolatePotionEffect && isolateInventory == mapMeta.isolateInventory && isolateFly == mapMeta.isolateFly && keepInventory == mapMeta.keepInventory && Objects.equals(uuid, mapMeta.uuid) && Objects.equals(name, mapMeta.name) && Objects.equals(description, mapMeta.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, name, firstPointX, firstPointY, firstPointZ, secondPointX, secondPointY, secondPointZ, RedPointX, RedPointY, RedPointZ, BluePointX, BluePointY, BluePointZ, build, scale, chooseKitTime, keepLevel, description, keepInventory, fair);
+        return Objects.hash(uuid, name, firstPointX, firstPointY, firstPointZ, secondPointX, secondPointY, secondPointZ, redPointX, redPointY, redPointZ, bluePointX, bluePointY, bluePointZ, build, scale, chooseKitTime, keepExperience, redPointPitch, redPointYaw, bluePointPitch, bluePointYaw, redSpawnInterval, blueSpawnInterval, raceStartReadyTime, ignorePartyDamage, forbiddenEnderChest, celebrateTime, raceTime, isolateExperience, isolateFood, isolateHealth, isolatePotionEffect, isolateInventory, isolateFly, description, keepInventory);
     }
 }

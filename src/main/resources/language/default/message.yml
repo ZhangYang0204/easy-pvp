@@ -2,28 +2,49 @@ message:
 
 
 
+  #这是关于给玩家发送的大标题和小标题的设置
   title:
+
+    #这是当玩家匹配成功后，提示准备进入比赛的标题
+    raceStartReadyTime:
+
+      #这是小标题的内容
+      subtitle: "&b&l比赛开始准备倒计时 &f{time} &b&l秒"
+
+      #这是大标题的内容
+      title: "&b&l比赛开始准备倒计时 &f{time} &b&l秒"
+
     chooseKitTime:
       subtitle: "&b&l剩余选择准备时间 &f{time} &b&l秒"
       title: "&b&l剩余选择准备时间 &f{time} &b&l秒"
     matchTime:
       subtitle: "&b&l已匹配 &f{time} &b&l秒"
       title: "&b&l已匹配 &f{time} &b&l秒"
+    celebrateTime:
+      subtitle: "&b&l庆祝倒计时 &f{time} &b&l秒"
+      title: "&b&l庆祝倒计时 &f{time} &b&l秒"
 
 
+#这是玩家聊天栏和插件的交互
   input:
+    #表示输入什么取消，例如在创建队伍的时候，输入这个就能取消创建队伍
     cancel: "取消"
 
+#以下是插件的消息提示
   chat:
+
+    #这是关于连胜的提示
     streak:
+      #达到5连胜时全服发送
       5:
         - "&a&l&n玩家 &f{player} &a&l&n 刚刚达成了五连胜,可以很强"
+
       10:
         - "&b&l&n玩家 &f{player} &a&l&n 刚刚达成了十连胜,似乎无敌了"
       20:
         - "&c&l&n玩家 &f{player} &a&l&n 刚刚达成了二十连胜,开挂了？"
       50:
-        - "&d&l&n玩家 &f{player} &a&l&n 刚刚达成了五十连胜,这个人多少有点问题,请联系腐竹举报"
+        - "&d&l&n玩家 &f{player} &a&l&n 刚刚达成了五十连胜,这个人多少有点问题,可以联系腐竹举报"
       100:
         - "&e&l&n玩家 &f{player} &a&l&n 刚刚达成了一百连胜,开挂实锤了"
 
@@ -79,14 +100,50 @@ message:
       - "&e&lEasyPvp setMapKeepInventory <地图名字>  <true|false>"
       - "&b&l设置是否死亡掉落物品"
       - ""
-      - "&e&lEasyPvp setMapKeepLevel <地图名字>  <true|false>"
+      - "&e&lEasyPvp setMapKeepExperience <地图名字>  <true|false>"
       - "&b&l设置是否死亡掉落经验"
       - ""
       - "&e&lEasyPvp setMapScale <地图名字>  <数量>"
       - "&b&l设置每队的人数"
       - ""
-      - "&e&lEasyPvp setMapFair <地图名字>  <true|false>"
-      - "&b&l设置是否为公平模式,公平模式下,玩家的生命值、BUFF、装备、经验都会被隔离"
+      - "&e&lEasyPvp setMapIsolateFood <地图名字>  <true|false>"
+      - "&b&l隔离饥饿"
+      - ""
+      - "&e&lEasyPvp setMapIsolateExperience <地图名字>  <true|false>"
+      - "&b&l隔离经验"
+      - ""
+      - "&e&lEasyPvp setMapIsolateHealth <地图名字>  <true|false>"
+      - "&b&l隔离血量"
+      - ""
+      - "&e&lEasyPvp setMapIsolateFly <地图名字>  <true|false>"
+      - "&b&l隔离飞行"
+      - ""
+      - "&e&lEasyPvp setMapIsolateInventory <地图名字>  <true|false>"
+      - "&b&l隔离背包"
+      - ""
+      - "&e&lEasyPvp setMapIsolatePotionEffect <地图名字>  <true|false>"
+      - "&b&l隔离药水效果"
+      - ""
+      - "&e&lEasyPvp setMapBlueSpawnInterval <地图名字>  <间隔>"
+      - "&b&l设置蓝队的复活间隔"
+      - ""
+      - "&e&lEasyPvp setMapRedSpawnInterval <地图名字>  <间隔>"
+      - "&b&l设置红队的复活间隔"
+      - ""
+      - "&e&lEasyPvp setMapCelebrateTime <地图名字>  <时间>"
+      - "&b&l设置庆祝时间"
+      - ""
+      - "&e&lEasyPvp setMapForbiddenEnderChest <地图名字>  <true|false>"
+      - "&b&l禁止末影箱"
+      - ""
+      - "&e&lEasyPvp setMapIgnorePartyDamage <地图名字>  <true|false>"
+      - "&b&l无视队友伤害"
+      - ""
+      - "&e&lEasyPvp setMapRaceStartReadyTime <地图名字>  <时间>"
+      - "&b&l比赛前进入地图的准备时间"
+      - ""
+      - "&e&lEasyPvp setMapRaceTime <地图名字>  <时间>"
+      - "&b&l比赛时间"
       - ""
       - "&e&lEasyPvp addMapDescription <地图名字>  <一行描述>"
       - "&b&l为地图添加一行描述,添加在最后一行"
@@ -185,6 +242,35 @@ message:
     failureSetMapChooseTimeBecauseNotExistMapName:
       - "&c&l无法设置 &f{map} &c&l的选择装备时间为 &f{time} &c&l秒,没有找到叫这个名字的地图"
 
+    successSetMapBlueSpawnInterval:
+      - "&b&l成功设置 &f{map} &b&l的蓝色出生点间隔为 &f{interval}"
+    failureSetMapBlueSpawnIntervalBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的蓝色出生点间隔为 &f{interval},没有找到叫这个名字的地图"
+    successSetMapRedSpawnInterval:
+      - "&b&l成功设置 &f{map} &b&l的红色出生点间隔为 &f{interval}"
+    failureSetMapRedSpawnIntervalBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的红色出生点间隔为 &f{interval},没有找到叫这个名字的地图"
+    successSetMapCelebrateTime:
+      - "&b&l成功设置 &f{map} &b&l的庆祝时间为 &f{time} &b&l秒"
+    failureSetMapCelebrateTimeBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的庆祝时间为 &f{time} &c&l秒,没有找到叫这个名字的地图"
+    successSetMapForbiddenEnderChest:
+      - "&b&l成功设置 &f{map} &b&l的禁止末影箱为 &f{forbidden}"
+    failureSetMapForbiddenEnderChestBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的禁止末影箱为 &f{forbidden} &c&l秒,没有找到叫这个名字的地图"
+    successSetMapIgnorePartyDamage:
+      - "&b&l成功设置 &f{map} &b&l的屏蔽队伤为 &f{ignore}"
+    failureSetMapIgnorePartyDamageBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的屏蔽队伤为 &f{ignore},没有找到叫这个名字的地图"
+    successSetMapRaceStartReadyTime:
+      - "&b&l成功设置 &f{map} &b&l的比赛开始准备时间为 &f{time} &b&l秒"
+    failureSetMapRaceStartReadyTimeBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的比赛开始准备时间为 &f{time} &c&l秒,没有找到叫这个名字的地图"
+    successSetMapRaceTime:
+      - "&b&l成功设置 &f{map} &b&l的比赛时间为 &f{time} &b&l秒"
+    failureSetMapRaceTimeBecauseNotExistMapName:
+      - "&c&l无法设置 &f{map} &c&l的比赛时间为 &f{time} &c&l秒,没有找到叫这个名字的地图"
+
     successCreateMap:
       - "&b&l成功创建地图 &f{map}"
     failureMapCreateBecauseNotFourPoint:
@@ -223,16 +309,44 @@ message:
       - "&b&l成功设置地图 &f{map} &b&l的保存物品为 &f{keep}"
     failureSetMapKeepInventoryBecauseNotExistMapName:
       - "&b&l设置地图 &f{map} &c&l的保存物品为 &f{keep} &c&l失败,没有找到叫这个名字的地图"
-    successSetMapKeepLevel:
+    successSetMapKeepExperience:
       - "&b&l成功设置地图 &f{map} &b&l的保存经验为 &f{keep}"
-    failureSetMapKeepLevelBecauseNotExistMapName:
+    failureSetMapKeepExperienceBecauseNotExistMapName:
       - "&b&l设置地图 &f{map} &c&l的保存经验为 &f{keep} &c&l失败,没有找到叫这个名字的地图"
 
 
-    successSetMapFair:
-      - "&b&l成功设置地图 &f{map} &b&l的公平为 &f{fair}"
-    failureSetMapFairBecauseNotExistMapName:
-      - "&c&l设置地图 &f{map} &c&l的公平为 &f{fair} &c&l失败,没有找到叫这个名字的地图"
+
+
+    successSetMapIsolateFood:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离饥饿为 &f{isolate_food}"
+    failureSetMapIsolateFoodBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的公平为 &f{isolate_food} &c&l失败,没有找到叫这个名字的地图"
+
+    successSetMapIsolateExperience:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离经验值为 &f{isolate_experience}"
+    failureSetMapIsolateExperienceBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的隔离经验为 &f{isolate_experience} &c&l失败,没有找到叫这个名字的地图"
+      -
+    successSetMapIsolateHealth:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离生命值为 &f{isolate_health}"
+    failureSetMapIsolateHealthBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的隔离生命值为 &f{isolate_health} &c&l失败,没有找到叫这个名字的地图"
+      -
+    successSetMapIsolateFly:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离飞行为 &f{isolate_fly}"
+    failureSetMapIsolateFlyBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的隔离飞行为 &f{isolate_fly} &c&l失败,没有找到叫这个名字的地图"
+      -
+    successSetMapIsolateInventory:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离背包为 &f{isolate_inventory}"
+    failureSetMapIsolateInventoryBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的隔离背包为 &f{isolate_inventory} &c&l失败,没有找到叫这个名字的地图"
+      -
+    successSetMapIsolatePotionEffect:
+      - "&b&l成功设置地图 &f{map} &b&l的隔离药水效果为 &f{isolate_potion_effect}"
+    failureSetMapIsolatePotionEffectBecauseNotExistMapName:
+      - "&c&l设置地图 &f{map} &c&l的隔离药水效果为 &f{isolate_potion_effect} &c&l失败,没有找到叫这个名字的地图"
+
 
     successAddMapKit:
       - "&b&l给 &f{map} &b&l添加装备包 &f{kit}  &b&l成功"
@@ -465,7 +579,11 @@ message:
 
     successStartRace:
       - "&b&l游戏开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
-      - "&b&l请在 &f{time} &b&l秒内选择装备包,选择期间禁止移动、攻击等"
+      - "&b&l请在 &f{time} &b&l秒内选择装备包,选择期间禁止移动、攻击等,比赛时间为 {race_time}秒"
+
+    successMatch:
+      - "&b&l匹配开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
+      - "&b&l请在 &f{time} &b&l秒内准备好开始比赛,比赛时间为 {race_time}秒"
 
     successChooseKit:
       - "&b&l你选择了装备包 &f{kit}"
@@ -523,14 +641,27 @@ message:
       - "setKit"
       - "setMapBuild"
       - "setMapChooseTime"
+      - "setMapBlueSpawnInterval"
+      - "setMapRedSpawnInterval"
+      - "setMapCelebrateTime"
+      - "setMapForbiddenEnderChest"
+      - "setMapIgnorePartyDamage"
+      - "setMapRaceStartReadyTime"
+      - "setMapRaceTime"
+
+      - "setMapIsolateExperience"
+      - "setMapIsolateFood"
+      - "setMapIsolateHealth"
+      - "setMapIsolateFly"
+      - "setMapIsolateInventory"
+      - "setMapIsolatePotionEffect"
       - "createMap"
       - "deleteMap"
       - "addMapDescription"
       - "removeMapDescription"
       - "setMapDescription"
-      - "setMapKeepLevel"
+      - "setMapKeepExperience"
       - "setMapKeepInventory"
-      - "setMapFair"
       - "addMapKit"
       - "removeMapKit"
       - "setMapScale"
@@ -631,6 +762,59 @@ message:
     easyPvpSetMapBuild$:
       - "true"
       - "false"
+
+    easyPvpSetMapBlueSpawnInterval:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapBlueSpawnInterval$:
+      - "1"
+
+    easyPvpSetMapRedSpawnInterval:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapRedSpawnInterval$:
+      - "1"
+
+    easyPvpSetMapCelebrateTime:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapCelebrateTime$:
+      - "(大于等于0的数字)"
+
+    easyPvpSetMapForbiddenEnderChest:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapForbiddenEnderChest$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapIgnorePartyDamage:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIgnorePartyDamage$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapRaceStartReadyTime:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapRaceStartReadyTime$:
+      - "(大于等于0的数字)"
+
+
+    easyPvpSetMapRaceTime:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapRaceTime$:
+      - "(大于0的数字)"
+
     easyPvpSetMapChooseTime:
       - "(注意名字不要重复)"
       - "(地图名字)"
@@ -644,20 +828,70 @@ message:
     easyPvpSetMapKeepInventory$:
       - "true"
       - "false"
-    easyPvpSetMapKeepLevel:
+    easyPvpSetMapKeepExperience:
       - "(注意名字不要重复)"
       - "(地图名字)"
       - "{[$]}"
-    easyPvpSetMapKeepLevel$:
+    easyPvpSetMapKeepExperience$:
       - "true"
       - "false"
-    easyPvpSetMapFair:
+
+
+
+
+    easyPvpSetMapIsolateExperience:
       - "(注意名字不要重复)"
       - "(地图名字)"
       - "{[$]}"
-    easyPvpSetMapFair$:
+    easyPvpSetMapIsolateExperience$:
       - "true"
       - "false"
+
+
+    easyPvpSetMapIsolateFood:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIsolateFood$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapIsolateHealth:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIsolateHealth$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapIsolateFly:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIsolateFly$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapIsolateInventory:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIsolateInventory$:
+      - "true"
+      - "false"
+
+    easyPvpSetMapIsolatePotionEffect:
+      - "(注意名字不要重复)"
+      - "(地图名字)"
+      - "{[$]}"
+    easyPvpSetMapIsolatePotionEffect$:
+      - "true"
+      - "false"
+
+
+
+
+
     easyPvpSetMapScale:
       - "(注意名字不要重复)"
       - "(地图名字)"

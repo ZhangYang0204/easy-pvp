@@ -7,8 +7,7 @@ public class MinecraftVersionUtil {
         return Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[0]);
     }
     public static int getMiddleVersion(){
-        return Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[1]);
-    }public static int getSmallVersion(){
-        return Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[2]);
+        return Integer.parseInt(Bukkit.getBukkitVersion().split("\\.")[1].split("-")[0]);
     }
+
 }

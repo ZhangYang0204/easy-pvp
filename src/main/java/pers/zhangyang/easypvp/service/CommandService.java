@@ -14,7 +14,25 @@ public interface CommandService {
     void deleteMap(String mapName) throws SQLException, NotExistMapNameException;
     void setMapChooseTime(String mapName, int chooseTick) throws NotExistMapNameException, SQLException;
     void setMapBuild(String mapName, boolean build) throws SQLException, NotExistMapNameException;
-    void setMapFair(String mapName, boolean fair) throws SQLException, NotExistMapNameException;
+
+
+    void setMapBlueSpawnInterval(String mapName, int b) throws SQLException, NotExistMapNameException;
+    void setMapRedSpawnInterval(String mapName, int b) throws SQLException, NotExistMapNameException;
+    void setMapCelebrateTime(String mapName, int b) throws SQLException, NotExistMapNameException;
+    void setMapForbiddenEnderChest(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIgnorePartyDamage(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapRaceStartReadyTime(String mapName, int b) throws SQLException, NotExistMapNameException;
+    void setMapRaceTime(String mapName, int b) throws SQLException, NotExistMapNameException;
+
+
+    void setMapIsolateFood(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIsolateExperience(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIsolateHealth(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIsolateFly(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIsolatePotionEffect(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+    void setMapIsolateInventory(String mapName, boolean b) throws SQLException, NotExistMapNameException;
+
+
     void setMapDrop(String mapName, boolean drop) throws NotExistMapNameException, SQLException;
     void setMapScale(String mapName, int scale) throws SQLException, NotExistMapNameException;
     void addMapDescription(String maoName, String des) throws NotExistMapNameException, SQLException;
@@ -25,7 +43,7 @@ public interface CommandService {
     void setKit(String kitName, List<KitItemStackMeta> kitItemStackMetaList) throws SQLException, NotExistKitNameException;
 
     void deleteKit(String kitName) throws SQLException, NotExistKitNameException;
-    void setMapKeepLevel(String mapName,boolean keepLevel) throws SQLException, NotExistMapNameException;
+    void setMapKeepExperience(String mapName, boolean keepLevel) throws SQLException, NotExistMapNameException;
     void addKitDescription(String kitName, String des) throws NotExistKitNameException, SQLException;
     void removeKitDescription(String kitName,int ind) throws NotExistKitNameException, SQLException, NotExistDesciptionRowException;
     void setKitDescription(String kitName,int ind,String des) throws NotExistKitNameException, SQLException, NotExistDesciptionRowException;

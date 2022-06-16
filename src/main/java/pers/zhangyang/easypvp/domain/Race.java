@@ -10,7 +10,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.enumration.GamerStatsEnum;
 import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
 import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
@@ -19,7 +18,6 @@ import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.meta.*;
-import pers.zhangyang.easypvp.runnable.StopChooseKitRunnable;
 import pers.zhangyang.easypvp.util.*;
 
 import javax.annotation.Nonnull;
@@ -29,11 +27,7 @@ import java.util.*;
 public class Race {
     protected final List<Gamer> redAlive;
     protected final List<Gamer> blueAlive;
-    protected final boolean fair;
-    protected final boolean build;
-    protected final boolean keepInventory;
-    protected final boolean keepLevel;
-    protected final int chooseTime;
+
     protected final HashMap<Gamer, ItemStack[]> inventorySave;
     protected final HashMap<Gamer, Location> locationBefore;
     protected final HashMap<Gamer, GameMode> gameModeBefore;
@@ -271,20 +265,72 @@ public class Race {
         }
     }
 
+    public List<Gamer> getWatcher() {
+        return watcher;
+    }
+
     //传送
     private void locationHandleBefore() throws FailureTeleportException {
+        int rC=0;
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
             locationBefore.put(g, p.getLocation());
-           if (!p.teleport(redLoc)){
+            rC++;
+            int fang=rC%4;
+            int fangP=rC/4;
+
+            Location redTarLoc=redLoc.clone();
+
+            //X+
+            if (fang==0){
+                redTarLoc.add(fangP+mapMeta.getRedSpawnInterval(),0,0);
+            }
+            //X-
+            if (fang==1){
+                redTarLoc.add(fangP-mapMeta.getRedSpawnInterval(),0,0);
+            }
+            //Z+
+            if (fang==2){
+                redTarLoc.add(0,0,fangP+mapMeta.getRedSpawnInterval());
+            }
+            //Z-
+            if (fang==3){
+                redTarLoc.add(0,0,fangP-mapMeta.getRedSpawnInterval());
+            }
+
+            if (!p.teleport(redTarLoc)){
                throw new FailureTeleportException();
            }
 
         }
+
+        int bC=0;
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
             locationBefore.put(g, p.getLocation());
-            if (!p.teleport(blueLoc)) {
+            bC++;
+            int fang=bC%4;
+            int fangP=bC/4;
+
+            Location blueTarLoc=blueLoc.clone();
+
+            //X+
+            if (fang==0){
+                blueTarLoc.add(fangP+mapMeta.getBlueSpawnInterval(),0,0);
+            }
+            //X-
+            if (fang==1){
+                blueTarLoc.add(fangP-mapMeta.getBlueSpawnInterval(),0,0);
+            }
+            //Z+
+            if (fang==2){
+                blueTarLoc.add(0,0,fangP+mapMeta.getBlueSpawnInterval());
+            }
+            //Z-
+            if (fang==3){
+                blueTarLoc.add(0,0,fangP-mapMeta.getBlueSpawnInterval());
+            }
+            if (!p.teleport(blueTarLoc)) {
                 throw new FailureTeleportException();
             }
         }
@@ -345,10 +391,12 @@ public class Race {
             Player p = g.getPlayer();
             if (locationBefore.get(g).getWorld() == null) {
                 if (!p.teleport(Bukkit.getWorld("world").getSpawnLocation())){
+
                     throw new FailureTeleportException();
                 }
             } else {
                 if(!p.teleport(locationBefore.get(g))){
+
                     throw new FailureTeleportException();
                 }
             }
@@ -462,11 +510,6 @@ public class Race {
         }
         this.redAlive = new ArrayList<>();
         this.blueAlive = new ArrayList<>();
-        this.keepInventory = mapMeta.isKeepInventory();
-        this.keepLevel = mapMeta.isKeepLevel();
-        this.fair = mapMeta.isFair();
-        this.build = mapMeta.isBuild();
-        this.chooseTime = mapMeta.getChooseKitTime();
         this.startTimeMillis = System.currentTimeMillis();
         this.mapBlockMetaList = new ArrayList<>();
         for (MapBlockMeta b: mapBlockMetaList){this.mapBlockMetaList.add(b.clone());}
@@ -474,7 +517,7 @@ public class Race {
         for (MapBlockInventoryItemStackMeta m: mapContainerInventoryItemStackMetaList){
             this.mapContainerInventoryItemStackMetaList.add(m.clone());
         }
-        this.mapMeta = mapMeta;
+        this.mapMeta = mapMeta.clone();
         watcher = new ArrayList<>();
         watcherGameModeBefore = new HashMap<>();
         watcherLocationBefore=new HashMap<>();
@@ -512,8 +555,8 @@ public class Race {
         this.stats=RaceStatsEnum.RACING;
         this.redParty = redParty;
         this.blueParty = blueParty;
-        this.redLoc = new Location(world, mapMeta.getRedPointX(), mapMeta.getRedPointY(), mapMeta.getRedPointZ());
-        this.blueLoc = new Location(world, mapMeta.getBluePointX(), mapMeta.getBluePointY(), mapMeta.getBluePointZ());
+        this.redLoc = new Location(world, mapMeta.getRedPointX(), mapMeta.getRedPointY(), mapMeta.getRedPointZ(),mapMeta.getRedPointYaw(),mapMeta.getRedPointPitch());
+        this.blueLoc = new Location(world, mapMeta.getBluePointX(), mapMeta.getBluePointY(), mapMeta.getRedPointZ(),mapMeta.getBluePointYaw(),mapMeta.getBluePointPitch());
         this.firstLoc = new Location(world, mapMeta.getFirstPointX(), mapMeta.getFirstPointY(), mapMeta.getFirstPointZ());
         this.secondLoc = new Location(world, mapMeta.getSecondPointX(), mapMeta.getSecondPointY(), mapMeta.getSecondPointZ());
         this.redAlive.addAll(redParty.memberList);
@@ -551,18 +594,26 @@ public class Race {
         }
         locationHandleBefore();
         gameModeHandleBefore();
-        if (fair) {
+
+
+        if (mapMeta.isIsolateFood()){
             foodLevelHandleBefore();
+        }
+        if (mapMeta.isIsolateExperience()){
             expHandleBefore();
             levelHandleBefore();
+        }if (mapMeta.isIsolatePotionEffect()){
             potionEffectHandleBefore();
+        }if (mapMeta.isIsolateHealth() ){
             heathHandleBefore();
+        }if (mapMeta.isIsolateInventory()){
             inventoryHandleBefore();
+        }if (mapMeta.isIsolateFly()){
             flyHandleBefore();
         }
+
+
         startChooseKit();
-        //几秒后关闭gui
-        new StopChooseKitRunnable(this).runTaskTimer(EasyPvp.getInstance(),1,20);
     }
 
     @Nullable
@@ -570,17 +621,10 @@ public class Race {
         return winner;
     }
 
-    /**
-     * 只有在比赛中的比赛结束才有效果
-     * @exception IllegalRaceStatsException 比赛不是racing
-     */
-    public void stop() throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
-        if (!stats.equals(RaceStatsEnum.RACING)){
-            throw new IllegalRaceStatsException("Race is not racing");
+    public void afterStop() throws FailureTeleportException, FailureDeleteWorldException, FailureUnloadWorldException {
+        if (!stats.equals(RaceStatsEnum.CELEBRATING)){
+            throw new IllegalRaceStatsException("Race is not ending");
         }
-        stats=RaceStatsEnum.ENDING;
-        RaceManager.RACE_MANAGER.remove(this);
-        RefreshUtil.refreshAllRacePage();
         for (Gamer g:redParty.memberList){
             g.stats=GamerStatsEnum.READING;
         }for (Gamer g:blueParty.memberList){
@@ -596,8 +640,6 @@ public class Race {
         for (Gamer g : blueParty.memberList) {
             g.racingRace = null;
         }
-
-
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
             if (p.isDead()) {
@@ -611,15 +653,29 @@ public class Race {
             }
         }
         locationHandleAfter();
-        if (fair) {
+        if (mapMeta.isIsolateInventory()){
             inventoryHandleAfter();
+        }
+        if (mapMeta.isIsolateHealth() ){
             heathHandlerAfter();
+        }
+        if (mapMeta.isIsolatePotionEffect()){
             potionEffectHandleAfter();
+        }
+        if (mapMeta.isIsolateExperience()){
             levelHandleAfter();
             expHandleAfter();
+        }
+        if (mapMeta.isIsolateFood()){
             foodLevelHandleAfter();
+        }
+        if (mapMeta.isIsolateFly()){
             flyHandleAfter();
         }
+
+
+
+
         gameModeHandleAfter();
 
         //观战者
@@ -649,6 +705,28 @@ public class Race {
         }
 
         destroyWorld();
+    }
+
+    /**
+     * 只有在比赛中的比赛结束才有效果
+     * @exception IllegalRaceStatsException 比赛不是racing
+     */
+    public void stop()  {
+        if (!stats.equals(RaceStatsEnum.RACING)){
+            throw new IllegalRaceStatsException("Race is not racing");
+        }
+        stats=RaceStatsEnum.CELEBRATING;
+        RaceManager.RACE_MANAGER.remove(this);
+        RefreshUtil.refreshAllRacePage();
+        for (Gamer g:redParty.memberList){
+            g.stats=GamerStatsEnum.CELEBRATING;
+        }for (Gamer g:blueParty.memberList){
+            g.stats=GamerStatsEnum.CELEBRATING;
+        }
+        redParty.stats = PartyStatsEnum.CELEBRATING;
+        blueParty.stats = PartyStatsEnum.CELEBRATING;
+
+
 
     }
 
@@ -678,21 +756,7 @@ public class Race {
         }
     }
 
-    public boolean isFair() {
-        return fair;
-    }
 
-    public boolean isBuild() {
-        return build;
-    }
-
-    public boolean isKeepInventory() {
-        return keepInventory;
-    }
-
-    public boolean isKeepLevel() {
-        return keepLevel;
-    }
 
     @Nonnull
     public Party getRedParty() {
@@ -708,9 +772,6 @@ public class Race {
        return LocationUtil.blockIsIn(firstLoc,secondLoc,g.getPlayer().getLocation());
     }
 
-    public int getChooseTime() {
-        return chooseTime;
-    }
 
     @Nonnull
     public List<Gamer> getRedAlive() {

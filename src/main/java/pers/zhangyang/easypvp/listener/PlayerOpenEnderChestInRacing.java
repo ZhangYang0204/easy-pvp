@@ -19,7 +19,7 @@ public class PlayerOpenEnderChestInRacing implements Listener {
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
-        if (!race.isFair()){
+        if (!race.getMapMeta().isForbiddenEnderChest()){
             return;
         }
 

@@ -1,5 +1,6 @@
 package pers.zhangyang.easypvp.manager;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
 import pers.zhangyang.easypvp.meta.MapMeta;
@@ -67,6 +68,10 @@ public class MatcherManager {
         return false;
     }
 
+    public boolean contains(Matcher matcher){
+        return matcherList.contains(matcher);
+    }
+
     public void add(Matcher matcher){
         matcherList.add(matcher);
     }
@@ -78,5 +83,8 @@ public class MatcherManager {
                 matcherList.remove(i);
             }
         }
+    }
+    public void remove(Matcher matcher){
+        matcherList.remove(matcher);
     }
 }

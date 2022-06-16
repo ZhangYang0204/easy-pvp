@@ -1,7 +1,9 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.util.MessageUtil;
@@ -23,11 +25,11 @@ public class CommandReloadYaml extends CommandBase {
             ShopYaml.SETTING_YAML_MANAGER.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         }
 
         MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_RELOAD_YAML());
-
         return true ;
     }
 }

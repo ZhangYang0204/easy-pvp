@@ -1,6 +1,5 @@
 package pers.zhangyang.easypvp.listener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,15 +17,13 @@ import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.util.*;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
 public class PlayerQuitGame implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onQ(PlayerQuitEvent event){
 
         try {
@@ -35,6 +32,7 @@ public class PlayerQuitGame implements Listener {
             Party party= gamer.getParty();
             Race race=gamer.getRacingRace();
             GamerManager.GAMER_MANAGER.remove(player);
+
 
             if (gamer.getStats().equals(PartyStatsEnum.MATCHING)){
                 //队伍取消匹配
@@ -73,7 +71,7 @@ public class PlayerQuitGame implements Listener {
                 }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
-                if (race.getStats().equals(RaceStatsEnum.ENDING)){
+                if (race.getStats().equals(RaceStatsEnum.CELEBRATING)){
                     RaceUtil.AfterRaceStop(race);
                 }
              }
@@ -93,9 +91,14 @@ public class PlayerQuitGame implements Listener {
                 }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
-                if (race.getStats().equals(RaceStatsEnum.ENDING)){
+                if (race.getStats().equals(RaceStatsEnum.CELEBRATING)){
                     RaceUtil.AfterRaceStop(race);
                 }
+            }
+
+            if (gamer.getStats().equals(GamerStatsEnum.CELEBRATING)) {
+                //离开游戏
+                gamer.leaveRace();
             }
 
 

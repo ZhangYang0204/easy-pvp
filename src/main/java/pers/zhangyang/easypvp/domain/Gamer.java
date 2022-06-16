@@ -52,8 +52,8 @@ public class Gamer  {
         //如果没有比赛什么也不做
         if (racingRace ==null){return;}
 
-        if(!stats.equals(GamerStatsEnum.RACING)&&!stats.equals(GamerStatsEnum.OUTING)){
-            throw new IllegalGamerStatsException("Gamer stats is not racing and is not outing");
+        if(!stats.equals(GamerStatsEnum.RACING)&&!stats.equals(GamerStatsEnum.OUTING)&&!stats.equals(GamerStatsEnum.CELEBRATING)){
+            throw new IllegalGamerStatsException("Gamer stats is not racing and is not outing and is not celebrating");
         }
 
 
@@ -61,10 +61,12 @@ public class Gamer  {
         racingRace.redAlive.remove(this);
         racingRace.blueAlive.remove(this);
 
-        //如果比赛结束条件符合,结束比赛
-        if (racingRace.redAlive.isEmpty()|| racingRace.blueAlive.isEmpty()){
-            racingRace.stop();
-            return;
+        if (stats.equals(GamerStatsEnum.RACING)) {
+            //如果比赛结束条件符合,结束比赛
+            if (racingRace.redAlive.isEmpty() || racingRace.blueAlive.isEmpty()) {
+                racingRace.stop();
+                return;
+            }
         }
 
         //不符合结束条件的话

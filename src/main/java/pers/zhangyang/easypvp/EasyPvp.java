@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import pers.zhangyang.easypvp.bstats.Metrics;
 import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
@@ -18,8 +17,6 @@ import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
 import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.util.*;
 import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.manager.RaceManager;
@@ -29,12 +26,10 @@ import pers.zhangyang.easypvp.service.impl.PluginServiceImpl;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class EasyPvp extends JavaPlugin {
     private static EasyPvp instance;
-
     public static EasyPvp getInstance() {
         return instance;
     }
@@ -42,9 +37,6 @@ public class EasyPvp extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
-
-
         //初始化setting.yml,出错直接关闭插件
         try {
             SettingYaml.SETTING_YAML_MANAGER.init();
@@ -71,7 +63,7 @@ public class EasyPvp extends JavaPlugin {
         //更新数据库,出错直接关闭插件,暂不需要
         try {
             PluginService pluginService = (PluginService) InvocationUtil.getService(new PluginServiceImpl());
-            String ver=pluginService.getVersion();
+            //String ver=pluginService.getVersion();
 
             //如果小于xxx版本,就更新下数据库，然后再设置版本
             //if<xxx
@@ -118,7 +110,7 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMemberPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllMapPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousAllKitPage(), this);
-        getServer().getPluginManager().registerEvents(new PlayerDamageEntityWhenChooseKit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDamageEntityInRacing(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickShowRankPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickNextRankPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInRankPage(), this);
@@ -134,14 +126,13 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerTeleportOtherWorldInWatching(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeadInWatching(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickUnwatchRace(), this);
-
         getServer().getPluginManager().registerEvents(new PlayerClickShowShopPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickBuyGood(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickBackAllPartyPageInShopPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickNextShopPage(), this);
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousShopPage(), this);
 
-        //到这里插件已经成功可以使用了,提示插件标准
+        //到这里插件已经成功可以使用了,提示插件标志
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ENABLE_PLUGIN());
 
         //后台更新提示
@@ -157,9 +148,8 @@ public class EasyPvp extends JavaPlugin {
 
     }
 
-
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender,@NotNull Command command, @NotNull String label,@NotNull String[] args) {
         if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
             return  new CommandHelp(sender, false, args).process();
         }
@@ -195,12 +185,20 @@ public class EasyPvp extends JavaPlugin {
             return  new CommandAddMapDescription(sender, false, args).process();
 
         }
-        if (args.length == 3 && args[0].equalsIgnoreCase("removeMapDescription=")) {
-            return  new CommandRemoveMapDescription(sender, false, args).process();
+        if (args.length == 2 && args[0].equalsIgnoreCase("createKit")) {
+            return  new CommandCreateKit(sender, true, args).process();
 
         }
-        if (args.length == 4 && args[0].equalsIgnoreCase("setMapDescription")) {
-            return  new CommandSetMapDescription(sender, false, args).process();
+        if (args.length == 2 && args[0].equalsIgnoreCase("deleteKit")) {
+            return  new CommandDeleteKit(sender, false, args).process();
+
+        }
+        if (args.length == 2 && args[0].equalsIgnoreCase("setKit")) {
+            return  new CommandSetKit(sender, true, args).process();
+
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("removeMapDescription=")) {
+            return  new CommandRemoveMapDescription(sender, false, args).process();
 
         }
         if (args.length == 3 && args[0].equalsIgnoreCase("setMapBuild")) {
@@ -215,26 +213,55 @@ public class EasyPvp extends JavaPlugin {
             return  new CommandSetMapKeepInventory(sender, false, args).process();
 
         }
-        if (args.length == 3 && args[0].equalsIgnoreCase("setMapKeepLevel")) {
-            return  new CommandSetMapKeepLevel(sender, false, args).process();
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapKeepExperience")) {
+            return  new CommandSetMapKeepExperience(sender, false, args).process();
 
         }
-        if (args.length == 3 && args[0].equalsIgnoreCase("setMapFair")) {
-            return  new CommandSetMapFair(sender, false, args).process();
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolateExperience")) {
+            return  new CommandSetMapIsolateExperience(sender, false, args).process();
 
         }
-        if (args.length == 2 && args[0].equalsIgnoreCase("createKit")) {
-            return  new CommandCreateKit(sender, true, args).process();
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolateFood")) {
+            return  new CommandSetMapIsolateFood(sender, false, args).process();
 
         }
-        if (args.length == 2 && args[0].equalsIgnoreCase("deleteKit")) {
-            return  new CommandDeleteKit(sender, false, args).process();
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolateHealth")) {
+            return  new CommandSetMapIsolateHealth(sender, false, args).process();
 
         }
-        if (args.length == 2 && args[0].equalsIgnoreCase("setKit")) {
-            return  new CommandSetKit(sender, true, args).process();
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolateInventory")) {
+            return  new CommandSetMapIsolateInventory(sender, false, args).process();
 
         }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapBlueSpawnInterval")) {
+            return  new CommandSetMapBlueSpawnInterval(sender, false, args).process();
+        }
+
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapRedSpawnInterval")) {
+            return  new CommandSetMapRedSpawnInterval(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapCelebrateTime")) {
+            return  new CommandSetMapCelebrateTime(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapForbiddenEnderChest")) {
+            return  new CommandSetMapForbiddenEnderChest(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIgnorePartyDamage")) {
+            return  new CommandSetMapIgnorePartyDamage(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapRaceStartReadyTime")) {
+            return  new CommandSetMapRaceStartReadyTime(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapRaceTime")) {
+            return  new CommandSetMapRaceTime(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolatePotionEffect")) {
+            return  new CommandSetMapIsolatePotionEffect(sender, false, args).process();
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("setMapIsolateFly")) {
+            return  new CommandSetMapIsolateFly(sender, false, args).process();
+        }
+
         if (args.length == 3 && args[0].equalsIgnoreCase("addMapKit")) {
             return  new CommandAddMapKit(sender, false, args).process();
 
@@ -262,16 +289,18 @@ public class EasyPvp extends JavaPlugin {
             return   new CommandSubtractCumulativeStar(sender, false, args).process();
 
         }
-
-        if (args.length == 4 && args[0].equalsIgnoreCase("setKitDescription")) {
-            return  new CommandSetKitDescription(sender, false, args).process();
-
-        }
-
         if (args.length == 3 && args[0].equalsIgnoreCase("setMapChooseTime")) {
             return new CommandSetMapChooseTime(sender, false, args).process();
 
         }
+        if (args.length == 4 && args[0].equalsIgnoreCase("setKitDescription")) {
+            return  new CommandSetKitDescription(sender, false, args).process();
+
+        }
+        if (args.length == 4 && args[0].equalsIgnoreCase("setMapDescription")) {
+            return  new CommandSetMapDescription(sender, false, args).process();
+        }
+
 
         return true;
 
@@ -293,23 +322,18 @@ public class EasyPvp extends JavaPlugin {
 
         //结束游戏并广播
         for (Race race : RaceManager.RACE_MANAGER.getRaceList()) {
+            race.stop();
             try {
-                race.stop();
-            } catch (FailureDeleteWorldException e) {
-                e.printStackTrace();
-                return;
-            } catch (FailureUnloadWorldException e) {
-                e.printStackTrace();
-                return;
-            } catch (FailureTeleportException e) {
+                race.afterStop();
+            } catch (FailureDeleteWorldException | FailureUnloadWorldException | FailureTeleportException e) {
                 e.printStackTrace();
                 return;
             }
-           RaceUtil.AfterRaceStop(race);
+            RaceUtil.AfterRaceStop(race);
         }
 
 
-        //关闭消息
+        //关闭提示标志
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DISABLE_PLUGIN());
 
         //取消注册PAPI
@@ -320,14 +344,12 @@ public class EasyPvp extends JavaPlugin {
 
     }
 
-
-    @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         List<String> list = new ArrayList<>();
         if (args.length == 1) {
             list = MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
-            if (args[0] == null || list == null) {
+            if (list == null) {
                 return new ArrayList<>();
             }
             String ll = args[0].toLowerCase();
@@ -378,12 +400,53 @@ public class EasyPvp extends JavaPlugin {
         if (args[0].equalsIgnoreCase("setMapKeepInventory")) {
             return new CompleterSetMapKeepInventory(sender,false,args).process();
         }
-        if (args[0].equalsIgnoreCase("setMapKeepLevel")) {
-            return new CompleterSetMapKeepLevel(sender,false,args).process();
+        if (args[0].equalsIgnoreCase("setMapKeepExperience")) {
+            return new CompleterSetMapKeepExperience(sender,false,args).process();
         }
-        if (args[0].equalsIgnoreCase("setMapFair")) {
-            return new CompleterSetMapFair(sender,false,args).process();
+        if (args[0].equalsIgnoreCase("setMapIsolateExperience")) {
+            return  new CompleterSetMapIsolateExperience(sender, false, args).process();
+
         }
+        if ( args[0].equalsIgnoreCase("setMapIsolateFood")) {
+            return  new CompleterSetMapIsolateFood(sender, false, args).process();
+
+        }
+        if (args[0].equalsIgnoreCase("setMapIsolateHealth")) {
+            return  new CompleterSetMapIsolateHealth(sender, false, args).process();
+
+        }
+        if (args[0].equalsIgnoreCase("setMapIsolateInventory")) {
+            return  new CompleterSetMapIsolateInventory(sender, false, args).process();
+        }
+        if ( args[0].equalsIgnoreCase("setMapIsolatePotionEffect")) {
+            return  new CompleterSetMapIsolatePotionEffect(sender, false, args).process();
+        }
+        if ( args[0].equalsIgnoreCase("setMapIsolateFly")) {
+            return  new CompleterSetMapIsolateFly(sender, false, args).process();
+        }
+        if ( args[0].equalsIgnoreCase("setMapBlueSpawnInterval")) {
+            return  new CompleterSetMapBlueSpawnInterval(sender, false, args).process();
+        }
+
+        if (args[0].equalsIgnoreCase("setMapRedSpawnInterval")) {
+            return  new CompleterSetMapRedSpawnInterval(sender, false, args).process();
+        }
+        if ( args[0].equalsIgnoreCase("setMapCelebrateTime")) {
+            return  new CompleterSetMapCelebrateTime(sender, false, args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapForbiddenEnderChest")) {
+            return  new CompleterSetMapForbiddenEnderChest(sender, false, args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapIgnorePartyDamage")) {
+            return  new CompleterSetMapBlueSpawnInterval(sender, false, args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapRaceStartReadyTime")) {
+            return  new CompleterSetMapRaceStartReadyTime(sender, false, args).process();
+        }
+        if (args[0].equalsIgnoreCase("setMapRaceTime")) {
+            return  new CompleterSetMapRaceTime(sender, false, args).process();
+        }
+
         if (args[0].equalsIgnoreCase("addMapKit")) {
             return new CompleterAddMapKit(sender,false,args).process();
         }

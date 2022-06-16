@@ -1,6 +1,5 @@
 package pers.zhangyang.easypvp.base;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pers.zhangyang.easypvp.EasyPvp;
@@ -21,8 +20,6 @@ public abstract class YamlManagerBase {
     /**
      *
      * @param filePath 在resource下的文件路径
-     * @throws IOException
-     * @throws InvalidConfigurationException
      */
     protected YamlManagerBase(@Nonnull String filePath){
         if (filePath==null){throw new NullPointerException();}
@@ -33,8 +30,8 @@ public abstract class YamlManagerBase {
 
     /**
      * 会把对应的文件保存到PluginEasyPvp下
-     * @throws IOException
-     * @throws InvalidConfigurationException
+     * @throws IOException IO异常
+     * @throws InvalidConfigurationException Yml文件格式不对
      */
     public void init( ) throws IOException, InvalidConfigurationException {
         File file=new File(EasyPvp.getInstance().getDataFolder(), filePath);
@@ -54,7 +51,6 @@ public abstract class YamlManagerBase {
         }
         //加载Yaml
         this.yamlConfiguration.load(file);
-
         InputStreamReader inputStreamReader=new InputStreamReader(YamlManagerBase.class.getClassLoader()
                 .getResourceAsStream(filePath), StandardCharsets.UTF_8);
         this.backUpConfiguration.load(inputStreamReader);

@@ -1,16 +1,28 @@
 gui:
+
+  #这是每个页面的标题
   title:
     allPartyPage: "&b&l&n全部队伍&e&l(陈列了所有的队伍)"
     allMemberPage: "&b&l&n队伍成员&e&l(您的队伍信息)"
     allMapPage: "&b&l&n可选地图&e&l(符合当前队伍人数的地图)"
     allKitPage: "&b&l&n可选装备包&e&l(当前地图添加的装备包)"
-    winRankPage: "&b&l&n星星榜"
+    winRankPage: "&b&l&n星星榜(按照赛季星星数量排序)"
     allRacePage: "&b&l&n全部比赛&e&l(所有正在进行的比赛)"
     shopPage: "&b&l&n星星商店"
+
+  #这是页面中的按钮的设置
   button:
+
+    #这是打开商店的那个按钮
     allPartyPageShowShopPage:
+
+      #表示按钮的材料,想知道材料名字,请前往https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html查看
       material: "CHEST"
+
+      #表示按钮的名称
       displayName: "&b&l&n商店"
+
+      #表示按钮的描述
       lore:
         - "&e&l前往商店"
     shopPageBackAllPartyPage:

@@ -1,6 +1,8 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -22,12 +24,12 @@ public class CommandAddKitDescription extends CommandBase {
     @Override
     protected boolean run() {
         try {
-
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
             commandService.addKitDescription(args[1],args[2] );
         } catch (SQLException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         } catch (NotExistKitNameException e) {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{kit}",args[1]);
@@ -36,7 +38,6 @@ public class CommandAddKitDescription extends CommandBase {
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
-            
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
@@ -48,7 +49,6 @@ public class CommandAddKitDescription extends CommandBase {
             ReplaceUtil.replace(list, rep);
         }
         MessageUtil.sendMessageTo(sender, list);
-
         return true ;
 
     }

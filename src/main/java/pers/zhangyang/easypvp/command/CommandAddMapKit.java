@@ -1,6 +1,8 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.MapAlreadyAddKitException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
@@ -26,55 +28,53 @@ public class CommandAddMapKit extends CommandBase {
     protected boolean run() {
 
         try {
-
-            CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.addMapKit(args[1],args[2]);
-
+            CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
+            commandService.addMapKit(args[1], args[2]);
         } catch (SQLException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         } catch (NotExistKitNameException e) {
-            HashMap<String,String> rep=new HashMap<>();
-            rep.put("{map}",args[1]);
-            rep.put("{kit}",args[2]);
-            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{kit}", args[2]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
-
-            return true ;
+            return true;
         } catch (NotExistMapNameException e) {
-            HashMap<String,String> rep=new HashMap<>();
-            rep.put("{map}",args[1]);
-            rep.put("{kit}",args[2]);
-            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{kit}", args[2]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
-            return true ;
+            return true;
         } catch (MapAlreadyAddKitException e) {
-            HashMap<String,String> rep=new HashMap<>();
-            rep.put("{map}",args[1]);
-            rep.put("{kit}",args[2]);
-            List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{kit}", args[2]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT();
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
-            return true ;
+            return true;
         }
-        HashMap<String,String> rep=new HashMap<>();
-        rep.put("{map}",args[1]);
-        rep.put("{kit}",args[2]);
+        HashMap<String, String> rep = new HashMap<>();
+        rep.put("{map}", args[1]);
+        rep.put("{kit}", args[2]);
 
-        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_MAP_KIT();
-        if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_MAP_KIT();
+        if (list != null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
 
-        return true ;
+        return true;
     }
 }

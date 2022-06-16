@@ -15,7 +15,6 @@ public class CommandHelp extends CommandBase {
     @Override
     protected boolean run() {
         MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_HELP());
-
         return true ;
     }
 }

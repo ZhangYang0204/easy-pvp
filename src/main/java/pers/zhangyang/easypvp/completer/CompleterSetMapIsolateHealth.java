@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.completer;
 
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.base.CompleterBase;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CompleterService;
@@ -13,14 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompleterSetMapFair extends CompleterBase {
-    public CompleterSetMapFair(CommandSender sender, boolean forcePlayer, String[] args) {
+public class CompleterSetMapIsolateHealth extends CompleterBase {
+    public CompleterSetMapIsolateHealth(@NotNull CommandSender sender, boolean forcePlayer, @NotNull String[] args) {
         super(sender, forcePlayer, args);
     }
 
     @Override
     public List<String> complete() {
-        if (args.length==2){     List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR();
+        if (args.length==2){     List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -39,8 +40,8 @@ public class CompleterSetMapFair extends CompleterBase {
 
         }
         if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_FAIR_$()
+            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$()
+                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$()
             );
         }
 

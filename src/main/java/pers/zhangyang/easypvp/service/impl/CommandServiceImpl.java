@@ -1,17 +1,9 @@
 package pers.zhangyang.easypvp.service.impl;
 
-import org.bukkit.Material;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Container;
-import org.bukkit.inventory.BlockInventoryHolder;
-import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.dao.*;
 import pers.zhangyang.easypvp.exception.*;
 import pers.zhangyang.easypvp.meta.*;
 import pers.zhangyang.easypvp.service.CommandService;
-import pers.zhangyang.easypvp.util.ItemStackUtil;
-import pers.zhangyang.easypvp.util.MaterialDataUtil;
-import pers.zhangyang.easypvp.util.MinecraftVersionUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -106,7 +98,7 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void setMapFair(String mapName, boolean fair) throws SQLException, NotExistMapNameException {
+    public void setMapBlueSpawnInterval(String mapName, int b) throws SQLException, NotExistMapNameException {
         MapMeta mapMeta=mapDao.selectByName(mapName);
         //检查名字
         if (mapMeta==null){
@@ -114,7 +106,164 @@ public class CommandServiceImpl implements CommandService {
         }
         //先删除再插入
         mapDao.deleteByUuid(mapMeta.getUuid());
-        mapMeta.setFair(fair);
+        mapMeta.setBlueSpawnInterval(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapRedSpawnInterval(String mapName, int b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setRedSpawnInterval(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapCelebrateTime(String mapName, int b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setCelebrateTime(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapForbiddenEnderChest(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setForbiddenEnderChest(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIgnorePartyDamage(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIgnorePartyDamage(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapRaceStartReadyTime(String mapName, int b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setRaceStartReadyTime(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapRaceTime(String mapName, int b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setRaceTime(b);
+        mapDao.insert(mapMeta);
+    }
+
+
+    @Override
+    public void setMapIsolateFood(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolateFood(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIsolateExperience(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolateExperience(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIsolateHealth(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolateHealth(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIsolateFly(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolateFly(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIsolatePotionEffect(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolatePotionEffect(b);
+        mapDao.insert(mapMeta);
+    }
+
+    @Override
+    public void setMapIsolateInventory(String mapName, boolean b) throws SQLException, NotExistMapNameException {
+        MapMeta mapMeta=mapDao.selectByName(mapName);
+        //检查名字
+        if (mapMeta==null){
+            throw new NotExistMapNameException();
+        }
+        //先删除再插入
+        mapDao.deleteByUuid(mapMeta.getUuid());
+        mapMeta.setIsolateInventory(b);
         mapDao.insert(mapMeta);
     }
 
@@ -295,7 +444,7 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public void setMapKeepLevel(String mapName, boolean keepLevel) throws SQLException, NotExistMapNameException {
+    public void setMapKeepExperience(String mapName, boolean keepLevel) throws SQLException, NotExistMapNameException {
         MapMeta mapMeta=mapDao.selectByName(mapName);
         //检查名字
         if (mapMeta==null){
@@ -303,7 +452,7 @@ public class CommandServiceImpl implements CommandService {
         }
         //先删除再插入
         mapDao.deleteByUuid(mapMeta.getUuid());
-        mapMeta.setKeepLevel(keepLevel);
+        mapMeta.setKeepExperience(keepLevel);
         mapDao.insert(mapMeta);
     }
 

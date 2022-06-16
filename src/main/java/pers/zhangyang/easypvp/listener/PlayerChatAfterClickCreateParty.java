@@ -17,14 +17,13 @@ import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.util.RefreshUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-public class PlayerInputAfterClickCreateParty implements Listener {
+public class PlayerChatAfterClickCreateParty implements Listener {
     private Gamer gamer;
 
-    public PlayerInputAfterClickCreateParty(Gamer gamer) {
+    public PlayerChatAfterClickCreateParty(Gamer gamer) {
         this.gamer = gamer;
     }
 

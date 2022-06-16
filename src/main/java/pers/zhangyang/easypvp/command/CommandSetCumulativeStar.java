@@ -55,14 +55,18 @@ public class CommandSetCumulativeStar extends CommandBase {
         rep.put("{player}",args[1]);
         rep.put("{amount}",args[2]);
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_CUMULATIVE_STAR();
-        ReplaceUtil.replace(list,rep);
+        if (list!=null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         rep=new HashMap<>();
         rep.put("{player}",sender.getName());
         rep.put("{amount}",args[2]);
         list= MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_WAS_SET_CUMULATIVE_STAR();
-        ReplaceUtil.replace(list,rep);
+        if (list!=null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
 
         return true ;

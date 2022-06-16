@@ -1,6 +1,8 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
@@ -26,55 +28,55 @@ public class CommandRemoveMapDescription extends CommandBase {
     protected boolean run() {
         int index;
         try {
-            index=Integer.parseInt(args[2])-1;
-        }catch (NumberFormatException e){
+            index = Integer.parseInt(args[2]) - 1;
+        } catch (NumberFormatException e) {
             invalidArgument(args[2]);
-            return true ;
+            return true;
         }
-        if (index<0){
+        if (index < 0) {
             invalidArgument(args[2]);
-            return true ;
+            return true;
         }
 
         try {
 
-            CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-            commandService.removeMapDescription(args[1],index );
+            CommandService commandService = (CommandService) InvocationUtil.getService(new CommandServiceImpl());
+            commandService.removeMapDescription(args[1], index);
             RefreshUtil.refreshAllMapPage();
         } catch (SQLException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         } catch (NotExistMapNameException e) {
-            HashMap<String,String> rep=new HashMap<>();
-            rep.put("{map}",args[1]);
-            rep.put("{row}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{row}", args[2]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_MAP_REMOVE_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
-            return true ;
+            return true;
         } catch (NotExistDesciptionRowException e) {
-            HashMap<String,String> rep=new HashMap<>();
-            rep.put("{map}",args[1]);
-            rep.put("{row}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
-            if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+            HashMap<String, String> rep = new HashMap<>();
+            rep.put("{map}", args[1]);
+            rep.put("{row}", args[2]);
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
+            if (list != null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(sender, list);
-            return true ;
+            return true;
         }
-        HashMap<String,String> rep=new HashMap<>();
-        rep.put("{map}",args[1]);
-        rep.put("{row}",args[2]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_REMOVE_MAP_DESCRIPTION();
-        if (list!=null){
-                        ReplaceUtil.replace(list, rep);
-                    }
+        HashMap<String, String> rep = new HashMap<>();
+        rep.put("{map}", args[1]);
+        rep.put("{row}", args[2]);
+        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_REMOVE_MAP_DESCRIPTION();
+        if (list != null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(sender, list);
-
-        return true ;
+        return true;
 
     }
 }

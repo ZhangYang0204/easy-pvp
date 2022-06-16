@@ -1,7 +1,9 @@
 package pers.zhangyang.easypvp.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.DuplicateKitNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -25,7 +27,6 @@ public class CommandCreateKit extends CommandBase {
     @Override
     protected boolean run() {
         Player player= (Player) sender;
-
         KitMeta kitMeta=new KitMeta();
         String kitUuid= UuidUtil.getUUID();
         kitMeta.setUuid(kitUuid);
@@ -41,7 +42,6 @@ public class CommandCreateKit extends CommandBase {
         }
         try {
             CommandService commandService= (CommandService) InvocationUtil.getService(new CommandServiceImpl());
-
             commandService.createKit(kitMeta,kitItemStackMetaList);
         } catch (DuplicateKitNameException e) {
            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_CREATE_KIT_BECAUSE_DUPLICATE_KIT_NAME();
@@ -52,14 +52,14 @@ public class CommandCreateKit extends CommandBase {
             return true ;
         } catch (SQLException e) {
             e.printStackTrace();
-            return true ;
+             
+            return true;
         }
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_CREATE_KIT();
         if (list!=null) {
             ReplaceUtil.replace(list, Collections.singletonMap("{kit}", args[1]));
         }
         MessageUtil.sendMessageTo(sender, list);
-
         return true ;
     }
 }

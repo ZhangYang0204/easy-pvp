@@ -25,7 +25,7 @@ public class PlayerMoveWhenChooseKit implements Listener {
             return;
         }
 
-        if ((race.getStartTimeMillis()+race.getChooseTime()*1000)>System.currentTimeMillis()){
+        if ((race.getStartTimeMillis()+race.getMapMeta().getChooseKitTime()*1000)>System.currentTimeMillis()){
             event.setCancelled(true);
         }
 

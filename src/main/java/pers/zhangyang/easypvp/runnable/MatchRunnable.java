@@ -2,6 +2,7 @@ package pers.zhangyang.easypvp.runnable;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
@@ -38,7 +39,11 @@ public class MatchRunnable extends BukkitRunnable {
 
 
 
-        if (!matcher.getParty().getStats().equals(PartyStatsEnum.MATCHING)) {
+       /* if (!matcher.getParty().getStats().equals(PartyStatsEnum.MATCHING)) {
+            cancel();
+            return;
+        }*/
+        if (!MatcherManager.MATCHER_MANAGER.contains(matcher)){
             cancel();
             return;
         }
@@ -69,6 +74,9 @@ public class MatchRunnable extends BukkitRunnable {
         if (tar.equals(matcher)) {
             return;
         }
+        MatcherManager.MATCHER_MANAGER.remove(matcher);
+
+        MatcherManager.MATCHER_MANAGER.remove(tar);
         MapMeta mapMeta= tar.getMapMeta();
 
         if (mapMeta==null){
@@ -101,14 +109,8 @@ public class MatchRunnable extends BukkitRunnable {
             //比赛开始
             Race race=new Race(mapMeta, mapBlockMetaList,kitItemMap, mapContainerInventoryItemStackMetaList);
 
-            race.start(red,blue);
+            new RaceStartReadyRunnable(race,red,blue).runTaskTimer(EasyPvp.getInstance(),1,20);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        } catch (FailureCreateWorldException e) {
-            e.printStackTrace();
-            return;
-        } catch (FailureTeleportException e) {
             e.printStackTrace();
             return;
         }
@@ -119,11 +121,12 @@ public class MatchRunnable extends BukkitRunnable {
             playerList.add(g.getPlayer());
         }
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
-                .getCHAT_SUCCESS_START_RACE();
+                .getCHAT_SUCCESS_MATCH();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
         rep.put("{party}", blue.getPartyName());
-        rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
+        rep.put("{time}", String.valueOf(mapMeta.getRaceStartReadyTime()));
+        rep.put("{race_time}", String.valueOf(mapMeta.getRaceTime()));
         if (list!=null){
                         ReplaceUtil.replace(list, rep);
                     }
@@ -134,10 +137,11 @@ public class MatchRunnable extends BukkitRunnable {
             playerList.add(g.getPlayer());
         }
         list = MessageYaml.MESSAGE_YAML_MANAGER
-                .getCHAT_SUCCESS_START_RACE();
+                .getCHAT_SUCCESS_MATCH();
         rep = new HashMap<>();
         rep.put("{captain}", red.getCaptain().getPlayer().getName());
-        rep.put("{time}", String.valueOf(mapMeta.getChooseKitTime()));
+        rep.put("{time}", String.valueOf(mapMeta.getRaceStartReadyTime()));
+        rep.put("{race_time}", String.valueOf(mapMeta.getRaceTime()));
         rep.put("{party}", red.getPartyName());
         if (list!=null){
                         ReplaceUtil.replace(list, rep);

@@ -35,10 +35,26 @@ public class MapDao   extends DaoBase{
                 "  'bluePointZ' INT NOT NULL ," +
                 "  'build' BOOLEAN NOT NULL ," +
                 "  'scale' INT NOT NULL ," +
-                "  'fair' BOOLEAN NOT NULL ," +
+                "  'isolateExperience' BOOLEAN NOT NULL ," +
+                "  'isolateFood' BOOLEAN NOT NULL ," +
+                "  'isolateHealth' BOOLEAN NOT NULL ," +
+                "  'isolatePotionEffect' BOOLEAN NOT NULL ," +
+                "  'isolateInventory' BOOLEAN NOT NULL ," +
+                "  'isolateFly' BOOLEAN NOT NULL ," +
                 "  'keepInventory' BOOLEAN NOT NULL ," +
-                "  'keepLevel' BOOLEAN NOT NULL ," +
+                "  'keepExperience' BOOLEAN NOT NULL ," +
                 "  'chooseKitTime' INT NOT NULL ," +
+                "  'redPointPitch' FLOAT NOT NULL ," +
+                "  'redPointYaw' FLOAT NOT NULL ," +
+                "  'bluePointPitch' FLOAT NOT NULL ," +
+                "  'bluePointYaw' FLOAT NOT NULL ," +
+                "  'redSpawnInterval' INT NOT NULL ," +
+                "  'blueSpawnInterval' INT NOT NULL ," +
+                "  'raceStartReadyTime' INT NOT NULL ," +
+                "  'ignorePartyDamage' BOOLEAN NOT NULL ," +
+                "  'forbiddenEnderChest' BOOLEAN NOT NULL ," +
+                "  'celebrateTime' INT NOT NULL ," +
+                "  'raceTime' INT NOT NULL ," +
                 "  PRIMARY KEY (uuid)" +
                 ")");
           ps.executeUpdate();
@@ -51,7 +67,11 @@ public class MapDao   extends DaoBase{
                 ",secondPointX,secondPointY,secondPointZ" +
                 ",redPointX,redPointY,redPointZ" +
                 ",bluePointX,bluePointY,bluePointZ" +
-                ",build,'scale',fair,description,'keepInventory',chooseKitTime,keepLevel) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                ",build,'scale',description,'keepInventory',chooseKitTime,keepExperience" +
+                ",isolateExperience,isolateFood,isolateHealth,isolatePotionEffect,isolateInventory,isolateFly" +
+                ",redPointPitch,redPointYaw,bluePointPitch,bluePointYaw,redSpawnInterval,blueSpawnInterval" +
+                ",raceStartReadyTime,ignorePartyDamage,forbiddenEnderChest,celebrateTime,raceTime) " +
+                "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, mapMeta.getUuid());
         ps.setString(2, mapMeta.getName());
         ps.setInt(3, mapMeta.getFirstPointX());
@@ -68,15 +88,29 @@ public class MapDao   extends DaoBase{
         ps.setInt(14, mapMeta.getBluePointZ());
         ps.setBoolean(15, mapMeta.isBuild());
         ps.setInt(16, mapMeta.getScale());
-        ps.setBoolean(17, mapMeta.isFair());
+        ps.setString(17, mapMeta.getDescription());
+        ps.setBoolean(18, mapMeta.isKeepInventory());
+        ps.setLong(19, mapMeta.getChooseKitTime());
+        ps.setBoolean(20, mapMeta.isKeepExperience());
+        ps.setBoolean(21, mapMeta.isIsolateExperience());
+        ps.setBoolean(22, mapMeta.isIsolateFood());
+        ps.setBoolean(23, mapMeta.isIsolateHealth());
+        ps.setBoolean(24, mapMeta.isIsolatePotionEffect());
+        ps.setBoolean(25, mapMeta.isIsolateInventory());
+        ps.setBoolean(26, mapMeta.isIsolateFly());
 
-        ps.setString(18, mapMeta.getDescription());
+        ps.setFloat(27, mapMeta.getRedPointPitch());
+        ps.setFloat(28, mapMeta.getRedPointYaw());
+        ps.setFloat(29, mapMeta.getBluePointPitch());
+        ps.setFloat(30, mapMeta.getBluePointYaw());
+        ps.setInt(31, mapMeta.getRedSpawnInterval());
+        ps.setInt(32, mapMeta.getBlueSpawnInterval());
+        ps.setInt(33, mapMeta.getRaceStartReadyTime());
+        ps.setBoolean(34, mapMeta.isIgnorePartyDamage());
+        ps.setBoolean(35, mapMeta.isForbiddenEnderChest());
+        ps.setInt(36, mapMeta.getCelebrateTime());
+        ps.setInt(37, mapMeta.getRaceTime());
 
-        ps.setBoolean(19, mapMeta.isKeepInventory());
-
-        ps.setLong(20, mapMeta.getChooseKitTime());
-
-        ps.setBoolean(21, mapMeta.isKeepLevel());
         return ps.executeUpdate();
     }
 
@@ -157,13 +191,32 @@ public class MapDao   extends DaoBase{
             mapMeta.setBluePointY(rs.getInt("bluePointY"));
             mapMeta.setBluePointZ(rs.getInt("bluePointZ"));
             mapMeta.setBuild(rs.getBoolean("build"));
-            mapMeta.setFair(rs.getBoolean("fair"));
             mapMeta.setDescription(rs.getString("description"));
-
         mapMeta.setChooseKitTime(rs.getInt("chooseKitTime"));
-
-        mapMeta.setKeepLevel(rs.getBoolean("keepLevel"));
+        mapMeta.setKeepExperience(rs.getBoolean("keepExperience"));
         mapMeta.setKeepInventory(rs.getBoolean("keepInventory"));
+
+        mapMeta.setIsolateExperience(rs.getBoolean("isolateExperience"));
+        mapMeta.setIsolateFood(rs.getBoolean("isolateFood"));
+        mapMeta.setIsolateHealth(rs.getBoolean("isolateHealth"));
+        mapMeta.setIsolateInventory(rs.getBoolean("isolateInventory"));
+        mapMeta.setIsolatePotionEffect(rs.getBoolean("isolatePotionEffect"));
+        mapMeta.setIsolateFly(rs.getBoolean("isolateFly"));
+
+        mapMeta.setRedPointPitch(rs.getFloat("redPointPitch"));
+        mapMeta.setRedPointYaw(rs.getFloat("redPointYaw"));
+        mapMeta.setBluePointPitch(rs.getFloat("bluePointPitch"));
+        mapMeta.setBluePointYaw(rs.getFloat("bluePointYaw"));
+        mapMeta.setRedSpawnInterval(rs.getInt("redSpawnInterval"));
+        mapMeta.setBlueSpawnInterval(rs.getInt("blueSpawnInterval"));
+        mapMeta.setRaceStartReadyTime(rs.getInt("raceStartReadyTime"));
+
+        mapMeta.setIgnorePartyDamage(rs.getBoolean("ignorePartyDamage"));
+        mapMeta.setForbiddenEnderChest(rs.getBoolean("forbiddenEnderChest"));
+
+        mapMeta.setCelebrateTime(rs.getInt("celebrateTime"));
+        mapMeta.setRaceTime(rs.getInt("raceTime"));
+
 
         return mapMeta;
     }

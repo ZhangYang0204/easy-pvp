@@ -1,7 +1,5 @@
 package pers.zhangyang.easypvp.listener;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -15,13 +13,9 @@ import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.util.RaceUtil;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +68,7 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
         MessageUtil.sendMessageTo(gamer.getPlayer(), list);
 
 
-        if (!race.getStats().equals(RaceStatsEnum.ENDING)){
+        if (!race.getStats().equals(RaceStatsEnum.CELEBRATING)){
             return;
         }
 

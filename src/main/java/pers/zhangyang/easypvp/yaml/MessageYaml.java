@@ -70,16 +70,67 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SUCCESS_NOTIFY_VERSION;
 
     private List<String> CHAT_SUCCESS_SET_MAP_BUILD;
-    private List<String> CHAT_SUCCESS_SET_MAP_FAIR;
     private List<String> CHAT_SUCCESS_SET_MAP_SCALE;
     private List<String> CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY;
 
-    private List<String> CHAT_SUCCESS_SET_MAP_KEEP_LEVEL;
+    private List<String> CHAT_SUCCESS_SET_MAP_KEEP_EXPERIENCE;
 
-    private List<String> CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME;
-    
+    private List<String> CHAT_FAILURE_SET_MAP_KEEP_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL;
+    private List<String> CHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL;
+    private List<String> CHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME;
+
+    private List<String> CHAT_SUCCESS_SET_MAP_CELEBRATE_TIME;
+    private List<String> CHAT_FAILURE_SET_MAP_CELEBRATE_TIME_BECAUSE_NOT_EXIST_MAP_NAME;
+
+    private List<String> CHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST;
+    private List<String> CHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME;
+
+    private List<String> CHAT_SUCCESS_SET_MAP_IGNORE_PARTY_DAMAGE;
+    private List<String> CHAT_FAILURE_SET_MAP_IGNORE_PARTY_DAMAGE_BECAUSE_NOT_EXIST_MAP_NAME;
+
+    private List<String> CHAT_SUCCESS_SET_MAP_RACE_START_READY_TIME;
+    private List<String> CHAT_FAILURE_SET_MAP_RACE_START_READY_TIME_BECAUSE_NOT_EXIST_MAP_NAME;
+
+    private List<String> CHAT_SUCCESS_SET_MAP_RACE_TIME;
+    private List<String> CHAT_FAILURE_SET_MAP_RACE_TIME_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+
     private List<String> CHAT_SUCCESS_LEAVE_PARTY;
+    private List<String> CHAT_SUCCESS_SET_MAP_FAIR;
     private List<String> CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_EXPERIENCE;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_FOOD;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_FOOD_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_HEALTH;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_HEALTH_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_FLY;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_FLY_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME;
+
+
+    private List<String> CHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT;
+    private List<String> CHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME;
 
     private List<String> CHAT_FAILURE_SET_MAP_BUILD_BECAUSE_NOT_EXIST_MAP_NAME;
 
@@ -184,6 +235,13 @@ public class MessageYaml extends YamlManagerBase {
     private String TITLE_CHOOSE_KIT_TIME_TITLE;
     private String TITLE_CHOOSE_KIT_TIME_SUBTITLE;
 
+
+    private String TITLE_CELEBRATE_TIME_TITLE;
+    private String TITLE_CELEBRATE_TIME_SUBTITLE;
+
+    private String TITLE_RACE_START_READY_TIME_TITLE;
+    private String TITLE_RACE_START_READY_TIME_SUBTITLE;
+
     private String TITLE_MATCH_TIME_TITLE;
     private String TITLE_MATCH_TIME_SUBTITLE;
 
@@ -217,6 +275,8 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW;
 
     private List<String> CHAT_SUCCESS_START_RACE;
+
+    private List<String> CHAT_SUCCESS_MATCH;
     private List<String> CHAT_SUCCESS_KICK_MEMBER;
     private List<String> CHAT_FAILURE_CREATE_PARTY_BECAUSE_DUPLICATE_PARTY_NAME;
     private List<String> CHAT_HOW_TO_CREATE_PARTY;
@@ -290,6 +350,25 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_SET_KIT;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_BUILD;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_BUILD_$;
+
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RACE_TIME;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$;
+
     private List<String> COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$;
     private List<String> COMPLETER_EASY_PVP_CREATE_MAP;
@@ -307,10 +386,28 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$;
 
-    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL;
-    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_FAIR;
     private List<String> COMPLETER_EASY_PVP_SET_MAP_FAIR_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT_$;
+
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY;
+    private List<String> COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY_$;
 
 
     private List<String> COMPLETER_EASY_PVP_SET_MAP_SCALE;
@@ -554,6 +651,13 @@ public class MessageYaml extends YamlManagerBase {
         return TITLE_CHOOSE_KIT_TIME_SUBTITLE;
     }
 
+    public String getTITLE_RACE_START_READY_TIME_TITLE() {
+        return TITLE_RACE_START_READY_TIME_TITLE;
+    }
+
+    public String getTITLE_RACE_START_READY_TIME_SUBTITLE() {
+        return TITLE_RACE_START_READY_TIME_SUBTITLE;
+    }
 
     public String getTITLE_MATCH_TIME_SUBTITLE() {
         return TITLE_MATCH_TIME_SUBTITLE;
@@ -563,28 +667,28 @@ public class MessageYaml extends YamlManagerBase {
         return TITLE_MATCH_TIME_TITLE;
     }
 
-    public List<String> getCHAT_SUCCESS_SET_MAP_KEEP_LEVEL() {
-        if (CHAT_SUCCESS_SET_MAP_KEEP_LEVEL==null){
+    public List<String> getCHAT_SUCCESS_SET_MAP_KEEP_EXPERIENCE() {
+        if (CHAT_SUCCESS_SET_MAP_KEEP_EXPERIENCE ==null){
             return null;
-        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_KEEP_LEVEL);
+        }return new ArrayList<>(CHAT_SUCCESS_SET_MAP_KEEP_EXPERIENCE);
     }
 
-    public List<String> getCHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME() {
-        if (CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME==null){
+    public List<String> getCHAT_FAILURE_SET_MAP_KEEP_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_KEEP_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME ==null){
             return null;
-        } return new ArrayList<>(CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME);
+        } return new ArrayList<>(CHAT_FAILURE_SET_MAP_KEEP_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL() {
-        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL ==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE);
     }
 
-    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$() {
-        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$ ==null){
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$ ==null){
             return null;
-        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$);
+        } return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$);
     }
 
     public HashMap<Integer, List<String>> getCHAT_STREAK() {
@@ -713,6 +817,357 @@ public class MessageYaml extends YamlManagerBase {
         }  return new ArrayList<>(CHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE);
     }
 
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_EXPERIENCE() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_EXPERIENCE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_EXPERIENCE);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_FOOD() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_FOOD ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_FOOD);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_FOOD_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_FOOD_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_FOOD_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_HEALTH() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_HEALTH ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_HEALTH);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_HEALTH_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_HEALTH_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_HEALTH_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_FLY() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_FLY ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_FLY);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_FLY_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_FLY_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_FLY_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT() {
+        if (CHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT);
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD_$);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY_$);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE_$);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT_$);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY_$);
+    }
+
+    public List<String> getCHAT_SUCCESS_MATCH() {
+        if (CHAT_SUCCESS_MATCH ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_MATCH);
+    }
+
+    public String getTITLE_CELEBRATE_TIME_TITLE() {
+        return TITLE_CELEBRATE_TIME_TITLE;
+    }
+
+    public String getTITLE_CELEBRATE_TIME_SUBTITLE() {
+        return TITLE_CELEBRATE_TIME_SUBTITLE;
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL() {
+        if (CHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL() {
+        if (CHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_CELEBRATE_TIME() {
+        if (CHAT_SUCCESS_SET_MAP_CELEBRATE_TIME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_CELEBRATE_TIME);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_CELEBRATE_TIME_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_CELEBRATE_TIME_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_CELEBRATE_TIME_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST() {
+        if (CHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_IGNORE_PARTY_DAMAGE() {
+        if (CHAT_SUCCESS_SET_MAP_IGNORE_PARTY_DAMAGE ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_IGNORE_PARTY_DAMAGE);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_IGNORE_PARTY_DAMAGE_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_IGNORE_PARTY_DAMAGE_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_IGNORE_PARTY_DAMAGE_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_RACE_START_READY_TIME() {
+        if (CHAT_SUCCESS_SET_MAP_RACE_START_READY_TIME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_RACE_START_READY_TIME);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_RACE_START_READY_TIME_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_RACE_START_READY_TIME_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_RACE_START_READY_TIME_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCHAT_SUCCESS_SET_MAP_RACE_TIME() {
+        if (CHAT_SUCCESS_SET_MAP_RACE_TIME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_SUCCESS_SET_MAP_RACE_TIME);
+
+    }
+
+    public List<String> getCHAT_FAILURE_SET_MAP_RACE_TIME_BECAUSE_NOT_EXIST_MAP_NAME() {
+        if (CHAT_FAILURE_SET_MAP_RACE_TIME_BECAUSE_NOT_EXIST_MAP_NAME ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_SET_MAP_RACE_TIME_BECAUSE_NOT_EXIST_MAP_NAME);
+
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL() {
+        if (COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME() {
+        if (COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST() {
+        if (COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE() {
+        if (COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME_$);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RACE_TIME() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RACE_TIME ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RACE_TIME);
+    }
+
+    public List<String> getCOMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$() {
+        if (COMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$ ==null){
+            return null;
+        }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$);
+    }
+
     @Override
     protected void check()  {
 
@@ -742,6 +1197,24 @@ public class MessageYaml extends YamlManagerBase {
         COMPLETER_EASY_PVP_SET_KIT =getStringList("message.completer.easyPvpSetKit",false);
         COMPLETER_EASY_PVP_SET_MAP_BUILD =getStringList("message.completer.easyPvpSetMapBuild",false);
         COMPLETER_EASY_PVP_SET_MAP_BUILD_$ =getStringList("message.completer.easyPvpSetMapBuild$",false);
+
+
+        COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL =getStringList("message.completer.easyPvpSetMapBlueSpawnInterval",false);
+        COMPLETER_EASY_PVP_SET_MAP_BLUE_SPAWN_INTERVAL_$ =getStringList("message.completer.easyPvpSetMapBlueSpawnInterval$",false);
+        COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL =getStringList("message.completer.easyPvpSetMapRedSpawnInterval",false);
+        COMPLETER_EASY_PVP_SET_MAP_RED_SPAWN_INTERVAL_$ =getStringList("message.completer.easyPvpSetMapRedSpawnInterval$",false);
+        COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME =getStringList("message.completer.easyPvpSetMapCelebrateTime",false);
+        COMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$ =getStringList("message.completer.easyPvpSetMapCelebrateTime$",false);
+        COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST =getStringList("message.completer.easyPvpSetMapForbiddenEnderChest",false);
+        COMPLETER_EASY_PVP_SET_MAP_FORBIDDEN_ENDER_CHEST_$ =getStringList("message.completer.easyPvpSetMapForbiddenEnderChest$",false);
+        COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE =getStringList("message.completer.easyPvpSetMapIgnorePartyDamage",false);
+        COMPLETER_EASY_PVP_SET_MAP_IGNORE_PARTY_DAMAGE_$ =getStringList("message.completer.easyPvpSetMapIgnorePartyDamage$",false);
+        COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME =getStringList("message.completer.easyPvpSetMapRaceStartReadyTime",false);
+        COMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME_$ =getStringList("message.completer.easyPvpSetMapRaceStartReadyTime$",false);
+        COMPLETER_EASY_PVP_SET_MAP_RACE_TIME =getStringList("message.completer.easyPvpSetMapRaceTime",false);
+        COMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$ =getStringList("message.completer.easyPvpSetMapRaceTime$",false);
+
+
         COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME =getStringList("message.completer.easyPvpSetMapChooseTime",false);
         COMPLETER_EASY_PVP_SET_MAP_CHOOSE_TIME_$ =getStringList("message.completer.easyPvpSetMapChooseTime$",false);
         COMPLETER_EASY_PVP_CREATE_MAP =getStringList("message.completer.easyPvpCreateMap",false);
@@ -755,8 +1228,30 @@ public class MessageYaml extends YamlManagerBase {
         COMPLETER_EASY_PVP_SET_MAP_DESCRIPTION_$_$ =getStringList("message.completer.easyPvpSetMapDescription$$",false);
         COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY =getStringList("message.completer.easyPvpSetMapKeepInventory",false);
         COMPLETER_EASY_PVP_SET_MAP_KEEP_INVENTORY_$ =getStringList("message.completer.easyPvpSetMapKeepInventory$",false);
+
+
         COMPLETER_EASY_PVP_SET_MAP_FAIR =getStringList("message.completer.easyPvpSetMapFair",false);
         COMPLETER_EASY_PVP_SET_MAP_FAIR_$ =getStringList("message.completer.easyPvpSetMapFair$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD =getStringList("message.completer.easyPvpSetMapIsolateFood",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FOOD_$ =getStringList("message.completer.easyPvpSetMapIsolateFood$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE =getStringList("message.completer.easyPvpSetMapIsolateExperience",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_EXPERIENCE_$ =getStringList("message.completer.easyPvpSetMapIsolateExperience$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH =getStringList("message.completer.easyPvpSetMapIsolateHealth",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_HEALTH_$ =getStringList("message.completer.easyPvpSetMapIsolateHealth$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT =getStringList("message.completer.easyPvpSetMapIsolatePotionEffect",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_POTION_EFFECT_$ =getStringList("message.completer.easyPvpSetMapIsolatePotionEffect$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY =getStringList("message.completer.easyPvpSetMapIsolateInventory",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_INVENTORY_$ =getStringList("message.completer.easyPvpSetMapIsolateInventory$",false);
+
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY =getStringList("message.completer.easyPvpSetMapIsolateFly",false);
+        COMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY_$ =getStringList("message.completer.easyPvpSetMapIsolateFly$",false);
+
+
         COMPLETER_EASY_PVP_SET_MAP_SCALE =getStringList("message.completer.easyPvpSetMapScale",false);
         COMPLETER_EASY_PVP_SET_MAP_SCALE_$ =getStringList("message.completer.easyPvpSetMapScale$",false);
         COMPLETER_EASY_PVP_ADD_MAP_KIT =getStringList("message.completer.easyPvpAddMapKit",false);
@@ -764,8 +1259,8 @@ public class MessageYaml extends YamlManagerBase {
         COMPLETER_EASY_PVP_REMOVE_MAP_KIT =getStringList("message.completer.easyPvpRemoveMapKit",false);
         COMPLETER_EASY_PVP_REMOVE_MAP_KIT_$ =getStringList("message.completer.easyPvpRemoveMapKit$",false);
         COMPLETER_EASY_PVP_SET_SECTION =getStringList("message.completer.easyPvpSetSection",false);
-        COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL =getStringList("message.completer.easyPvpSetMapKeepLevel",false);
-        COMPLETER_EASY_PVP_SET_MAP_KEEP_LEVEL_$ =getStringList("message.completer.easyPvpSetMapKeepLevel$",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE =getStringList("message.completer.easyPvpSetMapKeepExperience",false);
+        COMPLETER_EASY_PVP_SET_MAP_KEEP_EXPERIENCE_$ =getStringList("message.completer.easyPvpSetMapKeepExperience$",false);
 
 
 
@@ -862,13 +1357,53 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_FAILURE_SET_MAP_FAIR_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapFairBecauseNotExistMapName",false);
         CHAT_SUCCESS_SET_MAP_FAIR =getStringList("message.chat.successSetMapFair",false);
 
+        CHAT_FAILURE_SET_MAP_ISOLATE_FOOD_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolateFoodBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_FOOD =getStringList("message.chat.successSetMapIsolateFood",false);
+
+        CHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolatePotionEffectBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT =getStringList("message.chat.successSetMapIsolatePotionEffect",false);
+
+        CHAT_FAILURE_SET_MAP_ISOLATE_FLY_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolateFlyBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_FLY =getStringList("message.chat.successSetMapIsolateFly",false);
+
+        CHAT_FAILURE_SET_MAP_ISOLATE_HEALTH_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolateHealthBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_HEALTH =getStringList("message.chat.successSetMapIsolateHealth",false);
+
+        CHAT_FAILURE_SET_MAP_ISOLATE_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolateExperienceBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_EXPERIENCE =getStringList("message.chat.successSetMapIsolateExperience",false);
+
+        CHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIsolateInventoryBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY =getStringList("message.chat.successSetMapIsolateInventory",false);
+
+
         CHAT_FAILURE_SET_MAP_SCALE_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapScaleBecauseNotExistMapName",false);
         CHAT_SUCCESS_SET_MAP_SCALE =getStringList("message.chat.successSetMapScale",false);
 
         CHAT_FAILURE_SET_MAP_KEEP_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapKeepInventoryBecauseNotExistMapName",false);
         CHAT_SUCCESS_SET_MAP_KEEP_INVENTORY =getStringList("message.chat.successSetMapKeepInventory",false);
-        CHAT_FAILURE_SET_MAP_KEEP_LEVEL_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapKeepLevelBecauseNotExistMapName",false);
-        CHAT_SUCCESS_SET_MAP_KEEP_LEVEL =getStringList("message.chat.successSetMapKeepLevel",false);
+        CHAT_FAILURE_SET_MAP_KEEP_EXPERIENCE_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapKeepExperienceBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_KEEP_EXPERIENCE =getStringList("message.chat.successSetMapKeepExperience",false);
+
+        CHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapRedSpawnIntervalBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL =getStringList("message.chat.successSetMapRedSpawnInterval",false);
+        CHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapBlueSpawnIntervalBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL =getStringList("message.chat.successSetMapBlueSpawnInterval",false);
+        CHAT_FAILURE_SET_MAP_CELEBRATE_TIME_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapCelebrateTimeBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_CELEBRATE_TIME =getStringList("message.chat.successSetMapCelebrateTime",false);
+
+        CHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapForbiddenEnderChestBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST =getStringList("message.chat.successSetMapForbiddenEnderChest",false);
+
+        CHAT_FAILURE_SET_MAP_IGNORE_PARTY_DAMAGE_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapIgnorePartyDamageBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_IGNORE_PARTY_DAMAGE =getStringList("message.chat.successSetMapIgnorePartyDamage",false);
+
+        CHAT_FAILURE_SET_MAP_RACE_START_READY_TIME_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapRaceStartReadyTimeBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_RACE_START_READY_TIME =getStringList("message.chat.successSetMapRaceStartReadyTime",false);
+
+        CHAT_FAILURE_SET_MAP_RACE_TIME_BECAUSE_NOT_EXIST_MAP_NAME =getStringList("message.chat.failureSetMapRaceTimeBecauseNotExistMapName",false);
+        CHAT_SUCCESS_SET_MAP_RACE_TIME =getStringList("message.chat.successSetMapRaceTime",false);
+
+
 
 
         CHAT_SUCCESS_CREATE_KIT =getStringList("message.chat.successCreateKit",false);
@@ -987,9 +1522,20 @@ public class MessageYaml extends YamlManagerBase {
                 ("message.chat.failureJoinPartyBecauseInWatching",false);
         TITLE_MATCH_TIME_SUBTITLE =getString("message.title.matchTime.subtitle",false);
         TITLE_MATCH_TIME_TITLE =getString("message.title.matchTime.title",false);
+
         TITLE_CHOOSE_KIT_TIME_SUBTITLE =getString("message.title.chooseKitTime.subtitle",false);
         TITLE_CHOOSE_KIT_TIME_TITLE =getString("message.title.chooseKitTime.title",false);
+
+
+        TITLE_CELEBRATE_TIME_SUBTITLE =getString("message.title.celebrateTime.subtitle",false);
+        TITLE_CELEBRATE_TIME_TITLE =getString("message.title.celebrateTime.title",false);
+
+        TITLE_RACE_START_READY_TIME_SUBTITLE =getString("message.title.raceStartReadyTime.subtitle",false);
+        TITLE_RACE_START_READY_TIME_TITLE =getString("message.title.raceStartReadyTime.title",false);
+
         CHAT_SUCCESS_START_RACE =getStringList("message.chat.successStartRace",false);
+
+        CHAT_SUCCESS_MATCH =getStringList("message.chat.successMatch",false);
 
         CHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW =getStringList("message.chat.someoneSuccessRaceStopDraw",false);
         CHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW =getStringList("message.chat.someoneSuccessRaceStopNotDraw",false);

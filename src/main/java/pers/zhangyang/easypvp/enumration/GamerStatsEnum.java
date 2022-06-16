@@ -11,5 +11,5 @@ public enum GamerStatsEnum {
      * GAMING表示加入了队伍并且处于在比赛中还活着
      * OUTING表示加入了队伍并且在比赛中处于旁观模式
      */
-    FREEING,READING,MATCHING, RACING,OUTING,WATCHING
+    FREEING,READING,MATCHING, RACING,OUTING,WATCHING,CELEBRATING
 }

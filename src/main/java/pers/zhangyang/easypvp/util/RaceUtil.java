@@ -1,9 +1,11 @@
 package pers.zhangyang.easypvp.util;
 
 import org.bukkit.Bukkit;
+import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Race;
 import pers.zhangyang.easypvp.meta.RecordMeta;
+import pers.zhangyang.easypvp.runnable.RaceAfterStopRunnable;
 import pers.zhangyang.easypvp.service.RaceService;
 import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -14,6 +16,9 @@ import java.util.List;
 
 public class RaceUtil {
     public static void AfterRaceStop(Race race){
+
+
+        new RaceAfterStopRunnable(race).runTaskTimer(EasyPvp.getInstance(),1,20);
 
         try {
 

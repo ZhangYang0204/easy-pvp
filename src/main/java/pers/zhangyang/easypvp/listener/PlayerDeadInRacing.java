@@ -1,6 +1,5 @@
 package pers.zhangyang.easypvp.listener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -14,13 +13,9 @@ import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.util.RaceUtil;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,10 +30,10 @@ public class PlayerDeadInRacing implements Listener {
             return;
         }
 
-        if (race.isKeepInventory()){
+        if (race.getMapMeta().isKeepInventory()){
             event.setKeepInventory(true);
         }
-        if (race.isKeepLevel()){
+        if (race.getMapMeta().isKeepExperience()){
             event.setKeepLevel(true);
         }
         try {
@@ -69,6 +64,7 @@ public class PlayerDeadInRacing implements Listener {
         List<Gamer> gamerList=new ArrayList<>();
         gamerList.addAll(race.getRedParty().getMemberList());
         gamerList.addAll(race.getBlueParty().getMemberList());
+        gamerList.addAll(race.getWatcher());
         for (Gamer g:gamerList){
             if (g.equals(gamer)){continue;}
             MessageUtil.sendMessageTo(g.getPlayer(),list);
@@ -76,7 +72,7 @@ public class PlayerDeadInRacing implements Listener {
 
 
 
-        if (!race.getStats().equals(RaceStatsEnum.ENDING)){
+        if (!race.getStats().equals(RaceStatsEnum.CELEBRATING)){
             return;
         }
 

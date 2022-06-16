@@ -17,7 +17,7 @@ public class StopChooseKitRunnable extends BukkitRunnable {
 
     public StopChooseKitRunnable(Race race) {
         this.race = race;
-        this.rest=race.getChooseTime();
+        this.rest=race.getMapMeta().getChooseKitTime();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class StopChooseKitRunnable extends BukkitRunnable {
                 title=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
             }
-            String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+            String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE();
             if (stitle!=null){
                 stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
