@@ -26,7 +26,7 @@ public class PlayerDamageEntityInRacing implements Listener {
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
-        Race race=gamer.getRacingRace();
+        Race race=gamer.getPlayingRace();
 
         if ((race.getStartTimeMillis()+race.getMapMeta().getChooseKitTime()*1000)>System.currentTimeMillis()){
             event.setCancelled(true);

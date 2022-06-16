@@ -50,7 +50,7 @@ public class PlayerClickUnwatchRace  implements Listener {
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-        Race race=gamer.getRacingRace();
+        Race race=gamer.getPlayingRace();
         gamer.unwatchRace();
         List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_UNWATCH_RACE();

@@ -46,7 +46,7 @@ public class PlayerClickChooseKit implements Listener {
         AllKitPage allKitPage = (AllKitPage) event.getInventory().getHolder();
         KitMeta kitMeta = allKitPage.getKitMetaList().get(slot);
 
-        Race race = gamer.getRacingRace();
+        Race race = gamer.getPlayingRace();
         race.sendKit(kitMeta, gamer);
         gamer.getPlayer().closeInventory();
 

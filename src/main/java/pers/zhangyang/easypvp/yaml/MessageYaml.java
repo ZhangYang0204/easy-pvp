@@ -18,6 +18,7 @@ public class MessageYaml extends YamlManagerBase {
     private List<String> CHAT_NOT_PLAYER;
     private List<String> CHAT_NO_PERMISSION;
 
+    private List<String> CHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT;
     private List<String> CHAT_SUCCESS_CORRECT_YAML;
     private List<String> CHAT_SUCCESS_RESET_SEASON;
     private List<String> CHAT_SUCCESS_RELOAD_YAML;
@@ -1168,6 +1169,12 @@ public class MessageYaml extends YamlManagerBase {
         }  return new ArrayList<>(COMPLETER_EASY_PVP_SET_MAP_RACE_TIME_$);
     }
 
+    public List<String> getCHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT() {
+        if (CHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT ==null){
+            return null;
+        }  return new ArrayList<>(CHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT);
+    }
+
     @Override
     protected void check()  {
 
@@ -1307,6 +1314,7 @@ public class MessageYaml extends YamlManagerBase {
         CHAT_SUCCESS_CORRECT_YAML=getStringList("message.chat.successCorrectYaml",false);
         CHAT_SUCCESS_RESET_SEASON =getStringList("message.chat.successResetSeason",false);
 
+        CHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT=getStringList("message.chat.failureStartRaceBecauseEnemyAllQuit",false);
         CHAT_SUCCESS_RELOAD_YAML =getStringList("message.chat.successReloadYaml",false);
 
 

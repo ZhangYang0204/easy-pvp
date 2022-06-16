@@ -72,7 +72,7 @@ public class Race {
      */
     public void out(@Nonnull Gamer gamer) throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
         if (gamer==null){throw  new NullPointerException();}
-        if (!gamer.racingRace.equals(this)) {
+        if (!gamer.playingRace.equals(this)) {
             throw new NotInThisRaceException("Gamer is not in this race");
         }
         if (gamer.stats.equals(GamerStatsEnum.OUTING)) {
@@ -89,9 +89,7 @@ public class Race {
         redAlive.remove(gamer);
         blueAlive.remove(gamer);
         gamer.stats = GamerStatsEnum.OUTING;
-        if (redAlive.isEmpty() || blueAlive.isEmpty()) {
-            stop();
-        }
+
     }
 
     private void initWorld() throws FailureCreateWorldException {
@@ -572,10 +570,10 @@ public class Race {
         MatcherManager.MATCHER_MANAGER.remove(blueParty);
         for (Gamer g:redParty.memberList){
             g.stats=GamerStatsEnum.RACING;
-            g.racingRace = this;
+            g.playingRace = this;
         }for (Gamer g:blueParty.memberList){
             g.stats=GamerStatsEnum.RACING;
-            g.racingRace = this;
+            g.playingRace = this;
         }
 
 
@@ -635,10 +633,10 @@ public class Race {
         redParty.stats = PartyStatsEnum.FREEING;
         blueParty.stats = PartyStatsEnum.FREEING;
         for (Gamer g : redParty.memberList) {
-            g.racingRace = null;
+            g.playingRace = null;
         }
         for (Gamer g : blueParty.memberList) {
-            g.racingRace = null;
+            g.playingRace = null;
         }
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
@@ -693,16 +691,7 @@ public class Race {
 
         }
 
-        if (redAlive.isEmpty() && !blueAlive.isEmpty()) {
-            winner = blueParty;
-            loser = redParty;
-        } else if (!redAlive.isEmpty() && blueAlive.isEmpty()) {
-            loser = blueParty;
-            winner = redParty;
-        } else {
-            winner = null;
-            loser = null;
-        }
+
 
         destroyWorld();
     }
@@ -726,7 +715,16 @@ public class Race {
         redParty.stats = PartyStatsEnum.CELEBRATING;
         blueParty.stats = PartyStatsEnum.CELEBRATING;
 
-
+        if (redAlive.isEmpty() && !blueAlive.isEmpty()) {
+            winner = blueParty;
+            loser = redParty;
+        } else if (!redAlive.isEmpty() && blueAlive.isEmpty()) {
+            loser = blueParty;
+            winner = redParty;
+        } else {
+            winner = null;
+            loser = null;
+        }
 
     }
 

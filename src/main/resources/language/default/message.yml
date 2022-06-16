@@ -580,6 +580,8 @@ message:
     successStartRace:
       - "&b&l游戏开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"
       - "&b&l请在 &f{time} &b&l秒内选择装备包,选择期间禁止移动、攻击等,比赛时间为 {race_time}秒"
+    failureStartRaceBecauseEnemyAllQuit:
+      - "&b&l游戏开始失败,你的对手是全部下线了,请另寻对手"
 
     successMatch:
       - "&b&l匹配开始,你的对手是 &f{captain} &b&l领导的队伍 &f{party}"

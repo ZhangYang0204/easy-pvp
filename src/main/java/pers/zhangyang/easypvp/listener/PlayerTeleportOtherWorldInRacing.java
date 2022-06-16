@@ -15,7 +15,7 @@ public class PlayerTeleportOtherWorldInRacing implements Listener {
     public void tp(PlayerTeleportEvent event){
         Player player=event.getPlayer();
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer((Player) event.getPlayer());
-        Race race=gamer.getRacingRace();
+        Race race=gamer.getPlayingRace();
 
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){return;}
 

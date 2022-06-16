@@ -25,7 +25,7 @@ public class PlayerDeadInRacing implements Listener {
     public void onPlayerDie(PlayerDeathEvent event){
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getEntity());
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
-        Race race=gamer.getRacingRace();
+        Race race=gamer.getPlayingRace();
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
@@ -71,7 +71,10 @@ public class PlayerDeadInRacing implements Listener {
         }
 
 
-
+        //如果比赛结束条件符合,结束比赛
+        if (race.getRedAlive().isEmpty() || race.getBlueAlive().isEmpty()) {
+            race.stop();
+        }
         if (!race.getStats().equals(RaceStatsEnum.CELEBRATING)){
             return;
         }

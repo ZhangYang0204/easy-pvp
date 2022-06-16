@@ -2,7 +2,6 @@ package pers.zhangyang.easypvp.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pers.zhangyang.easypvp.domain.Gamer;
@@ -30,7 +29,7 @@ public class PlayerQuitGame implements Listener {
             Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getPlayer());
             Player player=gamer.getPlayer();
             Party party= gamer.getParty();
-            Race race=gamer.getRacingRace();
+            Race race=gamer.getPlayingRace();
             GamerManager.GAMER_MANAGER.remove(player);
 
 
@@ -71,6 +70,15 @@ public class PlayerQuitGame implements Listener {
                 }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
+
+                //离开队伍
+                gamer.leaveParty();
+
+                //如果比赛结束条件符合,结束比赛
+                if (race.getRedAlive().isEmpty() || race.getBlueAlive().isEmpty()) {
+                    race.stop();
+                }
+
                 if (race.getStats().equals(RaceStatsEnum.CELEBRATING)){
                     RaceUtil.AfterRaceStop(race);
                 }
@@ -91,6 +99,9 @@ public class PlayerQuitGame implements Listener {
                 }
                 race.getBlueParty().sendMessageToAll(list);
                 race.getRedParty().sendMessageToAll(list);
+
+                //离开队伍
+                gamer.leaveParty();
                 if (race.getStats().equals(RaceStatsEnum.CELEBRATING)){
                     RaceUtil.AfterRaceStop(race);
                 }
@@ -99,6 +110,8 @@ public class PlayerQuitGame implements Listener {
             if (gamer.getStats().equals(GamerStatsEnum.CELEBRATING)) {
                 //离开游戏
                 gamer.leaveRace();
+                //离开队伍
+                gamer.leaveParty();
             }
 
 

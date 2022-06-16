@@ -24,6 +24,7 @@ public class RaceUtil {
 
             RaceService raceService= (RaceService) InvocationUtil.getService(new RaceServiceImpl());
             if (race.getWinner()==null) {
+
                 for (Gamer g : race.getRedParty().getMemberList()) {
                     raceService.gamerDraw(g.getPlayer().getUniqueId().toString());
                 }

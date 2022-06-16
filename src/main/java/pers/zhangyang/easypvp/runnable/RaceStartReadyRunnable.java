@@ -52,6 +52,31 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
             return;
 
         }
+        if (!red.getMemberList().isEmpty()&&blue.getMemberList().isEmpty()){
+            List<CommandSender> playerList = new ArrayList<>();
+            for (Gamer g : red.getMemberList()) {
+                playerList.add(g.getPlayer());
+            }
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                    .getCHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT();
+            MessageUtil.sendMessageTo(playerList, list);
+            this.cancel();
+            red.cancelMatch();
+            return;
+        }
+        if (red.getMemberList().isEmpty()&&!blue.getMemberList().isEmpty()){
+            List<CommandSender> playerList = new ArrayList<>();
+            for (Gamer g : blue.getMemberList()) {
+                playerList.add(g.getPlayer());
+            }
+            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                    .getCHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT();
+            MessageUtil.sendMessageTo(playerList, list);
+            this.cancel();
+            blue.cancelMatch();
+            return;
+        }
+
 
         try {
             race.start(red,blue);
@@ -77,6 +102,7 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
         List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
                 .getCHAT_SUCCESS_START_RACE();
         HashMap<String, String> rep = new HashMap<>();
+
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
         rep.put("{party}", blue.getPartyName());
         rep.put("{time}", String.valueOf(race.getMapMeta().getChooseKitTime()));

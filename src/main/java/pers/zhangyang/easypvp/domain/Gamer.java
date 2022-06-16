@@ -17,7 +17,7 @@ public class Gamer  {
     protected final Player player;
     protected GamerStatsEnum stats;
     protected Party party;
-    protected Race racingRace;
+    protected Race playingRace;
     protected Race watchingRace;
     /**
      * new出来的对象不注册是没有作用的,请使用GamerManager.getGamer(Player)方法
@@ -45,12 +45,12 @@ public class Gamer  {
     }
 
     /**
-     * 离开比赛  如果符合条件触发比赛结束
+     * 离开比赛  如果符合条件不会触发比赛结束
      * @exception IllegalGamerStatsException 当不在比赛中
      */
     public void leaveRace() throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
         //如果没有比赛什么也不做
-        if (racingRace ==null){return;}
+        if (playingRace ==null){return;}
 
         if(!stats.equals(GamerStatsEnum.RACING)&&!stats.equals(GamerStatsEnum.OUTING)&&!stats.equals(GamerStatsEnum.CELEBRATING)){
             throw new IllegalGamerStatsException("Gamer stats is not racing and is not outing and is not celebrating");
@@ -58,60 +58,55 @@ public class Gamer  {
 
 
         //比赛中移除自己
-        racingRace.redAlive.remove(this);
-        racingRace.blueAlive.remove(this);
+        playingRace.redAlive.remove(this);
+        playingRace.blueAlive.remove(this);
 
-        if (stats.equals(GamerStatsEnum.RACING)) {
-            //如果比赛结束条件符合,结束比赛
-            if (racingRace.redAlive.isEmpty() || racingRace.blueAlive.isEmpty()) {
-                racingRace.stop();
-                return;
-            }
-        }
 
-        //不符合结束条件的话
 
         //离开比赛
         if (player.isDead()){
             player.spigot().respawn();
         }
-        if (racingRace.locationBefore.get(this).getWorld()==null){
+        if (playingRace.locationBefore.get(this).getWorld()==null){
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         }else {
-            player.teleport(racingRace.locationBefore.get(this));
+            player.teleport(playingRace.locationBefore.get(this));
         }
-        racingRace.locationBefore.remove(this);
+        playingRace.locationBefore.remove(this);
 
-        player.setHealth(racingRace.healthBefore.get(this));
-        racingRace.healthBefore.remove(this);
+        player.setHealth(playingRace.healthBefore.get(this));
+        playingRace.healthBefore.remove(this);
 
-        player.addPotionEffects(racingRace.potionEffectBefore.get(this));
-        racingRace.potionEffectBefore.remove(this);
+        player.addPotionEffects(playingRace.potionEffectBefore.get(this));
+        playingRace.potionEffectBefore.remove(this);
 
-        player.setLevel(racingRace.levelBefore.get(this));
-        racingRace.levelBefore.remove(this);
+        player.setLevel(playingRace.levelBefore.get(this));
+        playingRace.levelBefore.remove(this);
 
-        player.setExp(racingRace.expBefore.get(this));
-        racingRace.expBefore.remove(this);
+        player.setExp(playingRace.expBefore.get(this));
+        playingRace.expBefore.remove(this);
 
-        player.setAllowFlight(racingRace.flyBefore.get(this));
-        racingRace.flyBefore.remove(this);
+        player.setAllowFlight(playingRace.flyBefore.get(this));
+        playingRace.flyBefore.remove(this);
 
 
-        player.setFoodLevel(racingRace.foodLevelBefore.get(this));
-        racingRace.foodLevelBefore.remove(this);
+        player.setFoodLevel(playingRace.foodLevelBefore.get(this));
+        playingRace.foodLevelBefore.remove(this);
 
-        player.setGameMode(racingRace.gameModeBefore.get(this));
-        racingRace.gameModeBefore.remove(this);
+        player.setGameMode(playingRace.gameModeBefore.get(this));
+        playingRace.gameModeBefore.remove(this);
 
 
         player.getInventory().clear();
-        player.getInventory().setContents(racingRace.inventorySave.get(this));
-        racingRace.inventorySave.remove(this);
+        player.getInventory().setContents(playingRace.inventorySave.get(this));
+        playingRace.inventorySave.remove(this);
 
         this.stats=GamerStatsEnum.READING;
+        this.playingRace =null;
 
-        this.racingRace =null;
+
+
+
     }
 
     /**
@@ -165,8 +160,8 @@ public class Gamer  {
     }
 
     @Nullable
-    public Race getRacingRace() {
-        return racingRace;
+    public Race getPlayingRace() {
+        return playingRace;
     }
 
     public boolean hasParty(){

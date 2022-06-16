@@ -25,7 +25,7 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
     public void onMove(PlayerMoveEvent event){
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(event.getPlayer());
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){return;}
-        Race race= gamer.getRacingRace();
+        Race race= gamer.getPlayingRace();
         if (!gamer.getStats().equals(GamerStatsEnum.RACING)){
             return;
         }
@@ -67,7 +67,10 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
                 .getCHAT_SUCCESS_MOVE_OUT_MAP();
         MessageUtil.sendMessageTo(gamer.getPlayer(), list);
 
-
+        //如果比赛结束条件符合,结束比赛
+        if (race.getRedAlive().isEmpty() || race.getBlueAlive().isEmpty()) {
+            race.stop();
+        }
         if (!race.getStats().equals(RaceStatsEnum.CELEBRATING)){
             return;
         }
