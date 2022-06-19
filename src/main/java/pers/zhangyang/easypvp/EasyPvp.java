@@ -333,11 +333,6 @@ public class EasyPvp extends JavaPlugin {
         //关闭提示标志
         MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DISABLE_PLUGIN());
 
-        //取消注册PAPI
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            RecordExpansion.recordExpansion.unregister();
-        }
-
 
     }
 
