@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class YamlManagerBase {
@@ -27,7 +28,10 @@ public abstract class YamlManagerBase {
         this.yamlConfiguration=new YamlConfiguration();
         this.backUpConfiguration=new YamlConfiguration();
     }
-
+    protected List<String> copy(List<String> list){
+        if (list==null){return null;}
+        return new ArrayList<>(list);
+    }
     /**
      * 会把对应的文件保存到PluginEasyPvp下
      * @throws IOException IO异常

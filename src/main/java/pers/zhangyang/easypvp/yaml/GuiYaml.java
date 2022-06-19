@@ -186,7 +186,7 @@ public class GuiYaml extends YamlManagerBase {
        if (BUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_LORE==null) {
            return null;
        }
-           return new ArrayList<>(BUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_LORE);
+           return copy(BUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_LORE);
     }
 
     public String getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_MATERIAL() {
@@ -198,10 +198,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE() {
-        if (BUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE==null) {
-            return null;
-        }
-        return new ArrayList<>(BUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE);
+        return copy(BUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE);
     }
 
     public String getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
@@ -213,10 +210,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE==null) {
-            return null;
-        }
-        return new ArrayList<>(BUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+
+        return copy(BUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_MATERIAL() {
@@ -228,10 +223,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_LORE==null) {
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_LORE);  }
+
+        return copy(BUTTON_ALL_PARTY_PAGE_SHOW_SHOP_PAGE_LORE);  }
 
     public String getTITLE_SHOP_PAGE() {
         return TITLE_SHOP_PAGE;
@@ -543,10 +536,9 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE() {
-        if (BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE);
+        
+
+        return copy(BUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_MATERIAL() {
@@ -558,10 +550,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_RACE_PAGE_LORE);
     }
 
     public String getTITLE_ALL_RACE_PAGE() {
@@ -577,9 +567,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_LORE() {
-        if (BUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_LORE);
+       return copy(BUTTON_ALL_RACE_PAGE_PREVIOUS_ALL_RACE_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_MATERIAL() {
@@ -591,9 +579,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_LORE() {
-        if (BUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_LORE);
+       return copy(BUTTON_ALL_RACE_PAGE_NEXT_ALL_RACE_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
@@ -605,9 +591,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE==null){
-            return null;
-        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+       return copy(BUTTON_ALL_RACE_PAGE_BACK_ALL_PARTY_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_RACE_PAGE_WATCH_RACE_MATERIAL() {
@@ -619,9 +603,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE() {
-        if (BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE==null){
-            return null;
-        }return new ArrayList<>(BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE);
+        return copy(BUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE);
     }
 
 
@@ -638,9 +620,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE);
+       return copy(BUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE);
     }
 
     public String getTITLE_STAR_RANK_PAGE() {
@@ -656,9 +636,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE() {
-        if (BUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE);
+        return copy(BUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE);
     }
 
     public String getBUTTON_STAR_RANK_PAGE_NEXT_RANK_PAGE_MATERIAL() {
@@ -670,9 +648,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_STAR_RANK_PAGE_NEXT_RANK_PAGE_LORE() {
-        if (BUTTON_STAR_RANK_PAGE_NEXT_RANK_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_STAR_RANK_PAGE_NEXT_RANK_PAGE_LORE);
+       return copy(BUTTON_STAR_RANK_PAGE_NEXT_RANK_PAGE_LORE);
     }
 
     public String getBUTTON_STAR_RANK_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
@@ -684,9 +660,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_STAR_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_STAR_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_STAR_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+       return copy(BUTTON_STAR_RANK_PAGE_BACK_ALL_PARTY_PAGE_LORE);
     }
 
     public String getBUTTON_STAR_RANK_PAGE_RECORD_MATERIAL() {
@@ -698,9 +672,7 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_STAR_RANK_PAGE_RECORD_LORE() {
-        if (BUTTON_STAR_RANK_PAGE_RECORD_LORE ==null){
-            return null;
-        }return new ArrayList<>(BUTTON_STAR_RANK_PAGE_RECORD_LORE);
+       return copy(BUTTON_STAR_RANK_PAGE_RECORD_LORE);
     }
 
     public String getTITLE_ALL_KIT_PAGE() {
@@ -716,10 +688,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_LORE() {
-        if (BUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_LORE);
+
+        return copy(BUTTON_ALL_KIT_PAGE_PREVIOUS_ALL_KIT_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_MATERIAL() {
@@ -731,10 +701,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_LORE() {
-        if (BUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_LORE);
+
+        return copy(BUTTON_ALL_KIT_PAGE_NEXT_ALL_KIT_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_KIT_PAGE_CHOOSE_KIT_MATERIAL() {
@@ -746,10 +714,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_KIT_PAGE_CHOOSE_KIT_LORE() {
-        if (BUTTON_ALL_KIT_PAGE_CHOOSE_KIT_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_KIT_PAGE_CHOOSE_KIT_LORE);
+
+        return copy(BUTTON_ALL_KIT_PAGE_CHOOSE_KIT_LORE);
     }
 
     public String getBUTTON_ALL_MAP_PAGE_MATCH_RANDOM_MATERIAL() {
@@ -761,10 +727,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MAP_PAGE_MATCH_RANDOM_LORE() {
-        if (BUTTON_ALL_MAP_PAGE_MATCH_RANDOM_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MAP_PAGE_MATCH_RANDOM_LORE);
+
+        return copy(BUTTON_ALL_MAP_PAGE_MATCH_RANDOM_LORE);
     }
 
     public String getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_MATERIAL() {
@@ -776,10 +740,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE() {
-        if (BUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE);
+
+        return copy(BUTTON_ALL_MAP_PAGE_CANCEL_MATCH_LORE);
     }
 
     public String getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_MATERIAL() {
@@ -791,10 +753,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE() {
-        if (BUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE);
+
+        return copy(BUTTON_ALL_MAP_PAGE_BACK_ALL_MEMBER_PAGE_LORE);
     }
 
     public String getTITLE_ALL_MAP_PAGE() {
@@ -810,10 +770,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MAP_PAGE_MATCH_MAP_LORE() {
-        if (BUTTON_ALL_MAP_PAGE_MATCH_MAP_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MAP_PAGE_MATCH_MAP_LORE);
+
+        return copy(BUTTON_ALL_MAP_PAGE_MATCH_MAP_LORE);
     }
 
     public String getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL() {
@@ -825,10 +783,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_BACK_ALL_PARTY_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_MATERIAL() {
@@ -840,10 +796,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_LEAVE_PARTY_LORE);
     }
 
     public String getBUTTON_ALL_MEMBER_PAGE_MEMBER_MATERIAL() {
@@ -855,10 +809,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_MEMBER_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_MEMBER_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_MEMBER_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_MEMBER_LORE);
     }
 
     public String getBUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_MATERIAL() {
@@ -870,10 +822,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_SHOW_ALL_MAP_PAGE_LORE);
     }
 
     public String getTITLE_ALL_MEMBER_PAGE() {
@@ -889,10 +839,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_PREVIOUS_ALL_MEMBER_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_MATERIAL() {
@@ -904,10 +852,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_LORE() {
-        if (BUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_LORE);
+
+        return copy(BUTTON_ALL_MEMBER_PAGE_NEXT_ALL_MEMBER_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_MATERIAL() {
@@ -919,10 +865,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_SHOW_ALL_MEMBER_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_MATERIAL() {
@@ -934,10 +878,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_JOIN_PARTY_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_JOIN_PARTY_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_JOIN_PARTY_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_JOIN_PARTY_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_MATERIAL() {
@@ -949,10 +891,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_NEXT_ALL_PARTY_PAGE_LORE);
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_CREATE_PARTY_MATERIAL() {
@@ -964,10 +904,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE);
     }
 
     public static GuiYaml getGuiManager() {
@@ -983,10 +921,8 @@ public class GuiYaml extends YamlManagerBase {
     }
 
     public List<String> getBUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_LORE() {
-        if (BUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_LORE ==null){
-            return null;
-        }
-        return new ArrayList<>(BUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_LORE);
+
+        return copy(BUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_LORE);
     }
 
     public String getTITLE_ALL_PARTY_PAGE() {
