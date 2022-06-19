@@ -3,6 +3,7 @@ package pers.zhangyang.easypvp.base;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pers.zhangyang.easypvp.EasyPvp;
+import pers.zhangyang.easypvp.exception.FailureMakeMultipleDirectorException;
 import pers.zhangyang.easypvp.yaml.SettingYaml;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,13 +38,17 @@ public abstract class YamlManagerBase {
      * @throws IOException IO异常
      * @throws InvalidConfigurationException Yml文件格式不对
      */
-    public void init( ) throws IOException, InvalidConfigurationException {
+    public void init( ) throws IOException, InvalidConfigurationException, FailureMakeMultipleDirectorException {
         File file=new File(EasyPvp.getInstance().getDataFolder(), filePath);
         //如果文件不存在就创建
         if (!file.exists()){
             File dir=file.getParentFile();
             //先创建目录文件夹
-            if (!dir.exists()){dir.mkdirs();}
+            if (!dir.exists()){
+                if (!dir.mkdirs()){
+                    throw new FailureMakeMultipleDirectorException();
+                }
+            }
             //输出数据
             InputStream in= SettingYaml.class.getClassLoader().getResourceAsStream(filePath);
             OutputStream out = Files.newOutputStream(file.toPath());

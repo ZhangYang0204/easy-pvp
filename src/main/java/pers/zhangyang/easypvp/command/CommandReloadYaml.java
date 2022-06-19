@@ -3,6 +3,7 @@ package pers.zhangyang.easypvp.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import pers.zhangyang.easypvp.base.CommandBase;
+import pers.zhangyang.easypvp.exception.FailureMakeMultipleDirectorException;
 import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.util.MessageUtil;
 
@@ -21,7 +22,7 @@ public class CommandReloadYaml extends CommandBase {
             MessageYaml.INSTANCE.init();
             DanYaml.INSTANCE.init();
             ShopYaml.INSTANCE.init();
-        } catch (IOException | InvalidConfigurationException e) {
+        } catch (IOException | InvalidConfigurationException | FailureMakeMultipleDirectorException e) {
             e.printStackTrace();
              
             return true;

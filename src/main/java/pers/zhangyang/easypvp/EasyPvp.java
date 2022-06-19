@@ -12,6 +12,7 @@ import pers.zhangyang.easypvp.bstats.Metrics;
 import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
+import pers.zhangyang.easypvp.exception.FailureMakeMultipleDirectorException;
 import pers.zhangyang.easypvp.exception.FailureTeleportException;
 import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
 import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
@@ -42,7 +43,7 @@ public class EasyPvp extends JavaPlugin {
             GuiYaml.INSTANCE.init();
             DanYaml.INSTANCE.init();
             ShopYaml.INSTANCE.init();
-        } catch (IOException | InvalidConfigurationException e) {
+        } catch (IOException | InvalidConfigurationException | FailureMakeMultipleDirectorException e) {
             e.printStackTrace();
             setEnabled(false);
             return;
