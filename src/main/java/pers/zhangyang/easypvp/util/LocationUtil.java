@@ -1,36 +1,20 @@
 package pers.zhangyang.easypvp.util;
 
 import org.bukkit.Location;
-
 import org.jetbrains.annotations.NotNull;
 
 public class LocationUtil {
-    public static boolean isSameWorld(@NotNull Location location1, @NotNull Location location2){
-        if (location1==null||location2==null){
-            throw new IllegalArgumentException();
-        }
-        if (location1.getWorld()==null||location2.getWorld()==null){
-            return false;
-        }
-        if (location1.getWorld().getUID().equals(location2.getWorld().getUID())){
+
+    public static boolean isDifferentWorld(@NotNull Location location1, @NotNull Location location2) {
+        if (location1.getWorld() == null || location2.getWorld() == null) {
             return true;
-        }else {
-            return false;
         }
+        return !location1.getWorld().getUID().equals(location2.getWorld().getUID());
     }
 
-
-
     //按方块
-    public static boolean blockIsIn(@NotNull Location corner1, @NotNull Location corner2,@NotNull Location target){
-
-        if (corner1==null||corner2==null||target==null){
-            throw new IllegalArgumentException();
-        }
-
-        if (!isSameWorld(corner1,corner2)
-                ||!isSameWorld(corner1,target)
-                ||!isSameWorld(corner2,target)){
+    public static boolean blockIsIn(@NotNull Location corner1, @NotNull Location corner2, @NotNull Location target){
+        if (isDifferentWorld(corner1,corner2) || isDifferentWorld(corner1,target) || isDifferentWorld(corner2,target)) {
             return false;
         }
         int corner1X=corner1.getBlockX();
@@ -42,14 +26,8 @@ public class LocationUtil {
         int targetX=target.getBlockX();
         int targetY=target.getBlockY();
         int targetZ=target.getBlockZ();
-
-        if (targetX>=Math.min(corner1X,corner2X)&&targetX<=Math.max(corner1X,corner2X)
-                &&targetY>=Math.min(corner1Y,corner2Y)&&targetY<=Math.max(corner1Y,corner2Y)
-                &&targetZ>=Math.min(corner1Z,corner2Z)&&targetZ<=Math.max(corner1Z,corner2Z)){
-            return true;
-        }
-
-        return false;
-
+        return targetX >= Math.min(corner1X, corner2X) && targetX <= Math.max(corner1X, corner2X)
+                && targetY >= Math.min(corner1Y, corner2Y) && targetY <= Math.max(corner1Y, corner2Y)
+                && targetZ >= Math.min(corner1Z, corner2Z) && targetZ <= Math.max(corner1Z, corner2Z);
     }
 }

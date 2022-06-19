@@ -11,10 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.bstats.Metrics;
 import pers.zhangyang.easypvp.completer.*;
 import pers.zhangyang.easypvp.domain.*;
-import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
-import pers.zhangyang.easypvp.exception.FailureMakeMultipleDirectorException;
-import pers.zhangyang.easypvp.exception.FailureTeleportException;
-import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
+import pers.zhangyang.easypvp.exception.*;
 import pers.zhangyang.easypvp.expansion.papi.RecordExpansion;
 import pers.zhangyang.easypvp.listener.*;
 import pers.zhangyang.easypvp.command.*;
@@ -324,7 +321,7 @@ public class EasyPvp extends JavaPlugin {
             race.stop();
             try {
                 race.afterStop();
-            } catch (FailureDeleteWorldException | FailureUnloadWorldException | FailureTeleportException e) {
+            } catch (FailureUnloadWorldException | FailureTeleportException | FailureDeleteFileException e) {
                 e.printStackTrace();
                 return;
             }

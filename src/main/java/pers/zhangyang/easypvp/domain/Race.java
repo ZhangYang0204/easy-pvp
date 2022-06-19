@@ -619,7 +619,7 @@ public class Race {
         return winner;
     }
 
-    public void afterStop() throws FailureTeleportException, FailureDeleteWorldException, FailureUnloadWorldException {
+    public void afterStop() throws FailureTeleportException, FailureUnloadWorldException, FailureDeleteFileException {
         if (!stats.equals(RaceStatsEnum.CELEBRATING)){
             throw new IllegalRaceStatsException("Race is not ending");
         }
@@ -733,7 +733,7 @@ public class Race {
         return loser;
     }
 
-    private void destroyWorld() throws FailureUnloadWorldException, FailureDeleteWorldException {
+    private void destroyWorld() throws FailureUnloadWorldException, FailureDeleteFileException {
 
         //移除玩家
         for (Player p:world.getPlayers()){
@@ -748,9 +748,8 @@ public class Race {
             throw new FailureUnloadWorldException("§cCouldn't unload an race world");
         } else {
 
-            if (!ResourceUtil.deleteFile(world.getWorldFolder())) {
-                throw new FailureDeleteWorldException("§cCouldn't delete an race world");
-            }
+            ResourceUtil.deleteFile(world.getWorldFolder());
+
         }
     }
 

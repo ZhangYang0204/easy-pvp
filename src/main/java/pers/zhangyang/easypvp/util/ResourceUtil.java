@@ -1,40 +1,41 @@
 package pers.zhangyang.easypvp.util;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import pers.zhangyang.easypvp.exception.FailureDeleteFileException;
+
 import java.io.*;
 import java.net.URL;
 
 public class ResourceUtil {
-    public static boolean deleteFile(@NotNull File file){
-        if (file==null){throw new NullPointerException();}
+
+    public static void deleteFile(@NotNull File file) throws FailureDeleteFileException {
         File[] files = file.listFiles();
-        for(File deleteFile : files){
-            if(deleteFile.isDirectory()){
+        if (files==null) {
+            return;
+        }
+        for (File deleteFile : files) {
+            if (deleteFile.isDirectory()) {
                 //判断如果是文件夹，则递归删除下面的文件后再删除该文件夹
-                if(!deleteFile(deleteFile)){
-                    //如果失败则返回
-                    return false;
-                }
+                deleteFile(deleteFile);
             } else {
                 //文件直接删除
-                if(!deleteFile.delete()){
-                    //如果失败则返回
-                    return false;
-                }
+                deleteFile(deleteFile);
             }
         }
-        file.delete();
-        return true;
+        if (!file.delete()) {
+            throw new FailureDeleteFileException();
+        }
     }
-    public static  String getFirstLine(URL url) throws IOException {
-        if (url==null){
+
+    @Nullable
+    public static String getFirstLine(URL url) throws IOException {
+        if (url == null) {
             throw new NullPointerException();
         }
-
-
-        InputStream is= url.openStream();
-        BufferedReader br=new BufferedReader(new InputStreamReader(is));
-        String r= br.readLine();
-        return  r;
+        InputStream is = url.openStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        return br.readLine();
     }
+
 }

@@ -2,6 +2,7 @@ package pers.zhangyang.easypvp.runnable;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.domain.Race;
+import pers.zhangyang.easypvp.exception.FailureDeleteFileException;
 import pers.zhangyang.easypvp.exception.FailureDeleteWorldException;
 import pers.zhangyang.easypvp.exception.FailureTeleportException;
 import pers.zhangyang.easypvp.exception.FailureUnloadWorldException;
@@ -48,10 +49,10 @@ public class RaceAfterStopRunnable extends BukkitRunnable {
         } catch (FailureTeleportException e) {
             e.printStackTrace();
             return;
-        } catch (FailureDeleteWorldException e) {
+        } catch (FailureUnloadWorldException e) {
             e.printStackTrace();
             return;
-        } catch (FailureUnloadWorldException e) {
+        } catch (FailureDeleteFileException e) {
             e.printStackTrace();
             return;
         }
