@@ -29,14 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EasyPvp extends JavaPlugin {
-    private static EasyPvp instance;
-    public static EasyPvp getInstance() {
-        return instance;
+    public static EasyPvp getEasyPvp() {
+        return (EasyPvp) Bukkit.getPluginManager().getPlugin("EasyPvp");
     }
-
     @Override
     public void onEnable() {
-        instance = this;
         //初始化setting.yml,出错直接关闭插件
         try {
             SettingYaml.SETTING_YAML_MANAGER.init();
