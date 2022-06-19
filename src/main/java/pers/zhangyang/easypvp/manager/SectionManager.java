@@ -3,7 +3,7 @@ package pers.zhangyang.easypvp.manager;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.domain.Section;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 
 public class SectionManager {
@@ -16,7 +16,7 @@ public class SectionManager {
         playerSectionHashMap=new HashMap<>();
     }
 
-    @Nonnull
+    @NotNull
     public Section getPlayerSection(Player player){
         if (!playerSectionHashMap.containsKey(player)){
             playerSectionHashMap.put(player,new Section(player));

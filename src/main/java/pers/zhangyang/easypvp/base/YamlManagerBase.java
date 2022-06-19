@@ -5,8 +5,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.yaml.SettingYaml;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -21,7 +21,7 @@ public abstract class YamlManagerBase {
      *
      * @param filePath 在resource下的文件路径
      */
-    protected YamlManagerBase(@Nonnull String filePath){
+    protected YamlManagerBase(@NotNull String filePath){
         if (filePath==null){throw new NullPointerException();}
         this.filePath=filePath;
         this.yamlConfiguration=new YamlConfiguration();
@@ -99,7 +99,7 @@ public abstract class YamlManagerBase {
 
 
     @Nullable
-    public Boolean getBoolean(@Nonnull String path ,boolean isDef){
+    public Boolean getBoolean(@NotNull String path ,boolean isDef){
 
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isBoolean(path)){
@@ -111,7 +111,7 @@ public abstract class YamlManagerBase {
         return yamlConfiguration.getBoolean(path);
     }
     @Nullable
-    public String getString(@Nonnull String path,boolean isDef){
+    public String getString(@NotNull String path,boolean isDef){
 
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isString(path)) {
@@ -123,7 +123,7 @@ public abstract class YamlManagerBase {
         return yamlConfiguration.getString(path);
     }
     @Nullable
-    public Integer getInteger(@Nonnull String path, boolean isDef){
+    public Integer getInteger(@NotNull String path, boolean isDef){
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isInt(path)) {
             if (!isDef){
@@ -135,7 +135,7 @@ public abstract class YamlManagerBase {
     }
 
     @Nullable
-    public Long getLong(@Nonnull String path,boolean isDef){
+    public Long getLong(@NotNull String path,boolean isDef){
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isLong(path)) {
             if (!isDef){
@@ -147,7 +147,7 @@ public abstract class YamlManagerBase {
     }
 
     @Nullable
-    public Double getDouble(@Nonnull String path,boolean isDef){
+    public Double getDouble(@NotNull String path,boolean isDef){
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isDouble(path)) {
             if (!isDef){
@@ -159,7 +159,7 @@ public abstract class YamlManagerBase {
     }
 
     @Nullable
-    public List<String> getStringList(@Nonnull String path, boolean isDef){
+    public List<String> getStringList(@NotNull String path, boolean isDef){
         if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isList(path)){
             if (!isDef){

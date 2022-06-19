@@ -13,7 +13,7 @@ import pers.zhangyang.easypvp.yaml.DanYaml;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.ShopYaml;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class ShopPage implements InventoryHolder {
@@ -114,13 +114,13 @@ public class ShopPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }public void send(@Nonnull Player player){
+    }public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }

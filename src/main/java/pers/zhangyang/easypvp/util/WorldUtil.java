@@ -8,11 +8,11 @@ import org.bukkit.generator.ChunkGenerator;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.exception.FailureCreateWorldException;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class WorldUtil {
-    public static World getVoidWorld(@Nonnull String worldName) throws FailureCreateWorldException {
+    public static World getVoidWorld(@NotNull String worldName) throws FailureCreateWorldException {
 
         WorldCreator worldCreator = new WorldCreator(worldName);
 

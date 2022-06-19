@@ -9,8 +9,8 @@ import pers.zhangyang.easypvp.enumration.RaceStatsEnum;
 import pers.zhangyang.easypvp.exception.*;
 import pers.zhangyang.easypvp.manager.PartyManager;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class Gamer  {
 
@@ -23,7 +23,7 @@ public class Gamer  {
      * new出来的对象不注册是没有作用的,请使用GamerManager.getGamer(Player)方法
      * @param player
      */
-    public Gamer(@Nonnull Player player) {
+    public Gamer(@NotNull Player player) {
         if (player==null) {throw new NullPointerException();}
         this.player = player;
         this.stats = GamerStatsEnum.FREEING;
@@ -34,7 +34,7 @@ public class Gamer  {
      * @return
      * @exception IllegalGamerStatsException 如果状态不是FREEING
      */
-    public void createParty(@Nonnull String name){
+    public void createParty(@NotNull String name){
         if (name==null){throw new NullPointerException();}
         if(!stats.equals(GamerStatsEnum.FREEING)){
             throw new IllegalGamerStatsException("Gamer stats is not freeing");
@@ -113,7 +113,7 @@ public class Gamer  {
      * @param party 要加入的队伍
      * @exception IllegalGamerStatsException 不是freeing状态
      */
-    public void joinParty(@Nonnull Party party){
+    public void joinParty(@NotNull Party party){
         if (party==null){throw new NullPointerException();}
 
         if(!stats.equals(GamerStatsEnum.FREEING)){
@@ -172,7 +172,7 @@ public class Gamer  {
     /**
      * @return 返回Gamer对应的玩家
      */
-    @Nonnull
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -180,7 +180,7 @@ public class Gamer  {
     /**
      * @return 返回Gamer的状态
      */
-    @Nonnull
+    @NotNull
     public GamerStatsEnum getStats() {
         return stats;
     }

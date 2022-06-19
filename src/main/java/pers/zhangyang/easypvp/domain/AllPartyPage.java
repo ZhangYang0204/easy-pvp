@@ -10,7 +10,7 @@ import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,12 +29,12 @@ public class AllPartyPage implements InventoryHolder {
         partyList=new ArrayList<>();
     }
 
-    @Nonnull
+    @NotNull
     public List<Party> getPartyList() {
         return new ArrayList<>(partyList);
     }
 
-    public void init(@Nonnull List<Party> partyList, int pageIndex){
+    public void init(@NotNull List<Party> partyList, int pageIndex){
         if (partyList==null){throw new NullPointerException();}
         this.pageIndex=pageIndex;
         this.partyList.clear();
@@ -103,13 +103,13 @@ public class AllPartyPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }public void send(@Nonnull Player player){
+    }public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }

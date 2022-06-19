@@ -12,8 +12,8 @@ import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.runnable.MatchRunnable;
 import pers.zhangyang.easypvp.util.MessageUtil;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class Party {
      * 仅仅是new出来,没注册不会有效果的
      * @param captain
      */
-    public Party(@Nonnull Gamer captain,@Nonnull String partyName) {
+    public Party(@NotNull Gamer captain,@NotNull String partyName) {
 
         if (captain==null||partyName==null){throw new NullPointerException();}
         memberList=new ArrayList<>();
@@ -106,7 +106,7 @@ public class Party {
      * @param gamer
      * @exception NotPartyMemberException 玩家不是该队伍成员
      */
-    public void kickGamer(@Nonnull Gamer gamer){
+    public void kickGamer(@NotNull Gamer gamer){
 
         if (gamer==null){throw new NullPointerException();}
 
@@ -136,7 +136,7 @@ public class Party {
      * @param gamer
      * @return
      */
-    public boolean contains(@Nonnull Gamer gamer){
+    public boolean contains(@NotNull Gamer gamer){
 
         if (gamer==null){throw new NullPointerException();}
         return memberList.contains(gamer);
@@ -148,11 +148,11 @@ public class Party {
         return memberList.get(0);
     }
 
-    @Nonnull
+    @NotNull
     public List<Gamer> getMemberList() {
         return new ArrayList<>(memberList);
     }
-    @Nonnull
+    @NotNull
     public PartyStatsEnum getStats() {
         return stats;
     }

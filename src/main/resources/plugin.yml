@@ -13,11 +13,5 @@
     EasyPvp:
       aliases: ep
 
-  #描述
-  description: pvp plugin
-
-  #作者
-  author: ZhangYang
-
   softdepend:
     - PlaceholderAPI

@@ -4,8 +4,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pers.zhangyang.easypvp.util.LocationUtil;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 public class Section {
@@ -15,7 +15,7 @@ public class Section {
     private Location blue;
     private final Player player;
 
-    public Section(@Nonnull Player player) {
+    public Section(@NotNull Player player) {
         if (player==null){throw new NullPointerException();}
         this.player = player;
     }
@@ -63,7 +63,7 @@ public class Section {
         this.blue = blue;
     }
 
-    @Nonnull
+    @NotNull
     public Player getPlayer() {
         return player;
     }

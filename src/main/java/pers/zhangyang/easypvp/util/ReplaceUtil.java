@@ -1,8 +1,8 @@
 package pers.zhangyang.easypvp.util;
 
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class ReplaceUtil {
 
     //吧list中pattern的换成replaceTo
-    public static void format(@Nonnull List<String> list, @Nonnull String pattern,@Nullable List<String> replaceTo){
+    public static void format(@NotNull List<String> list, @NotNull String pattern,@Nullable List<String> replaceTo){
         if (list==null||pattern==null){throw new NullPointerException();}
 
         for (int i=0;i<list.size();i++){
@@ -28,8 +28,8 @@ public class ReplaceUtil {
 
         }
     }
-    @Nonnull
-    public static String replace( @Nonnull String s,  @Nonnull  Map<String,String> rep){
+    @NotNull
+    public static String replace( @NotNull String s,  @NotNull  Map<String,String> rep){
         if (s==null||rep==null){throw new NullPointerException();}
 
             for (String key : rep.keySet()) {
@@ -39,7 +39,7 @@ public class ReplaceUtil {
         return s;
     }
 
-    public static void replace(@Nonnull List<String> s,@Nonnull  Map<String,String> rep){
+    public static void replace(@NotNull List<String> s,@NotNull  Map<String,String> rep){
 
         if (s==null||rep==null){throw new NullPointerException();}
         if (s!=null){

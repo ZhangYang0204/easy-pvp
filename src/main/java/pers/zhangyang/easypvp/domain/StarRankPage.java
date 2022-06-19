@@ -12,7 +12,7 @@ import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class StarRankPage implements InventoryHolder {
@@ -102,13 +102,13 @@ public class StarRankPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }public void send(@Nonnull Player player){
+    }public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }

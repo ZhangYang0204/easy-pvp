@@ -5,8 +5,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class MessageUtil {
 
-    public static void sendTitleTo(@Nonnull Player player, @Nullable String title,@Nullable String subtitle){
+    public static void sendTitleTo(@NotNull Player player, @Nullable String title,@Nullable String subtitle){
         if (player==null){
             throw new NullPointerException();
         }

@@ -5,7 +5,7 @@ import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
 import pers.zhangyang.easypvp.meta.MapMeta;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 

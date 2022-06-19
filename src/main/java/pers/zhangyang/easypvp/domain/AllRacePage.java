@@ -10,7 +10,7 @@ import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class AllRacePage implements InventoryHolder {
@@ -26,7 +26,7 @@ public class AllRacePage implements InventoryHolder {
         raceList=new ArrayList<>();
     }
 
-    @Nonnull
+    @NotNull
     public List<Race> getRaceList() {
         return new ArrayList<>(raceList);
     }
@@ -93,13 +93,13 @@ public class AllRacePage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }public void send(@Nonnull Player player){
+    }public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }

@@ -6,12 +6,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.runnable.NotifyVersionRunnable;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.net.URL;
 
 public class UpdateUtil {
-    public static void notifyVersion(@Nonnull CommandSender sender){
+    public static void notifyVersion(@NotNull CommandSender sender){
         if (sender==null){throw new NullPointerException();}
 
         new BukkitRunnable() {

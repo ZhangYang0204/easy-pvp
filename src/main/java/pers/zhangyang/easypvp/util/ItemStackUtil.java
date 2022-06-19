@@ -7,8 +7,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,8 +16,8 @@ public class ItemStackUtil {
 
 
 
-    @Nonnull
-    public static ItemStack getItemStack(@Nonnull String materialName, @Nullable String displayName,@Nullable List<String> lore){
+    @NotNull
+    public static ItemStack getItemStack(@NotNull String materialName, @Nullable String displayName,@Nullable List<String> lore){
 
         Material material= Material.matchMaterial(materialName);
         if (material==null){throw new IllegalArgumentException();}
@@ -41,16 +41,16 @@ public class ItemStackUtil {
 
     }
 
-    @Nonnull
-    public static String itemStackSerialize(@Nonnull ItemStack itemStack) {
+    @NotNull
+    public static String itemStackSerialize(@NotNull ItemStack itemStack) {
         if (itemStack==null) {throw new NullPointerException();}
         YamlConfiguration yml = new YamlConfiguration();
         yml.set("item", itemStack);
         return yml.saveToString();
     }
 
-    @Nonnull
-    public static ItemStack itemStackDeserialize(@Nonnull String str)  {
+    @NotNull
+    public static ItemStack itemStackDeserialize(@NotNull String str)  {
         if (str==null){throw new IllegalArgumentException();}
         YamlConfiguration yml = new YamlConfiguration();
         ItemStack item;

@@ -20,8 +20,8 @@ import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.meta.*;
 import pers.zhangyang.easypvp.util.*;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class Race {
@@ -57,7 +57,7 @@ public class Race {
     protected Location secondLoc;
     protected RaceStatsEnum stats;
 
-    @Nonnull
+    @NotNull
     public MapMeta getMapMeta() {
         return mapMeta.clone();
     }
@@ -70,7 +70,7 @@ public class Race {
      *
      * @param gamer
      */
-    public void out(@Nonnull Gamer gamer) throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
+    public void out(@NotNull Gamer gamer) throws FailureDeleteWorldException, FailureUnloadWorldException, FailureTeleportException {
         if (gamer==null){throw  new NullPointerException();}
         if (!gamer.playingRace.equals(this)) {
             throw new NotInThisRaceException("Gamer is not in this race");
@@ -470,7 +470,7 @@ public class Race {
 
         }
     }
-    public void sendKit(@Nonnull KitMeta kitMeta,@Nonnull Gamer gamer){
+    public void sendKit(@NotNull KitMeta kitMeta,@NotNull Gamer gamer){
         if (kitMeta==null||gamer==null){throw  new NullPointerException();}
         for (KitItemStackMeta i:kitItemMap.get(kitMeta)){
             ItemStack it= ItemStackUtil.itemStackDeserialize(i.getData());
@@ -483,8 +483,8 @@ public class Race {
      * @param mapBlockMetaList 比赛地图的方块数据
      * @param kitItemMap 比赛可选的礼包和礼包里的物品
      */
-    public Race(@Nonnull MapMeta mapMeta,@Nonnull  List<MapBlockMeta> mapBlockMetaList,@Nonnull  HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap,
-                @Nonnull  List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList) {
+    public Race(@NotNull MapMeta mapMeta,@NotNull  List<MapBlockMeta> mapBlockMetaList,@NotNull  HashMap<KitMeta,List<KitItemStackMeta>> kitItemMap,
+                @NotNull  List<MapBlockInventoryItemStackMeta> mapContainerInventoryItemStackMetaList) {
         if (mapMeta==null||mapBlockMetaList==null||kitItemMap==null||mapContainerInventoryItemStackMetaList==null){
             throw new NullPointerException();
         }
@@ -538,7 +538,7 @@ public class Race {
      * @exception IllegalRaceStatsException 如果本场不是freeing
      * @exception IllegalPartyStatsException 队伍不是空闲
      */
-    public void start(@Nonnull Party redParty,@Nonnull Party blueParty) throws FailureCreateWorldException, FailureTeleportException {
+    public void start(@NotNull Party redParty,@NotNull Party blueParty) throws FailureCreateWorldException, FailureTeleportException {
         if (redParty==null||blueParty==null){throw new NullPointerException();}
         if (stats.equals(RaceStatsEnum.RACING)){
             throw new IllegalRaceStatsException("This race is not freeing");
@@ -756,30 +756,30 @@ public class Race {
 
 
 
-    @Nonnull
+    @NotNull
     public Party getRedParty() {
         return redParty;
     }
-    @Nonnull
+    @NotNull
     public Party getBlueParty() {
         return blueParty;
     }
 
-    public boolean isInMap(@Nonnull Gamer g){
+    public boolean isInMap(@NotNull Gamer g){
         if (g==null){throw new NullPointerException();}
        return LocationUtil.blockIsIn(firstLoc,secondLoc,g.getPlayer().getLocation());
     }
 
 
-    @Nonnull
+    @NotNull
     public List<Gamer> getRedAlive() {
         return new ArrayList<>(redAlive);
     }
-    @Nonnull
+    @NotNull
     public List<Gamer> getBlueAlive() {
         return new ArrayList<>(blueAlive);
     }
-    @Nonnull
+    @NotNull
     public HashMap<KitMeta, List<KitItemStackMeta>> getKitItemMap() {
         return new HashMap<>(kitItemMap);
     }

@@ -7,7 +7,7 @@ import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public abstract class CommandBase {
     protected boolean forcePlayer;
     protected CommandSender sender;
     protected String[] args;
-    public CommandBase(@Nonnull CommandSender sender, boolean forcePlayer ,@Nonnull String[] args) {
+    public CommandBase(@NotNull CommandSender sender, boolean forcePlayer ,@NotNull String[] args) {
         if (args.length<1){throw new IllegalArgumentException();}
         this.sender=sender;
         this.forcePlayer = forcePlayer;
@@ -39,7 +39,7 @@ public abstract class CommandBase {
         return run();
     }
 
-    protected void invalidArgument(@Nonnull String arg){
+    protected void invalidArgument(@NotNull String arg){
         if (arg==null){throw new IllegalArgumentException();}
         List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_INVALID_ARGUMENT();
         if (list!=null) {

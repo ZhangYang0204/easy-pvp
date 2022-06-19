@@ -8,15 +8,15 @@ import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.meta.RecordMeta;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class PageUtil {
     //返回第x页的内容,
-    public static List<String> pageString(int pageIndex, int capacity, @Nonnull List<String> partyList){
+    public static List<String> pageString(int pageIndex, int capacity, @NotNull List<String> partyList){
         if (partyList==null){throw new NullPointerException();}
         List<String> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -26,7 +26,7 @@ public class PageUtil {
 
         return rl;
     }
-    public static List<Integer> pageInteger(int pageIndex, int capacity, @Nonnull List<Integer> partyList){
+    public static List<Integer> pageInteger(int pageIndex, int capacity, @NotNull List<Integer> partyList){
         if (partyList==null){throw new NullPointerException();}
         List<Integer> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -36,7 +36,7 @@ public class PageUtil {
 
         return rl;
     }
-    public static List<List<String>> pageListSTring(int pageIndex, int capacity, @Nonnull List<List<String>> partyList){
+    public static List<List<String>> pageListSTring(int pageIndex, int capacity, @NotNull List<List<String>> partyList){
         if (partyList==null){throw new NullPointerException();}
         List<List<String>> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -46,9 +46,9 @@ public class PageUtil {
 
         return rl;
     }
-        @Nonnull
+        @NotNull
     //返回第x页的内容,
-    public static List<Party> pageParty(int pageIndex, int capacity, @Nonnull List<Party> partyList){
+    public static List<Party> pageParty(int pageIndex, int capacity, @NotNull List<Party> partyList){
         if (partyList==null){throw new NullPointerException();}
         List<Party> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -57,8 +57,8 @@ public class PageUtil {
         }
 
         return rl;
-    }@Nonnull
-    public static List<Gamer> pageGamer(int pageIndex, int capacity,@Nonnull  List<Gamer> gamerList){
+    }@NotNull
+    public static List<Gamer> pageGamer(int pageIndex, int capacity,@NotNull  List<Gamer> gamerList){
         if (gamerList==null){throw new NullPointerException();}
         List<Gamer> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -66,8 +66,8 @@ public class PageUtil {
             rl.add(gamerList.get(i));
         }
         return rl;
-    }@Nonnull
-    public static List<MapMeta> pageMapMeta(int pageIndex, int capacity, @Nonnull List<MapMeta> mapMetaList){
+    }@NotNull
+    public static List<MapMeta> pageMapMeta(int pageIndex, int capacity, @NotNull List<MapMeta> mapMetaList){
         if (mapMetaList==null){throw new NullPointerException();}
         List<MapMeta> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -75,8 +75,8 @@ public class PageUtil {
             rl.add(mapMetaList.get(i));
         }
         return rl;
-    }@Nonnull
-    public static List<KitMeta> pageKitMeta(int pageIndex, int capacity,@Nonnull  List<KitMeta> kitMetaList){
+    }@NotNull
+    public static List<KitMeta> pageKitMeta(int pageIndex, int capacity,@NotNull  List<KitMeta> kitMetaList){
         if (kitMetaList==null){throw new NullPointerException();}
         List<KitMeta> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -84,8 +84,8 @@ public class PageUtil {
             rl.add(kitMetaList.get(i));
         }
         return rl;
-    }@Nonnull
-    public static List<RecordMeta> pageRecordMeta(int pageIndex, int capacity,@Nonnull  List<RecordMeta> recordMetaList){
+    }@NotNull
+    public static List<RecordMeta> pageRecordMeta(int pageIndex, int capacity,@NotNull  List<RecordMeta> recordMetaList){
         if (recordMetaList==null){throw new NullPointerException();}
         List<RecordMeta> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){
@@ -94,8 +94,8 @@ public class PageUtil {
         }
         return rl;
     }
-    @Nonnull
-    public static List<Race> pageRace(int pageIndex, int capacity,@Nonnull  List<Race> raceList){
+    @NotNull
+    public static List<Race> pageRace(int pageIndex, int capacity,@NotNull  List<Race> raceList){
         if (raceList==null){throw new NullPointerException();}
         List<Race> rl=new ArrayList<>();
         for (int i=pageIndex*capacity;i<pageIndex*capacity+capacity;i++){

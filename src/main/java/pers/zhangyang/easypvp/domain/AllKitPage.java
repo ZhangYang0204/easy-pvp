@@ -11,8 +11,8 @@ import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,7 +32,7 @@ public class AllKitPage implements InventoryHolder {
         kitMetaList=new ArrayList<>();
     }
 
-    public void init(int pageIndex, @Nonnull List<KitMeta> kitMetaList){
+    public void init(int pageIndex, @NotNull List<KitMeta> kitMetaList){
         if (kitMetaList==null){throw new IllegalArgumentException();}
         this.pageIndex=pageIndex;
         this.kitMetaList.clear();
@@ -76,17 +76,17 @@ public class AllKitPage implements InventoryHolder {
     public int getPageIndex() {
         return pageIndex;
     }
-    public void send(@Nonnull Player player){
+    public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }
 
-    @Nonnull
+    @NotNull
     public List<KitMeta> getKitMetaList() {
         List<KitMeta> rl=new ArrayList<>();
         for (KitMeta k:kitMetaList){rl.add(k.clone());}

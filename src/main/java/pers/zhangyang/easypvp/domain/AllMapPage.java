@@ -11,8 +11,8 @@ import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
 import pers.zhangyang.easypvp.util.ReplaceUtil;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,12 +30,12 @@ public class AllMapPage implements InventoryHolder {
         this.mapMetaList=new ArrayList<>();
     }
 
-    @Nonnull
+    @NotNull
     public Party getParty() {
         return party;
     }
 
-    @Nonnull
+    @NotNull
     public List<MapMeta> getMapMetaList() {
         List<MapMeta> mapMetaList=new ArrayList<>();
         for (MapMeta m:this.mapMetaList){
@@ -44,7 +44,7 @@ public class AllMapPage implements InventoryHolder {
         return mapMetaList;
     }
 
-    public void init(@Nonnull Party party, int pageIndex,@Nonnull List<MapMeta> mapMetaList){
+    public void init(@NotNull Party party, int pageIndex,@NotNull List<MapMeta> mapMetaList){
 
         if (party==null||mapMetaList==null){throw new IllegalArgumentException();}
         this.pageIndex=pageIndex;
@@ -111,13 +111,13 @@ public class AllMapPage implements InventoryHolder {
 
     public int getPageIndex() {
         return pageIndex;
-    }public void send(@Nonnull Player player){
+    }public void send(@NotNull Player player){
         if (player==null) {throw new NullPointerException();}
         player.openInventory(inventory);
     }
 
     @Override
-    @Nonnull
+    @NotNull
     public Inventory getInventory() {
         return inventory;
     }

@@ -2,10 +2,10 @@ package pers.zhangyang.easypvp.util;
 
 import org.bukkit.Location;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class LocationUtil {
-    public static boolean isSameWorld(@Nonnull Location location1, @Nonnull Location location2){
+    public static boolean isSameWorld(@NotNull Location location1, @NotNull Location location2){
         if (location1==null||location2==null){
             throw new IllegalArgumentException();
         }
@@ -22,7 +22,7 @@ public class LocationUtil {
 
 
     //按方块
-    public static boolean blockIsIn(@Nonnull Location corner1, @Nonnull Location corner2,@Nonnull Location target){
+    public static boolean blockIsIn(@NotNull Location corner1, @NotNull Location corner2,@NotNull Location target){
 
         if (corner1==null||corner2==null||target==null){
             throw new IllegalArgumentException();
