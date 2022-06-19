@@ -55,7 +55,9 @@ public class PlayerClickWatchRace  implements Listener {
             rep.put("{red}",race.getRedParty().getPartyName());
             rep.put("{blue}",race.getBlueParty().getPartyName());
             rep.put("{map}",race.getMapMeta().getName());
-            ReplaceUtil.replace(list,rep);
+            if (list!=null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(player, list);
             return;
         }
@@ -66,7 +68,9 @@ public class PlayerClickWatchRace  implements Listener {
             rep.put("{red}",race.getRedParty().getPartyName());
             rep.put("{blue}",race.getBlueParty().getPartyName());
             rep.put("{map}",race.getMapMeta().getName());
-            ReplaceUtil.replace(list,rep);
+            if (list!=null) {
+                ReplaceUtil.replace(list, rep);
+            }
             MessageUtil.sendMessageTo(player, list);
             return;
         }
@@ -79,7 +83,9 @@ public class PlayerClickWatchRace  implements Listener {
         rep.put("{red}",race.getRedParty().getPartyName());
         rep.put("{blue}",race.getBlueParty().getPartyName());
         rep.put("{map}",race.getMapMeta().getName());
-        ReplaceUtil.replace(list,rep);
+        if (list!=null) {
+            ReplaceUtil.replace(list, rep);
+        }
         MessageUtil.sendMessageTo(player, list);
         return;
 

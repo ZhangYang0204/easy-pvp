@@ -51,8 +51,7 @@ public class MatchRunnable extends BukkitRunnable {
             
             String s=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_TITLE();
             if (s!=null) {
-            s=ReplaceUtil.replace(s,
-                Collections.singletonMap("{time}", String.valueOf(acc)));
+            s=ReplaceUtil.replace(s, Collections.singletonMap("{time}", String.valueOf(acc)));
             }
             String ss=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_SUBTITLE();
             if (ss!=null) {

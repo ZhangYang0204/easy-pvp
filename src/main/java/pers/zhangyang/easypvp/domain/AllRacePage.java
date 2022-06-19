@@ -54,7 +54,9 @@ public class AllRacePage implements InventoryHolder {
             if (displayName!=null) {
                 displayName = ReplaceUtil.replace(displayName, rep);
             }
-            ReplaceUtil.replace(lore,rep);
+            if (lore!=null) {
+                ReplaceUtil.replace(lore, rep);
+            }
 
             String[] descriptions = raceList.get(i).getMapMeta().getDescription()==null?new String[0]:raceList.get(i).getMapMeta().getDescription().split(" ");
             List<String> descriptionList=new ArrayList<>(Arrays.asList(descriptions));
