@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.exception.FailureMakeMultipleDirectorException;
 import pers.zhangyang.easypvp.yaml.SettingYaml;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.io.*;
@@ -15,34 +14,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class YamlManagerBase {
+
     protected YamlConfiguration yamlConfiguration;
+
     protected String filePath;
+
     protected YamlConfiguration backUpConfiguration;
-    
+
     /**
-     *
      * @param filePath 在resource下的文件路径
      */
-    protected YamlManagerBase(@NotNull String filePath){
-        if (filePath==null){throw new NullPointerException();}
-        this.filePath=filePath;
-        this.yamlConfiguration=new YamlConfiguration();
-        this.backUpConfiguration=new YamlConfiguration();
+    protected YamlManagerBase(@NotNull String filePath) {
+        this.filePath = filePath;
+        this.yamlConfiguration = new YamlConfiguration();
+        this.backUpConfiguration = new YamlConfiguration();
     }
-    protected List<String> copy(List<String> list){
-        if (list==null){return null;}
+
+    @Nullable
+    protected List<String> copy(List<String> list) {
+        if (list == null){
+            return null;
+        }
         return new ArrayList<>(list);
     }
+
     /**
-     * 会把对应的文件保存到PluginEasyPvp下
+     * 会把对应的文件保存到PluginEasyGuiShop下
      * @throws IOException IO异常
      * @throws InvalidConfigurationException Yml文件格式不对
      */
     public void init( ) throws IOException, InvalidConfigurationException, FailureMakeMultipleDirectorException {
-        File file=new File(EasyPvp.getInstance().getDataFolder(), filePath);
-        //如果文件不存在就创建
+        File file = new File(EasyPvp.getInstance().getDataFolder(), filePath);
+        // 如果文件不存在就创建
         if (!file.exists()){
-            File dir=file.getParentFile();
+            File dir = file.getParentFile();
             //先创建目录文件夹
             if (!dir.exists()){
                 if (!dir.mkdirs()){
@@ -50,7 +55,10 @@ public abstract class YamlManagerBase {
                 }
             }
             //输出数据
-            InputStream in= SettingYaml.class.getClassLoader().getResourceAsStream(filePath);
+            InputStream in = SettingYaml.class.getClassLoader().getResourceAsStream(filePath);
+            if (in == null){
+                throw new IOException();
+            }
             OutputStream out = Files.newOutputStream(file.toPath());
             byte[] buf = new byte[1024];
             int len;
@@ -60,26 +68,24 @@ public abstract class YamlManagerBase {
         }
         //加载Yaml
         this.yamlConfiguration.load(file);
-        InputStreamReader inputStreamReader=new InputStreamReader(YamlManagerBase.class.getClassLoader()
-                .getResourceAsStream(filePath), StandardCharsets.UTF_8);
+        InputStream in=YamlManagerBase.class.getClassLoader().getResourceAsStream(filePath);
+        if (in == null){
+            throw new IOException();
+        }
+        InputStreamReader inputStreamReader=new InputStreamReader(in, StandardCharsets.UTF_8);
         this.backUpConfiguration.load(inputStreamReader);
         check();
     }
 
-    /**
-     * 用于检查配置文件的值的正确性
-     * @throws IOException
-     * @throws InvalidConfigurationException
-     */
     protected abstract void check() ;
 
     /**
      * 修正配置文件内容
-     * @throws IOException
+     * @throws IOException io异常
      */
     public void correct() throws IOException {
         //删除多余的
-        for (String path: yamlConfiguration.getKeys(true)){
+        for (String path : yamlConfiguration.getKeys(true)){
             if (!backUpConfiguration.getKeys(true).contains(path)){
                 Object ob=yamlConfiguration.get(path);
                 yamlConfiguration.set(path,null);
@@ -94,7 +100,7 @@ public abstract class YamlManagerBase {
         //补充缺失的
         for (String pathBase:backUpConfiguration.getKeys(true)){
             if (!yamlConfiguration.getKeys(true).contains(pathBase)){
-                Object ob=yamlConfiguration.get(pathBase);
+                Object ob = yamlConfiguration.get(pathBase);
                 yamlConfiguration.set(pathBase,backUpConfiguration.get(pathBase));
                 try {
                     yamlConfiguration.save(EasyPvp.getInstance().getDataFolder().getAbsoluteFile()+"/"+filePath);
@@ -108,9 +114,7 @@ public abstract class YamlManagerBase {
 
 
     @Nullable
-    public Boolean getBoolean(@NotNull String path ,boolean isDef){
-
-        if (path==null){throw new NullPointerException();}
+    public Boolean getBoolean(@NotNull String path, boolean isDef){
         if (!yamlConfiguration.isBoolean(path)){
             if (!isDef){
                 return null;
@@ -120,9 +124,7 @@ public abstract class YamlManagerBase {
         return yamlConfiguration.getBoolean(path);
     }
     @Nullable
-    public String getString(@NotNull String path,boolean isDef){
-
-        if (path==null){throw new NullPointerException();}
+    public String getString(@NotNull String path, boolean isDef){
         if (!yamlConfiguration.isString(path)) {
             if (!isDef){
                 return null;
@@ -133,7 +135,6 @@ public abstract class YamlManagerBase {
     }
     @Nullable
     public Integer getInteger(@NotNull String path, boolean isDef){
-        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isInt(path)) {
             if (!isDef){
                 return null;
@@ -145,7 +146,6 @@ public abstract class YamlManagerBase {
 
     @Nullable
     public Long getLong(@NotNull String path,boolean isDef){
-        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isLong(path)) {
             if (!isDef){
                 return null;
@@ -157,7 +157,6 @@ public abstract class YamlManagerBase {
 
     @Nullable
     public Double getDouble(@NotNull String path,boolean isDef){
-        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isDouble(path)) {
             if (!isDef){
                 return null;
@@ -169,7 +168,6 @@ public abstract class YamlManagerBase {
 
     @Nullable
     public List<String> getStringList(@NotNull String path, boolean isDef){
-        if (path==null){throw new NullPointerException();}
         if (!yamlConfiguration.isList(path)){
             if (!isDef){
                 return null;

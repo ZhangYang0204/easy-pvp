@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.completer;
 
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.base.CompleterBase;
 import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.meta.MapMeta;
@@ -20,7 +21,7 @@ public class CompleterRemoveMapKit extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
         if (args.length==2){
             List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT();
             List<String> mapName=new ArrayList<>();

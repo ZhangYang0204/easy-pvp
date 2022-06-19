@@ -1,6 +1,7 @@
 package pers.zhangyang.easypvp.completer;
 
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.base.CompleterBase;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 
@@ -13,7 +14,7 @@ public class CompleterCreateKit extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
         if (args.length==2){
             return removeStartWith(args[1], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_CREATE_KIT()
             ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_CREATE_KIT()

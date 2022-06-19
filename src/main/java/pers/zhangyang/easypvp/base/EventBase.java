@@ -7,12 +7,14 @@ import org.jetbrains.annotations.NotNull;
 public class EventBase extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
+    @NotNull
     public static HandlerList getHandlerList(){
         return HANDLERS;
     }
 
+    @NotNull
     @Override
-    public @NotNull HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return HANDLERS;
     }
 }

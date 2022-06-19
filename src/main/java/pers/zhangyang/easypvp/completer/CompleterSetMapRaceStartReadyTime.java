@@ -20,7 +20,7 @@ public class CompleterSetMapRaceStartReadyTime extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
 
         if (args.length==2){
             List<String> list= MessageYaml.INSTANCE.INSTANCE.getCOMPLETER_EASY_PVP_SET_MAP_RACE_START_READY_TIME();

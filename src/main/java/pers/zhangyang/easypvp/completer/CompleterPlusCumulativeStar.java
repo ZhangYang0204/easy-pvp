@@ -17,7 +17,7 @@ public class CompleterPlusCumulativeStar extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
         if (args.length==2){
 
             List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_PLUS_CUMULATIVE_STAR();

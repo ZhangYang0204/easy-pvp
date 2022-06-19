@@ -17,7 +17,7 @@ public class CompleterSubtractCumulativeStar extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
         if (args.length==2){
             List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SUBTRACT_CUMULATIVE_STAR();
             if (list==null){return new ArrayList<>();}else {

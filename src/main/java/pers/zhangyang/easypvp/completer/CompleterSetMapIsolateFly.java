@@ -20,7 +20,7 @@ public class CompleterSetMapIsolateFly extends CompleterBase {
     }
 
     @Override
-    public List<String> complete() {
+    public @NotNull List<String> complete() {
         if (args.length==2){     List<String> list= MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_MAP_ISOLATE_FLY();
             List<String> mapName=new ArrayList<>();
             try {
