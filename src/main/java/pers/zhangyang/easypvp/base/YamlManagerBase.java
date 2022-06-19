@@ -66,7 +66,7 @@ public abstract class YamlManagerBase {
      * @throws IOException
      * @throws InvalidConfigurationException
      */
-    protected abstract void check() throws IOException, InvalidConfigurationException;
+    protected abstract void check() ;
 
     /**
      * 修正配置文件内容
