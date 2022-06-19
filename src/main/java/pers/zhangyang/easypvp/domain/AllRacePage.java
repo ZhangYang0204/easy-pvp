@@ -39,12 +39,12 @@ public class AllRacePage implements InventoryHolder {
         this.raceList.addAll(raceList);
         inventory.clear();
 
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=raceList.size()){break;}
             String displayName= guiYaml.getBUTTON_ALL_RACE_PAGE_WATCH_RACE_DISPLAY_NAME();
-            List<String> lore= guiYaml.GUI_MANAGER.getBUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE();
+            List<String> lore= guiYaml.INSTANCE.getBUTTON_ALL_RACE_PAGE_WATCH_RACE_LORE();
 
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{red}",raceList.get(i).getRedParty().getPartyName());
@@ -87,7 +87,7 @@ public class AllRacePage implements InventoryHolder {
 
         //设置50加入队伍
         ItemStack unwatch=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE());
+                guiYaml.INSTANCE.getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_DISPLAY_NAME(), guiYaml.INSTANCE.getBUTTON_ALL_RACE_PAGE_UNWATCH_RACE_LORE());
         inventory.setItem(50,unwatch);
 
 

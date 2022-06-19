@@ -45,14 +45,14 @@ public class PlayerClickUnwatchRace  implements Listener {
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
 
         if (!gamer.getStats().equals(GamerStatsEnum.WATCHING)){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_UNWATCH_RACE_BECAUSE_NOT_IN_WATCHING();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
         Race race=gamer.getPlayingRace();
         gamer.unwatchRace();
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_UNWATCH_RACE();
         MessageUtil.sendMessageTo(player, list);
         return;

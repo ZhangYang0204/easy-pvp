@@ -6,12 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.meta.RecordMeta;
 import pers.zhangyang.easypvp.util.ItemStackUtil;
-import pers.zhangyang.easypvp.util.ReplaceUtil;
-import pers.zhangyang.easypvp.yaml.DanYaml;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
-import pers.zhangyang.easypvp.yaml.ShopYaml;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.*;
@@ -83,7 +79,7 @@ public class ShopPage implements InventoryHolder {
         this.notEnughtList.addAll(notEnughtList);
 
         this.pageIndex=pageIndex;
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
         inventory.clear();
 
         //设置内容
@@ -98,16 +94,16 @@ public class ShopPage implements InventoryHolder {
 
         //设置45上一页
         ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.GUI_MANAGER.getBUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_LORE());
+                guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_DISPLAY_NAME(), guiYaml.INSTANCE.INSTANCE.getBUTTON_SHOP_PAGE_PREVIOUS_SHOP_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页
-        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE());
+        ItemStack nextPage=ItemStackUtil.getItemStack(guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_MATERIAL(),
+                guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_DISPLAY_NAME(), guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_NEXT_SHOP_PAGE_LORE());
         inventory.setItem(53,nextPage);
         //设置53下一页
-        ItemStack back=ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE());
+        ItemStack back=ItemStackUtil.getItemStack(guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_MATERIAL(),
+                guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_DISPLAY_NAME(), guiYaml.INSTANCE.getBUTTON_SHOP_PAGE_BACK_ALL_PARTY_PAGE_LORE());
         inventory.setItem(49,back);
 
     }

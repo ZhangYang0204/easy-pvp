@@ -3,10 +3,7 @@ package pers.zhangyang.easypvp.command;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
-import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
-import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -57,7 +54,7 @@ public class CommandPlusCumulativeStar extends CommandBase {
         Map rep=new HashMap<>();
         rep.put("{player}",args[1]);
         rep.put("{amount}",args[2]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_PLUS_CUMULATIVE_STAR();
+        List<String> list= MessageYaml.INSTANCE.getCHAT_SUCCESS_PLUS_CUMULATIVE_STAR();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }
@@ -66,7 +63,7 @@ public class CommandPlusCumulativeStar extends CommandBase {
         rep=new HashMap<>();
         rep.put("{player}",sender.getName());
         rep.put("{amount}",args[2]);
-        list= MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR();
+        list= MessageYaml.INSTANCE.INSTANCE.getCHAT_SUCCESS_WAS_PLUS_CUMULATIVE_STAR();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }

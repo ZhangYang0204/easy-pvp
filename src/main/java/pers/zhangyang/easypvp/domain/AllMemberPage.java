@@ -46,7 +46,7 @@ public class AllMemberPage implements InventoryHolder {
         this.party=party;
         this.gamerList.clear();
         this.gamerList.addAll(gamerList);
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
 
         inventory.clear();
         //设置内容

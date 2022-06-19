@@ -1,8 +1,6 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.MapAlreadyAddKitException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
@@ -38,7 +36,7 @@ public class CommandAddMapKit extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{kit}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -48,7 +46,7 @@ public class CommandAddMapKit extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{kit}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -58,7 +56,7 @@ public class CommandAddMapKit extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{kit}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_ADD_MAP_KIT_BECAUSE_MAP_ALREADY_ADD_KIT();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -69,7 +67,7 @@ public class CommandAddMapKit extends CommandBase {
         rep.put("{map}", args[1]);
         rep.put("{kit}", args[2]);
 
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_MAP_KIT();
+        List<String> list = MessageYaml.INSTANCE.getCHAT_SUCCESS_ADD_MAP_KIT();
         if (list != null) {
             ReplaceUtil.replace(list, rep);
         }

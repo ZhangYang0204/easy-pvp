@@ -21,7 +21,7 @@ public class CompleterSetKit extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_KIT();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_KIT();
 
             List<String> mapName=new ArrayList<>();
             try {

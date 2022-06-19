@@ -15,8 +15,8 @@ public class CompleterCreateKit extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            return removeStartWith(args[1], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_CREATE_KIT()
-            ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_CREATE_KIT()
+            return removeStartWith(args[1], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_CREATE_KIT()
+            ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_CREATE_KIT()
             );
         }
         return new ArrayList<>();

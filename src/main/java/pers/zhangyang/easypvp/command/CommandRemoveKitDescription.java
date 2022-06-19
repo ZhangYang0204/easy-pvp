@@ -1,13 +1,10 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -49,7 +46,7 @@ public class CommandRemoveKitDescription extends CommandBase {
             Map rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -59,7 +56,7 @@ public class CommandRemoveKitDescription extends CommandBase {
             Map rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{row}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_REMOVE_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -69,7 +66,7 @@ public class CommandRemoveKitDescription extends CommandBase {
         Map rep=new HashMap<>();
         rep.put("{kit}",args[1]);
         rep.put("{row}",args[2]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_KIT_DESCRIPTION_REMOVE();
+        List<String> list= MessageYaml.INSTANCE.getCHAT_SUCCESS_KIT_DESCRIPTION_REMOVE();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }

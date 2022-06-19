@@ -23,7 +23,7 @@ public class CompleterSetMapCelebrateTime extends CompleterBase {
     public List<String> complete() {
 
         if (args.length==2){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME();
+            List<String> list= MessageYaml.INSTANCE.INSTANCE.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -43,8 +43,8 @@ public class CompleterSetMapCelebrateTime extends CompleterBase {
 
         }
         if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$()
+            return removeStartWith(args[2], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$()
+                    ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_MAP_CELEBRATE_TIME_$()
             );
         }
         return new ArrayList<>();

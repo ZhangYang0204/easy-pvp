@@ -1,12 +1,9 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -34,7 +31,7 @@ public class CommandAddKitDescription extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{kit}",args[1]);
             rep.put("{description}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_ADD_KIT_DESCRIPTION_BECAUSE_NOT_EXIST_KIT_NAME();
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -44,7 +41,7 @@ public class CommandAddKitDescription extends CommandBase {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{kit}",args[1]);
         rep.put("{description}",args[2]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ADD_KIT_DESCRIPTION();
+        List<String> list= MessageYaml.INSTANCE.getCHAT_SUCCESS_ADD_KIT_DESCRIPTION();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }

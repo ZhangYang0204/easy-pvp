@@ -36,14 +36,14 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
         if (rest>0){
 
 
-            String title= MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_RACE_START_READY_TIME_TITLE();
+            String title= MessageYaml.INSTANCE.getTITLE_RACE_START_READY_TIME_TITLE();
             if (title!=null){
-                title= ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_RACE_START_READY_TIME_TITLE(),
+                title= ReplaceUtil.replace(MessageYaml.INSTANCE.getTITLE_RACE_START_READY_TIME_TITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
             }
-            String stitle=MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getTITLE_RACE_START_READY_TIME_SUBTITLE();
+            String stitle=MessageYaml.INSTANCE.INSTANCE.getTITLE_RACE_START_READY_TIME_SUBTITLE();
             if (stitle!=null){
-                stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_RACE_START_READY_TIME_SUBTITLE(),
+                stitle=ReplaceUtil.replace(MessageYaml.INSTANCE.getTITLE_RACE_START_READY_TIME_SUBTITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
             }
             red.sendTitleToAll(title, stitle);
@@ -57,7 +57,7 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
             for (Gamer g : red.getMemberList()) {
                 playerList.add(g.getPlayer());
             }
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list = MessageYaml.INSTANCE
                     .getCHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT();
             MessageUtil.sendMessageTo(playerList, list);
             this.cancel();
@@ -69,7 +69,7 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
             for (Gamer g : blue.getMemberList()) {
                 playerList.add(g.getPlayer());
             }
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list = MessageYaml.INSTANCE
                     .getCHAT_FAILURE_START_RACE_BECAUSE_ENEMY_ALL_QUIT();
             MessageUtil.sendMessageTo(playerList, list);
             this.cancel();
@@ -99,7 +99,7 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
         for (Gamer g : red.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_START_RACE();
         HashMap<String, String> rep = new HashMap<>();
 
@@ -116,7 +116,7 @@ public class RaceStartReadyRunnable extends BukkitRunnable {
         for (Gamer g : blue.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        list = MessageYaml.MESSAGE_YAML_MANAGER
+        list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_START_RACE();
         rep = new HashMap<>();
         rep.put("{captain}", red.getCaptain().getPlayer().getName());

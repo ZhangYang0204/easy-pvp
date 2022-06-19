@@ -10,17 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.*;
 import pers.zhangyang.easypvp.manager.GamerManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
-import pers.zhangyang.easypvp.meta.RecordMeta;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 
-import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
 
 public class PlayerClickShowAllRacePage implements Listener {
@@ -54,10 +48,10 @@ public class PlayerClickShowAllRacePage implements Listener {
 
         List<Race> raceList= RaceManager.RACE_MANAGER.getRaceList();
 
-        AllRacePage allRacePage=new AllRacePage(GuiYaml.GUI_MANAGER.getTITLE_ALL_RACE_PAGE());
+        AllRacePage allRacePage=new AllRacePage(GuiYaml.INSTANCE.getTITLE_ALL_RACE_PAGE());
         allRacePage.init(PageUtil.pageRace(0,45,raceList),0 );
         allRacePage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_SHOW_ALL_RACE_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

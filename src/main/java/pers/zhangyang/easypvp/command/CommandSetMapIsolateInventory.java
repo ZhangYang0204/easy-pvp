@@ -39,7 +39,7 @@ public class CommandSetMapIsolateInventory extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{isolate_inventory}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_ISOLATE_INVENTORY_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list!=null){
                 ReplaceUtil.replace(list, rep);
             }
@@ -49,7 +49,7 @@ public class CommandSetMapIsolateInventory extends CommandBase {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{map}",args[1]);
         rep.put("{isolate_inventory}",args[2]);
-        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY();
+        List<String> list=  MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_MAP_ISOLATE_INVENTORY();
         if (list!=null){
             ReplaceUtil.replace(list, rep);
         }

@@ -28,14 +28,14 @@ public class StopChooseKitRunnable extends BukkitRunnable {
         if (rest>0){
 
 
-            String title=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE();
+            String title=MessageYaml.INSTANCE.getTITLE_CHOOSE_KIT_TIME_TITLE();
             if (title!=null){
-                title=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_TITLE(),
+                title=ReplaceUtil.replace(MessageYaml.INSTANCE.getTITLE_CHOOSE_KIT_TIME_TITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
             }
-            String stitle=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE();
+            String stitle=MessageYaml.INSTANCE.getTITLE_CHOOSE_KIT_TIME_SUBTITLE();
             if (stitle!=null){
-                stitle=ReplaceUtil.replace(MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
+                stitle=ReplaceUtil.replace(MessageYaml.INSTANCE.getTITLE_CHOOSE_KIT_TIME_SUBTITLE(),
                         Collections.singletonMap("{time}",String.valueOf(rest)));
             }
             race.sendTitleToAll(title, stitle);
@@ -48,7 +48,7 @@ public class StopChooseKitRunnable extends BukkitRunnable {
 
 
         race.stopChooseKit();
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_STOP_CHOOSE_KIT();
 
 

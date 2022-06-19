@@ -15,8 +15,8 @@ public class CompleterSectionSet extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            return removeStartWith(args[1], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_SECTION()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_SECTION()
+            return removeStartWith(args[1], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_SECTION()
+                    ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_SECTION()
             );
         }
 

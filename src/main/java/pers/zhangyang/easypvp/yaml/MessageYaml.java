@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MessageYaml extends YamlManagerBase {
-    public static final MessageYaml MESSAGE_YAML_MANAGER =new MessageYaml();
+    public static final MessageYaml INSTANCE =new MessageYaml();
 
     private MessageYaml( ) {
-        super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/message.yml");
+        super("language/"+ SettingYaml.INSTANCE.getLANGUAGE()+"/message.yml");
     }
 
     private List<String> CHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION;

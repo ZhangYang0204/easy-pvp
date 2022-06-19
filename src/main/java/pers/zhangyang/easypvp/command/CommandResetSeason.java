@@ -25,7 +25,7 @@ public class CommandResetSeason extends CommandBase {
             return true ;
         }
 
-        MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_RESET_SEASON());
+        MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getCHAT_SUCCESS_RESET_SEASON());
 
         return true ;
     }

@@ -53,7 +53,7 @@ public class PlayerClickShowAllMapPage implements Listener {
 
 
 
-            String title = GuiYaml.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
+            String title = GuiYaml.INSTANCE.getTITLE_ALL_MAP_PAGE();
             AllMapPage allMapPage = new AllMapPage(title);
             List<MapMeta> mapMetaList;
         try {
@@ -66,7 +66,7 @@ public class PlayerClickShowAllMapPage implements Listener {
         }
             allMapPage.init(party, 0, PageUtil.pageMapMeta(0,45,mapMetaList));
             allMapPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_SHOW_ALL_MAP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

@@ -52,7 +52,7 @@ public class PlayerClickMatchRandom implements Listener {
         Party party=allMapPage.getParty();
         try {
             if (!party.getCaptain().equals(gamer)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_NOT_CAPTAIN();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -63,7 +63,7 @@ public class PlayerClickMatchRandom implements Listener {
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -77,7 +77,7 @@ public class PlayerClickMatchRandom implements Listener {
             RaceService commandService = (RaceService) InvocationUtil.getService(new RaceServiceImpl());
             mapMetaList = commandService.getMapMeta(party.getMemberList().size());
             if (mapMetaList.isEmpty()){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_START_RANDOM_MATCH_BECAUSE_NOT_AVAILABLE_MAP();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -99,7 +99,7 @@ public class PlayerClickMatchRandom implements Listener {
         }
 
         //本人通知
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_START_RANDOM_MATCH();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -114,7 +114,7 @@ public class PlayerClickMatchRandom implements Listener {
             if (g.equals(gamer)){continue;}
 
             Player p=g.getPlayer();
-            list= MessageYaml.MESSAGE_YAML_MANAGER
+            list= MessageYaml.INSTANCE
                     .getCHAT_SOMEONE_SUCCESS_START_RANDOM_MATCH();
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());

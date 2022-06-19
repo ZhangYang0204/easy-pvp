@@ -57,7 +57,7 @@ public class PlayerClickLeaveParty implements Listener {
 
             //检查队伍是不是在匹配
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_LEAVE_PARTY_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{party}",party.getPartyName());
@@ -84,7 +84,7 @@ public class PlayerClickLeaveParty implements Listener {
             return;
         }
             //mem打开上一个页面
-            String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+            String title= GuiYaml.INSTANCE.getTITLE_ALL_PARTY_PAGE();
             AllPartyPage allPartyPage=new AllPartyPage(title);
             allPartyPage.init(PageUtil.pageParty(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
             allPartyPage.send(player);
@@ -98,7 +98,7 @@ public class PlayerClickLeaveParty implements Listener {
             if (g.equals(gamer)){continue;}
             playerList.add(g.getPlayer());
         }
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SOMEONE_SUCCESS_LEAVE_PARTY();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{player}",player.getName());
@@ -109,7 +109,7 @@ public class PlayerClickLeaveParty implements Listener {
         MessageUtil.sendMessageTo(playerList, list);
 
 
-        list= MessageYaml.MESSAGE_YAML_MANAGER
+        list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_LEAVE_PARTY();
         rep=new HashMap<>();
         rep.put("{party}",party.getPartyName());

@@ -35,7 +35,7 @@ public class StarRankPage implements InventoryHolder {
         this.pageIndex=pageIndex;
         this.recordMetaList.clear();
         for (RecordMeta m:recordMetaList){this.recordMetaList.add(m.clone());}
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){
@@ -58,12 +58,12 @@ public class StarRankPage implements InventoryHolder {
             rep.put("{total_streak}", String.valueOf(recordMetaList.get(i).getTotalStreak()));
             rep.put("{season_streak}", String.valueOf(recordMetaList.get(i).getSeasonStreak()));
             rep.put("{cumulative_star}", String.valueOf(recordMetaList.get(i).getCumulativeStar()));
-            Iterator<Integer> it= DanYaml.SETTING_YAML_MANAGER.getSECTION().keySet().stream().sorted().iterator();
+            Iterator<Integer> it= DanYaml.INSTANCE.getSECTION().keySet().stream().sorted().iterator();
 
             while (it.hasNext()){
                 Integer iii=it.next();
                 if (recordMetaList.get(i).getSeasonStar()>=iii){
-                    rep.put("{dan}", DanYaml.SETTING_YAML_MANAGER.getSECTION().get(iii));
+                    rep.put("{dan}", DanYaml.INSTANCE.getSECTION().get(iii));
                 }
             }
 
@@ -74,7 +74,7 @@ public class StarRankPage implements InventoryHolder {
                 ReplaceUtil.replace(lore, rep);
             }
 
-            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.GUI_MANAGER.getBUTTON_STAR_RANK_PAGE_RECORD_MATERIAL(),
+            ItemStack itemStack= ItemStackUtil.getItemStack(guiYaml.INSTANCE.getBUTTON_STAR_RANK_PAGE_RECORD_MATERIAL(),
                     displayName,lore);
             inventory.setItem(i,itemStack);
 
@@ -83,7 +83,7 @@ public class StarRankPage implements InventoryHolder {
 
         //设置45上一页
         ItemStack previousPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_MATERIAL(),
-                guiYaml.getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE());
+                guiYaml.getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_DISPLAY_NAME(), guiYaml.INSTANCE.getBUTTON_STAR_RANK_PAGE_PREVIOUS_RANK_PAGE_LORE());
         inventory.setItem(45,previousPage);
 
         //设置53下一页

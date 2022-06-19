@@ -7,12 +7,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.AllRacePage;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.manager.RaceManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
@@ -51,16 +49,16 @@ public class PlayerClickPreviousRacePage implements Listener {
 
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex<=0){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_PREVIOUS_ALL_RACE_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
-        } allPartyPage=new AllRacePage(GuiYaml.GUI_MANAGER.getTITLE_ALL_RACE_PAGE());
+        } allPartyPage=new AllRacePage(GuiYaml.INSTANCE.getTITLE_ALL_RACE_PAGE());
         allPartyPage.init(PageUtil.pageRace(currentPageIndex-1,45, RaceManager.RACE_MANAGER.getRaceList()),
                 currentPageIndex-1);
         allPartyPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_PREVIOUS_ALL_RACE_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

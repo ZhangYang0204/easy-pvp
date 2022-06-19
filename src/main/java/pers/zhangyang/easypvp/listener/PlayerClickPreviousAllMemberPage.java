@@ -48,17 +48,17 @@ public class PlayerClickPreviousAllMemberPage implements Listener {
 
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex<=0){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_PREVIOUS_ALL_MEMBER_PAGE_BECAUSE_NOT_PREVIOUS();
             MessageUtil.sendMessageTo(player, list);
             return;
-        }allPartyPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
+        }allPartyPage=new AllMemberPage(GuiYaml.getINSTANCE().getTITLE_ALL_MEMBER_PAGE());
         allPartyPage.init(party,currentPageIndex-1,PageUtil.pageGamer(currentPageIndex-1,45,
                 party.getMemberList()));
         allPartyPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                .MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_PREVIOUS_ALL_MEMBER_PAGE();
+        List<String> list= MessageYaml.INSTANCE
+                .INSTANCE.getCHAT_SUCCESS_PREVIOUS_ALL_MEMBER_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }
 }

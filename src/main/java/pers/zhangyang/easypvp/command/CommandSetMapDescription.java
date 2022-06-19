@@ -5,7 +5,6 @@ import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistDesciptionRowException;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -47,7 +46,7 @@ public class CommandSetMapDescription extends CommandBase {
             rep.put("{map}", args[1]);
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -58,7 +57,7 @@ public class CommandSetMapDescription extends CommandBase {
             rep.put("{map}", args[1]);
             rep.put("{row}", args[2]);
             rep.put("{description}", args[3]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_DESCRIPTION_BECAUSE_NOT_EXIST_DESCRIPTION_ROW();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -69,7 +68,7 @@ public class CommandSetMapDescription extends CommandBase {
         rep.put("{map}", args[1]);
         rep.put("{row}", args[2]);
         rep.put("{description}", args[3]);
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_DESCRIPTION();
+        List<String> list = MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_MAP_DESCRIPTION();
         if (list != null) {
             ReplaceUtil.replace(list, rep);
         }

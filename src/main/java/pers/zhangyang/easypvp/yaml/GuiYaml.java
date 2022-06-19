@@ -3,13 +3,12 @@ package pers.zhangyang.easypvp.yaml;
 import org.bukkit.Material;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GuiYaml extends YamlManagerBase {
-    public static GuiYaml GUI_MANAGER =new GuiYaml();
+    public static GuiYaml INSTANCE =new GuiYaml();
     private GuiYaml( ) {
-        super("language/"+ SettingYaml.SETTING_YAML_MANAGER.getLANGUAGE()+"/gui.yml");
+        super("language/"+ SettingYaml.INSTANCE.getLANGUAGE()+"/gui.yml");
     }
 
 
@@ -908,8 +907,8 @@ public class GuiYaml extends YamlManagerBase {
         return copy(BUTTON_ALL_PARTY_PAGE_CREATE_PARTY_LORE);
     }
 
-    public static GuiYaml getGuiManager() {
-        return GUI_MANAGER;
+    public static GuiYaml getINSTANCE() {
+        return INSTANCE;
     }
 
     public String getBUTTON_ALL_PARTY_PAGE_PREVIOUS_ALL_PARTY_PAGE_MATERIAL() {

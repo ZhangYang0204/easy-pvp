@@ -49,7 +49,7 @@ public class PlayerClickWatchRace  implements Listener {
         Gamer gamer= GamerManager.GAMER_MANAGER.getGamer(player);
 
         if (gamer.getStats().equals(GamerStatsEnum.READING)){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_WATCH_RACE_BECAUSE_IN_READING();
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{red}",race.getRedParty().getPartyName());
@@ -62,7 +62,7 @@ public class PlayerClickWatchRace  implements Listener {
             return;
         }
         if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_WATCH_RACE_BECAUSE_ALREADY_IN_WATCHING();
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{red}",race.getRedParty().getPartyName());
@@ -77,7 +77,7 @@ public class PlayerClickWatchRace  implements Listener {
 
         gamer.watchRace(race);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_WATCH_RACE();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{red}",race.getRedParty().getPartyName());

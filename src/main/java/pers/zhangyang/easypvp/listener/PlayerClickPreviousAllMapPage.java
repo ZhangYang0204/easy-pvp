@@ -60,19 +60,19 @@ public class PlayerClickPreviousAllMapPage implements Listener {
         }
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex<=0){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_PREVIOUS_ALL_MAP_PAGE_BECAUSE_NOT_PREVIOUS();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-        String title = GuiYaml.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
+        String title = GuiYaml.INSTANCE.getTITLE_ALL_MAP_PAGE();
         allPartyPage = new AllMapPage(title);
         allPartyPage.init(party,currentPageIndex-1, PageUtil.pageMapMeta(currentPageIndex-1,45,
                 mapMetaList));
         allPartyPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                .MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_PREVIOUS_ALL_MAP_PAGE();
+        List<String> list= MessageYaml.INSTANCE
+                .INSTANCE.INSTANCE.getCHAT_SUCCESS_PREVIOUS_ALL_MAP_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }
 }

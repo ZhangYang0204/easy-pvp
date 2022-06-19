@@ -49,19 +49,19 @@ public class PlayerClickNextAllKitPage implements Listener {
         int maxPageIndex= PageUtil.computeMaxPageIndex(race.getKitItemMap().keySet().size(),45);
         int currentPageIndex=allPartyPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_NEXT_ALL_KIT_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
 
-        allPartyPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
+        allPartyPage = new AllKitPage(GuiYaml.getINSTANCE().getTITLE_ALL_KIT_PAGE());
         allPartyPage.init(currentPageIndex+1, PageUtil.pageKitMeta(currentPageIndex+1,45,
                 new ArrayList<>(race.getKitItemMap().keySet())));
         allPartyPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                .MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_NEXT_ALL_KIT_PAGE();
+        List<String> list= MessageYaml.INSTANCE
+                .INSTANCE.INSTANCE.getCHAT_SUCCESS_NEXT_ALL_KIT_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }
 }

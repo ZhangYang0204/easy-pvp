@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 
 public class RecordExpansion extends PlaceholderExpansion {
-    public static final RecordExpansion recordExpansion=new RecordExpansion();
+    public static final RecordExpansion INSTANCE =new RecordExpansion();
 
     private RecordExpansion(){}
 
@@ -72,11 +72,11 @@ public class RecordExpansion extends PlaceholderExpansion {
 
         else   if (params.equalsIgnoreCase("dan")) {
             String dan=null;
-            Iterator<Integer> it=DanYaml.SETTING_YAML_MANAGER.getSECTION().keySet().stream().sorted().iterator();
+            Iterator<Integer> it=DanYaml.INSTANCE.getSECTION().keySet().stream().sorted().iterator();
             while (it.hasNext()){
                 Integer iii=it.next();
                 if (recordMeta.getSeasonStar()>=iii){
-                    dan=DanYaml.SETTING_YAML_MANAGER.getSECTION().get(iii);
+                    dan=DanYaml.INSTANCE.getSECTION().get(iii);
                 }
             }
 

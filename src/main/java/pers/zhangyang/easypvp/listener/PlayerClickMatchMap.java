@@ -49,7 +49,7 @@ public class PlayerClickMatchMap implements Listener {
 
 
             if (!party.getCaptain().equals(gamer)) {
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_START_SPECIFIC_MATCH_BECAUSE_NOT_CAPTAIN();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{map}",mapMeta.getName());
@@ -61,7 +61,7 @@ public class PlayerClickMatchMap implements Listener {
                 MessageUtil.sendMessageTo(player, list);return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)) {
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_START_SPECIFIC_MATCH_BECAUSE_PARTY_IS_MATCHING();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{map}",mapMeta.getName());
@@ -77,7 +77,7 @@ public class PlayerClickMatchMap implements Listener {
             party.startMatch(mapMeta);
 
         //本人通知
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_START_SPECIFIC_MATCH();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -93,7 +93,7 @@ public class PlayerClickMatchMap implements Listener {
         for (Gamer g:party.getMemberList()) {
             if (g.equals(gamer)){continue;}
             Player p=g.getPlayer();
-            list= MessageYaml.MESSAGE_YAML_MANAGER
+            list= MessageYaml.INSTANCE
                     .getCHAT_SOMEONE_SUCCESS_START_SPECIFIC_MATCH();
             rep=new HashMap<>();
             rep.put("{captain}",party.getCaptain().getPlayer().getName());

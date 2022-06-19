@@ -12,7 +12,6 @@ import pers.zhangyang.easypvp.util.ReplaceUtil;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class AllPartyPage implements InventoryHolder {
         this.partyList.addAll(partyList);
         inventory.clear();
 
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
         //设置内容
         for (int i=0;i<45;i++){
             if (i>=partyList.size()){break;}
@@ -79,7 +78,7 @@ public class AllPartyPage implements InventoryHolder {
         inventory.setItem(47,createParty);
         //设置48创建队伍
         ItemStack rankPage=ItemStackUtil.getItemStack(guiYaml.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_MATERIAL(),
-                guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_DISPLAY_NAME(), guiYaml.GUI_MANAGER.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE());
+                guiYaml.INSTANCE.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_DISPLAY_NAME(), guiYaml.INSTANCE.getBUTTON_ALL_PARTY_PAGE_SHOW_RANK_PAGE_LORE());
         inventory.setItem(50,rankPage);
 
         //设置50加入队伍

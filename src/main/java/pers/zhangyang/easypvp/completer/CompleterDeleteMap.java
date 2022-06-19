@@ -22,7 +22,7 @@ public class CompleterDeleteMap extends CompleterBase {
     public List<String> complete() {
         if (args.length==2){
 
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_DELETE_MAP();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_DELETE_MAP();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());

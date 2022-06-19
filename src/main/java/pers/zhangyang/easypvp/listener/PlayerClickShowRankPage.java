@@ -72,10 +72,10 @@ public class PlayerClickShowRankPage implements Listener {
             }
         });
 
-        StarRankPage starRankPage =new StarRankPage(GuiYaml.GUI_MANAGER.getTITLE_STAR_RANK_PAGE());
+        StarRankPage starRankPage =new StarRankPage(GuiYaml.INSTANCE.getTITLE_STAR_RANK_PAGE());
         starRankPage.init(0,PageUtil.pageRecordMeta(0,45,recordMetaList));
         starRankPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_SHOW_RANK_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

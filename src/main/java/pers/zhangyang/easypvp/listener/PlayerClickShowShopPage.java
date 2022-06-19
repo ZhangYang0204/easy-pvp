@@ -9,8 +9,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.ShopPage;
-import pers.zhangyang.easypvp.domain.StarRankPage;
-import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
@@ -44,16 +42,16 @@ public class PlayerClickShowShopPage  implements Listener {
         Player player= (Player) event.getWhoClicked();
 
 
-        String title= GuiYaml.getGuiManager().getTITLE_SHOP_PAGE();
+        String title= GuiYaml.getINSTANCE().getTITLE_SHOP_PAGE();
         ShopPage shopPage=new ShopPage(title);
-        shopPage.init(0,PageUtil.pageString(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                PageUtil.pageString(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                PageUtil.pageInteger(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                PageUtil.pageListSTring(0,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+        shopPage.init(0,PageUtil.pageString(0,45, ShopYaml.INSTANCE.getCONTENT_$_MATERIAL()),
+                PageUtil.pageString(0,45, ShopYaml.INSTANCE.getCONTENT_$_DISPLAY_NAME()),
+                PageUtil.pageListSTring(0,45, ShopYaml.INSTANCE.getCONTENT_$_LORE()),
+                PageUtil.pageListSTring(0,45, ShopYaml.INSTANCE.getCONTENT_$_COMMAND()),
+                PageUtil.pageInteger(0,45, ShopYaml.INSTANCE.getCONTENT_$_COST()),
+                PageUtil.pageListSTring(0,45, ShopYaml.INSTANCE.getCONTENT_$_NOT_ENOUGH()));
         shopPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_SHOW_SHOP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

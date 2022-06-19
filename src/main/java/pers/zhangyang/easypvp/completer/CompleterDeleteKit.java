@@ -3,7 +3,6 @@ package pers.zhangyang.easypvp.completer;
 import org.bukkit.command.CommandSender;
 import pers.zhangyang.easypvp.base.CompleterBase;
 import pers.zhangyang.easypvp.meta.KitMeta;
-import pers.zhangyang.easypvp.meta.MapMeta;
 import pers.zhangyang.easypvp.service.CompleterService;
 import pers.zhangyang.easypvp.service.impl.CompleterServiceImpl;
 import pers.zhangyang.easypvp.util.InvocationUtil;
@@ -13,7 +12,6 @@ import pers.zhangyang.easypvp.yaml.MessageYaml;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class CompleterDeleteKit extends CompleterBase {
     public CompleterDeleteKit(CommandSender sender, boolean forcePlayer, String[] args) {
@@ -23,7 +21,7 @@ public class CompleterDeleteKit extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_DELETE_KIT();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_DELETE_KIT();
 
             List<String> mapName=new ArrayList<>();
             try {

@@ -35,9 +35,9 @@ public class RaceUtil {
                 for (Gamer g : race.getWinner().getMemberList()) {
                     raceService.gamerWin(g.getPlayer().getUniqueId().toString());
                     RecordMeta recordMeta=raceService.getRecordMetaList(g.getPlayer().getUniqueId().toString());
-                    for (int x:MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().keySet()) {
+                    for (int x:MessageYaml.INSTANCE.getCHAT_STREAK().keySet()) {
                         if (recordMeta.getTotalStreak() ==x){
-                            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_STREAK().get(x);
+                            List<String> list = MessageYaml.INSTANCE.getCHAT_STREAK().get(x);
                             HashMap<String,String> rep = new HashMap<>();
                             rep.put("{player}", g.getPlayer().getName());
                             if (list!=null){
@@ -60,7 +60,7 @@ public class RaceUtil {
 
 
         if (race.getWinner()!=null) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_SOMEONE_SUCCESS_RACE_STOP_NOT_DRAW();
             HashMap<String,String> rep = new HashMap<>();
             rep.put("{win_party}", race.getWinner().getPartyName());
             rep.put("{lose_party}", race.getLoser().getPartyName());
@@ -72,7 +72,7 @@ public class RaceUtil {
 
 
         }else {
-            List<String>  list=MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
+            List<String>  list=MessageYaml.INSTANCE.getCHAT_SOMEONE_SUCCESS_RACE_STOP_DRAW();
             HashMap<String,String>  rep = new HashMap<>();
             rep.put("{red_party}", race.getRedParty().getPartyName());
             rep.put("{blue_party}", race.getBlueParty().getPartyName());

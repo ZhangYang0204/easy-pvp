@@ -47,7 +47,7 @@ public class CommandSetMapRedSpawnInterval extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{interval}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_RED_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list!=null){
                 ReplaceUtil.replace(list, rep);
             }
@@ -57,7 +57,7 @@ public class CommandSetMapRedSpawnInterval extends CommandBase {
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{map}", args[1]);
         rep.put("{interval}", args[2]);
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL();
+        List<String> list = MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_MAP_RED_SPAWN_INTERVAL();
         if (list!=null){
             ReplaceUtil.replace(list, rep);
         }

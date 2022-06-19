@@ -42,7 +42,7 @@ public class PlayerQuitGame implements Listener {
                         continue;
                     }
                     Player p=g.getPlayer();
-                    List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                    List<String> list = MessageYaml.INSTANCE
                             .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_MATCHING();
                     HashMap<String,String> rep = new HashMap<>();
                     rep.put("{party}", party.getPartyName());
@@ -58,7 +58,7 @@ public class PlayerQuitGame implements Listener {
             if (gamer.getStats().equals(GamerStatsEnum.RACING)) {
                 //离开游戏
                 gamer.leaveRace();
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list = MessageYaml.INSTANCE
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_RACING();
 
                 HashMap<String,String> rep = new HashMap<>();
@@ -87,7 +87,7 @@ public class PlayerQuitGame implements Listener {
             if (gamer.getStats().equals(GamerStatsEnum.OUTING)) {
                 //离开游戏
                 gamer.leaveRace();
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list = MessageYaml.INSTANCE
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_OUTING();
 
                 HashMap<String,String> rep = new HashMap<>();
@@ -116,7 +116,7 @@ public class PlayerQuitGame implements Listener {
 
 
             if (gamer.getStats().equals(GamerStatsEnum.READING)){
-                List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list = MessageYaml.INSTANCE
                         .getCHAT_SOMEONE_SUCCESS_QUIT_GAME_IN_READING();
                 HashMap<String,String> rep = new HashMap<>();
                 rep.put("{party}", party.getPartyName());

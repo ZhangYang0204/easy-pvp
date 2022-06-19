@@ -22,7 +22,7 @@ public class CompleterRemoveMapKit extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -41,7 +41,7 @@ public class CompleterRemoveMapKit extends CompleterBase {
             return removeStartWith(args[1], list==null?new ArrayList<>():list);
         }
         if (args.length==3){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT_$();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_REMOVE_MAP_KIT_$();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());

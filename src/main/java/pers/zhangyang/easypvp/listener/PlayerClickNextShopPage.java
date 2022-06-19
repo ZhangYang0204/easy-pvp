@@ -10,20 +10,13 @@ import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.ShopPage;
-import pers.zhangyang.easypvp.domain.StarRankPage;
 import pers.zhangyang.easypvp.manager.GamerManager;
-import pers.zhangyang.easypvp.meta.RecordMeta;
-import pers.zhangyang.easypvp.service.RaceService;
-import pers.zhangyang.easypvp.service.impl.RaceServiceImpl;
-import pers.zhangyang.easypvp.util.InvocationUtil;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.yaml.ShopYaml;
 
-import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
 
 public class PlayerClickNextShopPage  implements Listener {
@@ -55,28 +48,28 @@ public class PlayerClickNextShopPage  implements Listener {
         Party party= gamer.getParty();
 
 
-        int maxPageIndex= PageUtil.computeMaxPageIndex(ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL().size(),45);
+        int maxPageIndex= PageUtil.computeMaxPageIndex(ShopYaml.INSTANCE.getCONTENT_$_MATERIAL().size(),45);
         ShopPage starRankPage = (ShopPage) inventory.getHolder();
         int currentPageIndex= starRankPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_NEXT_SHOP_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
 
 
-        String title= GuiYaml.getGuiManager().getTITLE_SHOP_PAGE();
+        String title= GuiYaml.getINSTANCE().getTITLE_SHOP_PAGE();
         starRankPage =new ShopPage(title);
 
-        starRankPage.init(currentPageIndex+1,PageUtil.pageString(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                PageUtil.pageString(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                PageUtil.pageInteger(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+        starRankPage.init(currentPageIndex+1,PageUtil.pageString(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_MATERIAL()),
+                PageUtil.pageString(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_DISPLAY_NAME()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_LORE()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_COMMAND()),
+                PageUtil.pageInteger(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_COST()),
+                PageUtil.pageListSTring(currentPageIndex+1,45, ShopYaml.INSTANCE.getCONTENT_$_NOT_ENOUGH()));
         starRankPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_NEXT_SHOP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

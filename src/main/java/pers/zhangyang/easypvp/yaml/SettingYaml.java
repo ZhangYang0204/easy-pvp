@@ -1,13 +1,12 @@
 package pers.zhangyang.easypvp.yaml;
 
-import org.bukkit.Effect;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SettingYaml extends YamlManagerBase {
-    public static final SettingYaml SETTING_YAML_MANAGER =new SettingYaml();
+    public static final SettingYaml INSTANCE =new SettingYaml();
 
     public String getLANGUAGE() {
         return LANGUAGE;

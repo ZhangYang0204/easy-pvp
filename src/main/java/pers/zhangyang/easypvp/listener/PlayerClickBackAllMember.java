@@ -47,11 +47,11 @@ public class PlayerClickBackAllMember implements Listener {
 
         Party party= gamer.getParty();
 
-        AllMemberPage allMemberPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
+        AllMemberPage allMemberPage=new AllMemberPage(GuiYaml.getINSTANCE().getTITLE_ALL_MEMBER_PAGE());
         allMemberPage.init(party,0, PageUtil.pageGamer(0,45,party.getMemberList()));
         allMemberPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_BACK_ALL_MEMBER_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

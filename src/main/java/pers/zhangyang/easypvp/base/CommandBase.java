@@ -24,12 +24,12 @@ public abstract class CommandBase {
     }
     public boolean process(){
         if (!(sender instanceof Player)&&forcePlayer){
-            MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_NOT_PLAYER());
+            MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getCHAT_NOT_PLAYER());
             return true;
         }
         String permission="EasyPvp."+args[0];
         if (!sender.hasPermission(permission)){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_NO_PERMISSION();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_NO_PERMISSION();
             if (list!=null) {
                 ReplaceUtil.replace(list, Collections.singletonMap("{permission}", permission));
             }
@@ -41,7 +41,7 @@ public abstract class CommandBase {
 
     protected void invalidArgument(@NotNull String arg){
         if (arg==null){throw new IllegalArgumentException();}
-        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_INVALID_ARGUMENT();
+        List<String> list=  MessageYaml.INSTANCE.getCHAT_INVALID_ARGUMENT();
         if (list!=null) {
             ReplaceUtil.replace(list, Collections.singletonMap("{argument}", arg));
         }

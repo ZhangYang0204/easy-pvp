@@ -37,7 +37,7 @@ public class CommandSetMapForbiddenEnderChest extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{forbidden}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_FORBIDDEN_ENDER_CHEST_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list != null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -47,7 +47,7 @@ public class CommandSetMapForbiddenEnderChest extends CommandBase {
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{map}", args[1]);
         rep.put("{forbidden}", args[2]);
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST();
+        List<String> list = MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_MAP_FORBIDDEN_ENDER_CHEST();
         if (list != null) {
             ReplaceUtil.replace(list, rep);
         }

@@ -20,11 +20,11 @@ public class CommandOpenGui extends CommandBase {
     protected boolean run() {
         Player player= (Player) sender;
         //给玩家打开第0页
-        String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+        String title= GuiYaml.INSTANCE.getTITLE_ALL_PARTY_PAGE();
         AllPartyPage allPartyPage=new AllPartyPage(title);
         allPartyPage.init(PageUtil.pageParty(0,45, PartyManager.PARTY_MANAGER.getPartyList()),0);
         allPartyPage.send(player);
-        MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_OPEN_GUI());
+        MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getCHAT_SUCCESS_OPEN_GUI());
         return true ;
     }
 }

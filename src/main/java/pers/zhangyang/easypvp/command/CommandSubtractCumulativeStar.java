@@ -55,7 +55,7 @@ public class CommandSubtractCumulativeStar extends CommandBase {
             Map rep=new HashMap<>();
             rep.put("{player}",args[1]);
             rep.put("{amount}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_SUBTRACT_CUMULATIVE_STAR_BECAUSE_NOT_ENOUGH_STAR();
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -66,7 +66,7 @@ public class CommandSubtractCumulativeStar extends CommandBase {
         Map rep=new HashMap<>();
         rep.put("{player}",args[1]);
         rep.put("{amount}",args[2]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR();
+        List<String> list= MessageYaml.INSTANCE.INSTANCE.getCHAT_SUCCESS_SUBTRACT_CUMULATIVE_STAR();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }
@@ -75,7 +75,7 @@ public class CommandSubtractCumulativeStar extends CommandBase {
         rep=new HashMap<>();
         rep.put("{player}",sender.getName());
         rep.put("{amount}",args[2]);
-        list= MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR();
+        list= MessageYaml.INSTANCE.INSTANCE.getCHAT_SUCCESS_WAS_SUBTRACTED_CUMULATIVE_STAR();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }

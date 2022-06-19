@@ -25,7 +25,7 @@ public class RefreshUtil {
 
                 AllRacePage allRacePage= (AllRacePage) p.getOpenInventory().getTopInventory().getHolder();
                 int maxPageIndex=PageUtil.computeMaxPageIndex(RaceManager.RACE_MANAGER.getRaceList().size(),45);
-                allRacePage=new AllRacePage(GuiYaml.GUI_MANAGER.getTITLE_ALL_RACE_PAGE());
+                allRacePage=new AllRacePage(GuiYaml.INSTANCE.getTITLE_ALL_RACE_PAGE());
                 if (maxPageIndex>=allRacePage.getPageIndex()) {
                     allRacePage.init(PageUtil.pageRace(allRacePage.getPageIndex(), 45, RaceManager.RACE_MANAGER
                             .getRaceList()), allRacePage.getPageIndex());
@@ -46,7 +46,7 @@ public class RefreshUtil {
 
                 AllPartyPage allPartyPage= (AllPartyPage) p.getOpenInventory().getTopInventory().getHolder();
                 int maxPageIndex=PageUtil.computeMaxPageIndex(PartyManager.PARTY_MANAGER.getPartyList().size(),45);
-                String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+                String title= GuiYaml.INSTANCE.getTITLE_ALL_PARTY_PAGE();
                 allPartyPage=new AllPartyPage(title);
                 if (maxPageIndex>=allPartyPage.getPageIndex()) {
                     allPartyPage.init(PageUtil.pageParty(allPartyPage.getPageIndex(), 45, PartyManager.PARTY_MANAGER
@@ -68,7 +68,7 @@ public class RefreshUtil {
                 AllMemberPage allMemberPage= (AllMemberPage) p.getOpenInventory().getTopInventory().getHolder();
                 Party party=allMemberPage.getParty();
                 int maxPageIndex= PageUtil.computeMaxPageIndex(party.getMemberList().size(),45);
-                allMemberPage=new AllMemberPage(GuiYaml.getGuiManager().getTITLE_ALL_MEMBER_PAGE());
+                allMemberPage=new AllMemberPage(GuiYaml.getINSTANCE().getTITLE_ALL_MEMBER_PAGE());
                 if (maxPageIndex>=allMemberPage.getPageIndex()) {
                     allMemberPage.init(party,allMemberPage.getPageIndex(), PageUtil.pageGamer(allMemberPage.getPageIndex(),
                             45,party.getMemberList()));
@@ -95,7 +95,7 @@ public class RefreshUtil {
                 mapMetaList=commandService.getMapMeta(party.getMemberList().size());
 
                 int maxPageIndex=PageUtil.computeMaxPageIndex(mapMetaList.size(),45);
-                String title = GuiYaml.GUI_MANAGER.getTITLE_ALL_MAP_PAGE();
+                String title = GuiYaml.INSTANCE.getTITLE_ALL_MAP_PAGE();
                 allPartyPage = new AllMapPage(title);
                 if (maxPageIndex>=allPartyPage.getPageIndex()) {
 
@@ -119,23 +119,23 @@ public class RefreshUtil {
 
                 ShopPage starRankPage = (ShopPage) p.getOpenInventory().getTopInventory().getHolder();
 
-                int maxPageIndex=PageUtil.computeMaxPageIndex(ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL().size(),45);
-                starRankPage =new ShopPage(GuiYaml.GUI_MANAGER.getTITLE_SHOP_PAGE());
+                int maxPageIndex=PageUtil.computeMaxPageIndex(ShopYaml.INSTANCE.getCONTENT_$_MATERIAL().size(),45);
+                starRankPage =new ShopPage(GuiYaml.INSTANCE.getTITLE_SHOP_PAGE());
                 if (maxPageIndex>= starRankPage.getPageIndex()) {
 
-                    starRankPage.init(starRankPage.getPageIndex(),PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                            PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                            PageUtil.pageInteger(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+                    starRankPage.init(starRankPage.getPageIndex(),PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_MATERIAL()),
+                            PageUtil.pageString(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_DISPLAY_NAME()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_LORE()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_COMMAND()),
+                            PageUtil.pageInteger(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_COST()),
+                            PageUtil.pageListSTring(starRankPage.getPageIndex(),45, ShopYaml.INSTANCE.getCONTENT_$_NOT_ENOUGH()));
                 }else {
-                    starRankPage.init(maxPageIndex,PageUtil.pageString(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                            PageUtil.pageString(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                            PageUtil.pageInteger(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+                    starRankPage.init(maxPageIndex,PageUtil.pageString(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_MATERIAL()),
+                            PageUtil.pageString(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_DISPLAY_NAME()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_LORE()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_COMMAND()),
+                            PageUtil.pageInteger(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_COST()),
+                            PageUtil.pageListSTring(maxPageIndex,45, ShopYaml.INSTANCE.getCONTENT_$_NOT_ENOUGH()));
                 }
                 p.openInventory(starRankPage.getInventory());
 
@@ -168,7 +168,7 @@ public class RefreshUtil {
                     }
                 });
                 int maxPageIndex=PageUtil.computeMaxPageIndex(recordMetaList.size(),45);
-                starRankPage =new StarRankPage(GuiYaml.GUI_MANAGER.getTITLE_STAR_RANK_PAGE());
+                starRankPage =new StarRankPage(GuiYaml.INSTANCE.getTITLE_STAR_RANK_PAGE());
                 if (maxPageIndex>= starRankPage.getPageIndex()) {
                     starRankPage.init(starRankPage.getPageIndex(),PageUtil.pageRecordMeta(starRankPage.getPageIndex(),45,recordMetaList));
                 }else {

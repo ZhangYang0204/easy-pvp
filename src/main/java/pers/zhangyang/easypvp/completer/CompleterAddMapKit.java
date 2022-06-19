@@ -22,7 +22,7 @@ public class CompleterAddMapKit extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_KIT();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_ADD_MAP_KIT();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -43,7 +43,7 @@ public class CompleterAddMapKit extends CompleterBase {
 
         }
         if (args.length==3){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_MAP_KIT_$();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_ADD_MAP_KIT_$();
 
             List<String> mapName=new ArrayList<>();
             try {

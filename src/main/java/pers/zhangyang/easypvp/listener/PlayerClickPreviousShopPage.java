@@ -48,27 +48,27 @@ public class PlayerClickPreviousShopPage implements Listener {
         Party party= gamer.getParty();
 
 
-        int maxPageIndex= PageUtil.computeMaxPageIndex(ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL().size(),45);
+        int maxPageIndex= PageUtil.computeMaxPageIndex(ShopYaml.INSTANCE.getCONTENT_$_MATERIAL().size(),45);
         ShopPage starRankPage = (ShopPage) inventory.getHolder();
         int currentPageIndex= starRankPage.getPageIndex();
         if (currentPageIndex<=0){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_PREVIOUS_SHOP_PAGE_BECAUSE_NOT_PREVIOUS();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
 
 
-        String title= GuiYaml.getGuiManager().getTITLE_SHOP_PAGE();
+        String title= GuiYaml.getINSTANCE().getTITLE_SHOP_PAGE();
         starRankPage =new ShopPage(title);
-        starRankPage.init(currentPageIndex-1,PageUtil.pageString(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_MATERIAL()),
-                PageUtil.pageString(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_DISPLAY_NAME()),
-                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_LORE()),
-                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COMMAND()),
-                PageUtil.pageInteger(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_COST()),
-                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.SETTING_YAML_MANAGER.getCONTENT_$_NOT_ENOUGH()));
+        starRankPage.init(currentPageIndex-1,PageUtil.pageString(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_MATERIAL()),
+                PageUtil.pageString(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_DISPLAY_NAME()),
+                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_LORE()),
+                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_COMMAND()),
+                PageUtil.pageInteger(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_COST()),
+                PageUtil.pageListSTring(currentPageIndex-1,45, ShopYaml.INSTANCE.getCONTENT_$_NOT_ENOUGH()));
         starRankPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_PREVIOUS_SHOP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

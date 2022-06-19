@@ -7,7 +7,6 @@ import pers.zhangyang.easypvp.exception.NotExistKitNameException;
 import pers.zhangyang.easypvp.util.*;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.meta.KitItemStackMeta;
-import pers.zhangyang.easypvp.meta.KitMeta;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
 
@@ -44,7 +43,7 @@ public class CommandSetKit extends CommandBase {
         } catch (NotExistKitNameException e) {
             Map rep=new HashMap<>();
             rep.put("{kit}", args[1]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_SET_KIT_BECAUSE_NOT_EXIST_KIT_NAME();
             if (list!=null) {
                 ReplaceUtil.replace(list, rep);
             }
@@ -53,7 +52,7 @@ public class CommandSetKit extends CommandBase {
         }
         Map rep=new HashMap<>();
         rep.put("{kit}", args[1]);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_KIT();
+        List<String> list= MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_KIT();
         if (list!=null) {
             ReplaceUtil.replace(list, rep);
         }

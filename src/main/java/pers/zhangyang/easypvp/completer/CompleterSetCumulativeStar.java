@@ -19,7 +19,7 @@ public class CompleterSetCumulativeStar extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR();
             if (list==null){return new ArrayList<>();}else {
 
                 List<String> na=new ArrayList<>();
@@ -34,8 +34,8 @@ public class CompleterSetCumulativeStar extends CompleterBase {
 
         }
         if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$()
+            return removeStartWith(args[2], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$()
+                    ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_CUMULATIVE_STAR_$()
             );
         }
         return new ArrayList<>();

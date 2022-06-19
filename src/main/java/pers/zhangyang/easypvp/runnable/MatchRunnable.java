@@ -7,9 +7,6 @@ import pers.zhangyang.easypvp.domain.Gamer;
 import pers.zhangyang.easypvp.domain.Party;
 import pers.zhangyang.easypvp.domain.Matcher;
 import pers.zhangyang.easypvp.domain.Race;
-import pers.zhangyang.easypvp.enumration.PartyStatsEnum;
-import pers.zhangyang.easypvp.exception.FailureCreateWorldException;
-import pers.zhangyang.easypvp.exception.FailureTeleportException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
 import pers.zhangyang.easypvp.manager.MatcherManager;
 import pers.zhangyang.easypvp.meta.*;
@@ -49,11 +46,11 @@ public class MatchRunnable extends BukkitRunnable {
         }
         if (acc!=0) {
             
-            String s=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_TITLE();
+            String s=MessageYaml.INSTANCE.getTITLE_MATCH_TIME_TITLE();
             if (s!=null) {
             s=ReplaceUtil.replace(s, Collections.singletonMap("{time}", String.valueOf(acc)));
             }
-            String ss=MessageYaml.MESSAGE_YAML_MANAGER.getTITLE_MATCH_TIME_SUBTITLE();
+            String ss=MessageYaml.INSTANCE.getTITLE_MATCH_TIME_SUBTITLE();
             if (ss!=null) {
                 ss=ReplaceUtil.replace(s,
                         Collections.singletonMap("{time}", String.valueOf(acc)));
@@ -119,7 +116,7 @@ public class MatchRunnable extends BukkitRunnable {
         for (Gamer g : red.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_MATCH();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{captain}", blue.getCaptain().getPlayer().getName());
@@ -135,7 +132,7 @@ public class MatchRunnable extends BukkitRunnable {
         for (Gamer g : blue.getMemberList()) {
             playerList.add(g.getPlayer());
         }
-        list = MessageYaml.MESSAGE_YAML_MANAGER
+        list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_MATCH();
         rep = new HashMap<>();
         rep.put("{captain}", red.getCaptain().getPlayer().getName());

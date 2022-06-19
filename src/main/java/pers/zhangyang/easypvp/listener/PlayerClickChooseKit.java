@@ -50,7 +50,7 @@ public class PlayerClickChooseKit implements Listener {
         race.sendKit(kitMeta, gamer);
         gamer.getPlayer().closeInventory();
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_CHOOSE_KIT();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{kit}",kitMeta.getName());

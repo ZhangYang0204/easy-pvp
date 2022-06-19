@@ -9,13 +9,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pers.zhangyang.easypvp.domain.AllPartyPage;
 import pers.zhangyang.easypvp.domain.ShopPage;
-import pers.zhangyang.easypvp.domain.StarRankPage;
 import pers.zhangyang.easypvp.manager.PartyManager;
 import pers.zhangyang.easypvp.util.MessageUtil;
 import pers.zhangyang.easypvp.util.PageUtil;
 import pers.zhangyang.easypvp.yaml.GuiYaml;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
-import pers.zhangyang.easypvp.yaml.ShopYaml;
 
 import java.util.List;
 
@@ -44,12 +42,12 @@ public class PlayerClickBackAllPartyPageInShopPage implements Listener {
         Player player= (Player) event.getWhoClicked();
 
 
-        String title= GuiYaml.getGuiManager().getTITLE_SHOP_PAGE();
+        String title= GuiYaml.getINSTANCE().getTITLE_SHOP_PAGE();
         AllPartyPage allPartyPage=new AllPartyPage(title);
         allPartyPage.init(PageUtil.pageParty(0,45,
                 PartyManager.PARTY_MANAGER.getPartyList()),0);
         allPartyPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_BACK_ALL_PARTY_PAGE_IN_SHOP_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

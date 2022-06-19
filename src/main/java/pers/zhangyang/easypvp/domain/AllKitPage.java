@@ -37,7 +37,7 @@ public class AllKitPage implements InventoryHolder {
         this.pageIndex=pageIndex;
         this.kitMetaList.clear();
         for (KitMeta k:kitMetaList){this.kitMetaList.add(k.clone());}
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
         inventory.clear();
         //设置内容
         for (int i=0;i<45;i++){

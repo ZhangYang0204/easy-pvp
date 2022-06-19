@@ -24,7 +24,7 @@ public class NotifyVersionRunnable extends BukkitRunnable {
     public void run() {
         List<String> list;
         if (latest!=null) {
-            list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_NOTIFY_VERSION();
+            list = MessageYaml.INSTANCE.getCHAT_SUCCESS_NOTIFY_VERSION();
             HashMap<String,String> hashMap=new HashMap<>();
             hashMap.put("{current}", EasyPvp.getInstance().getDescription().getVersion());
             hashMap.put("{latest}",latest);
@@ -32,7 +32,7 @@ public class NotifyVersionRunnable extends BukkitRunnable {
                 ReplaceUtil.replace(list, hashMap);
             }
         }else {
-            list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION();
+            list = MessageYaml.INSTANCE.getCHAT_FAILURE_NOTIFY_VERSION_BECAUSE_NOT_GET_LATEST_VERSION();
         }
         MessageUtil.sendMessageTo(sender,list);
     }

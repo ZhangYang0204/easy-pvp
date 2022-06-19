@@ -39,7 +39,7 @@ public class CommandSetMapIsolatePotionEffect extends CommandBase {
             HashMap<String,String> rep=new HashMap<>();
             rep.put("{map}",args[1]);
             rep.put("{isolate_potion_effect}",args[2]);
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_ISOLATE_POTION_EFFECT_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list!=null){
                 ReplaceUtil.replace(list, rep);
             }
@@ -49,7 +49,7 @@ public class CommandSetMapIsolatePotionEffect extends CommandBase {
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{map}",args[1]);
         rep.put("{isolate_potion_effect}",args[2]);
-        List<String> list=  MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT();
+        List<String> list=  MessageYaml.INSTANCE.getCHAT_SUCCESS_SET_MAP_ISOLATE_POTION_EFFECT();
         if (list!=null){
             ReplaceUtil.replace(list, rep);
         }

@@ -17,7 +17,7 @@ public class DatabaseUtil {
     public static Connection getConnection() throws SQLException {
         Connection connection = t.get();
         if(connection==null||connection.isClosed()){
-            SettingYaml settingYamlManager= SettingYaml.SETTING_YAML_MANAGER;
+            SettingYaml settingYamlManager= SettingYaml.INSTANCE;
             connection = DriverManager.getConnection(settingYamlManager.getDATABASE_URL()
                     ,settingYamlManager.getDATABASE_USERNAME(), settingYamlManager.getDATABASE_PASSWORD());
             connection.setAutoCommit(false);

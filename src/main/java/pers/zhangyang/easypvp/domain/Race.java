@@ -340,14 +340,14 @@ public class Race {
     public void startChooseKit() {
         for (Gamer g : redParty.memberList) {
             Player p = g.getPlayer();
-            AllKitPage allKitPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
+            AllKitPage allKitPage = new AllKitPage(GuiYaml.getINSTANCE().getTITLE_ALL_KIT_PAGE());
             allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
 
         }
         for (Gamer g : blueParty.memberList) {
             Player p = g.getPlayer();
-            AllKitPage allKitPage = new AllKitPage(GuiYaml.getGuiManager().getTITLE_ALL_KIT_PAGE());
+            AllKitPage allKitPage = new AllKitPage(GuiYaml.getINSTANCE().getTITLE_ALL_KIT_PAGE());
             allKitPage.init(0, PageUtil.pageKitMeta(0,45,new ArrayList<>(kitItemMap.keySet())));
             allKitPage.send(p);
         }

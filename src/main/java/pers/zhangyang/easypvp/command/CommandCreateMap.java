@@ -36,7 +36,7 @@ public class CommandCreateMap extends CommandBase {
         Player player = (Player) sender;
         Section section = SectionManager.SECTION_MANAGER.getPlayerSection(player);
         if (!section.isFour()) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_MAP_CREATE_BECAUSE_NOT_FOUR_POINT();
             if (list != null) {
                 ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
             }
@@ -44,7 +44,7 @@ public class CommandCreateMap extends CommandBase {
             return true;
         }
         if (!section.isValid()) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_MAP_CREATE_BECAUSE_INVALID_FOUR_POINT();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_MAP_CREATE_BECAUSE_INVALID_FOUR_POINT();
             if (list != null) {
                 ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
             }
@@ -177,7 +177,7 @@ public class CommandCreateMap extends CommandBase {
             e.printStackTrace();
             return true;
         } catch (DuplicateMapNameException e) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_CREATE_MAP_BECAUSE_DUPLICATE_MAP_NAME();
             if (list != null) {
                 ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
             }
@@ -185,7 +185,7 @@ public class CommandCreateMap extends CommandBase {
             return true;
         }
 
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_CREATE_MAP();
+        List<String> list = MessageYaml.INSTANCE.getCHAT_SUCCESS_CREATE_MAP();
         if (list != null) {
             ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
         }

@@ -47,18 +47,18 @@ public class PlayerClickNextAllPartyPage implements Listener {
         int maxPageIndex=PageUtil.computeMaxPageIndex(PartyManager.PARTY_MANAGER.getPartyList().size(),45);
         int currentPageIndex=allPartyPage.getPageIndex();
         if (maxPageIndex<=currentPageIndex){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_NEXT_ALL_PARTY_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
         }
-        String title= GuiYaml.GUI_MANAGER.getTITLE_ALL_PARTY_PAGE();
+        String title= GuiYaml.INSTANCE.getTITLE_ALL_PARTY_PAGE();
          allPartyPage=new AllPartyPage(title);
         allPartyPage.init(PageUtil.pageParty(currentPageIndex+1,45,PartyManager.PARTY_MANAGER.getPartyList()),
                 currentPageIndex+1);
         allPartyPage.send(player);
 
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_NEXT_ALL_PARTY_PAGE();
         MessageUtil.sendMessageTo(player, list);
     }

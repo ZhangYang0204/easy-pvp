@@ -47,7 +47,7 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
         }
 
         //告诉其他人
-        List<String>list = MessageYaml.MESSAGE_YAML_MANAGER
+        List<String>list = MessageYaml.INSTANCE
                 .getCHAT_SOMEONE_SUCCESS_MOVE_OUT_MAP();
         HashMap<String,String> rep = new HashMap<>();
         rep.put("{player}", gamer.getPlayer().getName());
@@ -63,7 +63,7 @@ public class PlayerMoveOutRaceMapInRacing implements Listener {
         }
 
         //告诉出界的人
-       list = MessageYaml.MESSAGE_YAML_MANAGER
+       list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_MOVE_OUT_MAP();
         MessageUtil.sendMessageTo(gamer.getPlayer(), list);
 

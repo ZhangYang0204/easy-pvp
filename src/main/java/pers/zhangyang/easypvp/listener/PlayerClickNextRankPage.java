@@ -67,7 +67,7 @@ public class PlayerClickNextRankPage implements Listener {
 
         int currentPageIndex= starRankPage.getPageIndex();
         if (currentPageIndex>=maxPageIndex){
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list= MessageYaml.INSTANCE
                     .getCHAT_FAILURE_NEXT_RANK_PAGE_BECAUSE_NOT_NEXT();
             MessageUtil.sendMessageTo(player, list);
             return;
@@ -85,10 +85,10 @@ public class PlayerClickNextRankPage implements Listener {
 
             }
         });
-        starRankPage =new StarRankPage(GuiYaml.GUI_MANAGER.getTITLE_STAR_RANK_PAGE());
+        starRankPage =new StarRankPage(GuiYaml.INSTANCE.getTITLE_STAR_RANK_PAGE());
         starRankPage.init(currentPageIndex+1, PageUtil.pageRecordMeta(currentPageIndex+1,45,recordMetaList));
         starRankPage.send(player);
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_NEXT_RANK_PAGE();
         MessageUtil.sendMessageTo(player, list);
 

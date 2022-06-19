@@ -50,7 +50,7 @@ public class PlayerClickJoinParty implements Listener {
 
         try {
             if (gamer.hasParty()){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_ALREADY_JOIN_PARTY();
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -61,7 +61,7 @@ public class PlayerClickJoinParty implements Listener {
                 return;
             }
             if (party.getStats().equals(PartyStatsEnum.MATCHING)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_MATCHING();
 
                 HashMap<String,String> rep=new HashMap<>();
@@ -72,7 +72,7 @@ public class PlayerClickJoinParty implements Listener {
                 return;
             }
             if (party.getStats().equals(PartyStatsEnum.RACING)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+                List<String> list= MessageYaml.INSTANCE
                         .getCHAT_FAILURE_JOIN_PARTY_BECAUSE_PARTY_IS_RACING();
 
                 HashMap<String,String> rep=new HashMap<>();
@@ -83,8 +83,8 @@ public class PlayerClickJoinParty implements Listener {
                 return;
             }
             if (gamer.getStats().equals(GamerStatsEnum.WATCHING)){
-                List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
-                        .MESSAGE_YAML_MANAGER.getCHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING();
+                List<String> list= MessageYaml.INSTANCE
+                        .INSTANCE.getCHAT_FAILURE_JOIN_PARTY_BECAUSE_IN_WATCHING();
 
                 HashMap<String,String> rep=new HashMap<>();
                 rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -105,7 +105,7 @@ public class PlayerClickJoinParty implements Listener {
             return;
         }
         //通知加入者本人
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list= MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_JOIN_PARTY();
         HashMap<String,String> rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());
@@ -118,7 +118,7 @@ public class PlayerClickJoinParty implements Listener {
             if (g.equals(gamer)){continue;}
             playerList.add(g.getPlayer());
         }
-        list= MessageYaml.MESSAGE_YAML_MANAGER
+        list= MessageYaml.INSTANCE
                 .getCHAT_SOMEONE_SUCCESS_JOIN_PARTY();
         rep=new HashMap<>();
         rep.put("{captain}",party.getCaptain().getPlayer().getName());

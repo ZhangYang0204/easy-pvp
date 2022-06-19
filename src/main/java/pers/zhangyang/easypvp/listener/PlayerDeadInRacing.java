@@ -49,12 +49,12 @@ public class PlayerDeadInRacing implements Listener {
             return;
         }
         //告诉死掉的人
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_DEAD_IN_RACING();
         MessageUtil.sendMessageTo(gamer.getPlayer(), list);
 
         //告诉其他人
-        list = MessageYaml.MESSAGE_YAML_MANAGER
+        list = MessageYaml.INSTANCE
                 .getCHAT_SOMEONE_SUCCESS_DEAD_IN_RACING();
         HashMap<String,String> rep = new HashMap<>();
         rep.put("{player}", gamer.getPlayer().getName());

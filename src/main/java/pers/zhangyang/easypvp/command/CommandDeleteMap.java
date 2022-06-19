@@ -1,8 +1,6 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
 import pers.zhangyang.easypvp.yaml.MessageYaml;
@@ -35,13 +33,13 @@ public class CommandDeleteMap extends CommandBase {
              
             return true;
         } catch (NotExistMapNameException e) {
-            List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME();if (list!=null) {
+            List<String> list= MessageYaml.INSTANCE.getCHAT_FAILURE_DELETE_MAP_BECAUSE_NOT_EXIST_MAP_NAME();if (list!=null) {
                 ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
             }
             MessageUtil.sendMessageTo(sender, list);
             return true ;
         }
-        List<String> list= MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DELETE_MAP();
+        List<String> list= MessageYaml.INSTANCE.getCHAT_SUCCESS_DELETE_MAP();
         if (list!=null) {
             ReplaceUtil.replace(list, Collections.singletonMap("{map}", args[1]));
         }

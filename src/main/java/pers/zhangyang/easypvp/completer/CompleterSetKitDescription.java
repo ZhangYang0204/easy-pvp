@@ -21,7 +21,7 @@ public class CompleterSetKitDescription extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION();
 
             List<String> mapName=new ArrayList<>();
             try {
@@ -41,7 +41,7 @@ public class CompleterSetKitDescription extends CompleterBase {
 
         }
         if (args.length==3){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_SET_KIT_DESCRIPTION_$();
 
             List<String> mapName=new ArrayList<>();
             try {
@@ -66,8 +66,8 @@ public class CompleterSetKitDescription extends CompleterBase {
 
         }
         if (args.length==4){
-            return removeStartWith(args[3], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$()
-                    ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$()
+            return removeStartWith(args[3], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$()
+                    ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_KIT_SET_DESCRIPTION_$_$()
             );
         }
         return new ArrayList<>();

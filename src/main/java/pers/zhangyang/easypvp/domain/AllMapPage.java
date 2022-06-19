@@ -51,7 +51,7 @@ public class AllMapPage implements InventoryHolder {
         this.party=party;
         this.mapMetaList.clear();
         for (MapMeta k:mapMetaList){this.mapMetaList.add(k.clone());}
-        GuiYaml guiYaml = GuiYaml.getGuiManager();
+        GuiYaml guiYaml = GuiYaml.getINSTANCE();
 
         inventory.clear();
         //设置内容

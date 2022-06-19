@@ -1,17 +1,13 @@
 package pers.zhangyang.easypvp.yaml;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import pers.zhangyang.easypvp.base.YamlManagerBase;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ShopYaml extends YamlManagerBase {
-    public static final ShopYaml SETTING_YAML_MANAGER =new ShopYaml();
+    public static final ShopYaml INSTANCE =new ShopYaml();
 
     private ShopYaml(){
         super("shop.yml");

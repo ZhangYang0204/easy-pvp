@@ -1,8 +1,6 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import pers.zhangyang.easypvp.EasyPvp;
 import pers.zhangyang.easypvp.base.CommandBase;
 import pers.zhangyang.easypvp.yaml.*;
 import pers.zhangyang.easypvp.util.MessageUtil;
@@ -17,17 +15,17 @@ public class CommandCorrectYaml extends CommandBase {
     @Override
     protected boolean run() {
         try {
-            SettingYaml.SETTING_YAML_MANAGER.correct();
-            GuiYaml.GUI_MANAGER.correct();
-            MessageYaml.MESSAGE_YAML_MANAGER.correct();
-            DanYaml.SETTING_YAML_MANAGER.correct();
-            ShopYaml.SETTING_YAML_MANAGER.correct();
+            SettingYaml.INSTANCE.correct();
+            GuiYaml.INSTANCE.correct();
+            MessageYaml.INSTANCE.correct();
+            DanYaml.INSTANCE.correct();
+            ShopYaml.INSTANCE.correct();
         } catch (IOException e) {
             e.printStackTrace();
              
             return true;
         }
-        MessageUtil.sendMessageTo(sender, MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_CORRECT_YAML());
+        MessageUtil.sendMessageTo(sender, MessageYaml.INSTANCE.getCHAT_SUCCESS_CORRECT_YAML());
         return true ;
     }
 }

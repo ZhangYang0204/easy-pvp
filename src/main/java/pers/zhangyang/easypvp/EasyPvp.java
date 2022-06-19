@@ -36,11 +36,11 @@ public class EasyPvp extends JavaPlugin {
     public void onEnable() {
         //初始化setting.yml,出错直接关闭插件
         try {
-            SettingYaml.SETTING_YAML_MANAGER.init();
-            MessageYaml.MESSAGE_YAML_MANAGER.init();
-            GuiYaml.GUI_MANAGER.init();
-            DanYaml.SETTING_YAML_MANAGER.init();
-            ShopYaml.SETTING_YAML_MANAGER.init();
+            SettingYaml.INSTANCE.init();
+            MessageYaml.INSTANCE.init();
+            GuiYaml.INSTANCE.init();
+            DanYaml.INSTANCE.init();
+            ShopYaml.INSTANCE.init();
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
             setEnabled(false);
@@ -130,7 +130,7 @@ public class EasyPvp extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerClickPreviousShopPage(), this);
 
         //到这里插件已经成功可以使用了,提示插件标志
-        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_ENABLE_PLUGIN());
+        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.INSTANCE.getCHAT_SUCCESS_ENABLE_PLUGIN());
 
         //后台更新提示
         UpdateUtil.notifyVersion(Bukkit.getConsoleSender());
@@ -140,7 +140,7 @@ public class EasyPvp extends JavaPlugin {
 
         //注册PAPI变量
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            RecordExpansion.recordExpansion.register();
+            RecordExpansion.INSTANCE.register();
         }
 
     }
@@ -331,7 +331,7 @@ public class EasyPvp extends JavaPlugin {
 
 
         //关闭提示标志
-        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_DISABLE_PLUGIN());
+        MessageUtil.sendMessageTo(Bukkit.getConsoleSender(),MessageYaml.INSTANCE.getCHAT_SUCCESS_DISABLE_PLUGIN());
 
 
     }
@@ -340,7 +340,7 @@ public class EasyPvp extends JavaPlugin {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         List<String> list = new ArrayList<>();
         if (args.length == 1) {
-            list = MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP();
+            list = MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP();
             if (list == null) {
                 return new ArrayList<>();
             }

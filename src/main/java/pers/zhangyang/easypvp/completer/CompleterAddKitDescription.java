@@ -22,7 +22,7 @@ public class CompleterAddKitDescription extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION();
 
             List<String> mapName=new ArrayList<>();
             try {
@@ -41,8 +41,8 @@ public class CompleterAddKitDescription extends CompleterBase {
 
         }
         if (args.length==3){
-            return removeStartWith(args[2], MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$()
-            ==null?new ArrayList<>():MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$()
+            return removeStartWith(args[2], MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$()
+            ==null?new ArrayList<>():MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_ADD_KIT_DESCRIPTION_$()
             );
         }
 

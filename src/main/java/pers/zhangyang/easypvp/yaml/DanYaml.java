@@ -5,7 +5,7 @@ import pers.zhangyang.easypvp.base.YamlManagerBase;
 import java.util.HashMap;
 
 public class DanYaml extends YamlManagerBase {
-    public static final DanYaml SETTING_YAML_MANAGER =new DanYaml();
+    public static final DanYaml INSTANCE =new DanYaml();
 
     private DanYaml(){
         super("dan.yml");

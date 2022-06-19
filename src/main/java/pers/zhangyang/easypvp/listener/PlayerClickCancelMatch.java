@@ -49,7 +49,7 @@ public class PlayerClickCancelMatch implements Listener {
 
 
         if (!party.getStats().equals(PartyStatsEnum.MATCHING)) {
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+            List<String> list = MessageYaml.INSTANCE
                     .getCHAT_FAILURE_CANCEL_MATCH_BECAUSE_PARTY_IS_NOT_MATCHING();
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{party}", party.getPartyName());
@@ -65,7 +65,7 @@ public class PlayerClickCancelMatch implements Listener {
 
 
         //本人通知
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER
+        List<String> list = MessageYaml.INSTANCE
                 .getCHAT_SUCCESS_CANCEL_MATCH();
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{party}", party.getPartyName());
@@ -81,7 +81,7 @@ public class PlayerClickCancelMatch implements Listener {
             }
             Player p=g.getPlayer();
 
-            list = MessageYaml.MESSAGE_YAML_MANAGER
+            list = MessageYaml.INSTANCE
                     .getCHAT_SOMEONE_SUCCESS_CANCEL_MATCH();
             rep = new HashMap<>();
             rep.put("{party}", party.getPartyName());

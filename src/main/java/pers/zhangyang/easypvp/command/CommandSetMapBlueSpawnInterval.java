@@ -1,10 +1,8 @@
 package pers.zhangyang.easypvp.command;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pers.zhangyang.easypvp.base.CommandBase;
-import pers.zhangyang.easypvp.base.CompleterBase;
 import pers.zhangyang.easypvp.exception.NotExistMapNameException;
 import pers.zhangyang.easypvp.service.CommandService;
 import pers.zhangyang.easypvp.service.impl.CommandServiceImpl;
@@ -49,7 +47,7 @@ public class CommandSetMapBlueSpawnInterval extends CommandBase {
             HashMap<String, String> rep = new HashMap<>();
             rep.put("{map}", args[1]);
             rep.put("{interval}", args[2]);
-            List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.getCHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME();
+            List<String> list = MessageYaml.INSTANCE.getCHAT_FAILURE_SET_MAP_BLUE_SPAWN_INTERVAL_BECAUSE_NOT_EXIST_MAP_NAME();
             if (list!=null){
                 ReplaceUtil.replace(list, rep);
             }
@@ -59,7 +57,7 @@ public class CommandSetMapBlueSpawnInterval extends CommandBase {
         HashMap<String, String> rep = new HashMap<>();
         rep.put("{map}", args[1]);
         rep.put("{interval}", args[2]);
-        List<String> list = MessageYaml.MESSAGE_YAML_MANAGER.MESSAGE_YAML_MANAGER.getCHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL();
+        List<String> list = MessageYaml.INSTANCE.INSTANCE.getCHAT_SUCCESS_SET_MAP_BLUE_SPAWN_INTERVAL();
         if (list!=null){
             ReplaceUtil.replace(list, rep);
         }

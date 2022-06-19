@@ -21,7 +21,7 @@ public class CompleterRemoveMapDescription extends CompleterBase {
     @Override
     public List<String> complete() {
         if (args.length==2){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION();
             List<String> mapName=new ArrayList<>();
             try {
                 CompleterService completerService= (CompleterService) InvocationUtil.getService(new CompleterServiceImpl());
@@ -40,7 +40,7 @@ public class CompleterRemoveMapDescription extends CompleterBase {
 
         }
         if (args.length==3){
-            List<String> list=MessageYaml.MESSAGE_YAML_MANAGER.getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$();
+            List<String> list=MessageYaml.INSTANCE.getCOMPLETER_EASY_PVP_REMOVE_MAP_DESCRIPTION_$();
 
             List<String> mapName=new ArrayList<>();
             try {
