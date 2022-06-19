@@ -29,8 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EasyPvp extends JavaPlugin {
+    private static EasyPvp instance;
     public static EasyPvp getInstance() {
-        return (EasyPvp) Bukkit.getPluginManager().getPlugin("EasyPvp");
+        return instance;
     }
     @Override
     public void onEnable() {
